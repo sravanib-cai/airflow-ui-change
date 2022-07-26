@@ -19,6 +19,36 @@
 
 # Airflow UI
 
+## Run new version using:
+- Run airflow locally in another terminal using:
+```
+export AIRFLOW_HOME=~/airflow
+
+AIRFLOW_VERSION=2.3.3
+PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+```
+- Replace the contents of the local version of ```~/airflow/airflow.cfg``` with the contents of ```airflow-ui-change/new_config.cfg```
+- Run ```airflow standalone```. The Standalone command will initialise the database, make a user, and start all components for you.
+- Open a new terminal and cd into the ```airflow-ui-change/airflow/ui/``` folder.
+- Run the following:
+```
+cp .env.example .env
+
+export WEBSERVER_URL=http://127.0.0.1:8080
+
+echo $WEBSERVER_URL
+``` 
+Make sure $WEBSERVER_URL = http://127.0.0.1:8080
+- Run
+```
+yarn install
+yarn start
+```
+### Can now ignore the rest of the README
+<br />
+
 > **Warning**
 > This is the work-in-progress UI for [AIP-38](https://cwiki.apache.org/confluence/display/AIRFLOW/AIP-38+Modern+Web+Application). The current UI can be found in [www](https://github.com/apache/airflow/tree/main/airflow/www).
 
@@ -41,7 +71,7 @@ Be sure to allow CORS headers and set up an auth backend on your Airflow instanc
 export AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth
 export AIRFLOW__API__ACCESS_CONTROL_ALLOW_HEADERS=*
 export AIRFLOW__API__ACCESS_CONTROL_ALLOW_METHODS=*
-export AIRFLOW__API__ACCESS_CONTROL_ALLOW_ORIGIN=http://127.0.0.1:28080
+export AIRFLOW__API__ACCESS_CONTROL_ALLOW_ORIGIN=http://127.0.0.1:8080
 ```
 
 Create your local environment and adjust the `WEBSERVER_URL` if needed.
@@ -72,3 +102,5 @@ yarn test
 ## Contributing
 
 Be sure to check out our [contribution guide](docs/CONTRIBUTING.md)
+
+

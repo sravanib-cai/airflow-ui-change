@@ -81,7 +81,7 @@ const AuthProvider = ({ children }: Props): ReactElement => {
     setError(null);
     try {
       const authorization = `Basic ${btoa(`${username}:${password}`)}`;
-      await axios.get(`${process.env.WEBSERVER_URL}/api/v1/config`, {
+      await axios.get(`${process.env.WEBSERVER_URL}/api/v1/version`, {
         headers: {
           Authorization: authorization,
         },
