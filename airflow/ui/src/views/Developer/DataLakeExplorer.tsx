@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const TaskReschedules: React.FC = () => (
-  <ActivityContainer current="Task Reschedules">
-    <Heading>Task Reschedules</Heading>
-  </ActivityContainer>
+const DataLakeExplorer: React.FC = () => (
+  <DeveloperContainer current="Data Lake Explorer">
+    <Heading>Data Lake Explorer</Heading>
+  </DeveloperContainer>
 );
 
-export default TaskReschedules;
+export default DataLakeExplorer;

@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import SecurityContainer from './SecurityContainer';
 
-const TaskInstances: React.FC = () => (
-  <ActivityContainer current="Task Instances">
-    <Heading>Task Instances</Heading>
-  </ActivityContainer>
+const Roles: React.FC = () => (
+  <SecurityContainer current="Roles">
+    <Heading>Roles</Heading>
+  </SecurityContainer>
 );
 
-export default TaskInstances;
+export default Roles;

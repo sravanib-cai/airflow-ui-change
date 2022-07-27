@@ -62,7 +62,7 @@ module.exports = {
         'WEBSERVER_URL'
       ],
       html: {
-        title: 'Apache Airflow',
+        title: 'Couture Workbench',
       }
     }),
     copy({

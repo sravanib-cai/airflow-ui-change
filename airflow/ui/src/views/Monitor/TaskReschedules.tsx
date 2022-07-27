@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import AccessContainer from './AccessContainer';
+import MonitorContainer from './MonitorContainer';
 
-const Permissions: React.FC = () => (
-  <AccessContainer current="Permissions">
-    <Heading>Permissions</Heading>
-  </AccessContainer>
+const TaskReschedules: React.FC = () => (
+  <MonitorContainer current="Task Reschedules">
+    <Heading>Task Reschedules</Heading>
+  </MonitorContainer>
 );
 
-export default Permissions;
+export default TaskReschedules;

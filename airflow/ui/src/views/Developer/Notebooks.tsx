@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import AccessContainer from './AccessContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const Access: React.FC = () => (
-  <AccessContainer current="Overview">
-    <Heading>Access</Heading>
-  </AccessContainer>
+const Notebooks: React.FC = () => (
+  <DeveloperContainer current="Notebooks">
+    <Heading>Notebooks</Heading>
+  </DeveloperContainer>
 );
 
-export default Access;
+export default Notebooks;

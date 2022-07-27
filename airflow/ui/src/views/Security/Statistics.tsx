@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import SecurityContainer from './SecurityContainer';
 
-const Runs: React.FC = () => (
-  <ActivityContainer current="Runs">
-    <Heading>Runs</Heading>
-  </ActivityContainer>
+const Statistics: React.FC = () => (
+  <SecurityContainer current="Statistics">
+    <Heading>Statistics</Heading>
+  </SecurityContainer>
 );
 
-export default Runs;
+export default Statistics;

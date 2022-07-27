@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import {
   FiActivity,
+  FiTool,
   FiBookOpen,
   FiSettings,
   FiUsers,
@@ -50,10 +51,16 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
       activePath: '/pipelines',
     },
     {
-      label: 'Activity',
+      label: 'Developer',
+      icon: FiTool,
+      path: '/developer/data-lake-explorer',
+      activePath: '/developer',
+    },
+    {
+      label: 'Monitor',
       icon: FiActivity,
-      path: '/activity/event-logs',
-      activePath: '/activity',
+      path: '/monitor/event-logs',
+      activePath: '/monitor',
     },
     {
       label: 'Config',
@@ -62,10 +69,10 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
       activePath: '/config',
     },
     {
-      label: 'access',
+      label: 'Security',
       icon: FiUsers,
-      path: '/access',
-      activePath: '/access',
+      path: '/security',
+      activePath: '/security',
     },
     {
       label: 'Docs',

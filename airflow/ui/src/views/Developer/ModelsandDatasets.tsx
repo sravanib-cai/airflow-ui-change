@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import AccessContainer from './AccessContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const Roles: React.FC = () => (
-  <AccessContainer current="Roles">
-    <Heading>Roles</Heading>
-  </AccessContainer>
+const ModelsandDatasets: React.FC = () => (
+  <DeveloperContainer current="Models and Datasets">
+    <Heading>Models and Datasets</Heading>
+  </DeveloperContainer>
 );
 
-export default Roles;
+export default ModelsandDatasets;

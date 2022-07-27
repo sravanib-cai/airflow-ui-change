@@ -26,41 +26,33 @@ interface Props {
   toolBar?: React.ReactNode;
 }
 
-const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'airflow.cfg',
-      path: '/config',
+      label: 'Data Lake Explorer',
+      path: '/developer/data-lake-explorer',
     },
     {
-      label: 'Variables',
-      path: '/config/variables',
+      label: 'Notebooks',
+      path: '/developer/notebooks',
     },
     {
-      label: 'Plugins',
-      path: '/config/plugins',
+      label: 'Auto EDA',
+      path: '/developer/auto-eda',
     },
     {
-      label: 'Providers',
-      path: '/config/providers',
+      label: 'Code Artifacts',
+      path: '/developer/code-artifacts',
     },
     {
-      label: 'Pools',
-      path: '/config/pools',
+      label: 'Models and Datasets',
+      path: '/developer/models-datasets',
     },
-    {
-      label: 'XComs',
-      path: '/config/xcoms',
-    },
-    {
-      label: 'Connections',
-      path: '/config/connections',
-    }, 
   ];
 
   return (
     <SectionWrapper
-      currentSection="Config"
+      currentSection="Developer"
       currentView={current}
       navItems={navItems}
       toolBar={toolBar}
@@ -70,4 +62,4 @@ const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default ConfigContainer;
+export default DeveloperContainer;

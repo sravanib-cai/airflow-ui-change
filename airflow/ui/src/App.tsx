@@ -40,23 +40,33 @@ import RenderedK8s from 'views/Pipeline/ti/RenderedK8s';
 import Log from 'views/Pipeline/ti/Log';
 import XCom from 'views/Pipeline/ti/XCom';
 
-import EventLogs from 'views/Activity/EventLogs';
-import Runs from 'views/Activity/Runs';
-import Jobs from 'views/Activity/Jobs';
-import TaskInstances from 'views/Activity/TaskInstances';
-import TaskReschedules from 'views/Activity/TaskReschedules';
-import SLAMisses from 'views/Activity/SLAMisses';
-import XComs from 'views/Activity/XComs';
+import DataLakeExplorer from 'views/Developer/DataLakeExplorer';
+import Notebooks from 'views/Developer/Notebooks';
+import AutoEDA from 'views/Developer/AutoEDA';
+import CodeArtifacts from 'views/Developer/CodeArtifacts';
+import ModelsandDatasets from 'views/Developer/ModelsandDatasets';
+
+import EventLogs from 'views/Monitor/EventLogs';
+import Runs from 'views/Monitor/Runs';
+import Jobs from 'views/Monitor/Jobs';
+import TaskInstances from 'views/Monitor/TaskInstances';
+import TaskReschedules from 'views/Monitor/TaskReschedules';
+import SLAMisses from 'views/Monitor/SLAMisses';
 
 import Config from 'views/Config';
 import Variables from 'views/Config/Variables';
-import Connections from 'views/Config/Connections';
+import Plugins from 'views/Config/Plugins';
+import Providers from 'views/Config/Providers';
 import Pools from 'views/Config/Pools';
+import XComs from 'views/Config/XComs';
+import Connections from 'views/Config/Connections';
 
-import Access from 'views/Access';
-import Users from 'views/Access/Users';
-import Roles from 'views/Access/Roles';
-import Permissions from 'views/Access/Permissions';
+import Security from 'views/Security';
+import Users from 'views/Security/Users';
+import Roles from 'views/Security/Roles';
+// import Permissions from 'views/Security/Permissions';
+import Statistics from 'views/Security/Statistics';
+
 
 import Docs from 'views/Docs';
 import NotFound from 'views/NotFound';
@@ -84,26 +94,34 @@ const App = () => (
     <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/log" component={Log} />
     <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
 
-    <PrivateRoute exact path="/activity/event-logs" component={EventLogs} />
-    <PrivateRoute exact path="/activity/runs" component={Runs} />
-    <PrivateRoute exact path="/activity/jobs" component={Jobs} />
-    <PrivateRoute exact path="/activity/task-instances" component={TaskInstances} />
-    <PrivateRoute exact path="/activity/task-reschedules" component={TaskReschedules} />
-    <PrivateRoute exact path="/activity/sla-misses" component={SLAMisses} />
-    <PrivateRoute exact path="/activity/xcoms" component={XComs} />
+    <PrivateRoute exact path="/developer/data-lake-explorer" component={DataLakeExplorer} />
+    <PrivateRoute exact path="/developer/notebooks" component={Notebooks} />
+    <PrivateRoute exact path="/developer/auto-eda" component={AutoEDA} />
+    <PrivateRoute exact path="/developer/code-artifacts" component={CodeArtifacts} />
+    <PrivateRoute exact path="/developer/models-datasets" component={ModelsandDatasets} />
+
+    <PrivateRoute exact path="/monitor/event-logs" component={EventLogs} />
+    <PrivateRoute exact path="/monitor/runs" component={Runs} />
+    <PrivateRoute exact path="/monitor/jobs" component={Jobs} />
+    <PrivateRoute exact path="/monitor/task-instances" component={TaskInstances} />
+    <PrivateRoute exact path="/monitor/task-reschedules" component={TaskReschedules} />
+    <PrivateRoute exact path="/monitor/sla-misses" component={SLAMisses} />
 
     <PrivateRoute exact path="/config" component={Config} />
     <PrivateRoute exact path="/config/variables" component={Variables} />
-    <PrivateRoute exact path="/config/connections" component={Connections} />
+    <PrivateRoute exact path="/config/plugins" component={Plugins} />
+    <PrivateRoute exact path="/config/providers" component={Providers} />
     <PrivateRoute exact path="/config/pools" component={Pools} />
+    <PrivateRoute exact path="/config/xcoms" component={XComs} />
+    <PrivateRoute exact path="/config/connections" component={Connections} />
 
-    <PrivateRoute exact path="/access" component={Access} />
-    <PrivateRoute exact path="/access/users" component={Users} />
-    <PrivateRoute exact path="/access/users/new" component={Users} />
-    <PrivateRoute exact path="/access/users/:username" component={Users} />
-    <PrivateRoute exact path="/access/users/:username/edit" component={Users} />
-    <PrivateRoute exact path="/access/roles" component={Roles} />
-    <PrivateRoute exact path="/access/permissions" component={Permissions} />
+    <PrivateRoute exact path="/security" component={Security} />
+    <PrivateRoute exact path="/security/users" component={Users} />
+    <PrivateRoute exact path="/security/users/new" component={Users} />
+    <PrivateRoute exact path="/security/users/:username" component={Users} />
+    <PrivateRoute exact path="/security/users/:username/edit" component={Users} />
+    <PrivateRoute exact path="/security/roles" component={Roles} />
+    <PrivateRoute exact path="/security/statistics" component={Statistics} />
 
     <Route exact path="/docs" component={Docs} />
 

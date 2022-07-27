@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import MonitorContainer from './MonitorContainer';
 
-const EventLogs: React.FC = () => (
-  <ActivityContainer current="Event Logs">
-    <Heading>Event Logs</Heading>
-  </ActivityContainer>
+const Runs: React.FC = () => (
+  <MonitorContainer current="Runs">
+    <Heading>Runs</Heading>
+  </MonitorContainer>
 );
 
-export default EventLogs;
+export default Runs;

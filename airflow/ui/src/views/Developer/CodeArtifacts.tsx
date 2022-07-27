@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const XComs: React.FC = () => (
-  <ActivityContainer current="XComs">
-    <Heading>XComs</Heading>
-  </ActivityContainer>
+const CodeArtifacts: React.FC = () => (
+  <DeveloperContainer current="Code Artifacts">
+    <Heading>Code Artifacts</Heading>
+  </DeveloperContainer>
 );
 
-export default XComs;
+export default CodeArtifacts;

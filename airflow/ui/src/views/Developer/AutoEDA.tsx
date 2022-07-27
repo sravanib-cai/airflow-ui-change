@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const SLAMisses: React.FC = () => (
-  <ActivityContainer current="SLA Misses">
-    <Heading>SLA Misses</Heading>
-  </ActivityContainer>
+const AutoEDA: React.FC = () => (
+  <DeveloperContainer current="Auto EDA">
+    <Heading>Auto EDA</Heading>
+  </DeveloperContainer>
 );
 
-export default SLAMisses;
+export default AutoEDA;

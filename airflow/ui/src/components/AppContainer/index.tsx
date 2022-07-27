@@ -59,7 +59,7 @@ const AppContainer: React.FC<Props> = ({ children, breadcrumb }) => {
             color={useColorModeValue('gray.600', 'gray.300')}
             bg={overlayBg}
           >
-            Apache Airflow
+            Couture Workbench
             {' '}
             <a
               href={`https://pypi.python.org/pypi/apache-airflow/${version}`}

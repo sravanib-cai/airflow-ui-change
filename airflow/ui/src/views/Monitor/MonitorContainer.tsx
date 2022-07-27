@@ -26,41 +26,37 @@ interface Props {
   toolBar?: React.ReactNode;
 }
 
-const ActivityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
       label: 'Event Logs',
-      path: '/activity/event-logs',
+      path: '/monitor/event-logs',
     },
     {
       label: 'Runs',
-      path: '/activity/runs',
+      path: '/monitor/runs',
     },
     {
       label: 'Jobs',
-      path: '/activity/jobs',
+      path: '/monitor/jobs',
     },
     {
       label: 'Task Instances',
-      path: '/activity/task-instances',
+      path: '/monitor/task-instances',
     },
     {
       label: 'Task Reschedules',
-      path: '/activity/task-reschedules',
+      path: '/monitor/task-reschedules',
     },
     {
       label: 'SLA Misses',
-      path: '/activity/sla-misses',
-    },
-    {
-      label: 'XComs',
-      path: '/activity/xcoms',
+      path: '/monitor/sla-misses',
     },
   ];
 
   return (
     <SectionWrapper
-      currentSection="Activity"
+      currentSection="Monitor"
       currentView={current}
       navItems={navItems}
       toolBar={toolBar}
@@ -70,4 +66,4 @@ const ActivityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default ActivityContainer;
+export default MonitorContainer;

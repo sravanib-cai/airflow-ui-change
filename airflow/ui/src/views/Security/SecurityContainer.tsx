@@ -18,14 +18,48 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
 
-import ActivityContainer from './ActivityContainer';
+import SectionWrapper from 'components/SectionWrapper';
 
-const Jobs: React.FC = () => (
-  <ActivityContainer current="Jobs">
-    <Heading>Jobs</Heading>
-  </ActivityContainer>
-);
+interface Props {
+  current: string;
+  toolBar?: React.ReactNode;
+}
 
-export default Jobs;
+const SecurityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+  const navItems = [
+    {
+      label: 'Overview',
+      path: '/security',
+    },
+    {
+      label: 'Users',
+      path: '/security/users',
+    },
+    {
+      label: 'Roles',
+      path: '/security/roles',
+    },
+    // {
+    //   label: 'Permissions',
+    //   path: '/security/permissions',
+    // },
+    {
+      label: 'Statistics',
+      path: '/security/statistics',
+    },
+  ];
+
+  return (
+    <SectionWrapper
+      currentSection="Security"
+      currentView={current}
+      navItems={navItems}
+      toolBar={toolBar}
+    >
+      {children}
+    </SectionWrapper>
+  );
+};
+
+export default SecurityContainer;
