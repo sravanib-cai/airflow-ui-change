@@ -49,7 +49,7 @@ import Roles from 'views/Security/Roles';
 import Statistics from 'views/Security/Statistics';
 
 
-import Docs from 'views/Docs';
+// import Docs from 'views/Docs';
 import NotFound from 'views/NotFound';
 
 const webURL = process.env.WEBSERVER_URL;
