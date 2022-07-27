@@ -77,8 +77,8 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
     {
       label: 'Docs',
       icon: FiBookOpen,
-      path: '/docs',
-      activePath: '/docs',
+      path: '/doc-swagger',
+      activePath: '/doc-swagger',
     },
   ];
 
