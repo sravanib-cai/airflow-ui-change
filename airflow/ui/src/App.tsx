@@ -45,11 +45,8 @@ import Connections from 'views/Config/Connections';
 import Security from 'views/Security';
 import Users from 'views/Security/Users';
 import Roles from 'views/Security/Roles';
-// import Permissions from 'views/Security/Permissions';
 import Statistics from 'views/Security/Statistics';
 
-
-// import Docs from 'views/Docs';
 import NotFound from 'views/NotFound';
 
 const webURL = process.env.WEBSERVER_URL;
@@ -105,12 +102,12 @@ const App = () => (
     <PrivateRoute exact path="/security/roles" component={Roles} />
     <PrivateRoute exact path="/security/statistics" component={Statistics} />
 
-    <Route
-            path="/doc-swagger"
-            component={() => {
-              window.location.replace(`${webURL}/api/v1/ui/`);
-              return null;
-            }}
+    <Route 
+      path="/doc-swagger" 
+      component={() => {
+        window.location.replace(`${webURL}/api/v1/ui/`);
+        return null;
+      }}
     />
     <Route component={NotFound} />
   </Switch>

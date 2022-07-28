@@ -55,7 +55,7 @@ const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
     {
       label: 'Connections',
       path: '/config/connections',
-    }, 
+    },
   ];
 
   return (
