@@ -17,8 +17,9 @@
  * under the License.
  */
 
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Image } from '@chakra-ui/react';
+import companyLogo from './couture-icon.png';
 // import { Box } from '@chakra-ui/react';
 
 // const PinwheelLogo = (
@@ -27,7 +28,7 @@ import { Image } from '@chakra-ui/react';
 //   </Box>
 // );
 
-const ImageComponent = () => <Image src='couture-icon.png' />;
+const PinwheelLogo = () => <Image src={companyLogo} />;
 
-// export default PinwheelLogo;
-export default ImageComponent;
+export default PinwheelLogo;
+// export default ImageComponent;
