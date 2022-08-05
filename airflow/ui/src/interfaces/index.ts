@@ -95,11 +95,6 @@ export interface TaskInstance {
   },
 }
 
-export interface Version {
-  version: string,
-  gitVersion: string,
-}
-
 export interface ConfigSection {
   name: string;
   options: Record<string, string>[];

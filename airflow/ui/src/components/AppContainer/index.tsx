@@ -24,8 +24,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { useVersion } from 'api';
-import { defaultVersion } from 'api/defaults';
 import AppHeader from './AppHeader';
 import AppNav from './AppNav';
 
@@ -34,7 +32,6 @@ interface Props {
 }
 
 const AppContainer: React.FC<Props> = ({ children, breadcrumb }) => {
-  const { data: { version, gitVersion } = defaultVersion } = useVersion();
   const bodyBg = useColorModeValue('white', 'gray.800');
   const overlayBg = useColorModeValue('gray.100', 'gray.700');
 

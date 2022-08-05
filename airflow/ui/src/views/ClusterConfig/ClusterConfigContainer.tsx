@@ -18,19 +18,32 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-import DeveloperContainer from './DeveloperContainer';
 
-import TableData from './table';
+import SectionWrapper from 'components/SectionWrapper';
 
-const CodeArtifacts: React.FC = () => (
-  <DeveloperContainer current="Code Artifacts">
-    <Heading>Code Artifacts</Heading>
-    <>
-      <br />
-    </>
-    <TableData />
-  </DeveloperContainer>
-);
+interface Props {
+  current: string;
+  toolBar?: React.ReactNode;
+}
 
-export default CodeArtifacts;
+const ClusterConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+  const navItems = [
+    {
+      label: 'Cluster Config Groups',
+      path: '/clusterconfig',
+    },
+  ];
+
+  return (
+    <SectionWrapper
+      currentSection="ClusterConfig"
+      currentView={current}
+      navItems={navItems}
+      toolBar={toolBar}
+    >
+      {children}
+    </SectionWrapper>
+  );
+};
+
+export default ClusterConfigContainer;

@@ -63,7 +63,7 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
       activePath: '/monitor',
     },
     {
-      label: 'Config',
+      label: 'Workflow Config',
       icon: FiSettings,
       path: '/config',
       activePath: '/config',

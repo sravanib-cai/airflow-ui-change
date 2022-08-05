@@ -19,18 +19,13 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import DeveloperContainer from './DeveloperContainer';
 
-import TableData from './table';
+import ClusterConfigContainer from './ClusterConfigContainer';
 
-const CodeArtifacts: React.FC = () => (
-  <DeveloperContainer current="Code Artifacts">
-    <Heading>Code Artifacts</Heading>
-    <>
-      <br />
-    </>
-    <TableData />
-  </DeveloperContainer>
+const ClusterConfigGrps: React.FC = () => (
+  <ClusterConfigContainer current="ClusterConfigGrps">
+    <Heading>ClusterConfigGrps</Heading>
+  </ClusterConfigContainer>
 );
 
-export default CodeArtifacts;
+export default ClusterConfigGrps;
