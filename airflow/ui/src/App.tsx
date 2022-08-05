@@ -34,8 +34,8 @@ import TaskInstances from 'views/Monitor/TaskInstances';
 import TaskReschedules from 'views/Monitor/TaskReschedules';
 import SLAMisses from 'views/Monitor/SLAMisses';
 
-import Config from 'views/Config';
-import Variables from 'views/Config/Variables';
+import Variables from 'views/Config';
+import Config from 'views/Config/Configurations';
 import Plugins from 'views/Config/Plugins';
 import Providers from 'views/Config/Providers';
 import Pools from 'views/Config/Pools';
@@ -86,8 +86,8 @@ const App = () => (
     <PrivateRoute exact path="/monitor/task-reschedules" component={TaskReschedules} />
     <PrivateRoute exact path="/monitor/sla-misses" component={SLAMisses} />
 
-    <PrivateRoute exact path="/config" component={Config} />
-    <PrivateRoute exact path="/config/variables" component={Variables} />
+    <PrivateRoute exact path="/config" component={Variables} />
+    <PrivateRoute exact path="/config/configurations" component={Config} />
     <PrivateRoute exact path="/config/plugins" component={Plugins} />
     <PrivateRoute exact path="/config/providers" component={Providers} />
     <PrivateRoute exact path="/config/pools" component={Pools} />

@@ -29,12 +29,12 @@ interface Props {
 const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'airflow.cfg',
+      label: 'Variables',
       path: '/config',
     },
     {
-      label: 'Variables',
-      path: '/config/variables',
+      label: 'Configurations',
+      path: '/config/configurations',
     },
     {
       label: 'Plugins',

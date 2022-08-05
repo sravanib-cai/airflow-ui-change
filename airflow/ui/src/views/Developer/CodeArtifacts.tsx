@@ -17,42 +17,18 @@
  * under the License.
  */
 
-import React, { useMemo, useState } from 'react';
-import {
-  Alert,
-  AlertIcon,
-  Progress,
-  Switch,
-  IconButton,
-} from '@chakra-ui/react';
-import type { Column } from 'react-table';
-import {
-  MdPlayArrow,
-} from 'react-icons/md';
-
-import Table from 'components/Table';
-
+import React from 'react';
+import { Heading } from '@chakra-ui/react';
 import DeveloperContainer from './DeveloperContainer';
 
-
-const getRandomInt = (max: number) => Math.floor(Math.random() * max);
-
-// Generate 1-10 placeholder rows
-const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  active: <Switch isDisabled />,
-  tags: '',
-  dagId: <Progress size="lg" isIndeterminate data-testid="pipelines-loading" />,
-  trigger: <IconButton size="sm" icon={<MdPlayArrow />} aria-label="Trigger Dag" disabled />,
-}));
-
+import TableData from './table';
 
 const CodeArtifacts: React.FC = () => (
   <DeveloperContainer current="Code Artifacts">
     <Heading>Code Artifacts</Heading>
-
-
+    <br></br>
+    <TableData />
   </DeveloperContainer>
 );
 
 export default CodeArtifacts;
-
