@@ -24,6 +24,7 @@ import {
   FiActivity,
   FiTool,
   FiBookOpen,
+  FiGlobe,
   FiSettings,
   FiUsers,
 } from 'react-icons/fi';
@@ -61,6 +62,12 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
       icon: FiActivity,
       path: '/monitor/event-logs',
       activePath: '/monitor',
+    },
+    {
+      label: 'Cluster Config',
+      icon: FiGlobe,
+      path: '/clusterconfig',
+      activePath: '/clusterconfig',
     },
     {
       label: 'Workflow Config',
