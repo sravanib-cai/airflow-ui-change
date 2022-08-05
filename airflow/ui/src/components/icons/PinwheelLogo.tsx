@@ -19,16 +19,8 @@
 
 import React from 'react';
 import { Image } from '@chakra-ui/react';
-import companyLogo from './couture-icon.png';
-// import { Box } from '@chakra-ui/react';
+import companyIcon from './couture-icon.png';
 
-// const PinwheelLogo = (
-//   <Box boxSize='40px'>
-//     <Image src={companyLogo}/>
-//   </Box>
-// );
-
-const PinwheelLogo = () => <Image src={companyLogo} />;
+const PinwheelLogo = () => <Image boxSize="40px" src={companyIcon} />;
 
 export default PinwheelLogo;
-// export default ImageComponent;
