@@ -106,7 +106,8 @@ const App = () => (
     <PrivateRoute exact path="/security/roles" component={Roles} />
     <PrivateRoute exact path="/security/statistics" component={Statistics} />
 
-    <Route path="/doc-swagger" 
+    <Route
+      path="/doc-swagger"
       component={() => {
         window.location.replace(`${webURL}/api/v1/ui/`);
         return null;

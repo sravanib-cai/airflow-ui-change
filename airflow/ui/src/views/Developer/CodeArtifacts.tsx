@@ -21,7 +21,7 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 import DeveloperContainer from './DeveloperContainer';
 
-import TableData from './table';
+import UploadButton from './upload_button';
 
 const CodeArtifacts: React.FC = () => (
   <DeveloperContainer current="Code Artifacts">
@@ -29,7 +29,7 @@ const CodeArtifacts: React.FC = () => (
     <>
       <br />
     </>
-    <TableData />
+    <UploadButton />
   </DeveloperContainer>
 );
 
