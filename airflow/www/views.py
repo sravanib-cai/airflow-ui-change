@@ -105,9 +105,8 @@ from airflow.executors.executor_loader import ExecutorLoader
 from airflow.jobs.base_job import BaseJob
 from airflow.jobs.scheduler_job import SchedulerJob
 from airflow.jobs.triggerer_job import TriggererJob
-from airflow.models import Connection, DagModel, DagTag, Log, SlaMiss, TaskFail, XCom, errors
+from airflow.models import DAG, Connection, DagModel, DagTag, Log, SlaMiss, TaskFail, XCom, errors
 from airflow.models.abstractoperator import AbstractOperator
-from airflow.models.dag import DAG, get_dataset_triggered_next_run_info
 from airflow.models.dagcode import DagCode
 from airflow.models.dagrun import DagRun, DagRunType
 from airflow.models.operator import Operator
@@ -715,6 +714,28 @@ class AirflowBaseView(BaseView):
         )
 
 
+def add_user_permissions_to_dag(sender, template, context, **extra):
+    """
+    Adds `.can_edit`, `.can_trigger`, and `.can_delete` properties
+    to DAG based on current user's permissions.
+    Located in `views.py` rather than the DAG model to keep
+    permissions logic out of the Airflow core.
+    """
+    if 'dag' in context:
+        dag = context['dag']
+        can_create_dag_run = get_airflow_app().appbuilder.sm.has_access(
+            permissions.ACTION_CAN_CREATE, permissions.RESOURCE_DAG_RUN
+        )
+
+        dag.can_edit = get_airflow_app().appbuilder.sm.can_edit_dag(dag.dag_id)
+        dag.can_trigger = dag.can_edit and can_create_dag_run
+        dag.can_delete = get_airflow_app().appbuilder.sm.can_delete_dag(dag.dag_id)
+        context['dag'] = dag
+
+
+before_render_template.connect(add_user_permissions_to_dag)
+
+
 class Airflow(AirflowBaseView):
     """Main Airflow application."""
 
@@ -853,14 +874,6 @@ class Airflow(AirflowBaseView):
                 permissions.RESOURCE_DAG,
             ) in user_permissions
 
-            dataset_triggered_dag_ids = {dag.dag_id for dag in dags if dag.schedule_interval == "Dataset"}
-            if dataset_triggered_dag_ids:
-                dataset_triggered_next_run_info = get_dataset_triggered_next_run_info(
-                    dataset_triggered_dag_ids, session=session
-                )
-            else:
-                dataset_triggered_next_run_info = {}
-
             for dag in dags:
                 dag_resource_name = permissions.RESOURCE_DAG_PREFIX + dag.dag_id
                 if all_dags_editable:
@@ -978,20 +991,6 @@ class Airflow(AirflowBaseView):
             tags_filter=arg_tags_filter,
             sorting_key=arg_sorting_key,
             sorting_direction=arg_sorting_direction,
-            auto_refresh_interval=conf.getint('webserver', 'auto_refresh_interval'),
-            dataset_triggered_next_run_info=dataset_triggered_next_run_info,
-        )
-
-    @expose('/datasets')
-    @auth.has_access(
-        [
-            (permissions.ACTION_CAN_READ, permissions.RESOURCE_DATASET),
-        ]
-    )
-    def datasets(self):
-        """Datasets view."""
-        return self.render_template(
-            'airflow/datasets.html',
         )
 
     @expose('/dag_stats', methods=['POST'])
@@ -1252,7 +1251,6 @@ class Airflow(AirflowBaseView):
             )
 
         wwwutils.check_import_errors(dag_orm.fileloc, session)
-        wwwutils.check_dag_warnings(dag_orm.dag_id, session)
 
         return self.render_template(
             'airflow/dag_code.html',
@@ -1292,7 +1290,6 @@ class Airflow(AirflowBaseView):
         root = request.args.get('root', '')
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         states = (
             session.query(TaskInstance.state, sqla.func.count(TaskInstance.dag_id))
@@ -1394,7 +1391,7 @@ class Airflow(AirflowBaseView):
         # only matters if get_rendered_template_fields() raised an exception.
         # The following rendering won't show useful values in this case anyway,
         # but we'll display some quasi-meaingful field names.
-        task = ti.task.unmap(None)
+        task = ti.task.unmap()
 
         title = "Rendered Template"
         html_dict = {}
@@ -2695,7 +2692,6 @@ class Airflow(AirflowBaseView):
             flash(f'DAG "{dag_id}" seems to be missing from DagBag.', "error")
             return redirect(url_for('Airflow.index'))
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         root = request.args.get('root')
         if root:
@@ -2806,7 +2802,6 @@ class Airflow(AirflowBaseView):
             return redirect(url_for('Airflow.index'))
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         root = request.args.get('root')
         if root:
@@ -2930,7 +2925,6 @@ class Airflow(AirflowBaseView):
             flash(f'DAG "{dag_id}" seems to be missing.', "error")
             return redirect(url_for('Airflow.index'))
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         root = request.args.get('root')
         if root:
@@ -3043,7 +3037,6 @@ class Airflow(AirflowBaseView):
             return redirect(url_for('Airflow.index'))
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         base_date = request.args.get('base_date')
         num_runs = request.args.get('num_runs', default=default_dag_run, type=int)
@@ -3201,7 +3194,6 @@ class Airflow(AirflowBaseView):
             base_date = dag.get_latest_execution_date() or timezone.utcnow()
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         root = request.args.get('root')
         if root:
@@ -3292,7 +3284,6 @@ class Airflow(AirflowBaseView):
             base_date = dag.get_latest_execution_date() or timezone.utcnow()
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         root = request.args.get('root')
         if root:
@@ -3351,7 +3342,6 @@ class Airflow(AirflowBaseView):
             }
         )
         chart.buildcontent()
-
         return self.render_template(
             'airflow/chart.html',
             dag=dag,
@@ -3408,7 +3398,6 @@ class Airflow(AirflowBaseView):
             dag = dag.partial_subset(task_ids_or_regex=root, include_upstream=True, include_downstream=False)
 
         wwwutils.check_import_errors(dag.fileloc, session)
-        wwwutils.check_dag_warnings(dag.dag_id, session)
 
         dt_nr_dr_data = get_date_time_num_runs_dag_runs_form_data(request, session, dag)
         dttm = dt_nr_dr_data['dttm']
@@ -4883,7 +4872,7 @@ class LogModelView(AirflowModelView):
     ]
 
     list_columns = ['id', 'dttm', 'dag_id', 'task_id', 'event', 'execution_date', 'owner', 'extra']
-    search_columns = ['dttm', 'dag_id', 'task_id', 'event', 'execution_date', 'owner', 'extra']
+    search_columns = ['dag_id', 'task_id', 'event', 'execution_date', 'owner', 'extra']
 
     label_columns = {
         'execution_date': 'Logical Date',
@@ -5320,24 +5309,25 @@ class DagDependenciesView(AirflowBaseView):
 
     def _calculate_graph(self):
 
-        nodes_dict: Dict[str, Any] = {}
-        edge_tuples: Set[Dict[str, str]] = set()
+        nodes: List[Dict[str, Any]] = []
+        edges: List[Dict[str, str]] = []
 
         for dag, dependencies in SerializedDagModel.get_dag_dependencies().items():
             dag_node_id = f"dag:{dag}"
-            if dag_node_id not in nodes_dict:
-                nodes_dict[dag_node_id] = self._node_dict(dag_node_id, dag, "dag")
+            nodes.append(self._node_dict(dag_node_id, dag, "dag"))
 
             for dep in dependencies:
-                if dep.node_id not in nodes_dict:
-                    nodes_dict[dep.node_id] = self._node_dict(
-                        dep.node_id, dep.dependency_id, dep.dependency_type
-                    )
-                edge_tuples.add((f"dag:{dep.source}", dep.node_id))
-                edge_tuples.add((dep.node_id, f"dag:{dep.target}"))
 
-        self.nodes = list(nodes_dict.values())
-        self.edges = [{"u": u, "v": v} for u, v in edge_tuples]
+                nodes.append(self._node_dict(dep.node_id, dep.dependency_id, dep.dependency_type))
+                edges.extend(
+                    [
+                        {"u": f"dag:{dep.source}", "v": dep.node_id},
+                        {"u": dep.node_id, "v": f"dag:{dep.target}"},
+                    ]
+                )
+
+        self.nodes = nodes
+        self.edges = edges
 
     @staticmethod
     def _node_dict(node_id, label, node_class):
@@ -5633,29 +5623,3 @@ class CustomUserRemoteUserModelView(MultiResourceUserMixin, UserRemoteUserModelV
         permissions.ACTION_CAN_EDIT,
         permissions.ACTION_CAN_DELETE,
     ]
-
-
-def add_user_permissions_to_dag(sender, template, context, **extra):
-    """
-    Adds `.can_edit`, `.can_trigger`, and `.can_delete` properties
-    to DAG based on current user's permissions.
-    Located in `views.py` rather than the DAG model to keep
-    permissions logic out of the Airflow core.
-    """
-    if 'dag' in context:
-        dag = context['dag']
-        can_create_dag_run = get_airflow_app().appbuilder.sm.has_access(
-            permissions.ACTION_CAN_CREATE, permissions.RESOURCE_DAG_RUN
-        )
-
-        dag.can_edit = get_airflow_app().appbuilder.sm.can_edit_dag(dag.dag_id)
-        dag.can_trigger = dag.can_edit and can_create_dag_run
-        dag.can_delete = get_airflow_app().appbuilder.sm.can_delete_dag(dag.dag_id)
-        context['dag'] = dag
-
-
-# NOTE: Put this at the end of the file. Pylance is too clever and detects that
-# before_render_template.connect() is declared as NoReturn, and marks everything
-# after this line as unreachable code. It's technically correct based on the
-# lint-time information, but that's not what actually happens at runtime.
-before_render_template.connect(add_user_permissions_to_dag)

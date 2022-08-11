@@ -72,7 +72,6 @@ class AirflowSecurityManager(SecurityManager, LoggingMixin):
         (permissions.ACTION_CAN_READ, permissions.RESOURCE_DAG_CODE),
         (permissions.ACTION_CAN_READ, permissions.RESOURCE_DAG_RUN),
         (permissions.ACTION_CAN_READ, permissions.RESOURCE_IMPORT_ERROR),
-        (permissions.ACTION_CAN_READ, permissions.RESOURCE_DAG_WARNING),
         (permissions.ACTION_CAN_READ, permissions.RESOURCE_JOB),
         (permissions.ACTION_CAN_READ, permissions.RESOURCE_MY_PASSWORD),
         (permissions.ACTION_CAN_EDIT, permissions.RESOURCE_MY_PASSWORD),
@@ -632,6 +631,7 @@ class AirflowSecurityManager(SecurityManager, LoggingMixin):
         :param access_control: a dict where each key is a rolename and
             each value is a set() of action names (e.g. {'can_read'})
         """
+
         dag_resource_name = permissions.resource_name_for_dag(dag_id)
 
         def _get_or_create_dag_permission(action_name: str) -> Optional[Permission]:

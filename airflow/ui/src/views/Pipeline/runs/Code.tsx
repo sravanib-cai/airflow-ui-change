@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-
+// import CodeWrap from 'js/dag_code'
 import RunsContainer from './RunsContainer';
 
 const Code: React.FC = () => (
