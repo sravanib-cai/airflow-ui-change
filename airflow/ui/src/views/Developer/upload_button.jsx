@@ -19,7 +19,7 @@ const UploadButton = () => {
   };
   const handleChange = (e) => {
     const [file] = e.target.files;
-    console.log(file);
+    // console.log(file);
   };
 
   return (

@@ -46,6 +46,19 @@ export interface Dag {
   tags: DagTag[],
 }
 
+export interface Dag2 {
+  dagId: string,
+  rootDagId: string,
+  isPaused: boolean,
+  isSubdag: boolean,
+  fileloc: string,
+  file_token: string,
+  owners: Array<string>,
+  description: string,
+  scheduleInterval?: TimeDelta | CronExpression,
+  tags: DagTag[],
+}
+
 export interface DagRun {
   dagRunId: string,
   dagId: Dag['dagId'],

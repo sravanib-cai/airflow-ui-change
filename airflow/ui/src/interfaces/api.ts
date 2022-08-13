@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import type { Dag, DagRun, TaskInstance } from './index';
+import type { Dag, Dag2, DagRun, TaskInstance } from './index';
 
 interface Entries {
   totalEntries: number;
@@ -25,6 +25,14 @@ interface Entries {
 
 export interface DagsResponse extends Entries {
   dags: Dag[];
+}
+
+export interface DagResponse{
+  dag: Dag;
+}
+
+export interface DagCode{
+  content: string;
 }
 
 export interface DagRunsResponse extends Entries {

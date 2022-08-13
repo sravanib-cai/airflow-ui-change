@@ -15,10 +15,12 @@
     "@neutrinojs/copy": "^9.5.0",
     "@vvo/tzdb": "^6.7.0",
     "axios": "^0.21.3",
+    "camelcase-keys": "^8.0.1",
     "dayjs": "^1.10.4",
     "dotenv": "^8.2.0",
     "framer-motion": "^3.10.0",
     "humps": "^2.0.1",
+    "moment-timezone": "^0.5.34",
     "react": "^16",
     "react-dom": "^16",
     "react-hot-loader": "^4",
@@ -29,6 +31,7 @@
     "react-table": "^7.7.0",
     "use-react-router": "^1.0.7",
     "react-hook-form": "^7.34.0",
+    "react-markdown": "^8.0.3 ",
     "json-schema": "^0.4.0"
   },
   "devDependencies": {

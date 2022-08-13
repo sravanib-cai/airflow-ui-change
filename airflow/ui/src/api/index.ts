@@ -29,6 +29,8 @@ import type {
   Config, Dag, DagRun, Version,
 } from 'interfaces';
 import type {
+  DagCode,
+  DagResponse,
   DagsResponse,
   DagRunsResponse,
   TaskInstancesResponse,
@@ -55,6 +57,31 @@ const refetchInterval = isTest ? false : 1000;
 interface PageProps {
   offset?: number;
   limit?: number
+}
+
+export function useDagCode(fileToken: Dag['fileToken']) {
+  console.log('filelocSra', fileToken, `/dagSources/${fileToken}`);
+  return useQuery<string, Error>(
+    'dagCode',
+    (): Promise<string> => axios.get(`/dagSources/${fileToken}`),
+    { refetchInterval },
+  );
+}
+
+export function useDagDetails(dagId: Dag['dagId']) {
+  console.log('DagDetails, useDag', dagId, `/dags/${dagId}/details`);
+  return useQuery<Object, Error>(
+    'dagDetails',
+    (): Promise<Object> =>  axios.get(`/dags/${dagId}/details`)
+  );
+}
+
+export function useDag(dagId: Dag['dagId']) {
+  console.log('Sra, useDag', dagId, `/dags/${dagId}`);
+  return useQuery<Dag, Error>(
+    'dag',
+    (): Promise<Dag> =>  axios.get(`/dags/${dagId}`)
+  );
 }
 
 export function useDags({ offset = 0, limit }: PageProps) {
