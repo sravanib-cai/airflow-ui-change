@@ -64,32 +64,12 @@ const App = () => (
     <Redirect exact path="/" to="/home" />
     <PrivateRoute exact path="/home" component={HomePage} />
 
-    <PrivateRoute exact path="/pipelines" component={Pipelines} />
-    <Redirect exact path="/pipelines/:dagId" to="/pipelines/:dagId/details" />
-    <PrivateRoute exact path="/pipelines/:dagId/details" component={Details} />
-    <PrivateRoute exact path="/pipelines/:dagId/code" component={Code} />
-    <PrivateRoute exact path="/pipelines/:dagId/task-tries" component={TaskTries} />
-    <PrivateRoute exact path="/pipelines/:dagId/task-duration" component={TaskDuration} />
-    <PrivateRoute exact path="/pipelines/:dagId/landing-times" component={LandingTimes} />
-
-    <Redirect exact path="/pipelines/:dagId/:dagRunId" to="/pipelines/:dagId/:dagRunId/graph" />
-    <PrivateRoute exact path="/pipelines/:dagId/graph" component={Graph} />
-    <PrivateRoute exact path="/pipelines/:dagId/gantt" component={Gantt} />
-
-    <Redirect exact path="/pipelines/:dagId/:dagRunId/:taskId" to="/pipelines/:dagId/:dagRunId/:taskId/details" />
-    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/details" component={TIDetails} />
-    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/rendered-template" component={RenderedTemplate} />
-    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/rendered-k8s" component={RenderedK8s} />
-    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/log" component={Log} />
-    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
-
     <PrivateRoute exact path="/pipelineruns/manage-and-create" component={ManageAndCreate} />
     <PrivateRoute exact path="/pipelineruns/pipeline-status" component={PipelineStatus} />
     <PrivateRoute exact path="/pipelineruns/pipeline-dependencies" component={PipelineDependencies} />
     <PrivateRoute exact path="/pipelineruns/runs" component={Runs} />
     <PrivateRoute exact path="/pipelineruns/task-instances" component={TaskInstances} />
     <PrivateRoute exact path="/pipelineruns/jobs" component={Jobs} />
-
 
     <Redirect exact path="/pipelineruns/:dagId" to="/pipelineruns/:dagId/details" />
     <PrivateRoute exact path="/pipelineruns/:dagId/details" component={Details} />
@@ -100,6 +80,12 @@ const App = () => (
     <PrivateRoute exact path="/pipelineruns/:dagId/graph" component={Graph} />
     <PrivateRoute exact path="/pipelineruns/:dagId/gantt" component={Gantt} />
 
+    <Redirect exact path="/pipelineruns/:dagId/:dagRunId/:taskId" to="/pipelineruns/:dagId/:dagRunId/:taskId/details" />
+    <PrivateRoute exact path="/pipelineruns/:dagId/:dagRunId/:taskId/details" component={TIDetails} />
+    <PrivateRoute exact path="/pipelineruns/:dagId/:dagRunId/:taskId/rendered-template" component={RenderedTemplate} />
+    <PrivateRoute exact path="/pipelineruns/:dagId/:dagRunId/:taskId/rendered-k8s" component={RenderedK8s} />
+    <PrivateRoute exact path="/pipelineruns/:dagId/:dagRunId/:taskId/log" component={Log} />
+    <PrivateRoute exact path="/pipelineruns/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
 
     <PrivateRoute exact path="/developer/data-lake-explorer" component={DataLakeExplorer} />
     <PrivateRoute exact path="/developer/notebooks" component={Notebooks} />

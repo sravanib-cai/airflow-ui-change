@@ -46,12 +46,6 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
 
   const navItems = [
     {
-      label: 'Pipelines',
-      icon: PipelineIcon,
-      path: '/pipelines',
-      activePath: '/pipelines',
-    },
-    {
       label: 'Pipeline Runs',
       icon: PipelineIcon,
       path: '/pipelineruns/manage-and-create',
