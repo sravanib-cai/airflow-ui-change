@@ -99,7 +99,7 @@ export const TriggerDagButton: React.FC<{ dagId: string }> = ({ dagId }) => {
 export const DagName: React.FC<{ dagId: string }> = ({ dagId }) => (
   <Link
     as={RouterLink}
-    to={`/pipelines/${dagId}`}
+    to={`/pipelineruns/${dagId}`}
     fontWeight="bold"
   >
     {dagId}

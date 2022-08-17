@@ -42,7 +42,7 @@ interface Props {
 const RunContainer: React.FC<Props> = ({ children, currentView }) => {
   const { match: { params: { dagId, dagRunId, taskId } } }: RouterProps = useReactRouter();
 
-  const basePath = `/pipelines/${dagId}/${dagRunId}/${taskId}`;
+  const basePath = `/pipelineruns/${dagId}/${dagRunId}/${taskId}`;
   const navItems = [
     {
       label: 'Details',

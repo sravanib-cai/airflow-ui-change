@@ -47,7 +47,7 @@ const PipelineBreadcrumb: React.FC<Props> = ({ dagId, dagRunId, taskId }) => {
           {dagRunId && (
             <Box
               as={Link}
-              to={`/pipelines/${dagId}`}
+              to={`/pipelineruns/${dagId}`}
               color="currentColor"
               _hover={{ color: 'teal.500' }}
             >
@@ -66,7 +66,7 @@ const PipelineBreadcrumb: React.FC<Props> = ({ dagId, dagRunId, taskId }) => {
               {taskId && (
                 <Box
                   as={Link}
-                  to={`/pipelines/${dagId}/${dagRunId}`}
+                  to={`/pipelineruns/${dagId}/${dagRunId}`}
                   color="currentColor"
                   _hover={{ color: 'teal.500' }}
                 >
