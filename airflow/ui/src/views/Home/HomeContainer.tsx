@@ -26,25 +26,17 @@ interface Props {
   toolBar?: React.ReactNode;
 }
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const HomeContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Event Logs',
-      path: '/monitor/event-logs',
-    },
-    {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
-    },
-    {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
+      label: 'Home Page',
+      path: '/home',
     },
   ];
 
   return (
     <SectionWrapper
-      currentSection="Monitor"
+      currentSection="HomePage"
       currentView={current}
       navItems={navItems}
       toolBar={toolBar}
@@ -54,4 +46,4 @@ const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default MonitorContainer;
+export default HomeContainer;

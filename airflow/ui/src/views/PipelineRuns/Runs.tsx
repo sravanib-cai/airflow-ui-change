@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import MonitorContainer from './MonitorContainer';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-const TaskInstances: React.FC = () => (
-  <MonitorContainer current="Task Instances">
-    <Heading>Task Instances</Heading>
-  </MonitorContainer>
+const Runs: React.FC = () => (
+  <PipelineRunsContainer current="Runs">
+    <Heading>Runs</Heading>
+  </PipelineRunsContainer>
 );
 
-export default TaskInstances;
+export default Runs;

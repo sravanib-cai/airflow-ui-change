@@ -26,25 +26,37 @@ interface Props {
   toolBar?: React.ReactNode;
 }
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const PipelineRunsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Event Logs',
-      path: '/monitor/event-logs',
+      label: 'Manage And Create',
+      path: '/pipelineruns/manage-and-create',
     },
     {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
+      label: 'Pipeline Status',
+      path: '/pipelineruns/pipeline-status',
     },
     {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
+      label: 'Pipeline Dependencies',
+      path: '/pipelineruns/pipeline-dependencies',
+    },
+    {
+      label: 'Runs',
+      path: '/pipelineruns/runs',
+    },
+    {
+      label: 'Task Instances',
+      path: '/pipelineruns/task-instances',
+    },
+    {
+      label: 'Jobs',
+      path: '/pipelineruns/jobs',
     },
   ];
 
   return (
     <SectionWrapper
-      currentSection="Monitor"
+      currentSection="PipelineRuns"
       currentView={current}
       navItems={navItems}
       toolBar={toolBar}
@@ -54,4 +66,4 @@ const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default MonitorContainer;
+export default PipelineRunsContainer;

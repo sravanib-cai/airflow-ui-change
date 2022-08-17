@@ -18,40 +18,19 @@
  */
 
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-import SectionWrapper from 'components/SectionWrapper';
+import UploadButton from 'views/Developer/upload_button';
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
+const ManageAndCreate: React.FC = () => (
+  <PipelineRunsContainer current="Manage And Create">
+    <Heading>Manage And Create</Heading>
+    <>
+      <br />
+    </>
+    <UploadButton />
+  </PipelineRunsContainer>
+);
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Event Logs',
-      path: '/monitor/event-logs',
-    },
-    {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
-    },
-    {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
-    },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="Monitor"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default MonitorContainer;
+export default ManageAndCreate;

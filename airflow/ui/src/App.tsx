@@ -4,6 +4,9 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import PrivateRoute from 'providers/auth/PrivateRoute';
 
+
+import HomePage from 'views/Home';
+
 import Pipelines from 'views/Pipelines';
 
 import Details from 'views/Pipeline/runs/Details';
@@ -21,6 +24,13 @@ import RenderedK8s from 'views/Pipeline/ti/RenderedK8s';
 import Log from 'views/Pipeline/ti/Log';
 import XCom from 'views/Pipeline/ti/XCom';
 
+import ManageAndCreate from 'views/PipelineRuns/ManageAndCreate';
+import PipelineStatus from 'views/PipelineRuns/PipelineStatus';
+import PipelineDependencies from 'views/PipelineRuns/PipelineDependencies';
+import Runs from 'views/PipelineRuns/Runs';
+import TaskInstances from 'views/PipelineRuns/TaskInstances';
+import Jobs from 'views/PipelineRuns/Jobs';
+
 import DataLakeExplorer from 'views/Developer/DataLakeExplorer';
 import Notebooks from 'views/Developer/Notebooks';
 import AutoEDA from 'views/Developer/AutoEDA';
@@ -28,9 +38,6 @@ import CodeArtifacts from 'views/Developer/CodeArtifacts';
 import ModelsandDatasets from 'views/Developer/ModelsandDatasets';
 
 import EventLogs from 'views/Monitor/EventLogs';
-import Runs from 'views/Monitor/Runs';
-import Jobs from 'views/Monitor/Jobs';
-import TaskInstances from 'views/Monitor/TaskInstances';
 import TaskReschedules from 'views/Monitor/TaskReschedules';
 import SLAMisses from 'views/Monitor/SLAMisses';
 
@@ -54,8 +61,35 @@ import NotFound from 'views/NotFound';
 const webURL = process.env.WEBSERVER_URL;
 const App = () => (
   <Switch>
-    <Redirect exact path="/" to="/pipelines" />
+    <Redirect exact path="/" to="/home" />
+    <PrivateRoute exact path="/home" component={HomePage} />
+
     <PrivateRoute exact path="/pipelines" component={Pipelines} />
+    <Redirect exact path="/pipelines/:dagId" to="/pipelines/:dagId/details" />
+    <PrivateRoute exact path="/pipelines/:dagId/details" component={Details} />
+    <PrivateRoute exact path="/pipelines/:dagId/code" component={Code} />
+    <PrivateRoute exact path="/pipelines/:dagId/task-tries" component={TaskTries} />
+    <PrivateRoute exact path="/pipelines/:dagId/task-duration" component={TaskDuration} />
+    <PrivateRoute exact path="/pipelines/:dagId/landing-times" component={LandingTimes} />
+
+    <Redirect exact path="/pipelines/:dagId/:dagRunId" to="/pipelines/:dagId/:dagRunId/graph" />
+    <PrivateRoute exact path="/pipelines/:dagId/graph" component={Graph} />
+    <PrivateRoute exact path="/pipelines/:dagId/gantt" component={Gantt} />
+
+    <Redirect exact path="/pipelines/:dagId/:dagRunId/:taskId" to="/pipelines/:dagId/:dagRunId/:taskId/details" />
+    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/details" component={TIDetails} />
+    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/rendered-template" component={RenderedTemplate} />
+    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/rendered-k8s" component={RenderedK8s} />
+    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/log" component={Log} />
+    <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
+
+    <PrivateRoute exact path="/pipelineruns/manage-and-create" component={ManageAndCreate} />
+    <PrivateRoute exact path="/pipelineruns/pipeline-status" component={PipelineStatus} />
+    <PrivateRoute exact path="/pipelineruns/pipeline-dependencies" component={PipelineDependencies} />
+    <PrivateRoute exact path="/pipelineruns/runs" component={Runs} />
+    <PrivateRoute exact path="/pipelineruns/task-instances" component={TaskInstances} />
+    <PrivateRoute exact path="/pipelineruns/jobs" component={Jobs} />
+
 
     <Redirect exact path="/pipelines/:dagId" to="/pipelines/:dagId/details" />
     <PrivateRoute exact path="/pipelines/:dagId/details" component={Details} />
@@ -75,6 +109,7 @@ const App = () => (
     <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/log" component={Log} />
     <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
 
+
     <PrivateRoute exact path="/developer/data-lake-explorer" component={DataLakeExplorer} />
     <PrivateRoute exact path="/developer/notebooks" component={Notebooks} />
     <PrivateRoute exact path="/developer/auto-eda" component={AutoEDA} />
@@ -82,9 +117,6 @@ const App = () => (
     <PrivateRoute exact path="/developer/models-datasets" component={ModelsandDatasets} />
 
     <PrivateRoute exact path="/monitor/event-logs" component={EventLogs} />
-    <PrivateRoute exact path="/monitor/runs" component={Runs} />
-    <PrivateRoute exact path="/monitor/jobs" component={Jobs} />
-    <PrivateRoute exact path="/monitor/task-instances" component={TaskInstances} />
     <PrivateRoute exact path="/monitor/task-reschedules" component={TaskReschedules} />
     <PrivateRoute exact path="/monitor/sla-misses" component={SLAMisses} />
 

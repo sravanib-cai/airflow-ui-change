@@ -62,6 +62,14 @@ const RunContainer: React.FC<Props> = ({ children, currentView }) => {
       label: 'Landing Times',
       path: `${basePath}/landing-times`,
     },
+    {
+      label: 'Graph',
+      path: `${basePath}/graph`,
+    },
+    {
+      label: 'Gantt',
+      path: `${basePath}/gantt`,
+    },
   ];
 
   return (

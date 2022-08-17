@@ -18,40 +18,15 @@
  */
 
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
 
-import SectionWrapper from 'components/SectionWrapper';
+import AppContainer from 'components/AppContainer';
+// import HomeContainer from './HomeContainer';
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
+const HomePage: React.FC = () => (
+  <AppContainer>
+    <Heading>Home Page</Heading>
+  </AppContainer>
+);
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Event Logs',
-      path: '/monitor/event-logs',
-    },
-    {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
-    },
-    {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
-    },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="Monitor"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default MonitorContainer;
+export default HomePage;

@@ -66,7 +66,7 @@ const PipelineContainer: React.FC = ({ children }) => {
       )}
     >
       <Flex height="100%">
-        {/* <Box flex="1" borderRightWidth="2px" borderColor={dividerColor}>
+        <Box flex="1" borderRightWidth="2px" borderColor={dividerColor}>
           <Heading mb={2}>Runs</Heading>
           {dagRuns.map((dagRun: DagRunType) => (
             <Box key={dagRun.dagRunId}>
@@ -83,8 +83,8 @@ const PipelineContainer: React.FC = ({ children }) => {
               ))}
             </>
           )}
-        </Box> */}
-        <Box width="100%" >
+        </Box>
+        <Box width="50%" pl={4} ml="2px">
           {children}
         </Box>
       </Flex>

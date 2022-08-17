@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import MonitorContainer from './MonitorContainer';
+import RunsContainer from './RunsContainer';
 
-const Runs: React.FC = () => (
-  <MonitorContainer current="Runs">
-    <Heading>Runs</Heading>
-  </MonitorContainer>
+const Gantt: React.FC = () => (
+  <RunsContainer currentView="Gantt">
+    <Heading>Gantt</Heading>
+  </RunsContainer>
 );
 
-export default Runs;
+export default Gantt;

@@ -52,6 +52,12 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
       activePath: '/pipelines',
     },
     {
+      label: 'Pipeline Runs',
+      icon: PipelineIcon,
+      path: '/pipelineruns/manage-and-create',
+      activePath: '/pipelineruns',
+    },
+    {
       label: 'Developer',
       icon: FiTool,
       path: '/developer/data-lake-explorer',

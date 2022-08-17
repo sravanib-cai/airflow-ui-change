@@ -18,40 +18,16 @@
  */
 
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
+import PipelinesTable from './PipelinesTable';
 
-import SectionWrapper from 'components/SectionWrapper';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
+const PipelineStatus: React.FC = () => (
+  <PipelineRunsContainer current="Pipeline Status">
+    {/* <Heading>Pipeline Status</Heading> */}
+    <PipelinesTable />
+  </PipelineRunsContainer>
+);
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Event Logs',
-      path: '/monitor/event-logs',
-    },
-    {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
-    },
-    {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
-    },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="Monitor"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default MonitorContainer;
+export default PipelineStatus;
