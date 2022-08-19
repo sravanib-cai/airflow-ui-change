@@ -19,30 +19,13 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import useReactRouter from 'use-react-router';
-import type {
-  Dag as DagType,
-} from 'interfaces';
-import { useDag } from 'api';
-import RunsContainer from './RunsContainer';
 
-interface RouterProps {
-  match: { params: { dagId: DagType['dagId'] } }
-}
+import ClusterConfigContainer from './ClusterConfigContainer';
 
-const Details: React.FC = () => {
-  const { match: { params: { dagId } } }: RouterProps = useReactRouter();
-  const {
-    data: dag = {
-      dagId: '', rootDagId: '', isPaused: false, isSubdag: false, fileloc: '', fileToken: '', owners: [],
-    },
-  } = useDag(dagId);
-  console.log('SraCode, responseDataDags', dag, dag.fileToken);
-  return (
-    <RunsContainer currentView="Details">
-      <Heading>Details</Heading>
-    </RunsContainer>
-  );
-};
+const LivyConfig: React.FC = () => (
+  <ClusterConfigContainer current="Livy Configuration">
+    <Heading>Livy Configuration</Heading>
+  </ClusterConfigContainer>
+);
 
-export default Details;
+export default LivyConfig;

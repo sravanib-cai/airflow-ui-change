@@ -20,22 +20,20 @@
 import React from 'react';
 import { Heading, Code as Codec } from '@chakra-ui/react';
 // import CodeWrap from 'js/dag_code'
-import RunsContainer from './RunsContainer';
 // export const DagName: React.FC<{ dagId: string }> = ({ dagId }) => (
 
 import useReactRouter from 'use-react-router';
 import type {
-    Dag as DagType
+  Dag as DagType,
 } from 'interfaces';
-import { defaultDags } from 'api/defaults';
+// import { defaultDags } from 'api/defaults';
 
-import { useDag, useDagCode, useDags } from 'api';
+import { useDag, useDagCode } from 'api';
+import RunsContainer from './RunsContainer';
 
 interface RouterProps {
-    match: { params: { dagId: DagType['dagId'] } }
+  match: { params: { dagId: DagType['dagId'] } }
 }
-
-const LIMIT1 = 1
 
 const Code: React.FC = () => {
   // const offset = 0;
@@ -47,45 +45,43 @@ const Code: React.FC = () => {
   // } = useDags({ limit: LIMIT1, offset });
   // console.log('SraCode, responseDataDags', dags, dags[0].fileToken);
   // const responseCode = useDagCode(dags[0].fileToken);
-  
+
   const {
-      data: dag = {dagId:'', rootDagId:'', isPaused:false, isSubdag:false, fileloc:'', fileToken:'', owners:[]},
-      isLoading,
-      error,
+    data: dag = {
+      dagId: '', rootDagId: '', isPaused: false, isSubdag: false, fileloc: '', fileToken: '', owners: [],
+    },
   } = useDag(dagId);
   console.log('Code, responseDataDags', dag, dag.fileToken);
 
   const responseCode = useDagCode(dag.fileToken);
 
   if (!responseCode.error) {
-    if (responseCode.data !=undefined){
+    if (responseCode.data !== undefined) {
       console.log('successdatasra', responseCode.data.content);
       return (
-          <RunsContainer currentView="DAG Code">
+        <RunsContainer currentView="DAG Code">
           <Heading>DAG Code</Heading>
           <Codec><pre>{responseCode.data.content}</pre></Codec>
-          </RunsContainer>
-      )
-
-    } else{
-      console.log('undefined', dag.fileToken);
-
-      return (
-          <RunsContainer currentView="DAG Code">
-          <Heading>DAG Code</Heading>
-              {/* <Code>{dag.fileToken}</Code>             */}
-          </RunsContainer>
-      )
+        </RunsContainer>
+      );
     }
+    console.log('undefined', dag.fileToken);
+
+    return (
+      <RunsContainer currentView="DAG Code">
+        <Heading>DAG Code</Heading>
+        {/* <Code>{dag.fileToken}</Code>             */}
+      </RunsContainer>
+    );
   }
 
   console.log('failureCode', responseCode.error);
   return (
     <RunsContainer currentView="DAG Code">
-        <Heading>DAG Code</Heading>
-        <Heading>Failure</Heading>
+      <Heading>DAG Code</Heading>
+      <Heading>Failure</Heading>
     </RunsContainer>
-  )
+  );
 };
 
 export default Code;

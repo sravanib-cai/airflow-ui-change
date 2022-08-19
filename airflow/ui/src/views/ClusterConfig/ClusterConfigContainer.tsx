@@ -32,6 +32,10 @@ const ClusterConfigContainer: React.FC<Props> = ({ children, current, toolBar })
       label: 'Cluster Config Groups',
       path: '/clusterconfig',
     },
+    // {
+    //   label: 'Data Lake Configurations',
+    //   path: '/clusterconfig/datalakeconfig',
+    // },
   ];
 
   return (

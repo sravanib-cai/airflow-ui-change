@@ -4,10 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import PrivateRoute from 'providers/auth/PrivateRoute';
 
-
 import HomePage from 'views/Home';
-
-import Pipelines from 'views/Pipelines';
 
 import Details from 'views/Pipeline/runs/Details';
 import Code from 'views/Pipeline/runs/Code';
@@ -42,6 +39,11 @@ import TaskReschedules from 'views/Monitor/TaskReschedules';
 import SLAMisses from 'views/Monitor/SLAMisses';
 
 import ClusterConfigGrps from 'views/ClusterConfig';
+import DataLakeConfiguration from 'views/ClusterConfig/DataLakeConfiguration';
+import SparkConfig from 'views/ClusterConfig/SparkConfig';
+import SparkDependency from 'views/ClusterConfig/SparkDependency';
+import KerberosConfig from 'views/ClusterConfig/KerberosConfig';
+import LivyConfig from 'views/ClusterConfig/LivyConfig';
 
 import Variables from 'views/Config';
 import Configurations from 'views/Config/Configurations';
@@ -98,6 +100,11 @@ const App = () => (
     <PrivateRoute exact path="/monitor/sla-misses" component={SLAMisses} />
 
     <PrivateRoute exact path="/clusterconfig" component={ClusterConfigGrps} />
+    <PrivateRoute exact path="/clusterconfig/datalakeconfig" component={DataLakeConfiguration} />
+    <PrivateRoute exact path="/clusterconfig/sparkconfig" component={SparkConfig} />
+    <PrivateRoute exact path="/clusterconfig/sparkdependency" component={SparkDependency} />
+    <PrivateRoute exact path="/clusterconfig/kerberosconfig" component={KerberosConfig} />
+    <PrivateRoute exact path="/clusterconfig/Livyconfig" component={LivyConfig} />
 
     <PrivateRoute exact path="/config" component={Variables} />
     <PrivateRoute exact path="/config/configurations" component={Configurations} />

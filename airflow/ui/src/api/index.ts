@@ -72,7 +72,7 @@ export function useDagDetails(dagId: Dag['dagId']) {
   console.log('DagDetails, useDag', dagId, `/dags/${dagId}/details`);
   return useQuery<Object, Error>(
     'dagDetails',
-    (): Promise<Object> =>  axios.get(`/dags/${dagId}/details`)
+    (): Promise<Object> => axios.get(`/dags/${dagId}/details`),
   );
 }
 
@@ -80,7 +80,7 @@ export function useDag(dagId: Dag['dagId']) {
   console.log('Sra, useDag', dagId, `/dags/${dagId}`);
   return useQuery<Dag, Error>(
     'dag',
-    (): Promise<Dag> =>  axios.get(`/dags/${dagId}`)
+    (): Promise<Dag> => axios.get(`/dags/${dagId}`),
   );
 }
 

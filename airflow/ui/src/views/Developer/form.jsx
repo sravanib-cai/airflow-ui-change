@@ -10,7 +10,7 @@ function FileForm(props) {
     event.preventDefault();
 	const val = {
 	  name,
-      city,
+    city,
 	};
     props.func(val);
     clearState();

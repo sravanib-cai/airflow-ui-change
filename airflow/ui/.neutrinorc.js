@@ -33,6 +33,14 @@ module.exports = {
   options: {
     root: __dirname,
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'css-loader' ]
+      }
+    ]
+  },
   use: [
     (neutrino) => {
       // Aliases for internal modules

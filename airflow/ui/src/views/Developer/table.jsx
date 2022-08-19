@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FileForm from './form';
+import FileForm from './upload_button';
 import jsonData from './data.json';
 
 function TableData() {
@@ -7,9 +7,9 @@ function TableData() {
   const tableRows = fileData.map((info) => {
     return (
       <tr>
-        <td>{info.name}</td>
-        {/* <td>{info.size}</td> */}
-        <td>{info.delete}</td>
+        <td>{info.fileName}</td>
+        <td>{info.fileSize}</td>
+        <td>{info.fileDate}</td>
       </tr>
     );
   });
@@ -27,8 +27,8 @@ function TableData() {
         <thead>
           <tr>
             <th>Filename</th>
-            {/* <th>Size</th> */}
-            <th>Delete</th>
+            <th>Size</th>
+            <th>Last Modified</th>
           </tr>
         </thead>
         <tbody>{tableRows}</tbody>

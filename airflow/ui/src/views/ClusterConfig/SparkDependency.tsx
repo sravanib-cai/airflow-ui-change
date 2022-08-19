@@ -19,30 +19,14 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import useReactRouter from 'use-react-router';
-import type {
-  Dag as DagType,
-} from 'interfaces';
-import { useDag } from 'api';
-import RunsContainer from './RunsContainer';
+import SparkDependencyView from './sparkdependency_view';
+import ClusterConfigContainer from './ClusterConfigContainer';
 
-interface RouterProps {
-  match: { params: { dagId: DagType['dagId'] } }
-}
+const SparkDependency: React.FC = () => (
+  <ClusterConfigContainer current="Spark Dependency">
+    <Heading>Spark Dependencies - test/jars</Heading>
+    <SparkDependencyView />
+  </ClusterConfigContainer>
+);
 
-const Details: React.FC = () => {
-  const { match: { params: { dagId } } }: RouterProps = useReactRouter();
-  const {
-    data: dag = {
-      dagId: '', rootDagId: '', isPaused: false, isSubdag: false, fileloc: '', fileToken: '', owners: [],
-    },
-  } = useDag(dagId);
-  console.log('SraCode, responseDataDags', dag, dag.fileToken);
-  return (
-    <RunsContainer currentView="Details">
-      <Heading>Details</Heading>
-    </RunsContainer>
-  );
-};
-
-export default Details;
+export default SparkDependency;

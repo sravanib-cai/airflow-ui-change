@@ -19,9 +19,9 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import PipelineRunsContainer from './PipelineRunsContainer';
 
 import UploadButton from 'views/Developer/upload_button';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
 const ManageAndCreate: React.FC = () => (
   <PipelineRunsContainer current="Manage And Create">

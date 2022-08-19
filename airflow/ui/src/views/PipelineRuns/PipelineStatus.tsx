@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 import PipelinesTable from './PipelinesTable';
 
 import PipelineRunsContainer from './PipelineRunsContainer';

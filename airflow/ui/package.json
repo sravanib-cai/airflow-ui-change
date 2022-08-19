@@ -32,7 +32,10 @@
     "use-react-router": "^1.0.7",
     "react-hook-form": "^7.34.0",
     "react-markdown": "^8.0.3 ",
-    "json-schema": "^0.4.0"
+    "json-schema": "^0.4.0",
+    "css-loader": "^6.7.1",
+    "reactjs-popup": "^2.0.5",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@neutrinojs/eslint": "^9.5.0",

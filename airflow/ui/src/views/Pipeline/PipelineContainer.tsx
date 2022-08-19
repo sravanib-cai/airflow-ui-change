@@ -47,7 +47,7 @@ const PipelineContainer: React.FC = ({ children }) => {
   const { data: { taskInstances } = defaultTaskInstances } = useTaskInstances(dagId, dagRunId);
 
   const linkColor = useColorModeValue('gray.400', 'gray.500');
-  const dividerColor = useColorModeValue('gray.100', 'gray.700');
+  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
 
   return (
     <AppContainer
@@ -84,7 +84,7 @@ const PipelineContainer: React.FC = ({ children }) => {
             </>
           )}
         </Box> */}
-        <Box width="100%" >
+        <Box width="100%">
           {children}
         </Box>
       </Flex>
