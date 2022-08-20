@@ -29,8 +29,8 @@ import type {
   Config, Dag, DagRun, Version,
 } from 'interfaces';
 import type {
-  DagCode,
-  DagResponse,
+  // DagCode,
+  // DagResponse,
   DagsResponse,
   DagRunsResponse,
   TaskInstancesResponse,

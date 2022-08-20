@@ -23,7 +23,7 @@ import useReactRouter from 'use-react-router';
 import type {
   Dag as DagType,
 } from 'interfaces';
-import { useDag } from 'api';
+// import { useDag } from 'api';
 import RunsContainer from './RunsContainer';
 
 interface RouterProps {
@@ -32,12 +32,13 @@ interface RouterProps {
 
 const Details: React.FC = () => {
   const { match: { params: { dagId } } }: RouterProps = useReactRouter();
-  const {
-    data: dag = {
-      dagId: '', rootDagId: '', isPaused: false, isSubdag: false, fileloc: '', fileToken: '', owners: [],
-    },
-  } = useDag(dagId);
-  console.log('SraCode, responseDataDags', dag, dag.fileToken);
+  // const {
+  //   data: dag = {
+  //     dagId: '', rootDagId: '', isPaused: false, isSubdag: 
+  // false, fileloc: '', fileToken: '', owners: [],
+  //   },
+  // } = useDag(dagId);
+  // console.log('SraCode, responseDataDags', dag, dag.fileToken);
   return (
     <RunsContainer currentView="Details">
       <Heading>Details</Heading>

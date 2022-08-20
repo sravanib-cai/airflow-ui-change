@@ -33,7 +33,7 @@ const NotFound: React.FC = () => (
       <Link
         as={RouterLink}
         to="/"
-        color="teal.500"
+        color="blue.500"
       >
         Return to the main page
       </Link>

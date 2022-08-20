@@ -244,6 +244,7 @@ fieldset[disabled] .btn-dflt.active {
 .col-lg-1,
 .col-xs-2,
 .col-sm-2,
+.col-sm-2-1,
 .col-md-2,
 .col-lg-2,
 .col-xs-3,
@@ -459,9 +460,15 @@ fieldset[disabled] .btn-dflt.active {
   margin-left: 0%;
 }
 
+.first-half {
+  float: left;
+  width: 50%;
+}
+
 @media (min-width: 768px) {
   .col-sm-1,
   .col-sm-2,
+  .col-sm-2-1,
   .col-sm-3,
   .col-sm-4,
   .col-sm-5,
@@ -506,6 +513,9 @@ fieldset[disabled] .btn-dflt.active {
   }
   .col-sm-2 {
     width: 16.666666666666664%;
+  }
+  .col-sm-2-1 {
+    width: 15%;
   }
   .col-sm-1 {
     width: 8.333333333333332%;
@@ -727,11 +737,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-  color: #1A202C;
+  color: #fff;
   text-align: center;
-  background-color: #A0AEC0;
-  border: 1px solid #A0AEC0;
+  background-color: #171923;
+  border: 1px solid #2D3748;
   border-radius: 4px;
+}
+tr.removeborder td {
+  border-left: 0px solid;
+  border-right: 0px solid;
 }
 .input-group-addon.input-sm {
   padding: 5px 10px;
@@ -825,14 +839,19 @@ th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: middle;
-  border-top: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  background-color: #A0AEC0;
-  border-bottom: 1px solid #fff;
+  background-color: #1A202C;
+  border-bottom: 1px solid #2D3748;
   white-space: nowrap;
 }
+
+tr:nth-child(odd) {
+  background-color: #171923;
+}
+
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -893,9 +912,14 @@ table th[class*="col-"] {
   float: none;
   display: table-cell;
 }
+table tr td {
+  font-size:12px; 
+  font-weight: 600;
+}
+
 table thead th { 
-  color: #1A202C; 
-  font-size:14px; 
+  /* color: #fff;  */
+  font-size:13px; 
   font-weight: 600;
 }
 
@@ -1051,4 +1075,29 @@ table thead th {
   .table-responsive > .table-bordered > tfoot > tr:last-child > td {
     border-bottom: 0;
   }
+}
+
+.margin-left-md { margin-left: 1em; }
+.margin-top-md { margin-top: 1em; }
+
+#s3{ display:block }
+#ceph{ display:none }
+#hadoop{ display:none }
+
+.switch-toggle {
+ float: left;
+ background: #2D3748;
+}
+.switch-toggle input {
+  position: absolute;
+  opacity: 0;
+}
+.switch-toggle input + label {
+  padding: 7px;
+  float:left;
+  color: #fff;
+  cursor: pointer;
+}
+.switch-toggle input:checked + label {
+  background: rgb(144, 205, 244);
 }

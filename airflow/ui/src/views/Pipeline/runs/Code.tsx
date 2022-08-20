@@ -51,13 +51,13 @@ const Code: React.FC = () => {
       dagId: '', rootDagId: '', isPaused: false, isSubdag: false, fileloc: '', fileToken: '', owners: [],
     },
   } = useDag(dagId);
-  console.log('Code, responseDataDags', dag, dag.fileToken);
+  // console.log('Code, responseDataDags', dag, dag.fileToken);
 
   const responseCode = useDagCode(dag.fileToken);
 
   if (!responseCode.error) {
     if (responseCode.data !== undefined) {
-      console.log('successdatasra', responseCode.data.content);
+      // console.log('successdatasra', responseCode.data.content);
       return (
         <RunsContainer currentView="DAG Code">
           <Heading>DAG Code</Heading>
@@ -65,7 +65,7 @@ const Code: React.FC = () => {
         </RunsContainer>
       );
     }
-    console.log('undefined', dag.fileToken);
+    // console.log('undefined', dag.fileToken);
 
     return (
       <RunsContainer currentView="DAG Code">
@@ -75,7 +75,7 @@ const Code: React.FC = () => {
     );
   }
 
-  console.log('failureCode', responseCode.error);
+  // console.log('failureCode', responseCode.error);
   return (
     <RunsContainer currentView="DAG Code">
       <Heading>DAG Code</Heading>

@@ -18,14 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import DataLakeView from './datalake_view';
 import ClusterConfigContainer from './ClusterConfigContainer';
 
 const DataLakeConfiguration: React.FC = () => (
   <ClusterConfigContainer current="Data Lake Configuration">
-    <Heading>Data Lake Configuration</Heading>
+    {/* <Heading>Data Lake Configuration</Heading> */}
     <DataLakeView />
   </ClusterConfigContainer>
 );

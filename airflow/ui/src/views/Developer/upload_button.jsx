@@ -6,6 +6,7 @@ const UploadButton = () => {
   const [fileName, setFileName] = useState('');
   const [fileSize, setFileSize] = useState('');
   const [fileDate, setFileDate] = useState('');
+  // const [file, setFile] = useState([]);
   const buttonStyle = {
     backgroundColor: '#90cdf4',
     color: '#1A202C',
@@ -21,7 +22,9 @@ const UploadButton = () => {
   const btnRight = {
     cssFloat: 'right',
   };
-  // function formatBytes(a,b=2,k=1024){with(Math){let d=floor(log(a)/log(k));return 0==a?"0 Bytes":parseFloat((a/pow(k,d)).toFixed(max(0,b)))+" "+["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][d]}}
+  // function formatBytes(a,b=2,k=1024){with(Math){let d=floor(log(a)/log(k));
+  // return 0==a?"0 Bytes":parseFloat((a/pow(k,d)).toFixed(max(0,b)))+
+  // " "+["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][d]}}
 
   function formatBytes(bytes, decimals = 2) {
     if (bytes === 0) return '0 Bytes';
@@ -29,18 +32,18 @@ const UploadButton = () => {
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
+    // return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
   const handleChange = (e) => {
-    const [file] = e.target.files;
-    console.log(file);
+    const [f] = e.target.files;
+    // console.log(f);
+    // setFile(f);
     setFileName(e.target.files[0].name);
+    // console.log('File test', f);
+    // console.log(f.name);
     setFileSize(formatBytes(e.target.files[0].size));
-    // setFileDate(e.target.files[0].lastModifiedDate[0]);
-    // let date = Date(e.target.files[0].lastModified);
-    // let d = new Date(date.substring(0, 16));
-    // console.log(d)
     setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
     // const fileDate = e.target.files[0].lastModifiedDate[0];
 
@@ -70,7 +73,6 @@ const UploadButton = () => {
   //   updatedfileData.push(data);
   //   setfileData(updatedfileData);
   // };
-
 
   // const state = {
   //   rows: []
@@ -102,7 +104,6 @@ const UploadButton = () => {
   //   });
   // };
 
-
   return (
     <div>
       <div style={btnRight}>
@@ -118,15 +119,15 @@ const UploadButton = () => {
         />
       </div>
       <p>
-        File Name: 
+        File Name:
         {fileName}
       </p>
       <p>
-        File Size: 
+        File Size:
         {fileSize}
       </p>
       <p>
-        File Date: 
+        File Date:
         {fileDate}
       </p>
       <div>

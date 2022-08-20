@@ -29,11 +29,11 @@ import {
 
 import AppContainer from 'components/AppContainer';
 
-import { useDagRuns, useTaskInstances } from 'api';
-import { defaultDagRuns, defaultTaskInstances } from 'api/defaults';
+// import { useDagRuns, useTaskInstances } from 'api';
+// import { defaultDagRuns, defaultTaskInstances } from 'api/defaults';
 
 import type {
-  Dag as DagType, DagRun as DagRunType, TaskInstance as TaskInstanceType,
+  Dag as DagType, DagRun as DagRunType,
 } from 'interfaces';
 
 interface RouterProps {
@@ -41,10 +41,10 @@ interface RouterProps {
 }
 
 const PipelineContainer: React.FC = ({ children }) => {
-  const { match: { params: { dagId, dagRunId } } }: RouterProps = useReactRouter();
+  const { match: { params: { dagId } } }: RouterProps = useReactRouter();
 
-  const { data: { dagRuns } = defaultDagRuns } = useDagRuns(dagId);
-  const { data: { taskInstances } = defaultTaskInstances } = useTaskInstances(dagId, dagRunId);
+  // const { data: { dagRuns } = defaultDagRuns } = useDagRuns(dagId);
+  // const { data: { taskInstances } = defaultTaskInstances } = useTaskInstances(dagId, dagRunId);
 
   const linkColor = useColorModeValue('gray.400', 'gray.500');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
@@ -56,9 +56,9 @@ const PipelineContainer: React.FC = ({ children }) => {
           <Box
             as="span"
             color={linkColor}
-            _hover={{ color: 'teal.500' }}
+            _hover={{ color: 'blue.200' }}
           >
-            <Link to="../pipelineruns" color="currentColor">PipelineRuns</Link>
+            <Link to="/pipelineruns/pipeline-status" color="currentColor">PipelineRuns</Link>
             /
           </Box>
           {dagId}

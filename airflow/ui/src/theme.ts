@@ -50,17 +50,17 @@ const theme = extendTheme({
   components: {
     Button: {
       defaultProps: {
-        colorScheme: 'teal',
+        colorScheme: 'blue',
       },
     },
     IconButton: {
       defaultProps: {
-        colorScheme: 'teal',
+        colorScheme: 'blue',
       },
     },
     Switch: {
       defaultProps: {
-        colorScheme: 'teal',
+        colorScheme: 'blue',
       },
     },
   },

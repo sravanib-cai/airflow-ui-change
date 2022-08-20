@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
-import './buttonstyle.css'; 
-import { Link } from 'react-router-dom';
-import {
-  Box,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import Popup from 'reactjs-popup';
+import React, { useRef } from 'react';
+import './buttonstyle.css';
+// import { Link } from 'react-router-dom';
+// import {
+//   Box,
+//   useColorModeValue,
+// } from '@chakra-ui/react';
+// import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
 const SparkDependencyView = () => {
@@ -23,31 +23,28 @@ const SparkDependencyView = () => {
     paddingRight: '0.75rem',
   };
   const btnRight = {
-    marginRight: '5px',
+    cssFloat: 'right',
   };
-  const [fileName, setFileName] = useState('');
-  const [fileSize, setFileSize] = useState('');
-  const [fileDate, setFileDate] = useState('');
+  // const [fileName, setFileName] = useState('');
+  // const [fileSize, setFileSize] = useState('');
+  // const [fileDate, setFileDate] = useState('');
 
-  function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  }
+  // function formatBytes(bytes, decimals = 2) {
+  //   if (bytes === 0) return '0 Bytes';
+  //   const k = 1024;
+  //   const dm = decimals < 0 ? 0 : decimals;
+  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
+  //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  // }
 
   const handleChange = (e) => {
     const [file] = e.target.files;
-    console.log(file);
-    setFileName(e.target.files[0].name);
-    setFileSize(formatBytes(e.target.files[0].size));
-    // setFileDate(e.target.files[0].lastModifiedDate[0]);
-    // let date = Date(e.target.files[0].lastModified);
-    // let d = new Date(date.substring(0, 16));
-    // console.log(d)
-    setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+    // console.log(file);
+    // setFileName(e.target.files[0].name);
+    // setFileSize(formatBytes(e.target.files[0].size));
+    // setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+
     // const fileDate = e.target.files[0].lastModifiedDate[0];
 
     // const item = {
@@ -60,16 +57,15 @@ const SparkDependencyView = () => {
     // });
   };
 
-
-  const space = {
-    width: '3px',
-    height: 'auto',
-    display: 'inline-block',
-  };
+  // const space = {
+  //   width: '3px',
+  //   height: 'auto',
+  //   display: 'inline-block',
+  // };
   const padding = {
-    paddingBottom: "20px"
-  }
-  const linkColor = useColorModeValue('blue.200', 'blue.300');
+    paddingBottom: '20px',
+  };
+  // const linkColor = useColorModeValue('blue.200', 'blue.300');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
 
   return (
@@ -88,55 +84,45 @@ const SparkDependencyView = () => {
             hidden
           />
         </div>
-        <p>
-          File Name: 
-          {fileName}
-        </p>
-        <p>
-          File Size: 
-          {fileSize}
-        </p>
-        <p>
-          File Date: 
-          {fileDate}
-        </p>
       </div>
-      
-      <div class="input-group">
-        <span class="input-group-addon">Search file: </span>
-        <input type="text" class="form-control" placeholder="filename" id="fileSearch" />
+      <br />
+      <div className="input-group">
+        <span className="input-group-addon">Search file: </span>
+        <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
       </div>
-      <br></br>
-      <div class="table-responsive">
-        <table class="table table-bordered" id="filesTable">
+      <br />
+      <div className="table-responsive">
+        <table className="table" id="filesTable">
           <thead>
-            <tr class="table-head">
-              <th colspan="15">Filename</th>
-              <th colspan="2">Last modified</th>
-              <th colspan="2">Size</th>
-              <th colspan="2">Links</th>
+            <tr className="table-head">
+              <th colSpan="15">Filename</th>
+              <th colSpan="2">Last modified</th>
+              <th colSpan="2">Size</th>
+              <th colSpan="2">Links</th>
             </tr>
           </thead>
           <tbody>
             {/* <tr>
-              <td colspan="15" className="col-sm-15">
+              <td colSpan="15" className="col-sm-15">
                 TEST
               </td>
-              <td colspan="2" className="col-sm-2">date</td>
-              <td colspan="2" className="col-sm-2">size</td>
-              <td colspan="1" className="col-sm-1">
+              <td colSpan="2" className="col-sm-2">date</td>
+              <td colSpan="2" className="col-sm-2">size</td>
+              <td colSpan="1" className="col-sm-1">
                 <div>
-                  <i class="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download"></i>
+                  <i className="fa fa-cloud-download fa-lg"
+                  data-toggle="tooltip" title="Download"/>
                 </div>
                 </td>
-              <td colspan="1" className="col-sm-1">
-                <i class="fa fa-trash fa-lg" style={{color:"red"}} aria-hidden="true" data-toggle="tooltip" title="Delete File"></i>
+              <td colSpan="1" className="col-sm-1">
+                <i className="fa fa-trash fa-lg" style={{color:"red"}} aria-hidden="true"
+                data-toggle="tooltip" title="Delete File"/>
               </td>
             </tr> */}
           </tbody>
         </table>
       </div>
-    </div> 
+    </div>
   );
 };
 

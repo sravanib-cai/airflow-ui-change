@@ -18,14 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import ClusterConfigContainer from './ClusterConfigContainer';
 import GroupView from './group_view';
 
 const ClusterConfigGrps: React.FC = () => (
   <ClusterConfigContainer current="Spark Configuration Groups">
-    <Heading>Spark Configuration Groups</Heading>
+    {/* <Heading>Spark Configuration Groups</Heading> */}
     <GroupView />
   </ClusterConfigContainer>
 );
