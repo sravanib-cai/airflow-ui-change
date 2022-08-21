@@ -1101,3 +1101,9 @@ table thead th {
 .switch-toggle input:checked + label {
   background: rgb(144, 205, 244);
 }
+.buttonCenter {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

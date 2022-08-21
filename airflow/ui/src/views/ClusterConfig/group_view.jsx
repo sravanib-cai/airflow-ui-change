@@ -2,108 +2,35 @@ import React from 'react';
 import './buttonstyle.css';
 import { Link } from 'react-router-dom';
 import {
+  Button,
+  Portal,
   Box,
   useColorModeValue,
 } from '@chakra-ui/react';
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,
+    PopoverAnchor,
+  } from '@chakra-ui/react'
 import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 import 'font-awesome/css/font-awesome.min.css';
 // import elephant from '../../components/icons/elephant.svg';
 // import diagramProject from '../../components/icons/diagram-project-solid.svg';
 
 const GroupView = () => {
-  // const fileRef = useRef();
-  // const buttonStyle = {
-  //   backgroundcolor: '#90cdf4',
-  //   color: '#1A202C',
-  //   borderRadius: '0.375rem',
-  //   fontWeight: '600',
-  //   height: '2rem',
-  //   minWidth: '2rem',
-  //   fontSize: '12px',
-  //   width: 'auto',
-  //   paddingLeft: '0.75rem',
-  //   paddingRight: '0.75rem',
-  // };
+  
   const shiftbtnRight = {
     marginRight: '5px',
   };
-  // const btnRight = {
-  //   cssFloat: 'right',
-  // };
-
-  // constructor(props){
-  //   super(props);
-
-  //   // Here we initialize our components state
-  //   this.state = {
-  //       showForm: false
-  //   };
-
-  //   this.onClick = this.onClick.bind(this);
-  // }
-
-  // onClick () {
-  //     // On click we change our state – this will trigger our `render` method
-  //     this.setState({ showForm: true });
-  // }
-  // const formstate= {showForm: false}
-  // const showForm = () => {
-  // return (
-  //   <div className="modal fade" id="addGroup" tabindex="-1"
-  //     role="dialog" aria-labelledby="myModalLabel">
-  //     <div className="modal-dialog" role="document">
-  //       <div className="modal-content">
-  //         <div className="modal-header">
-  //           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-  //             <span aria-hidden="true">&times;</span>
-  //           </button>
-  //           <h4 className="modal-title" id="myModalLabel">Add a group</h4>
-  //         </div>
-  //         <form method="post" className="form-group">
-  //           <div className="modal-body">
-  //             <label htmlFor="name">Group name</label>
-  //             <input type="text" name="name" className="form-control"
-  //  aria-describedby="helpBlock" onInput="checkGroupName(this)" required/>
-  //             <span id="helpBlock" className="help-block">
-  //               A group name can only contain <code>A-Z, a-z, _, -, 0-9</code>
-  //             </span>
-  //           </div>
-  //           <div className="modal-footer">
-  //             <button type="button" className="btn btn-dflt" data-dismiss="modal">Close</button>
-  //             <button type="submit" className="btn btn-primary">Add</button>
-  //           </div>
-  //         </form>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-  // };
-
-  // function changeDefaultGroup(group) {
-  //   location.href = "{{ url_for(view + ".change_default_group") }}?group=" + group;
-  // }
-
-  // function groupExists(group) {
-  //   const groups = [
-  //     {% for group, is_default in groups %}
-  //       "{{group.name}}",
-  //     {% endfor %}
-  //   ];
-  //   if( groups.includes(group) ) return true;
-  //   return false;
-  // }
-
-  // function checkGroupName(input) {
-  //   var validGroupName = /^[A-Za-z0-9_-]+$/i.test(input.value);
-  //   if (validGroupName) {
-  //     input.setCustomValidity("");
-  //   } else {
-  //     input.setCustomValidity("Not a valid Group name.");
-  //   }
-  //   if (groupExists(input.value)) {
-  //     input.setCustomValidity("Group already exists.");
-  //   }
-  // }
+  
 
   const space = {
     width: '3px',
@@ -114,22 +41,48 @@ const GroupView = () => {
     paddingBottom: '20px',
   };
   const linkColor = useColorModeValue('blue.200', 'blue.300');
-  // const dividerColor = useColorModeValue("gray.100", "gray.700");
 
   return (
     // <div style={btnRight}>
     <div>
-      <div style={padding} />
+      {/* <div style={padding} /> */}
       <div style={padding}>
-        {/* <button className="btn btn-success pull-right" data-toggle="modal"
-        onClick={() => this.setState({showForm: true}) }>Add a group</button> */}
-        {/* {this.formstate.showForm ? this.showForm() : null} */}
-        <Popup
+        <Popover>
+          <PopoverTrigger>
+            <button className="btn btn-success pull-right">Add a group</button>
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Add a group</PopoverHeader>
+              <PopoverBody>
+                <form method="post" className="form-group">
+                  <div className="modal-body">
+                    <label htmlFor="name">Group name</label>
+                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                  </div>
+                </form>
+                <span id="helpBlock" className="help-block">
+                  A group name can only contain <code>A-Z, a-z, _, -, 0-9</code>
+                </span>
+              </PopoverBody>
+              <PopoverFooter>
+                <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button>
+                <button type="submit" className="btn btn-primary">Add</button>
+              </PopoverFooter>
+            </PopoverContent>
+          </Portal>
+        </Popover>
+        {/* <Popup trigger={<button> Trigger</button>} position="right center">
+          <div>Popup content here !!</div>
+        </Popup> */}
+        {/* <Popup
           trigger={
             <button type="button" className="btn btn-success pull-right" data-toggle="modal">Add a group</button>
           }
         >
-          <div className="modal fade" id="addGroup" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -141,8 +94,6 @@ const GroupView = () => {
                 <form method="post" className="form-group">
                   <div className="modal-body">
                     <label htmlFor="name">Group name</label>
-                    {/* <input type="text" name="name" className="form-control"
-                    aria-describedby="helpBlock" onInput="checkGroupName(this)" required/> */}
                     <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
                     <span id="helpBlock" className="help-block">
                       A group name can only contain
@@ -157,7 +108,7 @@ const GroupView = () => {
               </div>
             </div>
           </div>
-        </Popup>
+        </Popup> */}
 
         <Link to="/clusterconfig/datalakeconfig">
           <button className="btn btn-success pull-right" style={shiftbtnRight} type="submit">
@@ -165,6 +116,7 @@ const GroupView = () => {
           </button>
         </Link>
       </div>
+      
 
       {/* <div style={space} /> */}
       {/* <button style={buttonStyle} type="submit" >
