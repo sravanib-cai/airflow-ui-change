@@ -24,7 +24,7 @@ import ConfigContainer from './ConfigContainer';
 
 const Pools: React.FC = () => (
   <ConfigContainer current="Pools">
-    <Heading>Pools</Heading>
+    <Heading as="h5" size="md">Pools</Heading>
   </ConfigContainer>
 );
 

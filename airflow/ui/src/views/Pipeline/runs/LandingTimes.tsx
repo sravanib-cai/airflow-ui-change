@@ -24,7 +24,7 @@ import RunsContainer from './RunsContainer';
 
 const LandingTimes: React.FC = () => (
   <RunsContainer currentView="Landing Times">
-    <Heading>Landing Times</Heading>
+    <Heading as="h5" size="md">Landing Times</Heading>
   </RunsContainer>
 );
 

@@ -24,7 +24,7 @@ import RunsContainer from './RunsContainer';
 
 const TaskDuration: React.FC = () => (
   <RunsContainer currentView="Task Duration">
-    <Heading>Task Duration</Heading>
+    <Heading as="h5" size="md">Task Duration</Heading>
   </RunsContainer>
 );
 

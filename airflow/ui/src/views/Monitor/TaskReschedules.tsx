@@ -24,7 +24,7 @@ import MonitorContainer from './MonitorContainer';
 
 const TaskReschedules: React.FC = () => (
   <MonitorContainer current="Task Reschedules">
-    <Heading>Task Reschedules</Heading>
+    <Heading as="h5" size="md">Task Reschedules</Heading>
   </MonitorContainer>
 );
 

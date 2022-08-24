@@ -29,17 +29,17 @@ interface Props {
 const SecurityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Overview',
+      label: 'Roles',
       path: '/security',
     },
     {
       label: 'Users',
       path: '/security/users',
     },
-    {
-      label: 'Roles',
-      path: '/security/roles',
-    },
+    // {
+    //   label: 'Roles',
+    //   path: '/security/roles',
+    // },
     // {
     //   label: 'Permissions',
     //   path: '/security/permissions',

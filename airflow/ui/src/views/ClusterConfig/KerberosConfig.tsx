@@ -18,13 +18,13 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 import KerberosConfigView from './kerberosconfig_view';
 import ClusterConfigContainer from './ClusterConfigContainer';
 
 const KerberosConfig: React.FC = () => (
   <ClusterConfigContainer current="Kerberos Configuration">
-    <Heading>Kerberos Configuration</Heading>
+    {/* <Heading>Kerberos Configuration</Heading> */}
     <KerberosConfigView />
   </ClusterConfigContainer>
 );

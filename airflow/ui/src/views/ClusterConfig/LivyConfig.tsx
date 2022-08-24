@@ -18,13 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
+import LivyConfigView from './livyconfig_view';
 import ClusterConfigContainer from './ClusterConfigContainer';
 
 const LivyConfig: React.FC = () => (
   <ClusterConfigContainer current="Livy Configuration">
-    <Heading>Livy Configuration</Heading>
+    {/* <Heading>Livy Configuration</Heading> */}
+    <LivyConfigView />
   </ClusterConfigContainer>
 );
 

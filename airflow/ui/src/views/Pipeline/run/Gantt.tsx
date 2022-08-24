@@ -24,7 +24,7 @@ import RunContainer from './RunContainer';
 
 const Gantt: React.FC = () => (
   <RunContainer currentView="Gantt">
-    <Heading>Gantt</Heading>
+    <Heading as="h5" size="md">Gantt</Heading>
   </RunContainer>
 );
 

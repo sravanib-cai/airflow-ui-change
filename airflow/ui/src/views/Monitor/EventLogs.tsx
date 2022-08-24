@@ -24,7 +24,7 @@ import MonitorContainer from './MonitorContainer';
 
 const EventLogs: React.FC = () => (
   <MonitorContainer current="Event Logs">
-    <Heading>Event Logs</Heading>
+    <Heading as="h5" size="md">Event Logs</Heading>
   </MonitorContainer>
 );
 

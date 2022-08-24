@@ -8,7 +8,7 @@ import '../../static/buttonstyle.css';
 // import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
-const SparkDependencyView = () => {
+const CodeArtifactsView = () => {
   const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
@@ -126,4 +126,4 @@ const SparkDependencyView = () => {
   );
 };
 
-export default SparkDependencyView;
+export default CodeArtifactsView;

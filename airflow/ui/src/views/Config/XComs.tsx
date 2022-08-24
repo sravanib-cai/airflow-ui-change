@@ -24,7 +24,7 @@ import ConfigContainer from './ConfigContainer';
 
 const XComs: React.FC = () => (
   <ConfigContainer current="XComs">
-    <Heading>XComs</Heading>
+    <Heading as="h5" size="md">XComs</Heading>
   </ConfigContainer>
 );
 

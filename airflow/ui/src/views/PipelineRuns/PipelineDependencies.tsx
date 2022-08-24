@@ -19,12 +19,13 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-
+import PipelineDepView from './pipeline-dependencies';
 import PipelineRunsContainer from './PipelineRunsContainer';
 
 const PipelineDependencies: React.FC = () => (
   <PipelineRunsContainer current="Pipeline Dependencies">
-    <Heading>Pipeline Dependencies</Heading>
+    <Heading as="h5" size="md">Pipeline Dependencies</Heading>
+    <PipelineDepView />
   </PipelineRunsContainer>
 );
 

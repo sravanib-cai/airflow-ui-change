@@ -24,7 +24,7 @@ import DeveloperContainer from './DeveloperContainer';
 
 const Notebooks: React.FC = () => (
   <DeveloperContainer current="Notebooks">
-    <Heading>Notebooks</Heading>
+    <Heading as="h5" size="md">Notebooks</Heading>
   </DeveloperContainer>
 );
 

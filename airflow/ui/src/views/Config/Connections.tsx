@@ -24,7 +24,7 @@ import ConfigContainer from './ConfigContainer';
 
 const Connections: React.FC = () => (
   <ConfigContainer current="Connections">
-    <Heading>Connections</Heading>
+    <Heading as="h5" size="md">Connections</Heading>
   </ConfigContainer>
 );
 

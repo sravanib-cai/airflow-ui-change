@@ -24,7 +24,7 @@ import SecurityContainer from './SecurityContainer';
 
 const Permissions: React.FC = () => (
   <SecurityContainer current="Permissions">
-    <Heading>Permissions</Heading>
+    <Heading as="h5" size="md">Permissions</Heading>
   </SecurityContainer>
 );
 

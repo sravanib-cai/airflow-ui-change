@@ -20,11 +20,13 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
+import SparkConfigView from './sparkconfig_view';
 import ClusterConfigContainer from './ClusterConfigContainer';
 
 const SparkConfig: React.FC = () => (
   <ClusterConfigContainer current="Spark Configuration">
-    <Heading>Spark Configuration</Heading>
+    <Heading>Spark Configuration - config_group_1</Heading>
+    <SparkConfigView />
   </ClusterConfigContainer>
 );
 

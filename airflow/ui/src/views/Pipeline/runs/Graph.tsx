@@ -24,7 +24,7 @@ import RunsContainer from './RunsContainer';
 
 const Graph: React.FC = () => (
   <RunsContainer currentView="Graph">
-    <Heading>Graph</Heading>
+    <Heading as="h5" size="md">Graph</Heading>
   </RunsContainer>
 );
 

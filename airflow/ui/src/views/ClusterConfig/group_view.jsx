@@ -1,5 +1,5 @@
 import React from 'react';
-import './buttonstyle.css';
+import '../../static/buttonstyle.css';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -18,7 +18,6 @@ import {
     PopoverCloseButton,
     PopoverAnchor,
   } from '@chakra-ui/react'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';
@@ -68,7 +67,7 @@ const GroupView = () => {
                 </span>
               </PopoverBody>
               <PopoverFooter>
-                <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button>
+                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn btn-primary">Add</button>
               </PopoverFooter>
             </PopoverContent>

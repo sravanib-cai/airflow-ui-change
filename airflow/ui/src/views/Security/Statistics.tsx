@@ -24,7 +24,7 @@ import SecurityContainer from './SecurityContainer';
 
 const Statistics: React.FC = () => (
   <SecurityContainer current="Statistics">
-    <Heading>Statistics</Heading>
+    <Heading as="h5" size="md">Statistics</Heading>
   </SecurityContainer>
 );
 

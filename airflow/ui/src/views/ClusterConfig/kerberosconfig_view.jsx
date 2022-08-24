@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import './buttonstyle.css';
+import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
 // import {
 //   Box,
@@ -86,10 +86,16 @@ const KerberosConfigView = () => {
         </div>
       </div>
       <br />
-      <div className="input-group">
-        <span className="input-group-addon">Principal </span>
-        <input type="text" className="form-control" />
+
+      <div style={padding}>
+        <div>
+          <span className="input-form-addon input-form-sep">Principal</span>
+        </div>
+        <div className="input-form form-width">
+          <input type="text" className="form-control-addon shift-form-left" />
+        </div>
       </div>
+      
       <br />
       <div className="buttonCenter">
         <button style={buttonStyle} type="submit">

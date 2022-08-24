@@ -24,7 +24,7 @@ import RunsContainer from './RunsContainer';
 
 const TaskTries: React.FC = () => (
   <RunsContainer currentView="Task Tries">
-    <Heading>Task Tries</Heading>
+    <Heading as="h5" size="md">Task Tries</Heading>
   </RunsContainer>
 );
 

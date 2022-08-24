@@ -21,15 +21,15 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 import DeveloperContainer from './DeveloperContainer';
 
-import UploadButton from './upload_button';
+import CodeArtifactsView from './code_artifacts_view';
 
 const CodeArtifacts: React.FC = () => (
   <DeveloperContainer current="Code Artifacts">
-    <Heading>Code Artifacts</Heading>
+    <Heading as="h5" size="md">Code Artifacts</Heading>
     <>
       <br />
     </>
-    <UploadButton />
+    <CodeArtifactsView />
   </DeveloperContainer>
 );
 

@@ -55,7 +55,7 @@ import Connections from 'views/Config/Connections';
 
 import Security from 'views/Security';
 import Users from 'views/Security/Users';
-import Roles from 'views/Security/Roles';
+import Roles from 'views/Security';
 import Statistics from 'views/Security/Statistics';
 
 import NotFound from 'views/NotFound';
@@ -114,12 +114,12 @@ const App = () => (
     <PrivateRoute exact path="/config/xcoms" component={XComs} />
     <PrivateRoute exact path="/config/connections" component={Connections} />
 
-    <PrivateRoute exact path="/security" component={Security} />
+    <PrivateRoute exact path="/security" component={Roles} />
     <PrivateRoute exact path="/security/users" component={Users} />
     <PrivateRoute exact path="/security/users/new" component={Users} />
     <PrivateRoute exact path="/security/users/:username" component={Users} />
     <PrivateRoute exact path="/security/users/:username/edit" component={Users} />
-    <PrivateRoute exact path="/security/roles" component={Roles} />
+    {/* <PrivateRoute exact path="/security/roles" component={Roles} /> */}
     <PrivateRoute exact path="/security/statistics" component={Statistics} />
 
     <Route

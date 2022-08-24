@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './buttonstyle.css';
+import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
 // import {
 //   Box,
@@ -144,10 +144,40 @@ const DataLakeView = () => {
           <tbody>
             <tr>
               <td colSpan="15" className="col-sm-15">
-                TEST
+                pi.py
               </td>
-              <td colSpan="2" className="col-sm-2">date</td>
-              <td colSpan="2" className="col-sm-2">size</td>
+              <td colSpan="2" className="col-sm-2">Fri Aug 19 2022</td>
+              <td colSpan="2" className="col-sm-2">1.52 KB</td>
+              <td colSpan="1" className="col-sm-1">
+                <div>
+                  <i className="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download" />
+                </div>
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" data-toggle="tooltip" title="Delete File" />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="15" className="col-sm-15">
+                airflow.html
+              </td>
+              <td colSpan="2" className="col-sm-2">Mon Aug 22 2022</td>
+              <td colSpan="2" className="col-sm-2">335.86 KB</td>
+              <td colSpan="1" className="col-sm-1">
+                <div>
+                  <i className="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download" />
+                </div>
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" data-toggle="tooltip" title="Delete File" />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="15" className="col-sm-15">
+                Code.tsx
+              </td>
+              <td colSpan="2" className="col-sm-2">Mon Aug 22 2022</td>
+              <td colSpan="2" className="col-sm-2">1.73 KB</td>
               <td colSpan="1" className="col-sm-1">
                 <div>
                   <i className="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download" />

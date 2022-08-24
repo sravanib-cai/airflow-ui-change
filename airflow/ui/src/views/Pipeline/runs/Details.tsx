@@ -41,7 +41,7 @@ const Details: React.FC = () => {
   // console.log('SraCode, responseDataDags', dag, dag.fileToken);
   return (
     <RunsContainer currentView="Details">
-      <Heading>Details</Heading>
+      <Heading as="h5" size="md">Details</Heading>
     </RunsContainer>
   );
 };

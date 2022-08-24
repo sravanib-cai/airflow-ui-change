@@ -22,10 +22,10 @@ import { Heading } from '@chakra-ui/react';
 
 import SecurityContainer from './SecurityContainer';
 
-const Security: React.FC = () => (
-  <SecurityContainer current="Overview">
-    <Heading>Security</Heading>
+const Roles: React.FC = () => (
+  <SecurityContainer current="Roles">
+    <Heading as="h5" size="md">Roles</Heading>
   </SecurityContainer>
 );
 
-export default Security;
+export default Roles;

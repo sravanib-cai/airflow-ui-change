@@ -24,7 +24,7 @@ import PipelineRunsContainer from './PipelineRunsContainer';
 
 const TaskInstances: React.FC = () => (
   <PipelineRunsContainer current="Task Instances">
-    <Heading>Task Instances</Heading>
+    <Heading as="h5" size="md">Task Instances</Heading>
   </PipelineRunsContainer>
 );
 

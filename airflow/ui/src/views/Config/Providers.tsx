@@ -19,12 +19,13 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-
+import ProvidersView from './providers_view';
 import ConfigContainer from './ConfigContainer';
 
 const Providers: React.FC = () => (
   <ConfigContainer current="Providers">
-    <Heading>Providers</Heading>
+    <Heading as="h5" size="md">Providers</Heading>
+    <ProvidersView />
   </ConfigContainer>
 );
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import '../../static/buttonstyle.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import {
 //   Box,
 //   useColorModeValue,
@@ -8,7 +8,7 @@ import '../../static/buttonstyle.css';
 // import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
-const SparkDependencyView = () => {
+const DataLakeExplorerView = () => {
   const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
@@ -38,25 +38,6 @@ const SparkDependencyView = () => {
   //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   // }
 
-  const handleChange = (e) => {
-    const [file] = e.target.files;
-    // console.log(file);
-    // setFileName(e.target.files[0].name);
-    // setFileSize(formatBytes(e.target.files[0].size));
-    // setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-
-    // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-    // const item = {
-    //   name: {fileName},
-    //   size: {fileSize},
-    //   date: {fileDate}
-    // };
-    // this.setState({
-    //   rows: [...this.state.rows, item]
-    // });
-  };
-
   // const space = {
   //   width: '3px',
   //   height: 'auto',
@@ -71,23 +52,10 @@ const SparkDependencyView = () => {
   return (
     // <div style={btnRight}>
     <div>
-      <div style={padding}>
-        <div style={btnRight}>
-          <button style={buttonStyle} type="submit" onClick={() => fileRef.current.click()}>
-            File Upload
-          </button>
-          <input
-            ref={fileRef}
-            onChange={handleChange}
-            multiple={false}
-            type="file"
-            hidden
-          />
-        </div>
-      </div>
-      <br />
+      <div style={padding} />
+
       <div className="input-group">
-        <span className="input-group-addon">Search file: </span>
+        <span className="input-group-addon">File path: </span>
         <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
       </div>
       <br />
@@ -95,30 +63,29 @@ const SparkDependencyView = () => {
         <table className="table" id="filesTable">
           <thead>
             <tr className="table-head">
-              <th colSpan="15">Filename</th>
-              <th colSpan="2">Last modified</th>
+              <th colSpan="5">Filename</th>
+              <th colSpan="2">File Owner</th>
+              <th colSpan="2">Last Modified</th>
               <th colSpan="2">Size</th>
-              <th colSpan="2">Links</th>
+              <th colSpan="2"></th>
             </tr>
           </thead>
           <tbody>
-            {/* <tr>
-              <td colSpan="15" className="col-sm-15">
-                TEST
+            <tr>
+              <td colSpan="5" className="col-sm-5">
+                customer.csv
               </td>
-              <td colSpan="2" className="col-sm-2">date</td>
-              <td colSpan="2" className="col-sm-2">size</td>
-              <td colSpan="1" className="col-sm-1">
-                <div>
-                  <i className="fa fa-cloud-download fa-lg"
-                  data-toggle="tooltip" title="Download"/>
-                </div>
-                </td>
-              <td colSpan="1" className="col-sm-1">
-                <i className="fa fa-trash fa-lg" style={{color:"red"}} aria-hidden="true"
-                data-toggle="tooltip" title="Delete File"/>
+              <td colSpan="2" className="col-sm-2">	prateek</td>
+              <td colSpan="2" className="col-sm-2">Fri Apr 1 15:59:49 2022</td>
+              <td colSpan="2" className="col-sm-2">97.072 KB</td>
+              <td colSpan="2" className="col-sm-2">
+                <Link to="/developer/auto-eda">
+                  <button className="btn btn-success pull-right" type="submit">
+                    Run Auto EDA
+                  </button>
+                </Link>
               </td>
-            </tr> */}
+            </tr>
           </tbody>
         </table>
       </div>
@@ -126,4 +93,4 @@ const SparkDependencyView = () => {
   );
 };
 
-export default SparkDependencyView;
+export default DataLakeExplorerView;

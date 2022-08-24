@@ -24,7 +24,7 @@ import DeveloperContainer from './DeveloperContainer';
 
 const AutoEDA: React.FC = () => (
   <DeveloperContainer current="Auto EDA">
-    <Heading>Auto EDA</Heading>
+    <Heading as="h5" size="md">Auto EDA</Heading>
   </DeveloperContainer>
 );
 

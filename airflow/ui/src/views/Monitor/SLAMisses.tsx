@@ -24,7 +24,7 @@ import MonitorContainer from './MonitorContainer';
 
 const SLAMisses: React.FC = () => (
   <MonitorContainer current="SLA Misses">
-    <Heading>SLA Misses</Heading>
+    <Heading as="h5" size="md">SLA Misses</Heading>
   </MonitorContainer>
 );
 

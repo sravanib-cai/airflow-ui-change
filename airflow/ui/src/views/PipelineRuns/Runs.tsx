@@ -24,7 +24,7 @@ import PipelineRunsContainer from './PipelineRunsContainer';
 
 const Runs: React.FC = () => (
   <PipelineRunsContainer current="Runs">
-    <Heading>Runs</Heading>
+    <Heading as="h5" size="md">Runs</Heading>
   </PipelineRunsContainer>
 );
 

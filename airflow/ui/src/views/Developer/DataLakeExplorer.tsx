@@ -22,9 +22,12 @@ import { Heading } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
 
+import DataLakeExplorerView from './datalakeexplorer_view';
+
 const DataLakeExplorer: React.FC = () => (
   <DeveloperContainer current="Data Lake Explorer">
-    <Heading>Data Lake Explorer</Heading>
+    <Heading as="h5" size="md">S3 Bucket</Heading>
+    <DataLakeExplorerView />
   </DeveloperContainer>
 );
 

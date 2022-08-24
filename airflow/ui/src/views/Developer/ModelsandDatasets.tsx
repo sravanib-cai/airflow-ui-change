@@ -24,7 +24,7 @@ import DeveloperContainer from './DeveloperContainer';
 
 const ModelsandDatasets: React.FC = () => (
   <DeveloperContainer current="Models and Datasets">
-    <Heading>Models and Datasets</Heading>
+    <Heading as="h5" size="md">Models and Datasets</Heading>
   </DeveloperContainer>
 );
 
