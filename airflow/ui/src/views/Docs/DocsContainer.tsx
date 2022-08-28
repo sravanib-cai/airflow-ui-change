@@ -18,14 +18,36 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
 
-import PipelineRunsContainer from './PipelineRunsContainer';
+import SectionWrapper from 'components/SectionWrapper';
 
-const Runs: React.FC = () => (
-  <PipelineRunsContainer current="Runs">
-    <Heading as="h5" size="md">Runs</Heading>
-  </PipelineRunsContainer>
-);
+interface Props {
+  current: string;
+  toolBar?: React.ReactNode;
+}
 
-export default Runs;
+const DocsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+  const navItems = [
+    {
+      label: 'Providers',
+      path: '/docs/providers',
+    },
+    {
+      label: 'Swagger API',
+      path: '/docs/doc-swagger',
+    },
+  ];
+
+  return (
+    <SectionWrapper
+      currentSection="Docs"
+      currentView={current}
+      navItems={navItems}
+      toolBar={toolBar}
+    >
+      {children}
+    </SectionWrapper>
+  );
+};
+
+export default DocsContainer;

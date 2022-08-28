@@ -18,13 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-
+// import { Heading } from '@chakra-ui/react';
+import ConnectionsView from './connections_view';
 import ConfigContainer from './ConfigContainer';
 
 const Connections: React.FC = () => (
   <ConfigContainer current="Connections">
-    <Heading as="h5" size="md">Connections</Heading>
+    {/* <Heading as="h5" size="md">Connections</Heading> */}
+    <ConnectionsView />
   </ConfigContainer>
 );
 

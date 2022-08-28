@@ -18,40 +18,15 @@
  */
 
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
+import SparkDependencyView from './sparkdependency_view';
+import ConfigContainer from './ConfigContainer';
 
-import SectionWrapper from 'components/SectionWrapper';
+const SparkDependency: React.FC = () => (
+  <ConfigContainer current="Spark Dependency">
+    <Heading>Spark Dependencies - test/jars</Heading>
+    <SparkDependencyView />
+  </ConfigContainer>
+);
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
-
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Audit Logs',
-      path: '/monitor/audit-logs',
-    },
-    {
-      label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
-    },
-    {
-      label: 'SLA Misses',
-      path: '/monitor/sla-misses',
-    },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="Monitor"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default MonitorContainer;
+export default SparkDependency;

@@ -18,16 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
+import TaskInstancesView from './taskinstances_view';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-import SparkConfigView from './sparkconfig_view';
-import ClusterConfigContainer from './ClusterConfigContainer';
-
-const SparkConfig: React.FC = () => (
-  <ClusterConfigContainer current="Spark Configuration">
-    <Heading>Spark Configuration - config_group_1</Heading>
-    <SparkConfigView />
-  </ClusterConfigContainer>
+const TaskInstances: React.FC = () => (
+  <PipelineRunsContainer current="Task Instances">
+    {/* <Heading as="h5" size="md">Task Instances</Heading> */}
+    <TaskInstancesView />
+  </PipelineRunsContainer>
 );
 
-export default SparkConfig;
+export default TaskInstances;

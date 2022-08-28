@@ -19,14 +19,14 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import SparkDependencyView from './sparkdependency_view';
-import ClusterConfigContainer from './ClusterConfigContainer';
+import ProvidersView from './providers_view';
+import DocsContainer from './DocsContainer';
 
-const SparkDependency: React.FC = () => (
-  <ClusterConfigContainer current="Spark Dependency">
-    <Heading>Spark Dependencies - test/jars</Heading>
-    <SparkDependencyView />
-  </ClusterConfigContainer>
+const Providers: React.FC = () => (
+  <DocsContainer current="Providers">
+    <Heading as="h5" size="md">Providers</Heading>
+    <ProvidersView />
+  </DocsContainer>
 );
 
-export default SparkDependency;
+export default Providers;

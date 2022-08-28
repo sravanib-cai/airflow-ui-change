@@ -30,7 +30,6 @@ const GroupView = () => {
     marginRight: '5px',
   };
   
-
   const space = {
     width: '3px',
     height: 'auto',
@@ -48,7 +47,7 @@ const GroupView = () => {
       <div style={padding}>
         <Popover>
           <PopoverTrigger>
-            <button className="btn btn-success pull-right">Add a group</button>
+            <button className="btn pull-right">Add a group</button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -68,7 +67,7 @@ const GroupView = () => {
               </PopoverBody>
               <PopoverFooter>
                 {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
-                <button type="submit" className="btn btn-primary">Add</button>
+                <button type="submit" className="btn">Add</button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>
@@ -109,8 +108,8 @@ const GroupView = () => {
           </div>
         </Popup> */}
 
-        <Link to="/clusterconfig/datalakeconfig">
-          <button className="btn btn-success pull-right" style={shiftbtnRight} type="submit">
+        <Link to="/config/clusterconfig/datalakeconfig">
+          <button className="btn pull-right" style={shiftbtnRight} type="submit">
             Open default group
           </button>
         </Link>
@@ -153,7 +152,9 @@ const GroupView = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search Group: </span>
-        <input type="text" className="form-control" placeholder="groupname" id="fileSearch" />
+        <div className='search-form-width'>
+          <input type="text" className="form-control" placeholder="groupname" id="fileSearch" />
+        </div>
       </div>
       <br />
       <div className="table-responsive">
@@ -193,7 +194,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-database fa-lg" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/clusterconfig/datalakeconfig" color="currentColor">Data Lake Config</Link>
+                  <Link to="/config/clusterconfig/datalakeconfig" color="currentColor">Data Lake Config</Link>
                   /
                 </Box>
               </td>
@@ -205,7 +206,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-cogs fa-lg" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/clusterconfig/sparkconfig" color="currentColor">Spark Config</Link>
+                  <Link to="/config/clusterconfig/sparkconfig" color="currentColor">Spark Config</Link>
                   /
                 </Box>
               </td>
@@ -217,7 +218,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-star-o fa-lg" style={{ transform: 'rotate(20deg)' }} aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/clusterconfig/sparkdependency" color="currentColor">Spark Dependency</Link>
+                  <Link to="/config/clusterconfig/sparkdependency" color="currentColor">Spark Dependency</Link>
                   /
                 </Box>
               </td>
@@ -229,7 +230,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-key fa-lg" aria-hidden="true" data-toggle="tooltip" title="View Kerberos Configuration" />
                   <div style={space} />
-                  <Link to="/clusterconfig/kerberosconfig" color="currentColor">Kerberos Config</Link>
+                  <Link to="/config/clusterconfig/kerberosconfig" color="currentColor">Kerberos Config</Link>
                   /
                 </Box>
               </td>
@@ -241,7 +242,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-arrows-v" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/clusterconfig/livyconfig" color="currentColor">Livy Config</Link>
+                  <Link to="/config/clusterconfig/livyconfig" color="currentColor">Livy Config</Link>
                   /
                 </Box>
               </td>

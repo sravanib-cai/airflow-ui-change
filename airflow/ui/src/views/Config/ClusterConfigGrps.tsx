@@ -18,14 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
+import ConfigContainer from './ConfigContainer';
+import GroupView from './group_view';
 
-import SecurityContainer from './SecurityContainer';
-
-const Permissions: React.FC = () => (
-  <SecurityContainer current="Permissions">
-    <Heading as="h5" size="md">Permissions</Heading>
-  </SecurityContainer>
+const ClusterConfigGrps: React.FC = () => (
+  <ConfigContainer current="Cluster Config Groups">
+    {/* <Heading as="h5" size="md">Variables</Heading> */}
+    <GroupView />
+  </ConfigContainer>
 );
 
-export default Permissions;
+export default ClusterConfigGrps;

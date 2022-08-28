@@ -60,7 +60,7 @@ const Code: React.FC = () => {
       // console.log('successdatasra', responseCode.data.content);
       return (
         <RunsContainer currentView="DAG Code">
-          <Heading as="h5" size="md">DAG Code</Heading>
+          {/* <Heading as="h5" size="md">DAG Code</Heading> */}
           <Codec><pre>{responseCode.data.content}</pre></Codec>
         </RunsContainer>
       );

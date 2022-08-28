@@ -21,10 +21,12 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import MonitorContainer from './MonitorContainer';
+import SLAMissesView from './slamisses_view';
 
 const SLAMisses: React.FC = () => (
   <MonitorContainer current="SLA Misses">
-    <Heading as="h5" size="md">SLA Misses</Heading>
+    {/* <Heading as="h5" size="md">SLA Misses</Heading> */}
+    <SLAMissesView />
   </MonitorContainer>
 );
 

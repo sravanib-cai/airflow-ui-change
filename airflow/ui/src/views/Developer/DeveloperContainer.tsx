@@ -41,12 +41,12 @@ const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => 
       path: '/developer/auto-eda',
     },
     {
-      label: 'Code Artifacts',
-      path: '/developer/code-artifacts',
+      label: 'Models and Datasets',
+      path: '/developer/models-datasets', 
     },
     {
-      label: 'Models and Datasets',
-      path: '/developer/models-datasets',
+      label: 'Auto API Builder',
+      path: '/developer/auto-api-builder',
     },
   ];
 

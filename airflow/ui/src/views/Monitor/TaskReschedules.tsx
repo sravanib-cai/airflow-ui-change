@@ -18,13 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-
+// import { Heading } from '@chakra-ui/react';
 import MonitorContainer from './MonitorContainer';
+import TaskReschedulesView from './taskreschedules_view';
 
 const TaskReschedules: React.FC = () => (
   <MonitorContainer current="Task Reschedules">
-    <Heading as="h5" size="md">Task Reschedules</Heading>
+    {/* <Heading as="h5" size="md">Task Reschedules</Heading> */}
+    <TaskReschedulesView />
   </MonitorContainer>
 );
 

@@ -21,7 +21,7 @@ import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';
 
-const ManageCreate = () => {
+const CreateUpdate = () => {
   const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
@@ -92,7 +92,7 @@ const ManageCreate = () => {
       <div style={padding}>
         <Popover>
           <PopoverTrigger>
-            <button className="btn btn-success pull-right">Create new Pipeline</button>
+            <button className="btn pull-right">Create new Pipeline</button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -113,13 +113,13 @@ const ManageCreate = () => {
               </PopoverBody>
               <PopoverFooter>
                 {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
-                <button type="submit" className="btn btn-primary">Create</button>
+                <button type="submit" className="btn">Create</button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>
         </Popover>
         <div style={btnRight}>
-          <button className="btn btn-success pull-right" style={shiftbtnRight} type="submit" onClick={() => fileRef.current.click()}>
+          <button className="btn pull-right" style={shiftbtnRight} type="submit" onClick={() => fileRef.current.click()}>
             Upload Pipeline file(s)
           </button>
           <input
@@ -137,7 +137,9 @@ const ManageCreate = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        <div className='search-form-width'>
+          <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        </div>
       </div>
       <br />
       <div className="table-responsive">
@@ -173,4 +175,4 @@ const ManageCreate = () => {
   );
 };
 
-export default ManageCreate;
+export default CreateUpdate;

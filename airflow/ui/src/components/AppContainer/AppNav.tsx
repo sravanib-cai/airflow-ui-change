@@ -46,10 +46,10 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
 
   const navItems = [
     {
-      label: 'Pipeline Runs',
+      label: 'Pipelines',
       icon: PipelineIcon,
-      path: '/pipelineruns/manage-and-create',
-      activePath: '/pipelineruns',
+      path: '/pipelines/create-and-update',
+      activePath: '/pipelines',
     },
     {
       label: 'Developer',
@@ -60,19 +60,19 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
     {
       label: 'Monitor',
       icon: FiActivity,
-      path: '/monitor/event-logs',
+      path: '/monitor/audit-logs',
       activePath: '/monitor',
     },
+    // {
+    //   label: 'Cluster Config',
+    //   icon: FiGlobe,
+    //   path: '/clusterconfig',
+    //   activePath: '/clusterconfig',
+    // },
     {
-      label: 'Cluster Config',
-      icon: FiGlobe,
-      path: '/clusterconfig',
-      activePath: '/clusterconfig',
-    },
-    {
-      label: 'Workflow Config',
+      label: 'Configurations',
       icon: FiSettings,
-      path: '/config',
+      path: '/config/clusterconfig',
       activePath: '/config',
     },
     {
@@ -84,8 +84,8 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
     {
       label: 'Docs',
       icon: FiBookOpen,
-      path: '/doc-swagger',
-      activePath: '/doc-swagger',
+      path: '/docs/providers',
+      activePath: '/docs',
     },
   ];
 

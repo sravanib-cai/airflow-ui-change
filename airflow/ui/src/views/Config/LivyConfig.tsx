@@ -18,19 +18,16 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-import DeveloperContainer from './DeveloperContainer';
+// import { Heading } from '@chakra-ui/react';
 
-import CodeArtifactsView from './code_artifacts_view';
+import LivyConfigView from './livyconfig_view';
+import ConfigContainer from './ConfigContainer';
 
-const CodeArtifacts: React.FC = () => (
-  <DeveloperContainer current="Code Artifacts">
-    <Heading as="h5" size="md">Code Artifacts</Heading>
-    <>
-      <br />
-    </>
-    <CodeArtifactsView />
-  </DeveloperContainer>
+const LivyConfig: React.FC = () => (
+  <ConfigContainer current="Livy Configuration">
+    {/* <Heading>Livy Configuration</Heading> */}
+    <LivyConfigView />
+  </ConfigContainer>
 );
 
-export default CodeArtifacts;
+export default LivyConfig;

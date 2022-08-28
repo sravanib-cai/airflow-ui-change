@@ -8,7 +8,7 @@ import '../../static/buttonstyle.css';
 // import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
-const SparkDependencyView = () => {
+const CodeArtifactsView = () => {
   const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
@@ -88,7 +88,9 @@ const SparkDependencyView = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        <div className='search-form-width'>
+          <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        </div>
       </div>
       <br />
       <div className="table-responsive">
@@ -126,4 +128,4 @@ const SparkDependencyView = () => {
   );
 };
 
-export default SparkDependencyView;
+export default CodeArtifactsView;

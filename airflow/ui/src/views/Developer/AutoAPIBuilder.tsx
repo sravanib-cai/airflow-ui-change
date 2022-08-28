@@ -20,12 +20,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
-import ConfigContainer from './ConfigContainer';
+import DeveloperContainer from './DeveloperContainer';
 
-const Variables: React.FC = () => (
-  <ConfigContainer current="Variables">
-    <Heading>Variables</Heading>
-  </ConfigContainer>
+const AutoAPIBuilder: React.FC = () => (
+  <DeveloperContainer current="Auto API Builder">
+    <Heading as="h5" size="md">Auto API Builder</Heading>
+  </DeveloperContainer>
 );
 
-export default Variables;
+export default AutoAPIBuilder;

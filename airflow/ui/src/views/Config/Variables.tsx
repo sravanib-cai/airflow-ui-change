@@ -19,14 +19,14 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import KerberosConfigView from './kerberosconfig_view';
-import ClusterConfigContainer from './ClusterConfigContainer';
+import ConfigContainer from './ConfigContainer';
+import VariablesView from './variables_view';
 
-const KerberosConfig: React.FC = () => (
-  <ClusterConfigContainer current="Kerberos Configuration">
-    {/* <Heading>Kerberos Configuration</Heading> */}
-    <KerberosConfigView />
-  </ClusterConfigContainer>
+const Variables: React.FC = () => (
+  <ConfigContainer current="Variables">
+    {/* <Heading as="h5" size="md">Variables</Heading> */}
+    <VariablesView />
+  </ConfigContainer>
 );
 
-export default KerberosConfig;
+export default Variables;

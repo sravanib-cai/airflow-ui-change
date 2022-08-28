@@ -18,14 +18,16 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
-import MonitorContainer from './MonitorContainer';
+import DataLakeView from './datalake_view';
+import ConfigContainer from './ConfigContainer';
 
-const EventLogs: React.FC = () => (
-  <MonitorContainer current="Event Logs">
-    <Heading as="h5" size="md">Event Logs</Heading>
-  </MonitorContainer>
+const DataLakeConfiguration: React.FC = () => (
+  <ConfigContainer current="Data Lake Configuration">
+    {/* <Heading>Data Lake Configuration</Heading> */}
+    <DataLakeView />
+  </ConfigContainer>
 );
 
-export default EventLogs;
+export default DataLakeConfiguration;

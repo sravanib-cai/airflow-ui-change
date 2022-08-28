@@ -18,13 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-
+// import { Heading } from '@chakra-ui/react';
+import PoolsView from './pools_view';
 import ConfigContainer from './ConfigContainer';
 
 const Pools: React.FC = () => (
   <ConfigContainer current="Pools">
-    <Heading as="h5" size="md">Pools</Heading>
+    {/* <Heading as="h5" size="md">Pools</Heading> */}
+    <PoolsView />
   </ConfigContainer>
 );
 

@@ -58,7 +58,7 @@ const PipelineContainer: React.FC = ({ children }) => {
             color={linkColor}
             _hover={{ color: 'blue.200' }}
           >
-            <Link to="/pipelineruns/pipeline-status" color="currentColor">PipelineRuns</Link>
+            <Link to="/pipelines/manage-and-track" color="currentColor">Pipelines</Link>
             /
           </Box>
           {dagId}

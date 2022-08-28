@@ -19,15 +19,14 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
+import KerberosConfigView from './kerberosconfig_view';
+import ConfigContainer from './ConfigContainer';
 
-import LivyConfigView from './livyconfig_view';
-import ClusterConfigContainer from './ClusterConfigContainer';
-
-const LivyConfig: React.FC = () => (
-  <ClusterConfigContainer current="Livy Configuration">
-    {/* <Heading>Livy Configuration</Heading> */}
-    <LivyConfigView />
-  </ClusterConfigContainer>
+const KerberosConfig: React.FC = () => (
+  <ConfigContainer current="Kerberos Configuration">
+    {/* <Heading>Kerberos Configuration</Heading> */}
+    <KerberosConfigView />
+  </ConfigContainer>
 );
 
-export default LivyConfig;
+export default KerberosConfig;

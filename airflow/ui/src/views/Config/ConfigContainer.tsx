@@ -29,20 +29,24 @@ interface Props {
 const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Variables',
-      path: '/config',
+      label: 'Cluster Config Groups',
+      path: '/config/clusterconfig',
     },
     {
-      label: 'Configurations',
-      path: '/config/configurations',
+      label: 'Variables',
+      path: '/config/variables',
+    },
+    {
+      label: 'Connections',
+      path: '/config/connections',
     },
     {
       label: 'Plugins',
       path: '/config/plugins',
     },
     {
-      label: 'Providers',
-      path: '/config/providers',
+      label: 'Configurations',
+      path: '/config/configurations',
     },
     {
       label: 'Pools',
@@ -52,10 +56,7 @@ const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
       label: 'XComs',
       path: '/config/xcoms',
     },
-    {
-      label: 'Connections',
-      path: '/config/connections',
-    },
+    
   ];
 
   return (

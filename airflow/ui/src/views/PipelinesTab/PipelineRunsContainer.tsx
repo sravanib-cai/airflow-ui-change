@@ -29,34 +29,38 @@ interface Props {
 const PipelineRunsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Manage And Create',
-      path: '/pipelineruns/manage-and-create',
+      label: 'Create and Update',
+      path: '/pipelines/create-and-update',
     },
     {
-      label: 'Pipeline Status',
-      path: '/pipelineruns/pipeline-status',
+      label: 'Manage and Track',
+      path: '/pipelines/manage-and-track',
     },
     {
       label: 'Pipeline Dependencies',
-      path: '/pipelineruns/pipeline-dependencies',
+      path: '/pipelines/pipeline-dependencies',
     },
     {
       label: 'Runs',
-      path: '/pipelineruns/runs',
+      path: '/pipelines/runs',
     },
     {
       label: 'Task Instances',
-      path: '/pipelineruns/task-instances',
+      path: '/pipelines/task-instances',
     },
     {
       label: 'Jobs',
-      path: '/pipelineruns/jobs',
+      path: '/pipelines/jobs',
+    },
+    {
+      label: 'Code Artifacts',
+      path: '/pipelines/code-artifacts',
     },
   ];
 
   return (
     <SectionWrapper
-      currentSection="PipelineRuns"
+      currentSection="Pipelines"
       currentView={current}
       navItems={navItems}
       toolBar={toolBar}

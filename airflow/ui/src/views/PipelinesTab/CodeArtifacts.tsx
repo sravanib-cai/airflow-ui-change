@@ -18,16 +18,16 @@
  */
 
 import React from 'react';
-// import { Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-import DataLakeView from './datalake_view';
-import ClusterConfigContainer from './ClusterConfigContainer';
+import CodeArtifactsView from './code_artifacts_view';
 
-const DataLakeConfiguration: React.FC = () => (
-  <ClusterConfigContainer current="Data Lake Configuration">
-    {/* <Heading>Data Lake Configuration</Heading> */}
-    <DataLakeView />
-  </ClusterConfigContainer>
+const CodeArtifacts: React.FC = () => (
+  <PipelineRunsContainer current="Code Artifacts">
+    {/* <Heading as="h5" size="md">Code Artifacts</Heading> */}
+    <CodeArtifactsView />
+  </PipelineRunsContainer>
 );
 
-export default DataLakeConfiguration;
+export default CodeArtifacts;

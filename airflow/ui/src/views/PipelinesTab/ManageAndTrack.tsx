@@ -18,14 +18,16 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
+import PipelinesTable from './PipelinesTable';
 
 import PipelineRunsContainer from './PipelineRunsContainer';
 
-const TaskInstances: React.FC = () => (
-  <PipelineRunsContainer current="Task Instances">
-    <Heading as="h5" size="md">Task Instances</Heading>
+const ManageTrack: React.FC = () => (
+  <PipelineRunsContainer current="Manage and Track">
+    {/* <Heading>Manage and Track</Heading> */}
+    <PipelinesTable />
   </PipelineRunsContainer>
 );
 
-export default TaskInstances;
+export default ManageTrack;

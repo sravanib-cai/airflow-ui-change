@@ -18,36 +18,15 @@
  */
 
 import React from 'react';
+// import { Heading } from '@chakra-ui/react';
+import AuditLogsView from './auditlogs_view';
+import MonitorContainer from './MonitorContainer';
 
-import SectionWrapper from 'components/SectionWrapper';
+const AuditLogs: React.FC = () => (
+  <MonitorContainer current="Audit Logs">
+    {/* <Heading as="h5" size="md">Audit Logs</Heading> */}
+    <AuditLogsView />
+  </MonitorContainer>
+);
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
-
-const ClusterConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Cluster Config Groups',
-      path: '/clusterconfig',
-    },
-    // {
-    //   label: 'Data Lake Configurations',
-    //   path: '/clusterconfig/datalakeconfig',
-    // },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="ClusterConfig"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default ClusterConfigContainer;
+export default AuditLogs;

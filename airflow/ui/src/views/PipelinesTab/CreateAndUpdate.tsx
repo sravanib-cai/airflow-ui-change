@@ -19,15 +19,15 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import PipelinesTable from './PipelinesTable';
 
+import CreateUpdate from './create-update';
 import PipelineRunsContainer from './PipelineRunsContainer';
 
-const PipelineStatus: React.FC = () => (
-  <PipelineRunsContainer current="Pipeline Status">
-    {/* <Heading>Pipeline Status</Heading> */}
-    <PipelinesTable />
+const ManageAndCreate: React.FC = () => (
+  <PipelineRunsContainer current="Create and Update">
+    {/* <Heading>Create and Update</Heading> */}
+    <CreateUpdate />
   </PipelineRunsContainer>
 );
 
-export default PipelineStatus;
+export default ManageAndCreate;

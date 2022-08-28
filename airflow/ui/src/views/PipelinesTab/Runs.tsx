@@ -19,15 +19,14 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
+import RunsView from './runs_view';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-import ClusterConfigContainer from './ClusterConfigContainer';
-import GroupView from './group_view';
-
-const ClusterConfigGrps: React.FC = () => (
-  <ClusterConfigContainer current="Spark Configuration Groups">
-    {/* <Heading>Spark Configuration Groups</Heading> */}
-    <GroupView />
-  </ClusterConfigContainer>
+const Runs: React.FC = () => (
+  <PipelineRunsContainer current="Runs">
+    {/* <Heading as="h5" size="md">Runs</Heading> */}
+    <RunsView />
+  </PipelineRunsContainer>
 );
 
-export default ClusterConfigGrps;
+export default Runs;

@@ -56,7 +56,9 @@ const DataLakeExplorerView = () => {
 
       <div className="input-group">
         <span className="input-group-addon">File path: </span>
-        <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        <div className='search-form-width'>
+          <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
+        </div>
       </div>
       <br />
       <div className="table-responsive">

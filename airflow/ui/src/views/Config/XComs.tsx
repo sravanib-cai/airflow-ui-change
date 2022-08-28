@@ -18,13 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-
+// import { Heading } from '@chakra-ui/react';
+import XcomsView from './xcoms_view';
 import ConfigContainer from './ConfigContainer';
 
 const XComs: React.FC = () => (
   <ConfigContainer current="XComs">
-    <Heading as="h5" size="md">XComs</Heading>
+    {/* <Heading as="h5" size="md">XComs</Heading> */}
+    <XcomsView />
   </ConfigContainer>
 );
 

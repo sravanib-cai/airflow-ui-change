@@ -18,16 +18,16 @@
  */
 
 import React from 'react';
-// import { Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 
-import ManageCreate from './manage-create-pipeline';
-import PipelineRunsContainer from './PipelineRunsContainer';
+import SparkConfigView from './sparkconfig_view';
+import ConfigContainer from './ConfigContainer';
 
-const ManageAndCreate: React.FC = () => (
-  <PipelineRunsContainer current="Manage And Create">
-    {/* <Heading>Manage And Create</Heading> */}
-    <ManageCreate />
-  </PipelineRunsContainer>
+const SparkConfig: React.FC = () => (
+  <ConfigContainer current="Spark Configuration">
+    <Heading>Spark Configuration - config_group_1</Heading>
+    <SparkConfigView />
+  </ConfigContainer>
 );
 
-export default ManageAndCreate;
+export default SparkConfig;
