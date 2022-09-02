@@ -59,8 +59,8 @@ const Code: React.FC = () => {
     if (responseCode.data !== undefined) {
       // console.log('successdatasra', responseCode.data.content);
       return (
-        <RunsContainer currentView="DAG Code">
-          {/* <Heading as="h5" size="md">DAG Code</Heading> */}
+        <RunsContainer currentView="Pipeline Code">
+          {/* <Heading as="h5" size="md">Pipeline Code</Heading> */}
           <Codec><pre>{responseCode.data.content}</pre></Codec>
         </RunsContainer>
       );
@@ -68,8 +68,8 @@ const Code: React.FC = () => {
     // console.log('undefined', dag.fileToken);
 
     return (
-      <RunsContainer currentView="DAG Code">
-        <Heading>DAG Code</Heading>
+      <RunsContainer currentView="Pipeline Code">
+        <Heading>Pipeline Code</Heading>
         {/* <Code>{dag.fileToken}</Code>             */}
       </RunsContainer>
     );
@@ -77,8 +77,8 @@ const Code: React.FC = () => {
 
   // console.log('failureCode', responseCode.error);
   return (
-    <RunsContainer currentView="DAG Code">
-      <Heading as="h5" size="md">DAG Code</Heading>
+    <RunsContainer currentView="Pipeline Code">
+      <Heading as="h5" size="md">Pipeline Code</Heading>
       <Heading>Failure</Heading>
     </RunsContainer>
   );

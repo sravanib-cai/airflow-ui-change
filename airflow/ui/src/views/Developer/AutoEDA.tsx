@@ -18,13 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
+import EDAView from './eda_view';
 
 const AutoEDA: React.FC = () => (
   <DeveloperContainer current="Auto Exploratory Data Analysis">
-    <Heading as="h5" size="md">Auto EDA</Heading>
+    {/* <Heading as="h5" size="md">Auto EDA</Heading> */}
+    <EDAView />
   </DeveloperContainer>
 );
 

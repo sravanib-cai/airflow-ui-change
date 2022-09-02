@@ -123,7 +123,7 @@ const AuditLogsView = () => {
                 )}
               </PopoverBody>
               <PopoverFooter>
-                <button type="submit" className="btn">Submit</button>
+                <button type="submit" className="btn">Apply</button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>

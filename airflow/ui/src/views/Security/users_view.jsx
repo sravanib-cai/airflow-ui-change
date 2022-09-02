@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../../static/buttonstyle.css';
-// import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import { Link } from 'react-router-dom';
 import {
   Button,
   Portal,
@@ -27,10 +25,11 @@ import {
   MenuDivider,
   extendTheme,
 } from '@chakra-ui/react'
-import 'reactjs-popup/dist/index.css';
+// import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
-const TaskReschedulesView = () => {
+const UsersView = () => {
+  
   const space = {
     width: '3px',
     height: 'auto',
@@ -39,6 +38,8 @@ const TaskReschedulesView = () => {
   const padding = {
     paddingBottom: '20px',
   };
+  const linkColor = useColorModeValue('blue.200', 'blue.300');
+  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
@@ -51,23 +52,10 @@ const TaskReschedulesView = () => {
     // setIsShown(true);
   };
 
-  // const linkColor = useColorModeValue('blue.200', 'blue.300');
-  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
-
   return (
     // <div style={btnRight}>
     <div>
       <div style={padding} />
-      {/* <div className="panel panel-primary {{ extra_class }}">
-        <div className="panel-heading">
-          <h4 className="panel-title">{{title}}</h4>
-        </div>
-        <div className="panel-body">
-          {% endmacro %}
-          {% macro panel_end() %}
-        </div>
-      </div> */}
-        
       <div className="btn-group">
         <Popover placement='bottom-end'>
           <PopoverTrigger>
@@ -133,83 +121,15 @@ const TaskReschedulesView = () => {
                     </div>
                   </div>
                 )}
-                {/* <form method="post" className="form-group">
-                  <div className="modal-body">
-                    <label htmlFor="name">Group name</label>
-                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
-                  </div>
-                </form>
-                <span id="helpBlock" className="help-block">
-                  A group name can only contain <code>A-Z, a-z, _, -, 0-9</code>
-                </span> */}
               </PopoverBody>
               <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn">Apply</button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>
         </Popover>
       </div>
-      {/* <div className="panel-group">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-              <h4 className="panel-title">
-                <a className="accordion-toggle" data-toggle="collapse"
-                  >Search<span className="caret"></span></a>
-              </h4>
-          </div>
 
-          <div className="panel-body">
-            <form id="filter_form" className="form-search" method="get">
-              <div className="btn-group">
-                <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Add Filter
-                  <span className="caret"></span>
-                </button>
-                <ul className="dropdown-menu">
-                  <li ng-repeat="(col, filters) in search_filters">
-                    <a href="javascript:void(0)" name={[col]} className="filter" ng-click="addFilter(col)">
-                    {[ label_columns[col] ]}</a>
-                  </li>
-                </ul>
-              </div>
-
-              <table className="table table-bordered table-hover">
-                <tbody>
-                  <tr ng-repeat="active_filter in active_filters">
-                    <td className="col-lg-1 col-md-1" >
-                      <a href="#" ng-click="removeFilter($index)" className="btn"><span className="close-icon">&times;</span>&nbsp;
-                      {[active_filter.label]}</a>
-                    </td>
-                    <td className="col-lg-1 col-md-1 col-sm-1">
-                      <select className="my_select2 form-control ng-scope" data-placeholder="Select Value" id="{[active_filter.col]}" name="{[active_filter.col]}" style="width:250px">
-                        <option ng-repeat="(key, value) in active_filter.options" value="{[key]}">{[value]}</option>
-                      </select>
-                      <ab-select data="active_filter.options"></ab-select>
-                      <ab-date format="yyyy-MM-dd" ></ab-date>
-                    </td>
-                    <td dynamic="active_filter.html"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </form>
-          </div>
-        </div>
-      </div> */}
-
-      {/* {% if open %}
-      <div id="{{id}}_href" className="panel-collapse collapse in">
-        {% else %}
-        <div id="{{id}}_href" className="panel-collapse collapse">
-          {% endif %}
-          <div className="panel-body">
-            <button type="submit" className="btn btn-sm btn-primary">Search
-              <i className="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </div> */}
       <div style={space} />
       <div className="btn-group">
         <Menu>
@@ -226,7 +146,7 @@ const TaskReschedulesView = () => {
             color= 'blue.900'
             backgroundColor= 'blue.200'
             fontWeight= '600'
-            _hover={{ bg: 'gray.400' }}
+            // _hover={{ bg: 'gray.400' }}
             _expanded={{ bg: 'blue.200' }}
             _focus={{ boxShadow: 'outline' }}
           >
@@ -255,58 +175,54 @@ const TaskReschedulesView = () => {
             {% endfor %} */}
           {/* </ul>
         </div> */}
-
-        {/* <script type="text/javascript">
-          $(document).ready(function() {
-          {% for action_key in actions %}
-            {% set action = actions.get(action_key) %}
-            $('.{{action.name}}_menu_item').on('click', function(){
-              {% if action.confirmation %}
-                return modelActions.execute_multiple('{{action.name}}','{{action.confirmation}}');
-              {% else %}
-                return modelActions.execute_multiple('{{action.name}}', false);
-              {% endif %}
-            })
-          {% endfor %}
-          });
-        </script> */}
       </div>
-      <div style={{ float: 'right' }}>
-        <strong>Record Count:</strong>
-        0
+      <div style={{ float: "right" }}>
+          <strong>Record Count:</strong> 1
       </div>
       <br />
       <div style={padding} />
-      <strong>No records found</strong>
-      {/* <div className="table-responsive">
+      {/* <strong>No records found</strong> */}
+      <div className="table-responsive">
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="5">Attribute</th>
-              <th colSpan="5">Value</th>
+              <th colSpan="1"><input type="radio" name="default-group"/></th>
+              <th colSpan="1">First Name</th>
+              <th colSpan="1">Last Name</th>
+              <th colSpan="2">Username</th>
+              <th colSpan="2">Email</th>
+              <th colSpan="1">Role</th>
+              <th colSpan="1">IsActive</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td colSpan="5" className="col-sm-5">
-                hooks
+              <td colSpan="1" className="col-sm-1">
+                <input type="radio" name="default-group"/>
               </td>
-              <td colSpan="5" className="code col-sm-5">[]</td>
-            </tr>
-            <tr>
-              <td colSpan="5" className="col-sm-5">
-                source
+              <td colSpan="1" className="col-sm-1">
+                Vishal
               </td>
-              <td colSpan="5" className="code col-sm-5">
-                $PLUGINS_FOLDER/cai_loopable_batch_plugin.py
+              <td colSpan="1" className="col-sm-1">
+                Bhardwaj
+              </td>
+              <td colSpan="2" className="col-sm-2">
+                3593a96d-e92c-4dc7-82c4-373e64dbbeb8
+              </td>
+              <td colSpan="2" className="col-sm-2">vishal.bhardwaj@couture.ai</td>
+              <td colSpan="1" className="col-sm-1">
+                admin
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                True
               </td>
             </tr>
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
 
   );
 };
 
-export default TaskReschedulesView;
+export default UsersView;

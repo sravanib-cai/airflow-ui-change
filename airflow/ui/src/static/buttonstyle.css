@@ -942,7 +942,7 @@ th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: middle;
-  /* border-top: 1px solid #ddd; */
+  /* border-top: 1px solid #2D3748; */
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -1140,7 +1140,7 @@ table thead th {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #2D3748;
   }
   .table-responsive > .table {
     margin-bottom: 0;
@@ -1416,7 +1416,7 @@ pre code {
 .panel-footer {
   padding: 10px 15px;
   background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #2D3748;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -1526,7 +1526,7 @@ pre code {
 .panel > .panel-body + .table-responsive,
 .panel > .table + .panel-body,
 .panel > .table-responsive + .panel-body {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #2D3748;
 }
 .panel > .table > tbody:first-child > tr:first-child th,
 .panel > .table > tbody:first-child > tr:first-child td {
@@ -2386,3 +2386,265 @@ input[type="button"].btn-block {
 .btn-group-justified > .btn-group .dropdown-menu {
   left: auto;
 }
+
+.folder-title {
+  background-color:#2D3748;
+  width:100%;
+  height:30px;
+  font-weight:bold;
+  font-family:Arial;
+  color: white;
+  font-size:14px;
+  position: sticky;
+  top:0;
+  border-radius: 0;
+  border:1px solid #2D3748;
+}
+.folder-title p{
+  text-align: center;
+  padding-top: 5%;
+}
+
+.column1 {
+  width: 90%;
+  height: 100%;
+  float: left;
+  margin-left: 1%;
+}
+
+.column2 {
+  float: right;
+  width: 10%;
+  height: 100%;
+}
+
+.eda-row{
+  margin-top:0;
+  height:50%;
+}
+
+.sidebar .outputs{
+  height:5%;
+  width:50%;
+  position:absolute;
+  margin-left: 1.1%;
+}
+
+.sidebar .outputs p{
+  color: white;
+  font-size:17px;
+  font-weight:bold;
+  padding-left: 2%;
+  padding-top: 0.5%;
+}
+
+.flex-container{
+  display: flex;
+  bottom: 0;
+}
+.table-footer .flex-container{
+  margin: 1%;
+  float:right;
+  display: flex;
+  bottom: 0;
+}
+
+.flex-container .stage1{
+  width:26%;
+  flex-direction:column;
+  overflow-y: auto;
+  max-height: 400px;
+  height:400px;
+  float:left;
+  margin-top: 5.9%;
+  margin-left: 2%;
+  position: relative;
+}
+.flex-container .stage2{
+  flex-direction:row;
+  max-height:400px;
+  height: 400px;
+  float:right;
+  margin-top: 5.9%;
+  padding-left: 1%;
+  width:74%;
+}
+
+.btn-folder {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid #2D3748;
+  white-space: nowrap;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  height: 2rem;
+  min-width: 4rem;
+  border-radius: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.stage2 p{
+  font-family: Arial;
+  font-size:15px;
+  color: #51504f;
+  padding-top:2%;
+} 
+.stage2 .fa-download{
+  margin-top: 0;
+  right:0;
+  color: rgb(95, 115, 153);
+  font-size:15px;
+}
+.stage2 .tile {
+  margin-left: 2%;
+}
+
+.files_view{
+  display: none;
+  flex-direction:column;
+}
+
+.file-text {
+  font-size:13px;
+  color:gray;
+  font-family:Arial;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #51504f;
+  max-height: 340px;
+  overflow-y: auto;
+  width:95%;
+  padding: 1%;
+  margin: 1%;
+}
+.grid-item {
+  width: 100px;
+  font-size: 30px;
+  text-align: center;
+  padding: 5%;
+}
+
+.folders {
+  flex-direction: column;
+}
+
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: #171923; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.closebutton:hover,
+.closebutton:focus {
+  color: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.closebutton {
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  color: #818181;
+  padding: 10px 15px;
+  border: none;
+  opacity: 0.4;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #171923;
+  color: white;
+  border: 1px solid #2D3748;
+  width: 250px;
+  float: right;
+  height: 34px;
+}
+
+.rightbar {
+  display: inline-block;
+}
+
+.openbtn:hover {
+  background-color: #2D3748;
+}
+
+.sidebarbutton{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+}
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-right .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.rotate{
+  vertical-align:top;
+	transform:rotate(7deg);
+  -ms-transform:rotate(270deg); /* IE 9 */
+  -moz-transform:rotate(270deg); /* Firefox */
+  -webkit-transform:rotate(270deg); /* Safari and Chrome */
+  -o-transform:rotate(270deg); /* Opera */}
+
+.button-container{
+  top: 5px;
+}
+   

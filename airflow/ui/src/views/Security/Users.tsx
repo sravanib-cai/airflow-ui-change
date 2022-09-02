@@ -21,10 +21,12 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import SecurityContainer from './SecurityContainer';
+import UsersView from './users_view';
 
 const Users: React.FC = () => (
   <SecurityContainer current="Users">
-    <Heading as="h5" size="md">Users</Heading>
+    {/* <Heading as="h5" size="md">Users</Heading> */}
+    <UsersView />
   </SecurityContainer>
 );
 

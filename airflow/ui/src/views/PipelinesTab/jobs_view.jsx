@@ -30,7 +30,7 @@ import {
 import 'reactjs-popup/dist/index.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-const TaskReschedulesView = () => {
+const JobsView = () => {
   const space = {
     width: '3px',
     height: 'auto',
@@ -273,40 +273,64 @@ const TaskReschedulesView = () => {
       </div>
       <div style={{ float: 'right' }}>
         <strong>Record Count:</strong>
-        0
+        1
       </div>
       <br />
       <div style={padding} />
-      <strong>No records found</strong>
-      {/* <div className="table-responsive">
+      {/* <strong>No records found</strong> */}
+      <div className="table-responsive">
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="5">Attribute</th>
-              <th colSpan="5">Value</th>
+              <th colSpan="1">Id</th>
+              <th colSpan="1">Pipeline Id</th>
+              <th colSpan="1">State</th>
+              <th colSpan="1">Job Type</th>
+              <th colSpan="2">Start Date</th>
+              <th colSpan="2">End Date</th>
+              <th colSpan="2">Latest Heartbeat</th>
+              <th colSpan="2">Executor Class</th>
+              <th colSpan="1">Hostname</th>
+              <th colSpan="1">Unixname</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td colSpan="5" className="col-sm-5">
-                hooks
+              <td colSpan="1" className="col-sm-1">
+                138
               </td>
-              <td colSpan="5" className="code col-sm-5">[]</td>
-            </tr>
-            <tr>
-              <td colSpan="5" className="col-sm-5">
-                source
+              <td colSpan="1" className="col-sm-1">
+                EDAVariateVisualisation-car_crashes-01-09-2022-08-09-59
               </td>
-              <td colSpan="5" className="code col-sm-5">
-                $PLUGINS_FOLDER/cai_loopable_batch_plugin.py
+              <td colSpan="1" className="col-sm-1">
+                <span className="legend-item dag">success</span>
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                LocalTaskJob
+              </td>
+              <td colSpan="2" className="col-sm-2">2022-09-01, 08:23:31</td>
+              <td colSpan="2" className="col-sm-2">
+                2022-09-01, 08:23:39
+              </td>
+              <td colSpan="2" className="col-sm-2">
+                2022-09-01, 08:23:37
+              </td>
+              <td colSpan="2" className="col-sm-2">
+                CeleryKubernetesExecutor
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                10.109.0.62
+              </td>
+              <td colSpan="1" className="col-sm-1">
+                cai
               </td>
             </tr>
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
 
   );
 };
 
-export default TaskReschedulesView;
+export default JobsView;

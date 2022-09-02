@@ -33,6 +33,10 @@ const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => 
       path: '/developer/data-lake-explorer',
     },
     {
+      label: 'Models and Experiments',
+      path: '/developer/models-expts', 
+    },
+    {
       label: 'Notebooks',
       path: '/developer/notebooks',
     },
@@ -41,12 +45,12 @@ const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => 
       path: '/developer/auto-eda',
     },
     {
-      label: 'Models and Datasets',
-      path: '/developer/models-datasets', 
-    },
-    {
       label: 'Auto API Builder',
       path: '/developer/auto-api-builder',
+    },
+    {
+      label: 'Datasets',
+      path: '/developer/datasets',
     },
   ];
 

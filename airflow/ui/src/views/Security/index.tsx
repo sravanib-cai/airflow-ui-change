@@ -21,10 +21,12 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import SecurityContainer from './SecurityContainer';
+import RolesView from './roles_view';
 
 const Roles: React.FC = () => (
   <SecurityContainer current="Roles">
-    <Heading as="h5" size="md">Roles</Heading>
+    {/* <Heading as="h5" size="md">Roles</Heading> */}
+    <RolesView />
   </SecurityContainer>
 );
 

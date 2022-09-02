@@ -28,12 +28,15 @@ import Runs from 'views/PipelinesTab/Runs';
 import TaskInstances from 'views/PipelinesTab/TaskInstances';
 import Jobs from 'views/PipelinesTab/Jobs';
 import CodeArtifacts from 'views/PipelinesTab/CodeArtifacts';
+import Pools from 'views/PipelinesTab/Pools';
+import XComs from 'views/PipelinesTab/XComs';
 
 import DataLakeExplorer from 'views/Developer/DataLakeExplorer';
 import Notebooks from 'views/Developer/Notebooks';
 import AutoEDA from 'views/Developer/AutoEDA';
-import ModelsandDatasets from 'views/Developer/ModelsandDatasets';
+import ModelsandExpts from 'views/Developer/ModelsandExpts';
 import AutoAPIBuilder from 'views/Developer/AutoAPIBuilder';
+import Datasets from 'views/Developer/Datasets';
 
 import AuditLogs from 'views/Monitor/AuditLogs';
 import TaskReschedules from 'views/Monitor/TaskReschedules';
@@ -47,10 +50,7 @@ import LivyConfig from 'views/Config/LivyConfig';
 
 import ClusterConfigGrps from 'views/Config/ClusterConfigGrps';
 import Variables from 'views/Config/Variables';
-import Configurations from 'views/Config/Configurations';
 import Plugins from 'views/Config/Plugins';
-import Pools from 'views/Config/Pools';
-import XComs from 'views/Config/XComs';
 import Connections from 'views/Config/Connections';
 
 import Security from 'views/Security';
@@ -76,6 +76,8 @@ const App = () => (
     <PrivateRoute exact path="/pipelines/task-instances" component={TaskInstances} />
     <PrivateRoute exact path="/pipelines/jobs" component={Jobs} />
     <PrivateRoute exact path="/pipelines/code-artifacts" component={CodeArtifacts} />
+    <PrivateRoute exact path="/pipelines/pools" component={Pools} />
+    <PrivateRoute exact path="/pipelines/xcoms" component={XComs} />
 
     <Redirect exact path="/pipelines/:dagId" to="/pipelines/:dagId/details" />
     <PrivateRoute exact path="/pipelines/:dagId/details" component={Details} />
@@ -94,10 +96,11 @@ const App = () => (
     <PrivateRoute exact path="/pipelines/:dagId/:dagRunId/:taskId/xcom" component={XCom} />
 
     <PrivateRoute exact path="/developer/data-lake-explorer" component={DataLakeExplorer} />
+    <PrivateRoute exact path="/developer/models-expts" component={ModelsandExpts} />
     <PrivateRoute exact path="/developer/notebooks" component={Notebooks} />
     <PrivateRoute exact path="/developer/auto-eda" component={AutoEDA} />
-    <PrivateRoute exact path="/developer/models-datasets" component={ModelsandDatasets} />
     <PrivateRoute exact path="/developer/auto-api-builder" component={AutoAPIBuilder} />
+    <PrivateRoute exact path="/developer/datasets" component={Datasets} />
 
     <PrivateRoute exact path="/monitor/audit-logs" component={AuditLogs} />
     <PrivateRoute exact path="/monitor/task-reschedules" component={TaskReschedules} />
@@ -105,10 +108,7 @@ const App = () => (
 
     <PrivateRoute exact path="/config/clusterconfig" component={ClusterConfigGrps} />
     <PrivateRoute exact path="/config/variables" component={Variables} />
-    <PrivateRoute exact path="/config/configurations" component={Configurations} />
     <PrivateRoute exact path="/config/plugins" component={Plugins} />
-    <PrivateRoute exact path="/config/pools" component={Pools} />
-    <PrivateRoute exact path="/config/xcoms" component={XComs} />
     <PrivateRoute exact path="/config/connections" component={Connections} />
 
     <PrivateRoute exact path="/config/clusterconfig/datalakeconfig" component={DataLakeConfiguration} />

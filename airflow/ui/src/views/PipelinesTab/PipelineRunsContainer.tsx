@@ -56,6 +56,14 @@ const PipelineRunsContainer: React.FC<Props> = ({ children, current, toolBar }) 
       label: 'Code Artifacts',
       path: '/pipelines/code-artifacts',
     },
+    {
+      label: 'Pools',
+      path: '/pipelines/pools',
+    },
+    {
+      label: 'XComs',
+      path: '/pipelines/xcoms',
+    },
   ];
 
   return (

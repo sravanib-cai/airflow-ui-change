@@ -145,7 +145,7 @@ const TaskInstancesView = () => {
               </PopoverBody>
               <PopoverFooter>
                 {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
-                <button type="submit" className="btn">Submit</button>
+                <button type="submit" className="btn">Apply</button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>

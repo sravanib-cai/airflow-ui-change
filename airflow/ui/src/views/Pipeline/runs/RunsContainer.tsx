@@ -47,7 +47,7 @@ const RunContainer: React.FC<Props> = ({ children, currentView }) => {
       path: `${basePath}/details`,
     },
     {
-      label: 'DAG Code',
+      label: 'Pipeline Code',
       path: `${basePath}/code`,
     },
     {

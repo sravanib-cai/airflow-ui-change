@@ -18,14 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
+import XcomsView from './xcoms_view';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-import DeveloperContainer from './DeveloperContainer';
-
-const ModelsandDatasets: React.FC = () => (
-  <DeveloperContainer current="Models and Datasets">
-    <Heading as="h5" size="md">Models and Datasets</Heading>
-  </DeveloperContainer>
+const XComs: React.FC = () => (
+  <PipelineRunsContainer current="XComs">
+    {/* <Heading as="h5" size="md">XComs</Heading> */}
+    <XcomsView />
+  </PipelineRunsContainer>
 );
 
-export default ModelsandDatasets;
+export default XComs;

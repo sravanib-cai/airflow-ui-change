@@ -18,13 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-
+// import { Heading } from '@chakra-ui/react';
+import JobsView from './jobs_view';
 import PipelineRunsContainer from './PipelineRunsContainer';
 
 const Jobs: React.FC = () => (
   <PipelineRunsContainer current="Jobs">
-    <Heading as="h5" size="md">Jobs</Heading>
+    {/* <Heading as="h5" size="md">Jobs</Heading> */}
+    <JobsView />
   </PipelineRunsContainer>
 );
 

@@ -21,10 +21,12 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import SecurityContainer from './SecurityContainer';
+import StatisticsView from './statistics_view';
 
 const Statistics: React.FC = () => (
   <SecurityContainer current="Statistics">
     <Heading as="h5" size="md">Statistics</Heading>
+    <StatisticsView />
   </SecurityContainer>
 );
 

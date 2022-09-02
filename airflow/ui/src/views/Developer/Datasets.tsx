@@ -18,15 +18,14 @@
  */
 
 import React from 'react';
-// import { Heading } from '@chakra-ui/react';
-import PoolsView from './pools_view';
-import ConfigContainer from './ConfigContainer';
+import { Heading } from '@chakra-ui/react';
 
-const Pools: React.FC = () => (
-  <ConfigContainer current="Pools">
-    {/* <Heading as="h5" size="md">Pools</Heading> */}
-    <PoolsView />
-  </ConfigContainer>
+import DeveloperContainer from './DeveloperContainer';
+
+const Datasets: React.FC = () => (
+  <DeveloperContainer current="Datasets">
+    <Heading as="h5" size="md">Datasets</Heading>
+  </DeveloperContainer>
 );
 
-export default Pools;
+export default Datasets;

@@ -18,44 +18,14 @@
  */
 
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
 
-import SectionWrapper from 'components/SectionWrapper';
+import DeveloperContainer from './DeveloperContainer';
 
-interface Props {
-  current: string;
-  toolBar?: React.ReactNode;
-}
+const ModelsandExpts: React.FC = () => (
+  <DeveloperContainer current="Models and Experiments">
+    <Heading as="h5" size="md">Models and Experiments</Heading>
+  </DeveloperContainer>
+);
 
-const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
-  const navItems = [
-    {
-      label: 'Cluster Config Groups',
-      path: '/config/clusterconfig',
-    },
-    {
-      label: 'Variables',
-      path: '/config/variables',
-    },
-    {
-      label: 'Connections',
-      path: '/config/connections',
-    },
-    {
-      label: 'Plugins',
-      path: '/config/plugins',
-    },
-  ];
-
-  return (
-    <SectionWrapper
-      currentSection="Config"
-      currentView={current}
-      navItems={navItems}
-      toolBar={toolBar}
-    >
-      {children}
-    </SectionWrapper>
-  );
-};
-
-export default ConfigContainer;
+export default ModelsandExpts;

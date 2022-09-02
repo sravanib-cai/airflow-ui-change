@@ -19,14 +19,14 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import XcomsView from './xcoms_view';
-import ConfigContainer from './ConfigContainer';
+import PoolsView from './pools_view';
+import PipelineRunsContainer from './PipelineRunsContainer';
 
-const XComs: React.FC = () => (
-  <ConfigContainer current="XComs">
-    {/* <Heading as="h5" size="md">XComs</Heading> */}
-    <XcomsView />
-  </ConfigContainer>
+const Pools: React.FC = () => (
+  <PipelineRunsContainer current="Pools">
+    {/* <Heading as="h5" size="md">Pools</Heading> */}
+    <PoolsView />
+  </PipelineRunsContainer>
 );
 
-export default XComs;
+export default Pools;
