@@ -53,11 +53,9 @@ import Variables from 'views/Config/Variables';
 import Plugins from 'views/Config/Plugins';
 import Connections from 'views/Config/Connections';
 
-import Security from 'views/Security';
 import Users from 'views/Security/Users';
 import Roles from 'views/Security';
 import Statistics from 'views/Security/Statistics';
-
 
 import Providers from 'views/Docs/Providers';
 

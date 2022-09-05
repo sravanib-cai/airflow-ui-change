@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react';
 import '../../static/buttonstyle.css';
 import {
-  Button,
+  // Button,
   Portal,
-  Box,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import {
+  // Box,
+  // useColorModeValue,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -15,64 +13,64 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
-} from '@chakra-ui/react'
+  // PopoverAnchor,
+} from '@chakra-ui/react';
 import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';
 
 const CreateUpdate = () => {
   const fileRef = useRef();
-  const buttonStyle = {
-    backgroundColor: '#90cdf4',
-    color: '#1A202C',
-    borderRadius: '0.375rem',
-    fontWeight: '600',
-    height: '2rem',
-    minWidth: '2rem',
-    fontSize: '12px',
-    width: 'auto',
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
-  };
+  // const buttonStyle = {
+  //   backgroundColor: '#90cdf4',
+  //   color: '#1A202C',
+  //   borderRadius: '0.375rem',
+  //   fontWeight: '600',
+  //   height: '2rem',
+  //   minWidth: '2rem',
+  //   fontSize: '12px',
+  //   width: 'auto',
+  //   paddingLeft: '0.75rem',
+  //   paddingRight: '0.75rem',
+  // };
   const btnRight = {
     cssFloat: 'right',
   };
 
-  const [fileName, setFileName] = useState('');
-  const [fileSize, setFileSize] = useState('');
-  const [fileDate, setFileDate] = useState('');
+  // const [fileName, setFileName] = useState('');
+  // const [fileSize, setFileSize] = useState('');
+  // const [fileDate, setFileDate] = useState('');
 
-  function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
-  }
+  // function formatBytes(bytes, decimals = 2) {
+  //   if (bytes === 0) return '0 Bytes';
+  //   const k = 1024;
+  //   const dm = decimals < 0 ? 0 : decimals;
+  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
+  //   return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
+  // }
 
   const shiftbtnRight = {
     marginRight: '5px',
   };
 
-  const handleChange = (e) => {
-    const [file] = e.target.files;
-    // console.log(file);
-    setFileName(e.target.files[0].name);
-    setFileSize(formatBytes(e.target.files[0].size));
-    setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-    // const fileDate = e.target.files[0].lastModifiedDate[0];
+  // const handleChange = (e) => {
+  //   const [file] = e.target.files;
+  //   // console.log(file);
+  //   setFileName(e.target.files[0].name);
+  //   setFileSize(formatBytes(e.target.files[0].size));
+  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
 
-    // const item = {
-    //   name: {fileName},
-    //   size: {fileSize},
-    //   date: {fileDate}
-    // };
-    // this.setState({
-    //   rows: [...this.state.rows, item]
-    // });
-  };
+  //   // const item = {
+  //   //   name: {fileName},
+  //   //   size: {fileSize},
+  //   //   date: {fileDate}
+  //   // };
+  //   // this.setState({
+  //   //   rows: [...this.state.rows, item]
+  //   // });
+  // };
 
   // const space = {
   //   width: '3px',
@@ -88,11 +86,10 @@ const CreateUpdate = () => {
   return (
     // <div style={btnRight}>
     <div>
-      
       <div style={padding}>
         <Popover>
           <PopoverTrigger>
-            <button className="btn pull-right">Create new Pipeline</button>
+            <button type="button" className="btn pull-right">Create new Pipeline</button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -107,7 +104,9 @@ const CreateUpdate = () => {
                   </div>
                 </form>
                 <span id="helpBlock" className="help-block">
-                Pipeline name can contain characters <code>A-Z, a-z, _, -, 0-9</code>. No need to put .py in the end.
+                  Pipeline name can contain characters
+                  <code>A-Z, a-z, _, -, 0-9</code>
+                  . No need to put .py in the end.
                 </span>
                 {/* <input type="checkbox">Insert starter content in file.</input> */}
               </PopoverBody>
@@ -124,20 +123,19 @@ const CreateUpdate = () => {
           </button>
           <input
             ref={fileRef}
-            onChange={handleChange}
+            // onChange={handleChange}
             multiple={false}
             type="file"
             hidden
           />
-          
+
         </div>
       </div>
       <div style={padding} />
-      
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <div className='search-form-width'>
+        <div className="search-form-width">
           <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
         </div>
       </div>

@@ -34,7 +34,7 @@ const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => 
     },
     {
       label: 'Models and Experiments',
-      path: '/developer/models-expts', 
+      path: '/developer/models-expts',
     },
     {
       label: 'Notebooks',

@@ -34,7 +34,7 @@ const Details: React.FC = () => {
   const { match: { params: { dagId } } }: RouterProps = useReactRouter();
   // const {
   //   data: dag = {
-  //     dagId: '', rootDagId: '', isPaused: false, isSubdag: 
+  //     dagId: '', rootDagId: '', isPaused: false, isSubdag:
   // false, fileloc: '', fileToken: '', owners: [],
   //   },
   // } = useDag(dagId);

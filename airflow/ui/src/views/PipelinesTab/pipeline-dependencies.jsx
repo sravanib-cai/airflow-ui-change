@@ -1,22 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import '../../static/buttonstyle.css';
-import {
-  Button,
-  Portal,
-  Box,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-} from '@chakra-ui/react'
 import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';
@@ -37,22 +20,22 @@ const PipelineDepView = () => {
   return (
     // <div style={btnRight}>
     <div>
-        <div>
+      <div>
         <div className="input-group" style={{ float: 'right' }}>
-          <input type="text" id="searchbox" className="form-control-sm" placeholder="Search for..."/>
+          <input type="text" id="searchbox" className="form-control-sm" placeholder="Search for..." />
         </div>
-        <div style={{float: 'right'}}>
-          <label for="deps-filter" className="h5" style={{ marginRight: '5px' }}>
-            <input type="checkbox" id="deps-filter" checked /> 
+        <div style={{ float: 'right' }}>
+          <label htmlFor="deps-filter" className="h5" style={{ marginRight: '5px' }}>
+            <input type="checkbox" id="deps-filter" checked />
             <div style={space} />
             Only show Pipelines with dependencies
           </label>
         </div>
       </div>
-      
+
       <div style={padding} />
       <br />
-      <hr/>
+      <hr />
       <div style={padding} />
       <div className="legend-row">
         <div>
@@ -60,7 +43,8 @@ const PipelineDepView = () => {
           <span className="legend-item trigger">trigger</span>
           <span className="legend-item sensor">sensor</span>
         </div>
-        <div style={{ float:'right' }}>Last refresh: 
+        <div style={{ float: 'right' }}>
+          Last refresh:
           {/* <time datetime="{{ last_refresh }}">{{ last_refresh }}</time> */}
         </div>
       </div>
@@ -68,7 +52,7 @@ const PipelineDepView = () => {
         <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span id="error_msg">Oops.</span>
       </div> */}
-      <br/>
+      <br />
       <div className="svg-wrapper">
         <div className="graph-svg-wrap">
           {/* <svg id="graph-svg" width="{{ width }}" height="{{ height }}">

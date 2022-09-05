@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import MonitorContainer from './MonitorContainer';
 import SLAMissesView from './slamisses_view';

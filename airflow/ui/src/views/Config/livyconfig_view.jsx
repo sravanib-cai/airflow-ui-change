@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
 // import {
@@ -9,7 +9,7 @@ import '../../static/buttonstyle.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const LivyConfigView = () => {
-  const fileRef = useRef();
+  // const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
     color: '#1A202C',
@@ -22,46 +22,12 @@ const LivyConfigView = () => {
     paddingLeft: '0.75rem',
     paddingRight: '0.75rem',
   };
-  const btnRight = {
-    cssFloat: 'right',
-  };
-  // const [fileName, setFileName] = useState('');
-  // const [fileSize, setFileSize] = useState('');
-  // const [fileDate, setFileDate] = useState('');
-
-  // function formatBytes(bytes, decimals = 2) {
-  //   if (bytes === 0) return '0 Bytes';
-  //   const k = 1024;
-  //   const dm = decimals < 0 ? 0 : decimals;
-  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  // }
-
-  const handleChange = (e) => {
-    const [file] = e.target.files;
-    // console.log(file);
-    // setFileName(e.target.files[0].name);
-    // setFileSize(formatBytes(e.target.files[0].size));
-    // setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-
-    // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-    // const item = {
-    //   name: {fileName},
-    //   size: {fileSize},
-    //   date: {fileDate}
-    // };
-    // this.setState({
-    //   rows: [...this.state.rows, item]
-    // });
-  };
 
   const Headers = {
     // backgroundColor: '#90cdf4',
     // color: '#1A202C',
     fontWeight: '600',
-    fontSize: '14px'
+    fontSize: '14px',
   };
 
   // const space = {
@@ -94,13 +60,13 @@ const LivyConfigView = () => {
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">url</span>
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">auth</span>
       </div>
@@ -113,7 +79,7 @@ const LivyConfigView = () => {
         <button style={buttonStyle} type="submit">
           Save Changes
         </button>
-      </div> 
+      </div>
 
       <div style={padding}>
         <h6 style={Headers}>kernel_scala_credentials</h6>
@@ -129,13 +95,13 @@ const LivyConfigView = () => {
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">url</span>
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">auth</span>
       </div>
@@ -148,7 +114,7 @@ const LivyConfigView = () => {
         <button style={buttonStyle} type="submit">
           Save Changes
         </button>
-      </div> 
+      </div>
 
       <div style={padding}>
         <h6 style={Headers}>kernel_r_credentials</h6>
@@ -164,13 +130,13 @@ const LivyConfigView = () => {
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">url</span>
       </div>
       <div className="input-form form-width">
         <input type="text" className="form-control-addon shift-form-left" />
-      </div> 
+      </div>
       <div>
         <span className="input-form-addon input-form-sep">auth</span>
       </div>
@@ -183,9 +149,9 @@ const LivyConfigView = () => {
         <button style={buttonStyle} type="submit">
           Save Changes
         </button>
-      </div> 
+      </div>
 
-      <br />  
+      <br />
       <h6 style={Headers}>custom headers</h6>
       <div className="buttonCenter">
         <div className="input-form form-width">
@@ -197,8 +163,7 @@ const LivyConfigView = () => {
         <button style={buttonStyle} type="submit">
           Save Changes
         </button>
-      </div> 
-
+      </div>
       <br />
       <h6 style={Headers}>session_configs</h6>
       <div className="buttonCenter">
@@ -211,8 +176,7 @@ const LivyConfigView = () => {
         <button style={buttonStyle} type="submit">
           Save Changes
         </button>
-      </div> 
-      
+      </div>
     </div>
   );
 };

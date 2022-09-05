@@ -39,7 +39,7 @@ const DataLakeView = () => {
   }
 
   const handleChange = (e) => {
-    const [file] = e.target.files;
+    // const [file] = e.target.files;
     // console.log(file);
     setFileName(e.target.files[0].name);
     setFileSize(formatBytes(e.target.files[0].size));
@@ -128,7 +128,7 @@ const DataLakeView = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <div className='search-form-width'>
+        <div className="search-form-width">
           <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
         </div>
       </div>

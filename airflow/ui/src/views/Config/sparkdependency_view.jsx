@@ -1,4 +1,9 @@
-import React, { useRef } from 'react';
+import
+React,
+{
+  useRef,
+  // useState,
+} from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
 // import {
@@ -25,6 +30,7 @@ const SparkDependencyView = () => {
   const btnRight = {
     cssFloat: 'right',
   };
+
   // const [fileName, setFileName] = useState('');
   // const [fileSize, setFileSize] = useState('');
   // const [fileDate, setFileDate] = useState('');
@@ -35,27 +41,26 @@ const SparkDependencyView = () => {
   //   const dm = decimals < 0 ? 0 : decimals;
   //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  //   return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
   // }
 
-  const handleChange = (e) => {
-    const [file] = e.target.files;
-    // console.log(file);
-    // setFileName(e.target.files[0].name);
-    // setFileSize(formatBytes(e.target.files[0].size));
-    // setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+  // const handleChange = (e) => {
+  //   // const [file] = e.target.files;
+  //   // console.log(file);
+  //   setFileName(e.target.files[0].name);
+  //   setFileSize(formatBytes(e.target.files[0].size));
+  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
 
-    // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-    // const item = {
-    //   name: {fileName},
-    //   size: {fileSize},
-    //   date: {fileDate}
-    // };
-    // this.setState({
-    //   rows: [...this.state.rows, item]
-    // });
-  };
+  //   // const item = {
+  //   //   name: {fileName},
+  //   //   size: {fileSize},
+  //   //   date: {fileDate}
+  //   // };
+  //   // this.setState({
+  //   //   rows: [...this.state.rows, item]
+  //   // });
+  // };
 
   // const space = {
   //   width: '3px',
@@ -78,7 +83,7 @@ const SparkDependencyView = () => {
           </button>
           <input
             ref={fileRef}
-            onChange={handleChange}
+            // onChange={handleChange}
             multiple={false}
             type="file"
             hidden
@@ -88,7 +93,7 @@ const SparkDependencyView = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <div className='search-form-width'>
+        <div className="search-form-width">
           <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
         </div>
       </div>
@@ -113,12 +118,12 @@ const SparkDependencyView = () => {
               <td colSpan="1" className="col-sm-1">
                 <div>
                   <i className="fa fa-cloud-download fa-lg"
-                  data-toggle="tooltip" title="Download"/>
+                  data-toggle="tooltip" title="Download" />
                 </div>
                 </td>
               <td colSpan="1" className="col-sm-1">
                 <i className="fa fa-trash fa-lg" style={{color:"red"}} aria-hidden="true"
-                data-toggle="tooltip" title="Delete File"/>
+                data-toggle="tooltip" title="Delete File" />
               </td>
             </tr> */}
           </tbody>

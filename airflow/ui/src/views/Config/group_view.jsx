@@ -2,22 +2,20 @@ import React from 'react';
 import '../../static/buttonstyle.css';
 import { Link } from 'react-router-dom';
 import {
-  Button,
+  // Button,
   Portal,
   Box,
   useColorModeValue,
-} from '@chakra-ui/react';
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverHeader,
-    PopoverBody,
-    PopoverFooter,
-    PopoverArrow,
-    PopoverCloseButton,
-    PopoverAnchor,
-  } from '@chakra-ui/react'
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  // PopoverAnchor,
+} from '@chakra-ui/react'
 import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';
@@ -25,11 +23,10 @@ import 'font-awesome/css/font-awesome.min.css';
 // import diagramProject from '../../components/icons/diagram-project-solid.svg';
 
 const GroupView = () => {
-  
   const shiftbtnRight = {
     marginRight: '5px',
   };
-  
+
   const space = {
     width: '3px',
     height: 'auto',
@@ -47,7 +44,7 @@ const GroupView = () => {
       <div style={padding}>
         <Popover>
           <PopoverTrigger>
-            <button className="btn pull-right">Add a group</button>
+            <button type="button" className="btn pull-right">Add a group</button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -62,7 +59,8 @@ const GroupView = () => {
                   </div>
                 </form>
                 <span id="helpBlock" className="help-block">
-                  A group name can only contain <code>A-Z, a-z, _, -, 0-9</code>
+                  A group name can only contain
+                  <code>A-Z, a-z, _, -, 0-9</code>
                 </span>
               </PopoverBody>
               <PopoverFooter>
@@ -114,7 +112,6 @@ const GroupView = () => {
           </button>
         </Link>
       </div>
-      
 
       {/* <div style={space} /> */}
       {/* <button style={buttonStyle} type="submit" >
@@ -152,7 +149,7 @@ const GroupView = () => {
       <br />
       <div className="input-group">
         <span className="input-group-addon">Search Group: </span>
-        <div className='search-form-width'>
+        <div className="search-form-width">
           <input type="text" className="form-control" placeholder="groupname" id="fileSearch" />
         </div>
       </div>
@@ -175,7 +172,7 @@ const GroupView = () => {
               <td colSpan="2" className="col-sm-2-1">
                 <div>
                   <input type="radio" name="default-group" checked />
-                  <div style={space} />
+                    <div style={space} />
                     Default group
                   {/* {% if is_default %} */}
                   {/* <input type="radio" name="default-group" checked> Default group */}

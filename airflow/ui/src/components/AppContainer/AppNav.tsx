@@ -24,7 +24,7 @@ import {
   FiActivity,
   FiTool,
   FiBookOpen,
-  FiGlobe,
+  // FiGlobe,
   FiSettings,
   FiUsers,
 } from 'react-icons/fi';

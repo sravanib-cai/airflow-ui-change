@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
 // import {
@@ -9,7 +9,6 @@ import '../../static/buttonstyle.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const PluginsView = () => {
-  
   // const space = {
   //   width: '3px',
   //   height: 'auto',
@@ -25,7 +24,9 @@ const PluginsView = () => {
     // <div style={btnRight}>
     <div>
       <div style={padding} />
-        <h4>1. CoutureLoopableBatchPlugin</h4>
+      <h4>
+        1. CoutureLoopableBatchPlugin
+      </h4>
       {/* {% for plugin in plugins %}
         <h4>{{ plugin["plugin_no"] }}. {{ plugin["plugin_name"] }}</h4>
         <table class="table table-striped table-bordered">

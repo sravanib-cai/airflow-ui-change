@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../static/buttonstyle.css';
 import { Link } from 'react-router-dom';
 import {
-  Button,
+  // Button,
   Portal,
   Box,
   useColorModeValue,
@@ -14,22 +14,21 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
+  // PopoverAnchor,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  extendTheme,
-} from '@chakra-ui/react'
+  // MenuItemOption,
+  // MenuGroup,
+  // MenuOptionGroup,
+  // MenuDivider,
+  // extendTheme,
+} from '@chakra-ui/react';
 // import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
 const PoolsView = () => {
-  
   const space = {
     width: '3px',
     height: 'auto',
@@ -43,11 +42,11 @@ const PoolsView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = event => {
+  const handleClickKey = (event) => {
     setIsShownKey(current => !current);
     // setIsShown(true);
   };
-  const handleClickValue = event => {
+  const handleClickValue = (event) => {
     setIsShownValue(current => !current);
     // setIsShown(true);
   };
@@ -57,7 +56,7 @@ const PoolsView = () => {
     <div>
       <div style={padding} />
       <div className="btn-group">
-        <Popover placement='bottom-end'>
+        <Popover placement="bottom-end">
           <PopoverTrigger>
             <button type="button" className="btn">
               Add Filters
@@ -68,31 +67,32 @@ const PoolsView = () => {
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverHeader>
-              <Menu>
-                <MenuButton
-                  transition='all 0.2s'
-                  borderRadius= '0.375rem'
-                  height= '2rem'
-                  minWidth= '2rem'
-                  fontSize= '12px'
-                  width= 'auto'
-                  paddingLeft= '0.75rem'
-                  paddingRight= '0.75rem'
-                  borderWidth='1px'
-                  color= 'blue.900'
-                  backgroundColor= 'blue.200'
-                  fontWeight= '600'
-                  _hover={{ bg: 'gray.400' }}
-                  _expanded={{ bg: 'blue.200' }}
-                  _focus={{ boxShadow: 'outline' }}
-                >
-                  Filters <span className="caret"></span>
-                </MenuButton>
-                <MenuList>
-                  <MenuItem onClick={handleClickKey}>Key</MenuItem>
-                  <MenuItem onClick={handleClickValue}>Value</MenuItem>
-                </MenuList>
-              </Menu>
+                <Menu>
+                  <MenuButton
+                    transition="all 0.2s"
+                    borderRadius="0.375rem"
+                    height="2rem"
+                    minWidth="2rem"
+                    fontSize="12px"
+                    width="auto"
+                    paddingLeft="0.75rem"
+                    paddingRight="0.75rem"
+                    borderWidth="1px"
+                    color="blue.900"
+                    backgroundColor="blue.200"
+                    fontWeight="600"
+                    _hover={{ bg: 'gray.400' }}
+                    _expanded={{ bg: 'blue.200' }}
+                    _focus={{ boxShadow: 'outline' }}
+                  >
+                    Filters
+                    <span className="caret" />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={handleClickKey}>Key</MenuItem>
+                    <MenuItem onClick={handleClickValue}>Value</MenuItem>
+                  </MenuList>
+                </Menu>
               </PopoverHeader>
               <PopoverBody>
                 {/* <button onClick={handleClick}>dropdown</button>
@@ -103,7 +103,7 @@ const PoolsView = () => {
                   )} */}
                 {isShownKey && (
                   <div>
-                    <div className='btn-group'>
+                    <div className="btn-group">
                       <span className="input-form-addon input-form-sep">Key</span>
                     </div>
                     <div className="btn-group input-form">
@@ -113,7 +113,7 @@ const PoolsView = () => {
                 )}
                 {isShownValue && (
                   <div>
-                    <div className='btn-group'>
+                    <div className="btn-group">
                       <span className="input-form-addon input-form-sep">Value</span>
                     </div>
                     <div className="btn-group input-form">
@@ -134,23 +134,24 @@ const PoolsView = () => {
       <div className="btn-group">
         <Menu>
           <MenuButton
-            transition='all 0.2s'
-            borderRadius= '0.375rem'
-            height= '2rem'
-            minWidth= '2rem'
-            fontSize= '12px'
-            width= 'auto'
-            paddingLeft= '0.75rem'
-            paddingRight= '0.75rem'
-            borderWidth='1px'
-            color= 'blue.900'
-            backgroundColor= 'blue.200'
-            fontWeight= '600'
+            transition="all 0.2s"
+            borderRadius="0.375rem"
+            height="2rem"
+            minWidth="2rem"
+            fontSize="12px"
+            width="auto"
+            paddingLeft="0.75rem"
+            paddingRight="0.75rem"
+            borderWidth="1px"
+            color="blue.900"
+            backgroundColor="blue.200"
+            fontWeight="600"
             // _hover={{ bg: 'gray.400' }}
             _expanded={{ bg: 'blue.200' }}
             _focus={{ boxShadow: 'outline' }}
           >
-            Actions <span className="caret"></span>
+            Actions
+            <span className="caret" />
           </MenuButton>
           <MenuList>
             <MenuItem>Delete</MenuItem>
@@ -162,22 +163,23 @@ const PoolsView = () => {
             <span className="caret" />
           </button>
           <ul className="dropdown-menu" role="menu">
-            <li>Delete</li> */}
-            {/* {% for action_key in actions %}
-                {% set action = actions.get(action_key) %}
-                    <li>
-                        <a href="javascript:void(0)"
-                            className="{{action.name}}_menu_item">
-                            <i className="fa {{action.icon}}"></i>
-                            {{ _(action.text) }}
-                        </a>
-                    </li>
-            {% endfor %} */}
-          {/* </ul>
+            <li>Delete</li>
+            {% for action_key in actions %}
+              {% set action = actions.get(action_key) %}
+                  <li>
+                    <a href="javascript:void(0)"
+                        className="{{action.name}}_menu_item">
+                        <i className="fa {{action.icon}}"></i>
+                        {{ _(action.text) }}
+                    </a>
+                  </li>
+            {% endfor %}
+          </ul>
         </div> */}
       </div>
-      <div style={{ float: "right" }}>
-          <strong>Record Count:</strong> 1
+      <div style={{ float: 'right' }}>
+        <strong>Record Count:</strong>
+        1
       </div>
       <br />
       <div style={padding} />
@@ -186,8 +188,8 @@ const PoolsView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="1"><input type="radio" name="default-group"/></th>
-              <th colSpan="1"></th>
+              <th colSpan="1"><input type="radio" name="default-group" /></th>
+              <th colSpan="1" />
               <th colSpan="2">Pool</th>
               <th colSpan="2">Slots</th>
               <th colSpan="2">Running Slots</th>
@@ -197,7 +199,7 @@ const PoolsView = () => {
           <tbody>
             <tr>
               <td colSpan="1" className="col-sm-1">
-                <input type="radio" name="default-group"/>
+                <input type="radio" name="default-group" />
               </td>
               <td colSpan="1" className="col-sm-1">
                 <div style={{ display: 'flex' }}>
@@ -208,15 +210,15 @@ const PoolsView = () => {
               </td>
               <td colSpan="2" className="col-sm-2">
                 <Box
-                as="span"
-                color={linkColor}
-                _hover={{ color: 'blue.100' }}
-              >
-                <Link to="/pipelines/task-instances" color="currentColor">
-                  default_pool
-                </Link>
-              </Box>
-                
+                  as="span"
+                  color={linkColor}
+                  _hover={{ color: 'blue.100' }}
+                >
+                  <Link to="/pipelines/task-instances" color="currentColor">
+                    default_pool
+                  </Link>
+                </Box>
+
               </td>
               <td colSpan="2" className="col-sm-2">
                 128

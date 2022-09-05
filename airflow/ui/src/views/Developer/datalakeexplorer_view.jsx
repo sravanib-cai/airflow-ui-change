@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../../static/buttonstyle.css';
 import { Link } from 'react-router-dom';
 // import {
@@ -9,22 +9,20 @@ import { Link } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 
 const DataLakeExplorerView = () => {
-  const fileRef = useRef();
-  const buttonStyle = {
-    backgroundColor: '#90cdf4',
-    color: '#1A202C',
-    borderRadius: '0.375rem',
-    fontWeight: '600',
-    height: '2rem',
-    minWidth: '2rem',
-    fontSize: '12px',
-    width: 'auto',
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
-  };
-  const btnRight = {
-    cssFloat: 'right',
-  };
+  // const fileRef = useRef();
+  // const buttonStyle = {
+  //   backgroundColor: '#90cdf4',
+  //   color: '#1A202C',
+  //   borderRadius: '0.375rem',
+  //   fontWeight: '600',
+  //   height: '2rem',
+  //   minWidth: '2rem',
+  //   fontSize: '12px',
+  //   width: 'auto',
+  //   paddingLeft: '0.75rem',
+  //   paddingRight: '0.75rem',
+  // };
+
   // const [fileName, setFileName] = useState('');
   // const [fileSize, setFileSize] = useState('');
   // const [fileDate, setFileDate] = useState('');
@@ -37,6 +35,23 @@ const DataLakeExplorerView = () => {
   //   const i = Math.floor(Math.log(bytes) / Math.log(k));
   //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   // }
+  // const handleChange = (e) => {
+  //   // const [file] = e.target.files;
+  //   // console.log(file);
+  //   setFileName(e.target.files[0].name);
+  //   setFileSize(formatBytes(e.target.files[0].size));
+  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
+  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
+
+  //   // const item = {
+  //   //   name: {fileName},
+  //   //   size: {fileSize},
+  //   //   date: {fileDate}
+  //   // };
+  //   // this.setState({
+  //   //   rows: [...this.state.rows, item]
+  //   // });
+  // };
 
   // const space = {
   //   width: '3px',
@@ -56,7 +71,7 @@ const DataLakeExplorerView = () => {
 
       <div className="input-group">
         <span className="input-group-addon">File path: </span>
-        <div className='search-form-width'>
+        <div className="search-form-width">
           <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
         </div>
       </div>
@@ -69,7 +84,7 @@ const DataLakeExplorerView = () => {
               <th colSpan="2">File Owner</th>
               <th colSpan="2">Last Modified</th>
               <th colSpan="2">Size</th>
-              <th colSpan="2"></th>
+              <th colSpan="2" />
             </tr>
           </thead>
           <tbody>
@@ -77,7 +92,7 @@ const DataLakeExplorerView = () => {
               <td colSpan="5" className="col-sm-5">
                 customer.csv
               </td>
-              <td colSpan="2" className="col-sm-2">	prateek</td>
+              <td colSpan="2" className="col-sm-2">prateek</td>
               <td colSpan="2" className="col-sm-2">Fri Apr 1 15:59:49 2022</td>
               <td colSpan="2" className="col-sm-2">97.072 KB</td>
               <td colSpan="2" className="col-sm-2">

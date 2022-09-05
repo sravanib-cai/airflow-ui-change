@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import SecurityContainer from './SecurityContainer';
 import UsersView from './users_view';

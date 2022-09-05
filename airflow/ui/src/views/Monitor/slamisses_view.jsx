@@ -4,10 +4,10 @@ import '../../static/buttonstyle.css';
 // import 'bootstrap/dist/css/bootstrap.css';
 // import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import {
-  Button,
+  // Button,
   Portal,
-  Box,
-  useColorModeValue,
+  // Box,
+  // useColorModeValue,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -16,17 +16,17 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
+  // PopoverAnchor,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  extendTheme,
-} from '@chakra-ui/react'
+  // MenuItemOption,
+  // MenuGroup,
+  // MenuOptionGroup,
+  // MenuDivider,
+  // extendTheme,
+} from '@chakra-ui/react';
 import 'reactjs-popup/dist/index.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -42,11 +42,11 @@ const SLAMissesView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = event => {
+  const handleClickKey = (event) => {
     setIsShownKey(current => !current);
     // setIsShown(true);
   };
-  const handleClickValue = event => {
+  const handleClickValue = (event) => {
     setIsShownValue(current => !current);
     // setIsShown(true);
   };
@@ -67,9 +67,9 @@ const SLAMissesView = () => {
           {% macro panel_end() %}
         </div>
       </div> */}
-        
+
       <div className="btn-group">
-        <Popover placement='bottom-end'>
+        <Popover placement="bottom-end">
           <PopoverTrigger>
             <button type="button" className="btn">
               Add Filters
@@ -80,31 +80,32 @@ const SLAMissesView = () => {
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverHeader>
-              <Menu>
-                <MenuButton
-                  transition='all 0.2s'
-                  borderRadius= '0.375rem'
-                  height= '2rem'
-                  minWidth= '2rem'
-                  fontSize= '12px'
-                  width= 'auto'
-                  paddingLeft= '0.75rem'
-                  paddingRight= '0.75rem'
-                  borderWidth='1px'
-                  color= 'blue.900'
-                  backgroundColor= 'blue.200'
-                  fontWeight= '600'
-                  _hover={{ bg: 'gray.400' }}
-                  _expanded={{ bg: 'blue.200' }}
-                  _focus={{ boxShadow: 'outline' }}
-                >
-                  Filters <span className="caret"></span>
-                </MenuButton>
-                <MenuList>
-                  <MenuItem onClick={handleClickKey}>Key</MenuItem>
-                  <MenuItem onClick={handleClickValue}>Value</MenuItem>
-                </MenuList>
-              </Menu>
+                <Menu>
+                  <MenuButton
+                    transition="all 0.2s"
+                    borderRadius="0.375rem"
+                    height="2rem"
+                    minWidth="2rem"
+                    fontSize="12px"
+                    width="auto"
+                    paddingLeft="0.75rem"
+                    paddingRight="0.75rem"
+                    borderWidth="1px"
+                    color="blue.900"
+                    backgroundColor="blue.200"
+                    fontWeight="600"
+                    _hover={{ bg: 'gray.400' }}
+                    _expanded={{ bg: 'blue.200' }}
+                    _focus={{ boxShadow: 'outline' }}
+                  >
+                    Filters
+                    <span className="caret" />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={handleClickKey}>Key</MenuItem>
+                    <MenuItem onClick={handleClickValue}>Value</MenuItem>
+                  </MenuList>
+                </Menu>
               </PopoverHeader>
               <PopoverBody>
                 {/* <button onClick={handleClick}>dropdown</button>
@@ -115,7 +116,7 @@ const SLAMissesView = () => {
                   )} */}
                 {isShownKey && (
                   <div>
-                    <div className='btn-group'>
+                    <div className="btn-group">
                       <span className="input-form-addon input-form-sep">Key</span>
                     </div>
                     <div className="btn-group input-form">
@@ -125,7 +126,7 @@ const SLAMissesView = () => {
                 )}
                 {isShownValue && (
                   <div>
-                    <div className='btn-group'>
+                    <div className="btn-group">
                       <span className="input-form-addon input-form-sep">Value</span>
                     </div>
                     <div className="btn-group input-form">
@@ -156,7 +157,7 @@ const SLAMissesView = () => {
           <div className="panel-heading">
               <h4 className="panel-title">
                 <a className="accordion-toggle" data-toggle="collapse"
-                  >Search<span className="caret"></span></a>
+                  >Search<span className="caret" /></a>
               </h4>
           </div>
 
@@ -165,7 +166,7 @@ const SLAMissesView = () => {
               <div className="btn-group">
                 <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
                   Add Filter
-                  <span className="caret"></span>
+                  <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">
                   <li ng-repeat="(col, filters) in search_filters">
@@ -214,23 +215,24 @@ const SLAMissesView = () => {
       <div className="btn-group">
         <Menu>
           <MenuButton
-            transition='all 0.2s'
-            borderRadius= '0.375rem'
-            height= '2rem'
-            minWidth= '2rem'
-            fontSize= '12px'
-            width= 'auto'
-            paddingLeft= '0.75rem'
-            paddingRight= '0.75rem'
-            borderWidth='1px'
-            color= 'blue.900'
-            backgroundColor= 'blue.200'
-            fontWeight= '600'
+            transition="all 0.2s"
+            borderRadius="0.375rem"
+            height="2rem"
+            minWidth="2rem"
+            fontSize="12px"
+            width="auto"
+            paddingLeft="0.75rem"
+            paddingRight="0.75rem"
+            borderWidth="1px"
+            color="blue.900"
+            backgroundColor="blue.200"
+            fontWeight="600"
             _hover={{ bg: 'gray.400' }}
             _expanded={{ bg: 'blue.200' }}
             _focus={{ boxShadow: 'outline' }}
           >
-            Actions <span className="caret"></span>
+            Actions
+            <span className="caret" />
           </MenuButton>
           <MenuList>
             <MenuItem>Delete</MenuItem>
@@ -242,18 +244,18 @@ const SLAMissesView = () => {
             <span className="caret" />
           </button>
           <ul className="dropdown-menu" role="menu">
-            <li>Delete</li> */}
-            {/* {% for action_key in actions %}
-                {% set action = actions.get(action_key) %}
-                    <li>
-                        <a href="javascript:void(0)"
-                            className="{{action.name}}_menu_item">
-                            <i className="fa {{action.icon}}"></i>
-                            {{ _(action.text) }}
-                        </a>
-                    </li>
-            {% endfor %} */}
-          {/* </ul>
+            <li>Delete</li>
+            {% for action_key in actions %}
+              {% set action = actions.get(action_key) %}
+                  <li>
+                    <a href="javascript:void(0)"
+                        className="{{action.name}}_menu_item">
+                        <i className="fa {{action.icon}}"></i>
+                        {{ _(action.text) }}
+                    </a>
+                  </li>
+            {% endfor %}
+          </ul>
         </div> */}
 
         {/* <script type="text/javascript">

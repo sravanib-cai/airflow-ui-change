@@ -944,6 +944,13 @@ th {
   vertical-align: middle;
   /* border-top: 1px solid #2D3748; */
 }
+/* .table > thead > tr > th {
+  vertical-align: bottom;
+  background-color: #1A202C;
+  border-bottom: 1px solid #2D3748;
+  white-space: nowrap;
+} */
+
 .table > thead > tr > th {
   vertical-align: bottom;
   background-color: #1A202C;
@@ -2459,6 +2466,8 @@ input[type="button"].btn-block {
   margin-top: 5.9%;
   margin-left: 2%;
   position: relative;
+  border: 1px solid #2D3748;
+  border-right: none;
 }
 .flex-container .stage2{
   flex-direction:row;
@@ -2468,6 +2477,9 @@ input[type="button"].btn-block {
   margin-top: 5.9%;
   padding-left: 1%;
   width:74%;
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid #2D3748;
 }
 
 .btn-folder {
@@ -2480,7 +2492,7 @@ input[type="button"].btn-block {
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
-  border: 1px solid #2D3748;
+  border-bottom: 1px solid #2D3748;
   white-space: nowrap;
   padding: 5px 10px;
   font-size: 12px;
@@ -2492,39 +2504,44 @@ input[type="button"].btn-block {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  /* border-top: none; */
+}
+
+div .fa.fa-file {
+  color: #c7d5f1ff;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .stage2 p{
-  font-family: Arial;
-  font-size:15px;
-  color: #51504f;
+  font-size:14px;
+  font-weight:light;
+  color: white;
   padding-top:2%;
 } 
 .stage2 .fa-download{
   margin-top: 0;
   right:0;
   color: rgb(95, 115, 153);
-  font-size:15px;
+  font-size:14px;
 }
 .stage2 .tile {
   margin-left: 2%;
 }
 
 .files_view{
-  display: none;
   flex-direction:column;
 }
 
-.file-text {
-  font-size:13px;
-  color:gray;
-  font-family:Arial;
+.file-text p{
+  font-size:12px;
+  font-weight:light;
+  color:white;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #51504f;
   max-height: 340px;
   overflow-y: auto;
   width:95%;
