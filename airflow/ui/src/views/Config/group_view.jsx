@@ -15,7 +15,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
   // PopoverAnchor,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 import 'reactjs-popup/dist/index.css';
 
 import 'font-awesome/css/font-awesome.min.css';

@@ -26,11 +26,11 @@ import humps from 'humps';
 import { useToast } from '@chakra-ui/react';
 
 import type {
-  Config, Dag, DagRun, Version,
+  Config, Dag, DagRun, DagDetails, Version,
 } from 'interfaces';
 import type {
-  // DagCode,
-  // DagResponse,
+  DagCode,
+  DagResponse,
   DagsResponse,
   DagRunsResponse,
   TaskInstancesResponse,
@@ -69,10 +69,10 @@ export function useDagCode(fileToken: Dag['fileToken']) {
 }
 
 export function useDagDetails(dagId: Dag['dagId']) {
-  console.log('DagDetails, useDag', dagId, `/dags/${dagId}/details`);
-  return useQuery<Object, Error>(
-    'dagDetails',
-    (): Promise<Object> => axios.get(`/dags/${dagId}/details`),
+  console.log('Sra, useDag', dagId, `/dags/${dagId}/details`);
+  return useQuery<DagDetails, Error>(
+      'dagDetails',
+      (): Promise<DagDetails> =>  axios.get(`/dags/${dagId}/details`)
   );
 }
 
