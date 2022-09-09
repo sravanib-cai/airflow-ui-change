@@ -69,7 +69,7 @@ export function useDagCode(fileToken: Dag['fileToken']) {
 }
 
 export function useDagDetails(dagId: Dag['dagId']) {
-  console.log('Sra, useDag', dagId, `/dags/${dagId}/details`);
+  console.log('Sra, useDagDetails', dagId, `/dags/${dagId}/details`);
   return useQuery<DagDetails, Error>(
       'dagDetails',
       (): Promise<DagDetails> =>  axios.get(`/dags/${dagId}/details`)

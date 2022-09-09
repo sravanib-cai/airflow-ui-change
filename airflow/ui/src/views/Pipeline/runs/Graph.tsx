@@ -18,13 +18,15 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import RunsContainer from './RunsContainer';
+import PipelineBarView from './pipelinebar_view';
 
 const Graph: React.FC = () => (
   <RunsContainer currentView="Graph">
-    <Heading as="h5" size="md">Graph</Heading>
+    {/* <Heading as="h5" size="md">Graph</Heading> */}
+    <PipelineBarView />
   </RunsContainer>
 );
 
