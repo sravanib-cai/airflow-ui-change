@@ -552,6 +552,22 @@ fieldset[disabled] .btn-dflt.active {
   width: 50%;
 }
 
+.col-bar-10{
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+  vertical-align: middle;
+}
+.col-bar-2{
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: right;
+}
+
 @media (min-width: 992px) {
   .col-md-1,
   .col-md-2,
@@ -936,7 +952,19 @@ input[type="checkbox"] {
 .search-form-width {
   width: 500px;
 }
-
+.input-group-border{
+  border: 1.5px solid #2D3748;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  /* border-radius: 4px; */
+  width: auto;
+  white-space: nowrap;
+  vertical-align: middle;
+}
 .input-group[class*="col-"] {
   float: none;
   padding-left: 0;
@@ -3088,7 +3116,7 @@ a.label:focus {
 .dag-view-tools {
   margin: 16px 0;
   padding: 16px 0;
-  background-color: #2D3748;
+  background-color: #4A5568;
 }
 
 .row {
@@ -3249,7 +3277,7 @@ a.label:focus {
 }
 
 .refresh-actions > .switch-label {
-  margin: 0 10px;
+  margin: 0 9px;
 }
 .material-icons {
   font-family: 'Material Icons'; /* stylelint-disable font-family-no-missing-generic-family-keyword */

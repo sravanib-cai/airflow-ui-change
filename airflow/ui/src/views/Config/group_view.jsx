@@ -54,7 +54,7 @@ const GroupView = () => {
               <PopoverBody>
                 <form method="post" className="form-group">
                   <div className="modal-body">
-                    <label htmlFor="name">Group name</label>
+                    {/* <label htmlFor="name">Group name</label> */}
                     <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
                   </div>
                 </form>
@@ -64,7 +64,8 @@ const GroupView = () => {
                 </span>
               </PopoverBody>
               <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
+                {/* <button type="button" style={shiftbtnRight}
+                className="btn btn-dflt" data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn">Add</button>
               </PopoverFooter>
             </PopoverContent>
@@ -75,7 +76,8 @@ const GroupView = () => {
         </Popup> */}
         {/* <Popup
           trigger={
-            <button type="button" className="btn btn-success pull-right" data-toggle="modal">Add a group</button>
+            <button type="button" className="btn btn-success pull-right"
+            data-toggle="modal">Add a group</button>
           }
         >
           <div>
@@ -90,14 +92,17 @@ const GroupView = () => {
                 <form method="post" className="form-group">
                   <div className="modal-body">
                     <label htmlFor="name">Group name</label>
-                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                    <input type="text" name="name" className="form-control"
+                    aria-describedby="helpBlock" />
                     <span id="helpBlock" className="help-block">
                       A group name can only contain
                       <code>A-Z, a-z, _, -, 0-9</code>
                     </span>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-dflt" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-dflt" data-dismiss="modal">
+                      Close
+                    </button>
                     <button type="submit" className="btn btn-primary">Add</button>
                   </div>
                 </form>
@@ -161,19 +166,20 @@ const GroupView = () => {
               <th colSpan="2" className="col-sm-2-1">Group Name</th>
               <th colSpan="2" className="col-sm-2-1">Change Default Group</th>
               <th colSpan="10" className="col-sm-10">Configurations</th>
-              <th colSpan="1" className="col-sm-1" />
+              <th colSpan="1" className="col-sm-1">Delete</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td scope="row" colSpan="2" className="col-sm-2-1">
+              <td colSpan="2" className="col-sm-2-1">
+                {/* <td scope="row" colSpan="2" className="col-sm-2-1"> */}
                 test
               </td>
               <td colSpan="2" className="col-sm-2-1">
                 <div>
                   <input type="radio" name="default-group" checked />
-                    <div style={space} />
-                    Default group
+                  <div style={space} />
+                  Default group
                   {/* {% if is_default %} */}
                   {/* <input type="radio" name="default-group" checked> Default group */}
                   {/* {% else %} */}
@@ -245,9 +251,9 @@ const GroupView = () => {
               </td>
               <td colSpan="1" className="col-sm-1">
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <a href="#" style={{ opacity: '0.5', cursor: 'not-allowed' }}>
-                    <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" />
-                  </a>
+                  {/* <a href="#" style={{ opacity: '0.5', cursor: 'not-allowed' }}> */}
+                  <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" />
+                  {/* </a> */}
                 </div>
                 {/* {% if not is_default %}
                 <div style="display:flex; justify-content:center">

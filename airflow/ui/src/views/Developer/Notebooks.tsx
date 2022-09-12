@@ -18,13 +18,16 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
 
 const Notebooks: React.FC = () => (
   <DeveloperContainer current="Notebooks">
-    <Heading as="h5" size="md">Notebooks</Heading>
+    {/* <Heading as="h5" size="md">Notebooks</Heading> */}
+    <div>
+      <iframe title="CAI Notebooks" src="https://exl.workbench.couture.ai/experiments/hub" height="600" width="100%" />
+    </div>
   </DeveloperContainer>
 );
 

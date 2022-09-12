@@ -42,12 +42,12 @@ const RolesView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -189,7 +189,7 @@ const RolesView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="1"><input type="radio" name="default-group" /></th>
+              {/* <th colSpan="1"><input type="radio" name="default-group" /></th> */}
               <th colSpan="2">Name</th>
               <th colSpan="10">Permissions</th>
             </tr>
@@ -204,8 +204,9 @@ const RolesView = () => {
               </td>
               <td colSpan="10" className="col-sm-10">
                 [can read on Pipeline Status, can read on ImportError, can read on My Password,
-                can edit on My Password, can read on My Profile, can edit on My Profile, can read on Website,
-                menu access on Pipeline Status, menu access on Docs, menu access on Documentation, can read on Pipeline Runs,
+                can edit on My Password, can read on My Profile, can edit on My Profile,
+                can read on Website, menu access on Pipeline Status, menu access on Docs,
+                menu access on Documentation, can read on Pipeline Runs,
                 menu access on Pipeline Runs]
               </td>
             </tr>

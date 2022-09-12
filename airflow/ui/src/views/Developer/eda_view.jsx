@@ -1,3 +1,4 @@
+/* global document */
 import React, { useRef } from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
@@ -94,7 +95,7 @@ const EDAView = () => {
 
   function showDiv() {
     document.getElementById('file_view').style.display = '';
-  };
+  }
 
   // const linkColor = useColorModeValue('blue.200', 'blue.300');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
@@ -136,7 +137,9 @@ const EDAView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="1"><input type="radio" name="default-group" /></th>
+              <th colSpan="1">
+                <input type="radio" aria-label="checkbox" name="default-group" />
+              </th>
               <th colSpan="3">Dataset</th>
               <th colSpan="1">Date Modified</th>
               <th colSpan="1">Size</th>
@@ -167,9 +170,11 @@ const EDAView = () => {
       </div>
 
       {/* <div className="button-container">
-        <button style={btnRight} className="openbtn rotate vertical-center" onClick={() =>openNav()}>&#9776; Open Sidebar</button>
+        <button style={btnRight} className="openbtn rotate vertical-center"
+        onClick={() =>openNav()}>&#9776; Open Sidebar</button>
       </div> */}
-      {/* <button style={btnRight} className="openbtn rotate vertical-center" onClick={() =>openNav()}>&#9776; Open Sidebar</button> */}
+      {/* <button style={btnRight} className="openbtn rotate vertical-center"
+      onClick={() =>openNav()}>&#9776; Open Sidebar</button> */}
 
       <div id="mySidebar" className="sidebar">
         <button type="button" className="closebutton" onClick={() => closeNav()}>&#10006;</button>
@@ -206,7 +211,7 @@ const EDAView = () => {
                   <div>
                     <i className="fa fa-file" />
                     <div style={space} />
-                    <button type="button" className="fa fa-download" />
+                    <button type="button" aria-label="Delete" className="fa fa-download" />
                     <div className="file-text">
                       <p>
                         ricknmorty.html
