@@ -166,7 +166,7 @@ const GroupView = () => {
               <th colSpan="2" className="col-sm-2-1">Group Name</th>
               <th colSpan="2" className="col-sm-2-1">Change Default Group</th>
               <th colSpan="10" className="col-sm-10">Configurations</th>
-              <th colSpan="1" className="col-sm-1">Delete</th>
+              <th colSpan="1" className="col-sm-1">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -251,7 +251,7 @@ const GroupView = () => {
               </td>
               <td colSpan="1" className="col-sm-1">
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  {/* <a href="#" style={{ opacity: '0.5', cursor: 'not-allowed' }}> */}
+                  {/* <a href="/#" style={{ opacity: '0.5', cursor: 'not-allowed' }}> */}
                   <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" />
                   {/* </a> */}
                 </div>
@@ -267,7 +267,7 @@ const GroupView = () => {
                 </a></div>
                 {% else %}
                 <div style="display:flex; justify-content:center">
-                  <a href="#" style="opacity: 0.5; cursor: not-allowed;">
+                  <a href="/#" style="opacity: 0.5; cursor: not-allowed;">
                     <i className="fa fa-trash fa-lg" style="color:red" aria-hidden="true" />
                   </a>
                 </div> */}

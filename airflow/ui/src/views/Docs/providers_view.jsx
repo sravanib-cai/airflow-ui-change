@@ -39,7 +39,8 @@ const ProvidersView = () => {
 
         {% for provider in providers %}
           <tr>
-            <td><a href="{{ provider['documentation_url'] }}">{{ provider["package_name"] }}</a></td>
+            <td><a href="{{ provider['documentation_url'] }}">
+            {{ provider["package_name"] }}</a></td>
             <td>{{ provider["version"] }}</td>
             <td>{{ provider["description"]}}</td>
           </tr>

@@ -35,5 +35,15 @@ module.exports = {
     'arrow-body-style': 1,
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx', '.css'] }],
     'react/jsx-one-expression-per-line': 1,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ]
   },
 };

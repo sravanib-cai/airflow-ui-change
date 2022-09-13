@@ -65,13 +65,13 @@ const Details: React.FC = () => {
   } = useDagDetails(dagId);
 
   const {
-    data: dagDefault = defaultDag,
+    data: dagValues = defaultDag,
     // isLoading,
     // error,
   } = useDag(dagId);
 
   console.log('SraDetais, responseDataDags', dagDetails);
-  console.log('SraDefDag, responseDataDagdef', dagDefault);
+  console.log('SraDefDag, responseDataDagdef', dagValues);
 
   // console.log('schedule setInterval', {dagDetails.scheduleInterval.value})
 
@@ -115,7 +115,11 @@ const Details: React.FC = () => {
           <tbody>
             <tr>
               <td>Schedule Interval</td>
-              <td>{dagDetails.scheduleInterval ? dagDetails.scheduleInterval.value : 'null'}</td>
+              <td>
+                {dagDetails.scheduleInterval
+                  ? dagDetails.scheduleInterval.value
+                  : 'null'}
+              </td>
             </tr>
             <tr>
               <td>Catchup</td>
@@ -227,11 +231,11 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>has_import_errors</td>
-              <td className="col-det">{dagDefault.hasImportErrors ? 'True' : 'False'}</td>
+              <td className="col-det">{dagValues.hasImportErrors ? 'True' : 'False'}</td>
             </tr>
             <tr>
               <td>has_task_concurrency_limits</td>
-              <td className="col-det">{dagDefault.hasTaskConcurrencyLimits ? 'True' : 'False'}</td>
+              <td className="col-det">{dagValues.hasTaskConcurrencyLimits ? 'True' : 'False'}</td>
             </tr>
             <tr>
               <td>is_active</td>
@@ -247,7 +251,7 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>last_expired</td>
-              <td className="col-det">{dagDefault.lastExpired ? dagDefault.lastExpired : 'null'}</td>
+              <td className="col-det">{dagValues.lastExpired ? dagValues.lastExpired : 'null'}</td>
             </tr>
             <tr>
               <td>last_parsed_time</td>
@@ -255,7 +259,7 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>last_pickled</td>
-              <td className="col-det">{dagDefault.lastPickled ? dagDefault.lastPickled : 'null'}</td>
+              <td className="col-det">{dagValues.lastPickled ? dagValues.lastPickled : 'null'}</td>
             </tr>
             <tr>
               <td>metadata</td>
@@ -263,19 +267,19 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>next_dagrun</td>
-              <td className="col-det">{dagDefault.nextDagrun}</td>
+              <td className="col-det">{dagValues.nextDagrun}</td>
             </tr>
             <tr>
               <td>next_dagrun_create_after</td>
-              <td className="col-det">{dagDefault.nextDagrunCreateAfter}</td>
+              <td className="col-det">{dagValues.nextDagrunCreateAfter}</td>
             </tr>
             <tr>
               <td>next_dagrun_data_interval_end</td>
-              <td className="col-det">{dagDefault.nextDagrunDataIntervalEnd}</td>
+              <td className="col-det">{dagValues.nextDagrunDataIntervalEnd}</td>
             </tr>
             <tr>
               <td>next_dagrun_data_interval_start</td>
-              <td className="col-det">{dagDefault.nextDagrunDataIntervalStart}</td>
+              <td className="col-det">{dagValues.nextDagrunDataIntervalStart}</td>
             </tr>
             <tr>
               <td>parent_dag</td>
@@ -291,7 +295,7 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>root_dag_id</td>
-              <td className="col-det">{dagDefault.rootDagId ? dagDefault.rootDagId : 'null'}</td>
+              <td className="col-det">{dagValues.rootDagId ? dagValues.rootDagId : 'null'}</td>
             </tr>
             <tr>
               <td>safe_dag_id</td>
@@ -299,11 +303,11 @@ const Details: React.FC = () => {
             </tr>
             <tr>
               <td>scheduler_lock</td>
-              <td className="col-det">{dagDefault.schedulerLock ? dagDefault.schedulerLock : 'null'}</td>
+              <td className="col-det">{dagValues.schedulerLock ? dagValues.schedulerLock : 'null'}</td>
             </tr>
             <tr>
               <td>timetable_description</td>
-              <td className="col-det">{dagDefault.timetableDescription}</td>
+              <td className="col-det">{dagValues.timetableDescription}</td>
             </tr>
             <tr>
               <td>timezone</td>

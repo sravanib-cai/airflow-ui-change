@@ -13,18 +13,19 @@ import {
 import 'font-awesome/css/font-awesome.min.css';
 
 const PipelineBarView = () => {
-  // const buttonStyle = {
-  //   backgroundColor: '#90cdf4',
-  //   color: '#1A202C',
-  //   borderRadius: '0.375rem',
-  //   fontWeight: '600',
-  //   height: '2rem',
-  //   minWidth: '2rem',
-  //   fontSize: '12px',
-  //   width: 'auto',
-  //   paddingLeft: '0.75rem',
-  //   paddingRight: '0.75rem',
-  // };
+  const buttonStyle = {
+    backgroundColor: '#90cdf4',
+    color: '#1A202C',
+    borderRadius: '0.375rem',
+    fontWeight: '600',
+    height: '2rem',
+    minWidth: '2rem',
+    fontSize: '12px',
+    width: 'auto',
+    paddingLeft: '0.75rem',
+    paddingRight: '0.75rem',
+    float: 'right',
+  };
   // const btnRight = {
   //   cssFloat: 'right',
   // };
@@ -120,7 +121,7 @@ const PipelineBarView = () => {
           </div>
           <div style={space} />
           <div style={{ display: 'inline-block' }}>
-            <button style={{ display: 'inline-block' }} type="submit" className="btn">Update</button>
+            <button style={buttonStyle} type="submit">Update</button>
           </div>
           {/* <button style={{display:'inline-block'}} type="submit" className="btn">
             Update

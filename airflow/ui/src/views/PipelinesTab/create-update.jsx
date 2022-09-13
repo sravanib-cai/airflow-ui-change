@@ -1,4 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, {
+  useRef,
+  // useState,
+} from 'react';
 import '../../static/buttonstyle.css';
 import {
   // Button,
@@ -99,8 +102,10 @@ const CreateUpdate = () => {
               <PopoverBody>
                 <form method="post" className="form-group">
                   <div className="modal-body">
-                    <label htmlFor="name">Enter Pipeline name</label>
-                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                    <label htmlFor="name">
+                      <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                      Enter Pipeline name
+                    </label>
                   </div>
                 </form>
                 <span id="helpBlock" className="help-block">
@@ -111,7 +116,8 @@ const CreateUpdate = () => {
                 {/* <input type="checkbox">Insert starter content in file.</input> */}
               </PopoverBody>
               <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
+                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt"
+                data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn">Create</button>
               </PopoverFooter>
             </PopoverContent>

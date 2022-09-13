@@ -19,8 +19,8 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import TaskInstancesView from './taskinstances_view';
 import PipelineRunsContainer from './PipelineRunsContainer';
+import TaskInstancesView from './taskinstances_view';
 
 const TaskInstances: React.FC = () => (
   <PipelineRunsContainer current="Task Instances">

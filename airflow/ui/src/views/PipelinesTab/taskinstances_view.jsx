@@ -42,12 +42,12 @@ const TaskInstancesView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -137,7 +137,8 @@ const TaskInstancesView = () => {
                 {/* <form method="post" className="form-group">
                   <div className="modal-body">
                     <label htmlFor="name">Group name</label>
-                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                    <input type="text" name="name" className="form-control"
+                    aria-describedby="helpBlock" />
                   </div>
                 </form>
                 <span id="helpBlock" className="help-block">
@@ -145,7 +146,8 @@ const TaskInstancesView = () => {
                 </span> */}
               </PopoverBody>
               <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
+                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt"
+                data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn">Apply</button>
               </PopoverFooter>
             </PopoverContent>

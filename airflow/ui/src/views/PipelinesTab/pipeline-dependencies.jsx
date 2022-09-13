@@ -48,7 +48,8 @@ const PipelineDepView = () => {
           {/* <time datetime="{{ last_refresh }}">{{ last_refresh }}</time> */}
         </div>
       </div>
-      {/* <div id="error" style={{ display: none; margin-top: 10px;" className="alert alert-danger" role="alert">
+      {/* <div id="error" style={{ display: none; margin-top: 10px;"
+      className="alert alert-danger" role="alert">
         <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span id="error_msg">Oops.</span>
       </div> */}

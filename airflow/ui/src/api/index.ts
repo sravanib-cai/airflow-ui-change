@@ -29,8 +29,8 @@ import type {
   Config, Dag, DagRun, DagDetails, Version,
 } from 'interfaces';
 import type {
-  DagCode,
-  DagResponse,
+  // DagCode,
+  // DagResponse,
   DagsResponse,
   DagRunsResponse,
   TaskInstancesResponse,
@@ -71,8 +71,8 @@ export function useDagCode(fileToken: Dag['fileToken']) {
 export function useDagDetails(dagId: Dag['dagId']) {
   console.log('Sra, useDagDetails', dagId, `/dags/${dagId}/details`);
   return useQuery<DagDetails, Error>(
-      'dagDetails',
-      (): Promise<DagDetails> =>  axios.get(`/dags/${dagId}/details`)
+    'dagDetails',
+    (): Promise<DagDetails> => axios.get(`/dags/${dagId}/details`),
   );
 }
 

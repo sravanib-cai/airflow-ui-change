@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 function FileForm(props) {
   const [name, setName] = useState('');
-  const changeName = (event) => {
+  const changeName = () => {
 	setName(event.target.value);
   };
 
-  const transferValue = (event) => {
+  const transferValue = () => {
     event.preventDefault();
 	const val = {
 	  name,

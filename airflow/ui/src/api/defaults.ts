@@ -16,12 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import type {
+  Dag,
+  DagDetails,
+} from 'interfaces';
 
 export const defaultVersion = { version: '', gitVersion: '' };
 
 export const defaultDags = { dags: [], totalEntries: 0 };
-export const defaultDag = {};
-export const defaultDagDetails = {};
+export const defaultDag = <Dag>{};
+export const defaultDagDetails = <DagDetails>{};
 export const defaultDagRuns = { dagRuns: [], totalEntries: 0 };
 
 export const defaultTaskInstances = { taskInstances: [], totalEntries: 0 };

@@ -84,7 +84,7 @@ const DataLakeExplorerView = () => {
               <th colSpan="2">File Owner</th>
               <th colSpan="2">Last Modified</th>
               <th colSpan="2">Size</th>
-              <th colSpan="2" />
+              <th colSpan="2">&nbsp;</th>
             </tr>
           </thead>
           <tbody>

@@ -42,12 +42,12 @@ const PoolsView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -188,8 +188,10 @@ const PoolsView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="1"><input type="radio" name="default-group" /></th>
-              <th colSpan="1" />
+              <th colSpan="1">
+                <input type="radio" name="default-group" />
+              </th>
+              <th colSpan="1">Delete</th>
               <th colSpan="2">Pool</th>
               <th colSpan="2">Slots</th>
               <th colSpan="2">Running Slots</th>
@@ -203,7 +205,7 @@ const PoolsView = () => {
               </td>
               <td colSpan="1" className="col-sm-1">
                 <div style={{ display: 'flex' }}>
-                  <a href="#" title="Delete record" data-toggle="tooltip" rel="tooltip" style={{ opacity: '0.5' }}>
+                  <a href="/#" title="Delete record" data-toggle="tooltip" rel="tooltip" style={{ opacity: '0.5' }}>
                     <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" />
                   </a>
                 </div>

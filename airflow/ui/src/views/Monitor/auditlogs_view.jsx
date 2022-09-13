@@ -42,12 +42,12 @@ const AuditLogsView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -171,7 +171,7 @@ const AuditLogsView = () => {
               <td colSpan="2" className="col-sm-2">2022-08-25, 18:21:03</td>
               <td colSpan="2" className="col-sm-2">3593a96d-e92c-4dc7-82c4-373e64dbbeb8</td>
               <td colSpan="3" className="col-sm-3">
-                'path': '/managedagsview/editdag/spark_k8_test.py/?'[] []
+                &apos;path&apos;: &apos;/managedagsview/editdag/spark_k8_test.py/?&apos;[] []
               </td>
             </tr>
           </tbody>

@@ -42,12 +42,12 @@ const StatisticsView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 

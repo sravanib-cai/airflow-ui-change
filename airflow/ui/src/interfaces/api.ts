@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import type { Dag, Dag2, DagRun, TaskInstance } from './index';
+import type { Dag, DagRun, TaskInstance } from './index';
 
 interface Entries {
   totalEntries: number;

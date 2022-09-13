@@ -42,12 +42,12 @@ const ConnectionsView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -137,7 +137,8 @@ const ConnectionsView = () => {
                 {/* <form method="post" className="form-group">
                   <div className="modal-body">
                     <label htmlFor="name">Group name</label>
-                    <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
+                    <input type="text" name="name" className="form-control"
+                    aria-describedby="helpBlock" />
                   </div>
                 </form>
                 <span id="helpBlock" className="help-block">
@@ -145,7 +146,8 @@ const ConnectionsView = () => {
                 </span> */}
               </PopoverBody>
               <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt" data-dismiss="modal">Close</button> */}
+                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt"
+                data-dismiss="modal">Close</button> */}
                 <button type="submit" className="btn">Apply</button>
               </PopoverFooter>
             </PopoverContent>
@@ -164,13 +166,15 @@ const ConnectionsView = () => {
           <div className="panel-body">
             <form id="filter_form" className="form-search" method="get">
               <div className="btn-group">
-                <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button type="button" className="btn btn-default dropdown-toggle"
+                data-toggle="dropdown">
                   Add Filter
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">
                   <li ng-repeat="(col, filters) in search_filters">
-                    <a href="javascript:void(0)" name={[col]} className="filter" ng-click="addFilter(col)">
+                    <a href="javascript:void(0)" name={[col]} className="filter"
+                    ng-click="addFilter(col)">
                     {[ label_columns[col] ]}</a>
                   </li>
                 </ul>
@@ -180,12 +184,17 @@ const ConnectionsView = () => {
                 <tbody>
                   <tr ng-repeat="active_filter in active_filters">
                     <td className="col-lg-1 col-md-1" >
-                      <a href="#" ng-click="removeFilter($index)" className="btn"><span className="close-icon">&times;</span>&nbsp;
+                      <a href="/#" ng-click="removeFilter($index)" className="btn">
+                      <span className="close-icon">&times;</span>&nbsp;
                       {[active_filter.label]}</a>
                     </td>
                     <td className="col-lg-1 col-md-1 col-sm-1">
-                      <select className="my_select2 form-control ng-scope" data-placeholder="Select Value" id="{[active_filter.col]}" name="{[active_filter.col]}" style="width:250px">
-                        <option ng-repeat="(key, value) in active_filter.options" value="{[key]}">{[value]}</option>
+                      <select className="my_select2 form-control ng-scope"
+                      data-placeholder="Select Value" id="{[active_filter.col]}"
+                      name="{[active_filter.col]}" style="width:250px">
+                        <option ng-repeat="(key, value) in active_filter.options" value="{[key]}">
+                          {[value]}
+                        </option>
                       </select>
                       <ab-select data="active_filter.options"></ab-select>
                       <ab-date format="yyyy-MM-dd" ></ab-date>

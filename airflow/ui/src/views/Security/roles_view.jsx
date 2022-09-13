@@ -189,7 +189,9 @@ const RolesView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              {/* <th colSpan="1"><input type="radio" name="default-group" /></th> */}
+              <th colSpan="1">
+                <input type="radio" name="default-group" />
+              </th>
               <th colSpan="2">Name</th>
               <th colSpan="10">Permissions</th>
             </tr>

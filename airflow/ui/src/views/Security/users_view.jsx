@@ -42,12 +42,12 @@ const UsersView = () => {
   const [isShownKey, setIsShownKey] = useState(false);
   const [isShownValue, setIsShownValue] = useState(false);
 
-  const handleClickKey = (event) => {
-    setIsShownKey(current => !current);
+  const handleClickKey = () => {
+    setIsShownKey((current) => !current);
     // setIsShown(true);
   };
-  const handleClickValue = (event) => {
-    setIsShownValue(current => !current);
+  const handleClickValue = () => {
+    setIsShownValue((current) => !current);
     // setIsShown(true);
   };
 
@@ -189,7 +189,9 @@ const UsersView = () => {
         <table className="table">
           <thead>
             <tr className="table-head">
-              <th colSpan="1"><input type="radio" name="default-group" /></th>
+              <th colSpan="1">
+                <input type="radio" name="default-group" />
+              </th>
               <th colSpan="1">First Name</th>
               <th colSpan="1">Last Name</th>
               <th colSpan="2">Username</th>
