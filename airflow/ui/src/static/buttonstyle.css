@@ -3049,6 +3049,22 @@ div.form-inline {
   vertical-align: baseline;
   border-radius: 0.25em;
 }
+
+a.label:focus {
+  margin: 16px 0;
+  padding: 16px 0;
+  background-color: #4A5568;
+  align-items: center;
+}
+
+a.label:focus {
+  display: inline-flex;
+  align-items: center;
+  right: 10px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
 a.label:hover,
 a.label:focus {
   color: #51504f;
