@@ -73,42 +73,34 @@ const DataLakeView = () => {
       <div style={padding}>
         <h5 className="margin-top-md"> Choose DataLake type for this Config Group: </h5>
       </div>
-      <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+      <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
       <div style={padding}>
-        {/* {% for datalake_source in files.keys() %}
-          {% if datalake_source|upper == 'S3' %}
-          <input id="on" name="state-d" type="radio" checked="" />
-          <label for="on" onclick='activate_datalake("{{ datalake_source }}")'>
-            {{ datalake_source|upper }}
-          </label>
-          {% elif datalake_source|upper == 'HADOOP' %}
+        <div className="switch-toggle switch-3 switch-candy">
+          {/* {% for datalake_source in files.keys() %}
+            {% if datalake_source|upper == 'S3' %}
+            <input id="on" name="state-d" type="radio" checked="" />
+            <label for="on" onclick='activate_datalake("{{ datalake_source }}")'>
+            {{ datalake_source|upper }}</label>
+            {% elif datalake_source|upper == 'HADOOP' %}
+            <input id="na" name="state-d" type="radio" />
+            <label for="na" className="disabled"
+            onclick='activate_datalake("{{ datalake_source }}")'>
+            {{ datalake_source|upper }}</label>
+            {% elif datalake_source|upper == 'CEPH' %}
+            <input id="off" name="state-d" type="radio" />
+            <label for="off" onclick='activate_datalake("{{ datalake_source }}")'>
+            {{ datalake_source|upper }}</label>
+            {% endif %}
+          {% endfor %} */}
+
+          {/* <input id="on" name="state-d" type="radio" checked="" />
+          <label htmlFor="on">S3</label>
           <input id="na" name="state-d" type="radio" />
-          <label for="na" className="disabled"
-          onclick='activate_datalake("{{ datalake_source }}")'>
-            {{ datalake_source|upper }}
-          </label>
-          {% elif datalake_source|upper == 'CEPH' %}
-          <input id="off" name="state-d" type="radio" />
-          <label for="off" onclick='activate_datalake("{{ datalake_source }}")'>
-            {{ datalake_source|upper }}
-          </label>
-          {% endif %}
-        {% endfor %} */}
-        <div className="tswitch-button">
-          <label className="tswitch-button-label" htmlFor="">
-            <span className="tswitch-button-label-span">Photo</span>
-            <input className="tswitch-button-checkbox" type="checkbox" />
-          </label>
+          <label htmlFor="na" className="disabled">HADOOP</label> */}
+
+          {/* <input id="off" name="state-d" type="radio" />
+          <label htmlFor="off">CEPH</label> */}
         </div>
-        <label htmlFor="on">
-          S3
-          <input id="on" name="state-d" type="radio" checked="" />
-        </label>
-        <label htmlFor="na" className="disabled">
-          <input id="na" name="state-d" type="radio" />
-          HADOOP
-        </label>
       </div>
       <div style={padding} />
       <div style={btnRight}>
