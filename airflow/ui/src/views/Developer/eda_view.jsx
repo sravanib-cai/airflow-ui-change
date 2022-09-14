@@ -177,9 +177,9 @@ const EDAView = () => {
       onClick={() =>openNav()}>&#9776; Open Sidebar</button> */}
 
       <div id="mySidebar" className="sidebar">
-        <button type="button" className="closebutton" onClick={() => closeNav()}>&#10006;</button>
         <div className="outputs">
-          <p>
+          <button type="button" className="closebutton" onClick={() => closeNav()}>&#10006;</button>
+          <p style={{ display: 'inline-block' }}>
             Processed Outputs
           </p>
         </div>
@@ -193,6 +193,9 @@ const EDAView = () => {
               <div>
                 <button className="btn-folder" type="submit" id="toggle-folder" onClick={() => showDiv()}>
                   RickNMorty
+                </button>
+                <button className="btn-folder" type="submit" id="toggle-folder" onClick={() => showDiv()}>
+                  example2
                 </button>
               </div>
             </div>
