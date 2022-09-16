@@ -26,7 +26,7 @@ const AutoAPIBuilder: React.FC = () => (
   <DeveloperContainer current="Auto API Builder">
     {/* <Heading as="h5" size="md">Auto API Builder</Heading> */}
     <div>
-      <iframe title="API Builder" src="http://[::]:8000/" height="600" width="100%" />
+      <iframe title="API Builder" src="https://exl.workbench.couture.ai/autoapi/" height="600" width="100%" />
       {/* <iframe title="API Builder" src="https://exl.workbench.couture.ai/autoapi/" height="600" width="100%" /> */}
     </div>
   </DeveloperContainer>

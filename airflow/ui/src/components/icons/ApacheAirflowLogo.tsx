@@ -18,7 +18,7 @@
  */
 import React from 'react';
 import { Image } from '@chakra-ui/react';
-import companyLogo from './couture-logo_white.png';
+import companyLogo from '../../static/couture-logo_white.png';
 
 const ApacheAirflowLogo = () => <Image w="140px" h="21px" src={companyLogo} />;
 

@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { Image } from '@chakra-ui/react';
-import companyIcon from './couture-icon.png';
+import companyIcon from '../../static/couture-icon.png';
 
 const PinwheelLogo = () => <Image boxSize="40px" src={companyIcon} />;
 
