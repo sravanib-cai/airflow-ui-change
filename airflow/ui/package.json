@@ -37,7 +37,11 @@
     "reactjs-popup": "^2.0.5",
     "font-awesome": "^4.7.0",
     "jquery": "^1.2.3",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "react-redux": "^8.0.2",
+    "@mui/icons-material": "^5.8.3",
+    "@mui/material": "^5.9.1",
+    "joi": "^17.6.0"
   },
   "devDependencies": {
     "@neutrinojs/eslint": "^9.5.0",

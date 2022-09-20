@@ -2698,8 +2698,8 @@ input[type="button"].btn-block {
   width:26%;
   flex-direction:column;
   overflow-y: auto;
-  max-height: 400px;
-  height:400px;
+  max-height: 535px;
+  height:535px;
   float:left;
   margin-top: 5.9%;
   margin-left: 2%;
@@ -2709,12 +2709,13 @@ input[type="button"].btn-block {
 }
 .flex-container .stage2{
   flex-direction:row;
-  max-height:400px;
-  height: 400px;
+  max-height:535px;
+  height: 535px;
   float:right;
   margin-top: 5.9%;
   padding-left: 1%;
   width:74%;
+  margin-right: 2%;
   position: relative;
   overflow-y: auto;
   border: 1px solid #2D3748;
@@ -2799,6 +2800,7 @@ div .fa.fa-file {
 
 .sidebar {
   height: 625px; /* 100% Full-height */
+  /* height: 60%; */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
