@@ -25,17 +25,14 @@ import {
   // GridItem,
   Heading,
 } from '@chakra-ui/react';
-import AppContainerHome from 'components/AppContainer/AppContainerHome';
-import ProjectsTable from '../../containers/ProjectsTable';
+import ProjectMainContainer from './ProjectMainContainer';
 // import HomeContainer from './HomeContainer';
 
-const HomePage: React.FC = () => (
-  <AppContainerHome>
+const ProjectDocumentation: React.FC = () => (
+  <ProjectMainContainer current="Documentation">
     <br />
     <Heading as="h5" size="md">Welcome User!</Heading>
-    <Heading as="h5" size="sm">Let us work on the project and improve our progress</Heading>
-    <ProjectsTable />
-  </AppContainerHome>
+  </ProjectMainContainer>
 );
 
-export default HomePage;
+export default ProjectDocumentation;

@@ -6,6 +6,9 @@ import PrivateRoute from 'providers/auth/PrivateRoute';
 
 import HomePage from 'views/Home';
 
+import ProjectOverview from 'views/ProjectMain/Overview';
+import ProjectDocumentation from 'views/ProjectMain/Documentation';
+
 import Details from 'views/Pipeline/runs/Details';
 import Code from 'views/Pipeline/runs/Code';
 import TaskTries from 'views/Pipeline/runs/TaskTries';
@@ -66,6 +69,10 @@ const App = () => (
   <Switch>
     <Redirect exact path="/" to="/home" />
     <PrivateRoute exact path="/home" component={HomePage} />
+
+    {/* Change url to project name variable */}
+    <PrivateRoute exact path="/ml-example/overview" component={ProjectOverview} />
+    <PrivateRoute exact path="/ml-example/documentation" component={ProjectDocumentation} />
 
     <PrivateRoute exact path="/pipelines/create-and-update" component={CreateUpdate} />
     <PrivateRoute exact path="/pipelines/manage-and-track" component={ManageTrack} />

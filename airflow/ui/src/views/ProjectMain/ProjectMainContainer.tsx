@@ -18,24 +18,36 @@
  */
 
 import React from 'react';
-import {
-  // Box,
-  // Grid,
-  // VStack,
-  // GridItem,
-  Heading,
-} from '@chakra-ui/react';
-import AppContainerHome from 'components/AppContainer/AppContainerHome';
-import ProjectsTable from '../../containers/ProjectsTable';
-// import HomeContainer from './HomeContainer';
 
-const HomePage: React.FC = () => (
-  <AppContainerHome>
-    <br />
-    <Heading as="h5" size="md">Welcome User!</Heading>
-    <Heading as="h5" size="sm">Let us work on the project and improve our progress</Heading>
-    <ProjectsTable />
-  </AppContainerHome>
-);
+import SectionWrapper from 'components/SectionWrapper';
 
-export default HomePage;
+interface Props {
+  current: string;
+  toolBar?: React.ReactNode;
+}
+
+const ProjectMainContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+  const navItems = [
+    {
+      label: 'Overview',
+      path: '/ml-example/overview',
+    },
+    {
+      label: 'Documentation',
+      path: '/ml-example/documentation',
+    },
+  ];
+
+  return (
+    <SectionWrapper
+      currentSection="Project Description"
+      currentView={current}
+      navItems={navItems}
+      toolBar={toolBar}
+    >
+      {children}
+    </SectionWrapper>
+  );
+};
+
+export default ProjectMainContainer;

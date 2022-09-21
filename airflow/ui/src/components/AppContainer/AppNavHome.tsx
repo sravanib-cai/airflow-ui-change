@@ -18,24 +18,43 @@
  */
 
 import React from 'react';
-import {
-  // Box,
-  // Grid,
-  // VStack,
-  // GridItem,
-  Heading,
-} from '@chakra-ui/react';
-import AppContainerHome from 'components/AppContainer/AppContainerHome';
-import ProjectsTable from '../../containers/ProjectsTable';
-// import HomeContainer from './HomeContainer';
+import { Link } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
-const HomePage: React.FC = () => (
-  <AppContainerHome>
-    <br />
-    <Heading as="h5" size="md">Welcome User!</Heading>
-    <Heading as="h5" size="sm">Let us work on the project and improve our progress</Heading>
-    <ProjectsTable />
-  </AppContainerHome>
+import PinwheelLogo from 'components/icons/PinwheelLogo';
+
+interface Props {
+  bodyBg: string;
+  overlayBg: string;
+}
+
+const AppNavHome: React.FC<Props> = ({ bodyBg, overlayBg }) => (
+  <Box
+    as="nav"
+    role="navigation"
+    width="56px"
+    backgroundColor={overlayBg}
+    borderRightWidth="1px"
+    borderRightColor={bodyBg}
+    display="flex"
+    flexDirection="column"
+  >
+    <Box
+      as={Link}
+      to="/"
+      aria-label="Back to home"
+      width="56px"
+      height="56px"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      _hover={{
+        transformOrigin: '28px 28px',
+      }}
+    >
+      <PinwheelLogo />
+    </Box>
+  </Box>
 );
 
-export default HomePage;
+export default AppNavHome;

@@ -1,139 +1,99 @@
 /* eslint-disable no-undef */
-import { React, useState, useEffect } from 'react';
+import React from 'react';
+import '../static/buttonstyle.css';
+import 'font-awesome/css/font-awesome.min.css';
 import {
   Box,
-  Flex,
-  Heading,
-  IconButton,
-  Spacer,
-  VStack,
-  useToast,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { useSelector } from 'react-redux';
-import Card from '../components/Cards/Card';
-import ProjectTable from '../components/Tables/ProjectTable';
-import ConfirmationDialog from '../components/Dialog/ConfirmationDialog';
-import AddProjectDialog from '../components/Dialog/AddProjectDialog';
-import ManageUserAccessDialog from '../components/Dialog/ManageUserAccessDialog';
-import { ProjectDeleteSchema } from '../modal/projectDelete';
+import { Link } from 'react-router-dom';
 
 const ProjectsTable = () => {
-  const userStore = useSelector((store) => store.user);
-
-  const [projects, setProjects] = useState([]);
-  const [deleteProject, setDeleteProject] = useState({ open: false, data: null });
-  const [addProject, setAddProject] = useState({ open: false, data: null });
-  const [manageUser, setManageUser] = useState({ open: false, data: null });
-  const [loading, setLoading] = useState(false);
-  const toast = useToast();
-
-  const heading = ['Name', 'Project Type', 'Created By', 'Created On'];
-
-  const fetchProjects = async () => {
-    try {
-      const token = userStore.user.access;
-      const config = {
-        method: 'GET',
-        url: `${process.env.REACT_APP_API_BASE_URL}/api/projects/`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      const response = await axios(config);
-      setProjects(response.data.response);
-    } catch (e) {
-      // TODO: handle error here
-    }
+  // const fileRef = useRef();
+  const buttonStyle = {
+    backgroundColor: '#90cdf4',
+    color: '#1A202C',
+    borderRadius: '0.375rem',
+    fontWeight: '600',
+    height: '2rem',
+    minWidth: '2rem',
+    fontSize: '12px',
+    width: 'auto',
+    paddingLeft: '0.75rem',
+    paddingRight: '0.75rem',
+  };
+  const btnRight = {
+    cssFloat: 'right',
   };
 
-  useEffect(() => {
-    fetchProjects();
-    // eslint-disable-next-line
-  }, []);
-
-  const handleDeleteConfirm = async () => {
-    setLoading(true);
-    const { error } = ProjectDeleteSchema.validate(deleteProject.data.name);
-
-    if (error) {
-      toast({
-        title: 'Error',
-        description: 'Invalid Project Name',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      });
-    } else {
-      try {
-        const token = userStore.user.access;
-        const formData = new FormData();
-        formData.append('name', deleteProject.data.name);
-
-        const config = {
-          method: 'DELETE',
-          url: `${process.env.REACT_APP_API_BASE_URL}/api/projects/`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          data: formData,
-        };
-
-        await axios(config);
-
-        setLoading(false);
-        setDeleteProject({ open: false, data: null });
-        fetchProjects();
-      } catch (e) {
-        // TODO: handle error here
-      }
-    }
+  const space = {
+    width: '3px',
+    height: 'auto',
+    display: 'inline-block',
   };
+  const padding = {
+    paddingBottom: '20px',
+  };
+  const linkColor = useColorModeValue('blue.200', 'blue.300');
 
   return (
-    <Card>
-      <Box w="100%">
-        <VStack>
-          <Flex w="100%" p={8} pb={0}>
-            <Heading fontSize={24}>Projects</Heading>
-            <Spacer />
-            <IconButton variant="icon" onClick={() => setAddProject({ open: true, data: null })}>
-              <AddRoundedIcon style={{ width: 24, height: 24 }} />
-            </IconButton>
-          </Flex>
-          <Box w="100%" h={300}>
-            <ProjectTable
-              heading={heading}
-              data={projects}
-              handleManageUsers={(data) => setManageUser({ open: true, data })}
-              handleDelete={(data) => setDeleteProject({ open: true, data })}
-            />
-          </Box>
-        </VStack>
-      </Box>
-      <ManageUserAccessDialog
-        open={manageUser.open}
-        data={manageUser.data}
-        handleClose={() => setManageUser({ open: false, data: null })}
-      />
-      <AddProjectDialog
-        open={addProject.open}
-        handleClose={() => setAddProject({ open: false, data: null })}
-        fetchProjects={fetchProjects}
-      />
-      <ConfirmationDialog
-        open={deleteProject.open}
-        handleClose={() => setDeleteProject({ open: false, data: null })}
-        onConfirm={handleDeleteConfirm}
-        loading={loading}
-        title="Confirmation"
-        body="Are you sure you want to delete this?"
-        cancelText="Cancel"
-        confirmText="Delete"
-      />
-    </Card>
+    <div>
+      <br />
+      <div style={padding}>
+        <div style={btnRight}>
+          <button style={buttonStyle} type="submit">
+            Add New Project
+          </button>
+        </div>
+      </div>
+      <br />
+      <div className="table-responsive">
+        <table className="table" id="filesTable">
+          <thead>
+            <tr className="table-head">
+              <th colSpan="3">Name</th>
+              <th colSpan="2">Project Description</th>
+              <th colSpan="1">Created By</th>
+              <th colSpan="1">Created On</th>
+              <th colSpan="1">Admin</th>
+              <th colSpan="1">Net Compute Usage</th>
+              <th colSpan="1">Last Modified</th>
+              <th colSpan="1">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colSpan="3" className="col-sm-3">
+                <Box
+                  as="span"
+                  color={linkColor}
+                  _hover={{ color: 'blue.100' }}
+                >
+                  <div style={space} />
+                  <Link to="/ml-example/overview" color="currentColor">ML Example</Link>
+                </Box>
+              </td>
+              <td colSpan="2" className="col-sm-2">-</td>
+              <td colSpan="1" className="col-sm-1">Lucky</td>
+              <td colSpan="1" className="col-sm-1">12/03/2022</td>
+              <td colSpan="1" className="col-sm-1">Lucky</td>
+              <td colSpan="1" className="col-sm-1">3242.22 hrs</td>
+              <td colSpan="1" className="col-sm-1">23/08/2022</td>
+              <td colSpan="1" className="col-sm-1">
+                <i
+                  className="fa fa-ellipsis-h fa-lg"
+                  style={{
+                    color: '#718096', display: 'block', marginLeft: 'auto', marginRight: 'auto',
+                  }}
+                  data-toggle="tooltip"
+                  title="Delete File"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
