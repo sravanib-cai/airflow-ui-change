@@ -1,3 +1,5 @@
 import Joi from 'joi';
 
-export const ManageUserAccessSchema = Joi.array().items(Joi.number());
+const ManageUserAccessSchema = Joi.array().items(Joi.number());
+
+export default ManageUserAccessSchema;

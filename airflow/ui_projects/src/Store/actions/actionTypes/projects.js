@@ -1,0 +1,2 @@
+export const UPDATE_PROJECTS = 'UPDATE_PROJECTS';
+export default UPDATE_PROJECTS;

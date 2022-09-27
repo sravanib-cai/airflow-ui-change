@@ -1,3 +1,6 @@
 import Joi from 'joi';
 
-export const ProjectDeleteSchema = Joi.string();
+const ProjectDeleteSchema = Joi.string();
+
+export default ProjectDeleteSchema;
+ 

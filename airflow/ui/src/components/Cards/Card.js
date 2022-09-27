@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   useColorModeValue,
@@ -13,7 +14,7 @@ const Card = (props) => {
   });
   const styles = useStyles();
   return (
-    <Box style={styles.card} borderRadius="12px" bg="white" {...props}>
+    <Box style={styles.card} borderRadius="12px" {...props}>
       {props.children}
     </Box>
   );

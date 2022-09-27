@@ -4,6 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import PrivateRoute from 'providers/auth/PrivateRoute';
 
+import OauthLogin from 'views/OauthLogin';
 import HomePage from 'views/Home';
 
 import ProjectOverview from 'views/ProjectMain/Overview';
@@ -63,12 +64,15 @@ import Statistics from 'views/Security/Statistics';
 import Providers from 'views/Docs/Providers';
 
 import NotFound from 'views/NotFound';
+// import CaiML from './views/Microfrontends/CaiML';
 
 const webURL = process.env.WEBSERVER_URL;
 const App = () => (
   <Switch>
-    <Redirect exact path="/" to="/home" />
-    <PrivateRoute exact path="/home" component={HomePage} />
+    <Redirect exact path="/" to="/login-oauth" />
+    <PrivateRoute exact path="/login-oauth" component={OauthLogin} />
+    {/* <Redirect exact path="/" to="/home" />
+    <PrivateRoute exact path="/home" component={HomePage} /> */}
 
     {/* Change url to project name variable */}
     <PrivateRoute exact path="/ml-example/overview" component={ProjectOverview} />
@@ -138,6 +142,7 @@ const App = () => (
         return null;
       }}
     />
+    {/* <Route exact path="/cai-ml" component={CaiML} /> */}
     <Route component={NotFound} />
   </Switch>
 );

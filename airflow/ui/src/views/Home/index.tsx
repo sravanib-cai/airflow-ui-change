@@ -19,23 +19,28 @@
 
 import React from 'react';
 import {
-  // Box,
-  // Grid,
-  // VStack,
-  // GridItem,
   Heading,
+  Box,
+  Text,
+  Spacer,
 } from '@chakra-ui/react';
-import AppContainerHome from 'components/AppContainer/AppContainerHome';
-import ProjectsTable from '../../containers/ProjectsTable';
+
+import AppContainer from 'components/AppContainer';
+import ProjectsTable from 'containers/ProjectsTable1';
+
 // import HomeContainer from './HomeContainer';
 
 const HomePage: React.FC = () => (
-  <AppContainerHome>
+  <AppContainer>
     <br />
-    <Heading as="h5" size="md">Welcome User!</Heading>
-    <Heading as="h5" size="sm">Let us work on the project and improve our progress</Heading>
+    <Box mb={25}>
+      <Heading>Welcome User!</Heading>
+      <Text>Let us work on the project and improve our progress</Text>
+    </Box>
+    <br />
     <ProjectsTable />
-  </AppContainerHome>
+  </AppContainer>
+
 );
 
 export default HomePage;

@@ -19,13 +19,15 @@
 
 import React from 'react';
 import ProjectMainContainer from './ProjectMainContainer';
-import OverviewView from './overview_view';
+import OverviewView2 from './old_overview_view';
+// import ProjectNav from './overview_view';
 // import HomeContainer from './HomeContainer';
 
 const ProjectOverview: React.FC = () => (
   <ProjectMainContainer current="Overview">
     <br />
-    <OverviewView />
+    <OverviewView2 />
+    {/* <ProjectNav /> */}
   </ProjectMainContainer>
 );
 

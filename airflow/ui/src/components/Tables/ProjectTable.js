@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Table,
   Thead,
@@ -7,22 +8,29 @@ import {
   Td,
   TableContainer,
   IconButton,
+  Box,
+  useColorModeValue,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   MenuDivider,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const ProjectTable = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const linkColor = useColorModeValue('blue.200', 'blue.300');
 
+  //   props.data.map((item, i) => (
+  //      console.log(i, item.name, item.project_type);
+  //   );
   return (
     <TableContainer h={300} style={{ overflow: 'auto' }}>
       <Table variant="simple">
-        <Thead bgColor="gray.200" sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
+        <Thead bgColor="blue" sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
           <Tr sx={{ position: 'sticky', top: 0 }}>
             {props.heading.map((item, i) => (
               <Th key={i} sx={{ position: 'sticky', top: 0 }}>
@@ -35,10 +43,22 @@ const ProjectTable = (props) => {
         <Tbody>
           {props.data.map((item, i) => (
             <Tr key={i}>
-              <Td>{item.name}</Td>
-              <Td>{item.project_type}</Td>
+              {/* Change url to project name variable */}
+              <Td>
+                <Box
+                  as="span"
+                  color={linkColor}
+                  _hover={{ color: 'blue.100' }}
+                >
+                  <Link to="/ml-example/overview" color="currentColor">{item.name}</Link>
+                </Box>
+              </Td>
+              <Td>{item.project_description}</Td>
               <Td>{item.created_by}</Td>
               <Td>{item.created_on}</Td>
+              <Td>{item.admin}</Td>
+              <Td>{item.net_usage}</Td>
+              <Td>{item.last_modified}</Td>
               <Td>
                 <Menu>
                   <MenuButton as={IconButton} variant="menu" icon={<MoreHorizRoundedIcon />} />
@@ -48,12 +68,13 @@ const ProjectTable = (props) => {
                     </MenuItem>
                     <MenuItem
                       color="black.1000"
-                      onClick={() => navigate(`/project-configuration/${item.project_id}`)}
                     >
                       Project Configuration
                     </MenuItem>
                     <MenuDivider />
-                    <MenuItem color="error.dark" onClick={() => props.handleDelete(item)}>
+                    <MenuItem
+                      color="error.dark"
+                    >
                       Delete
                     </MenuItem>
                   </MenuList>

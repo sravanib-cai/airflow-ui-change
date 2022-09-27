@@ -70,6 +70,7 @@ const ProjectsTable = () => {
                   _hover={{ color: 'blue.100' }}
                 >
                   <div style={space} />
+                  {/* Change url to project name variable */}
                   <Link to="/ml-example/overview" color="currentColor">ML Example</Link>
                 </Box>
               </td>

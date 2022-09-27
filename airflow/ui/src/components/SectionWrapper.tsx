@@ -59,7 +59,7 @@ const SectionWrapper: React.FC<Props> = ({
               _hover={{ color: 'blue.200' }}
             >
               <Link to="/ml-example/overview" color="currentColor">ML Example</Link>
-              {/* Add link to project name variable */}
+              {/* Change url to project name variable */}
             </Box>
             /
             {currentSection}

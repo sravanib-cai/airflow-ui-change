@@ -19,12 +19,18 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-
+// import CaiML from 'views/Microfrontends/CaiML';
 import DeveloperContainer from './DeveloperContainer';
 
 const ModelsandExpts: React.FC = () => (
   <DeveloperContainer current="Models and Experiments">
     <Heading as="h5" size="md">Models and Experiments</Heading>
+    {/* <script type="text/javascript" src="http://localhost:8069/runtime.d70b81031b374795.js" />
+    <script type="text/javascript" src="http://localhost:8069/polyfills.6cffbd8c793ec304.js" />
+    <script type="text/javascript" src="http://localhost:8069/vendor.864183ce6b9f0756.js" />
+    <script type="text/javascript" src=" http://localhost:8069/main.9475936c5c507dbf.js" />
+    <script type="text/javascript" src="http://localhost:8069/scripts.3c7edbbdd21861d9.js" /> */}
+    {/* <CaiML /> */}
   </DeveloperContainer>
 );
 

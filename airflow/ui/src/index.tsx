@@ -25,8 +25,10 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query';
-
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import AuthProvider from 'providers/auth/AuthProvider';
+import { store, persistor } from './Store';
 
 import App from './App';
 import theme from './theme';
@@ -38,7 +40,11 @@ render(
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </PersistGate>
         </AuthProvider>
       </QueryClientProvider>
     </ChakraProvider>
