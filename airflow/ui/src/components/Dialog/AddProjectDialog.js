@@ -20,14 +20,14 @@ const AddProjectDialog = (props) => {
   const userStore = useSelector((store) => store.user);
 
   const [name, setName] = useState('');
-  const [projectType, setProjectType] = useState('LiveStreams');
-  const [error, setError] = useState({ name: false, projectType: false });
+  const [projectDescription, setProjectType] = useState('');
+  const [error, setError] = useState({ name: false, projectDescription: false });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     const data = {
       name,
-      projectType,
+      projectDescription,
     };
 
     const { error } = AddProjectDialogSchema.validate(data);
@@ -36,8 +36,8 @@ const AddProjectDialog = (props) => {
         case 'name':
           setError({ ...error, name: true });
           break;
-        case 'projectType':
-          setError({ ...error, projectType: true });
+        case 'projectDescription':
+          setError({ ...error, projectDescription: true });
           break;
         default:
           console.log(error);
@@ -49,7 +49,7 @@ const AddProjectDialog = (props) => {
         const token = userStore.user.access;
         const formData = new FormData();
         formData.append('name', name);
-        formData.append('projectType', projectType);
+        formData.append('projectDescription', projectDescription);
 
         const config = {
           method: 'POST',
@@ -89,6 +89,7 @@ const AddProjectDialog = (props) => {
           </AlertDialogHeader>
           <AlertDialogBody>
             <Input
+              mb={2}
               placeholder="Project Name"
               autoFocus
               onChange={(e) => {
@@ -105,19 +106,18 @@ const AddProjectDialog = (props) => {
                 * Project name is required
               </Text>
             )}
-            <Select
-              // placeholder="Select Project Type"
-              mt={4}
-              value={projectType}
-              onChange={(e) => setProjectType(e.target.value)}
+            <Input
+              mb={2}
+              placeholder="Project Description"
+              onChange={(e) => {
+                setName(e.target.value);
+                if (error.projectDescription && e.target.value !== '') {
+                  setError({ ...error, projectDescription: false });
+                }
+              }}
+              error={error.projectDescription}
               disabled={loading}
-            >
-              <option value="LiveStreams">LiveStreams</option>
-              <option value="Shorts">Shorts</option>
-              <option value="AudioStreams">AudioStreams</option>
-              <option value="Articles">Articles</option>
-              <option value="Video">Video</option>
-            </Select>
+            />
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button onClick={props.handleClose} variant="menu" disabled={loading}>

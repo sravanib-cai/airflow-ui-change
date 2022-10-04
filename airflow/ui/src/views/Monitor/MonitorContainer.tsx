@@ -40,6 +40,18 @@ const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
       label: 'SLA Misses',
       path: '/monitor/sla-misses',
     },
+    {
+      label: 'Distributed Trace',
+      path: '/monitor/trace',
+    },
+    {
+      label: 'Centralised Logs',
+      path: '/monitor/logs',
+    },
+    {
+      label: 'Metrics Dashboards',
+      path: '/monitor/metrics',
+    },
   ];
 
   return (

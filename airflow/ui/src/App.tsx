@@ -4,7 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import PrivateRoute from 'providers/auth/PrivateRoute';
 
-import OauthLogin from 'views/OauthLogin';
+// import OauthLogin from 'views/OauthLogin';
 import HomePage from 'views/Home';
 
 import ProjectOverview from 'views/ProjectMain/Overview';
@@ -45,6 +45,9 @@ import Datasets from 'views/Developer/Datasets';
 import AuditLogs from 'views/Monitor/AuditLogs';
 import TaskReschedules from 'views/Monitor/TaskReschedules';
 import SLAMisses from 'views/Monitor/SLAMisses';
+import Trace from 'views/Monitor/Trace';
+import CLogs from 'views/Monitor/CLogs';
+import Metrics from 'views/Monitor/Metrics';
 
 import DataLakeConfiguration from 'views/Config/DataLakeConfiguration';
 import SparkConfig from 'views/Config/SparkConfig';
@@ -69,10 +72,10 @@ import NotFound from 'views/NotFound';
 const webURL = process.env.WEBSERVER_URL;
 const App = () => (
   <Switch>
-    <Redirect exact path="/" to="/login-oauth" />
-    <PrivateRoute exact path="/login-oauth" component={OauthLogin} />
-    {/* <Redirect exact path="/" to="/home" />
-    <PrivateRoute exact path="/home" component={HomePage} /> */}
+    {/* <Redirect exact path="/" to="/login-oauth" />
+    <PrivateRoute exact path="/login-oauth" component={OauthLogin} /> */}
+    <Redirect exact path="/" to="/home" />
+    <PrivateRoute exact path="/home" component={HomePage} />
 
     {/* Change url to project name variable */}
     <PrivateRoute exact path="/ml-example/overview" component={ProjectOverview} />
@@ -114,6 +117,9 @@ const App = () => (
     <PrivateRoute exact path="/monitor/audit-logs" component={AuditLogs} />
     <PrivateRoute exact path="/monitor/task-reschedules" component={TaskReschedules} />
     <PrivateRoute exact path="/monitor/sla-misses" component={SLAMisses} />
+    <PrivateRoute exact path="/monitor/trace" component={Trace} />
+    <PrivateRoute exact path="/monitor/logs" component={CLogs} />
+    <PrivateRoute exact path="/monitor/metrics" component={Metrics} />
 
     <PrivateRoute exact path="/config/clusterconfig" component={ClusterConfigGrps} />
     <PrivateRoute exact path="/config/variables" component={Variables} />

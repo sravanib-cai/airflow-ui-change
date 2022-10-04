@@ -2823,7 +2823,8 @@ div .fa.fa-file {
 }
 
 .sidebar {
-  height: 625px; /* 100% Full-height */
+  height: 660px;
+  /* 100% Full-height */
   /* height: 60%; */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */

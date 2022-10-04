@@ -1,33 +1,38 @@
-/*!
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 import React from 'react';
 import '../../static/buttonstyle.css';
 import AppContainer from 'components/AppContainer';
 
+// import axios from 'axios';
+
+const axios = require('axios');
+
 // import HomeContainer from './HomeContainer';
+const handleClick = () => {
+  const config = {
+    method: 'get',
+    url: 'https://login.microsoftonline.com/56ed7cf6-887d-4a15-8cab-9c5981b3c4e7/oauth2/authorize?response_type=code&client_id=e23e8da1-a627-437c-8a9f-f9e9e7d361cf&redirect_uri=http://exl.couture.workbench.ai/react-ui/&scope=openid+profile+email&state=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuZXh0IjpbImh0dHBzOi8vZXhsLndvcmtiZW5jaC5jb3V0dXJlLmFpL2RzY3cvaG9tZSJdfQ.LUdlnA2v-wOsUTPlVrViprGuHK0St60dDUfGiUf8HeY&nonce=ORhdlMwxD4eAOrplZ0ch',
+    headers: {
+      'Content-Type': 'application/json',
+
+    },
+
+  };
+
+  axios(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  // setIsShown(true);
+};
 
 const OauthLogin: React.FC = () => (
   <AppContainer>
     <br />
     <div>
-      <button className="btn pull-right" type="submit">
+      <button className="btn pull-right" type="submit" onClick={handleClick}>
         OauthLogin
       </button>
     </div>

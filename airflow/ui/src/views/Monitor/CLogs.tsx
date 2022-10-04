@@ -18,29 +18,17 @@
  */
 
 import React from 'react';
-import {
-  Heading,
-  Box,
-  Text,
-  Spacer,
-} from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
-import AppContainerHome from 'components/AppContainer/AppContainerHome';
-import ProjectsTable from 'containers/ProjectsTable1';
+import MonitorContainer from './MonitorContainer';
 
-// import HomeContainer from './HomeContainer';
-
-const HomePage: React.FC = () => (
-  <AppContainerHome>
-    <br />
-    <Box mb={25}>
-      <Heading>Welcome User!</Heading>
-      <Text>Let us work on the project and improve our progress</Text>
-    </Box>
-    <br />
-    <ProjectsTable />
-  </AppContainerHome>
-
+const CLogs: React.FC = () => (
+  <MonitorContainer current="CLogs">
+    {/* <Heading as="h5" size="md">CLogs</Heading> */}
+    <div>
+      <iframe title="Centralised Logs" src="http://exl.workbench.couture.ai/logs/" height="600" width="100%" />
+    </div>
+  </MonitorContainer>
 );
 
-export default HomePage;
+export default CLogs;
