@@ -19,13 +19,16 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import PoolsView from './pools_view';
+import Filter from 'views/Config/filter';
+import PoolsTable from './pools_table';
 import PipelineRunsContainer from './PipelineRunsContainer';
 
 const Pools: React.FC = () => (
   <PipelineRunsContainer current="Pools">
     {/* <Heading as="h5" size="md">Pools</Heading> */}
-    <PoolsView />
+    <Filter />
+    <br />
+    <PoolsTable />
   </PipelineRunsContainer>
 );
 

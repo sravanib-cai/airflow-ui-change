@@ -26,7 +26,7 @@ import humps from 'humps';
 import { useToast } from '@chakra-ui/react';
 
 import type {
-  Config, Connection, Dag, DagRun, DagDetails, Version,
+  Config, Dag, DagRun, DagDetails, Version,
 } from 'interfaces';
 import type {
   // DagCode,
@@ -44,7 +44,7 @@ import type {
   TriggerRunRequest,
 } from 'interfaces/api';
 
-axios.defaults.baseURL = `${process.env.WEBSERVER_URL}/api/v1`;
+axios.defaults.baseURL = `${process.env.API_URL}/api/experimental`;
 axios.interceptors.response.use(
   (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
 );
@@ -64,6 +64,7 @@ const refetchInterval = isTest ? false : 1000;
 interface PageProps {
   offset?: number;
   limit?: number;
+  projectId: number;
   // project_id: number
 }
 
@@ -147,17 +148,11 @@ export function usePlugins({ offset = 0, limit }: PageProps) {
   );
 }
 
-export function useProjects({ offset = 0, limit }: PageProps) {
+export function useProjects() {
   console.log('Sra, projects', '/admin/projects');
   return useQuery<ProjectsResponse, Error>(
-    ['projects', offset],
-    (): Promise<ProjectsResponse> => axios.get('/admin/project', {
-      params: { offset, limit },
-    }),
-    {
-      refetchInterval,
-      retry: !isTest,
-    },
+    'projects',
+    (): Promise<ProjectsResponse> => axios.get('/admin/project'),
   );
 }
 
@@ -192,7 +187,7 @@ export function usePools({ offset = 0, limit }: PageProps) {
 export function useAuditLogs({ offset = 0, limit }: PageProps) {
   console.log('Sra, eventLogs', '/eventLogs');
   return useQuery<AuditLogsResponse, Error>(
-    ['eventLogs', offset],
+    ['pools', offset],
     (): Promise<AuditLogsResponse> => axios.get('/eventLogs', {
       params: { offset, limit },
     }),
@@ -205,22 +200,8 @@ export function useAuditLogs({ offset = 0, limit }: PageProps) {
 
 export function DeleteDag(dagId: Dag['dagId']) {
   return useQuery<Dag, Error>(
-    'dags',
+    'dag',
     (): Promise<Dag> => axios.delete(`/dags/${dagId}`),
-  );
-}
-
-export function DeleteConnection(connectionId: Connection['connectionId']) {
-  return useQuery<Connection, Error>(
-    'connections',
-    (): Promise<Connection> => axios.delete(`/connections/${connectionId}`),
-  );
-}
-
-export function useAddConnection() {
-  return useQuery<Connection, Error>(
-    'connections',
-    (): Promise<Connection> => axios.post('/connections'),
   );
 }
 // export async function useDags({ offset = 0, limit }: PageProps) {

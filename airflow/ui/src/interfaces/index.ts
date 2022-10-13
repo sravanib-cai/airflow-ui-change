@@ -21,6 +21,10 @@ export interface DagTag {
   name: string,
 }
 
+export interface Project {
+  projectId: number,
+}
+
 export interface TimeDelta {
   days: number,
   microseconds: number,
@@ -31,6 +35,25 @@ export interface TimeDelta {
 export interface CronExpression {
   type: string,
   value: string,
+}
+
+export interface AuditLog {
+  dagId: string,
+  taskId: string,
+  event: string,
+  owner: string,
+  extra: string,
+  when: string,
+}
+
+export interface Connection {
+  connectionId: string,
+  connType: string,
+  description: string,
+  host: string,
+  login: string,
+  port: number,
+  schema: string,
 }
 
 export interface Dag {
@@ -123,6 +146,26 @@ export interface DagRun {
   conf: JSON,
 }
 
+export interface Plugin {
+  name: string,
+}
+
+export interface Provider {
+  name: string,
+  version: string,
+  description: string,
+}
+
+export interface Pool {
+  name: string,
+  description: string,
+  occupiedSlots: number,
+  openSlots: number,
+  queuedSlots: number,
+  runningSlots: number,
+  slots: number,
+}
+
 export interface Task {
   taskId: string,
   owner: string,
@@ -159,6 +202,12 @@ export interface TaskInstance {
     description: string,
     notification_sent: boolean,
   },
+}
+
+export interface Variable {
+  key: string,
+  val: string,
+  isEncrypted: boolean,
 }
 
 export interface ConfigSection {

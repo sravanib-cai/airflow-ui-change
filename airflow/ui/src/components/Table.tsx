@@ -172,7 +172,7 @@ const Table: React.FC<Props> = ({
         <IconButton variant="ghost" onClick={handleNext} disabled={!canNextPage} aria-label="Next Page">
           <MdKeyboardArrowRight />
         </IconButton>
-        <Text>
+        <Text fontSize="md">
           {lowerCount}
           -
           {upperCount}

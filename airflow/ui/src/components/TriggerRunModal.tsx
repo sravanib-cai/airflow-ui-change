@@ -49,6 +49,7 @@ const TriggerRunModal: React.FC<Props> = ({ dagId, isOpen, onClose }) => {
     mutation.mutate({
       conf: JSON.parse(config),
       executionDate: new Date(),
+      // projectId: 1,
     });
     onClose();
   };

@@ -24,6 +24,7 @@ import {
   Progress,
   Switch,
   IconButton,
+  Tag,
 } from '@chakra-ui/react';
 import type { Column } from 'react-table';
 import {
@@ -31,64 +32,96 @@ import {
 } from 'react-icons/md';
 
 import Table from 'components/Table';
-import { defaultDags } from 'api/defaults';
-import { useDags } from 'api';
-import {
-  DagName, PauseToggle, TriggerDagButton, DagTag,
-} from './Row';
+import { defaultDags, defaultDagRuns } from 'api/defaults';
+import { useDags, useDagRuns } from 'api';
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  active: <Switch isDisabled />,
-  tags: '',
   dagId: <Progress size="lg" isIndeterminate data-testid="pipelines-loading" />,
-  trigger: <IconButton size="sm" icon={<MdPlayArrow />} aria-label="Trigger Dag" disabled />,
+  state: '',
+  dagRunId: '',
+  executionDate: '',
+  startDate: '',
+  endDate: '',
+  externalTrigger: '',
+  conf: '',
 }));
 
 const LIMIT = 25;
 
-const PipelinesTable: React.FC = () => {
+const RunsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { dags, totalEntries } = defaultDags,
+    data: { dags } = defaultDags,
+  } = useDags({ limit: LIMIT, offset });
+
+  const {
+    data: { dagRuns, totalEntries } = defaultDagRuns,
     isLoading,
     error,
-  } = useDags({ limit: LIMIT, offset });
+  } = useDagRuns(dagId);
+
   // Show placeholders rows when data is loading for the first time
   const data = useMemo(
-    () => (isLoading && !dags.length
+    () => (isLoading && !dagRuns.length
       ? skeletonLoader
-      : dags.map((d) => ({
+      : dagRuns.map((d) => ({
         ...d,
-        tags: d.tags.map((tag) => <DagTag tag={tag} key={tag.name} />),
-        dagId: <DagName dagId={d.dagId} />,
-        trigger: <TriggerDagButton dagId={d.dagId} />,
-        active: <PauseToggle dagId={d.dagId} isPaused={d.isPaused} offset={offset} />,
+        dagId: d.dagId,
+        state:
+        <Tag
+          size="sm"
+          mt="1"
+          ml="1"
+          mb="1"
+        >
+          {d.state}
+        </Tag>,
+        dagRunId: d.dagRunId,
+        executionDate: d.executionDate,
+        startDate: d.startDate,
+        endDate: d.endDate,
+        externalTrigger: d.externalTrigger,
+        conf: d.conf,
       }))),
-    [dags, isLoading, offset],
+    [dagRuns, isLoading],
   );
 
   const columns = useMemo<Column<any>[]>(
     () => [
       {
-        Header: 'Active',
-        accessor: 'active',
-        // Implement custom sort function because the data is a react component
-        sortType: (rowA, rowB) => (rowA.original.isPaused && !rowB.original.isPaused ? 1 : -1),
-      },
-      {
         Header: 'Dag Id',
         accessor: 'dagId',
       },
       {
-        Header: 'Tags',
-        accessor: 'tags',
+        Header: 'State',
+        accessor: 'state',
       },
       {
-        disableSortBy: true,
-        accessor: 'trigger',
+        Header: 'Dag Run Id',
+        accessor: 'dagRunId',
+      },
+      {
+        Header: 'Execution Date',
+        accessor: 'executionDate',
+      },
+      {
+        Header: 'Start Date',
+        accessor: 'startDate',
+      },
+      {
+        Header: 'End Date',
+        accessor: 'endDate',
+      },
+      {
+        Header: 'External Trigger',
+        accessor: 'externalTrigger',
+      },
+      {
+        Header: 'conf',
+        accessor: 'conf',
       },
     ],
     [],
@@ -105,14 +138,14 @@ const PipelinesTable: React.FC = () => {
       <Table
         data={data}
         columns={columns}
-        manualPagination={{
-          offset,
-          setOffset,
-          totalEntries,
-        }}
+        // manualPagination={{
+        //   offset,
+        //   setOffset,
+        //   totalEntries,
+        // }}
       />
     </>
   );
 };
 
-export default PipelinesTable;
+export default RunsTable;

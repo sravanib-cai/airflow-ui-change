@@ -19,13 +19,25 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import ConnectionsView from './connections_view';
+import {
+  IconButton,
+} from '@chakra-ui/react';
+import { MdAdd } from 'react-icons/md';
+import ConnectionsTable from './connections_table';
+// import Filter from './filter';
 import ConfigContainer from './ConfigContainer';
 
 const Connections: React.FC = () => (
   <ConfigContainer current="Connections">
-    {/* <Heading as="h5" size="md">Connections</Heading> */}
-    <ConnectionsView />
+    <IconButton
+      icon={<MdAdd size="xs" />}
+      size="sm"
+      aria-label="Add Connection"
+    />
+    <br />
+    {/* <Filter /> */}
+    <br />
+    <ConnectionsTable />
   </ConfigContainer>
 );
 

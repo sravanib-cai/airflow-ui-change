@@ -20,12 +20,15 @@
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
 import ConfigContainer from './ConfigContainer';
-import VariablesView from './variables_view';
+import VariablesTable from './variable_table';
+import Filter from './filter';
 
 const Variables: React.FC = () => (
   <ConfigContainer current="Variables">
+    <Filter />
+    <br />
     {/* <Heading as="h5" size="md">Variables</Heading> */}
-    <VariablesView />
+    <VariablesTable />
   </ConfigContainer>
 );
 

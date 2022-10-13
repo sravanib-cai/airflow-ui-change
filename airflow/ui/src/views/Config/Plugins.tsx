@@ -19,13 +19,14 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import PluginsView from './plugins_view';
+import PluginsTable from './plugin_table';
 import ConfigContainer from './ConfigContainer';
 
 const Plugins: React.FC = () => (
   <ConfigContainer current="Plugins">
-    <Heading as="h5" size="md">Plugins</Heading>
-    <PluginsView />
+    <Heading as="h5" size="md">Loaded Plugins</Heading>
+    <br />
+    <PluginsTable />
   </ConfigContainer>
 );
 

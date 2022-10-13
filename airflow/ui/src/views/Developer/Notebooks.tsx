@@ -17,18 +17,49 @@
  * under the License.
  */
 
-import React from 'react';
-// import { Heading } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Spinner } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
 
-const Notebooks: React.FC = () => (
-  <DeveloperContainer current="Notebooks">
-    {/* <Heading as="h5" size="md">Notebooks</Heading> */}
-    <div>
-      <iframe title="CAI Notebooks" src="https://exl.workbench.couture.ai/experiments/hub" height="600" width="100%" />
-    </div>
-  </DeveloperContainer>
-);
+const Notebooks: React.FC = () => {
+  // const state = {
+  //   loading: true,
+  // };
+  const [isLoading, setIsLoading] = useState(true);
+  const hideSpinner = () => {
+    // setIsLoading((current) => !current);
+    setIsLoading(false);
+  };
+  return (
+    <DeveloperContainer current="Notebooks">
+      {/* <Heading as="h5" size="md">Notebooks</Heading> */}
+      <div className="container rsvp-wrapper">
+        {isLoading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            left="50%"
+            top="50%"
+            margin="300px 0 0 600px"
+          />
+        ) : null}
+        <iframe
+          title="CAI Notebooks"
+          src="https://exl.workbench.couture.ai/experiments/hub"
+          height="600"
+          width="100%"
+          onLoad={hideSpinner}
+          frameBorder="0"
+          // marginHeight="0"
+          // marginWidth="0"
+        />
+      </div>
+    </DeveloperContainer>
+  );
+};
 
 export default Notebooks;

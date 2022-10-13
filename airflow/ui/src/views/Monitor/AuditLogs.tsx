@@ -19,13 +19,13 @@
 
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
-import AuditLogsView from './auditlogs_view';
+import AuditLogsTable from './auditlog_table';
 import MonitorContainer from './MonitorContainer';
 
 const AuditLogs: React.FC = () => (
   <MonitorContainer current="Audit Logs">
     {/* <Heading as="h5" size="md">Audit Logs</Heading> */}
-    <AuditLogsView />
+    <AuditLogsTable />
   </MonitorContainer>
 );
 

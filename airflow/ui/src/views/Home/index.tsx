@@ -22,7 +22,6 @@ import {
   Heading,
   Box,
   Text,
-  Spacer,
 } from '@chakra-ui/react';
 
 import AppContainerHome from 'components/AppContainer/AppContainerHome';

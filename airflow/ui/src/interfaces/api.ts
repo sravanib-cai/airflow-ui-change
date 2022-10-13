@@ -17,14 +17,36 @@
  * under the License.
  */
 
-import type { Dag, DagRun, TaskInstance } from './index';
+import type {
+  AuditLog, Connection, Variable, Plugin, Pool, Project, Provider, Dag, DagRun, TaskInstance,
+} from './index';
 
 interface Entries {
   totalEntries: number;
 }
 
+export interface ProjectsResponse extends Entries {
+  projects: Project[];
+}
+
 export interface DagsResponse extends Entries {
   dags: Dag[];
+}
+
+export interface ConnectionsResponse extends Entries {
+  connections: Connection[];
+}
+
+export interface AuditLogsResponse extends Entries {
+  eventLogs: AuditLog[];
+}
+
+export interface PluginsResponse extends Entries {
+  plugins: Plugin[];
+}
+
+export interface VariablesResponse extends Entries {
+  variables: Variable[];
 }
 
 export interface DagResponse{
@@ -39,6 +61,14 @@ export interface DagRunsResponse extends Entries {
   dagRuns: DagRun[];
 }
 
+export interface PoolsResponse extends Entries {
+  pools: Pool[];
+}
+
+export interface ProvidersResponse extends Entries {
+  pools: Provider[];
+}
+
 export interface TaskInstancesResponse extends Entries {
   taskInstances: TaskInstance[];
 }
@@ -47,5 +77,6 @@ export interface TriggerRunRequest {
   conf: Record<string, any>;
   dagRunId?: string;
   executionDate: Date;
+  // projectId: number;
   state?: 'success' | 'running' | 'failed';
 }
