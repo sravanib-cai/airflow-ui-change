@@ -147,20 +147,6 @@ export function usePlugins({ offset = 0, limit }: PageProps) {
   );
 }
 
-export function useProjects({ offset = 0, limit }: PageProps) {
-  console.log('Sra, projects', '/admin/projects');
-  return useQuery<ProjectsResponse, Error>(
-    ['projects', offset],
-    (): Promise<ProjectsResponse> => axios.get('/admin/project', {
-      params: { offset, limit },
-    }),
-    {
-      refetchInterval,
-      retry: !isTest,
-    },
-  );
-}
-
 // export function useProviders({ offset = 0, limit }: PageProps) {
 //   console.log('Sra, providers', '/providers');
 //   return useQuery<ProvidersResponse, Error>(

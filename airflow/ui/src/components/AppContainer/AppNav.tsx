@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import {
   FiActivity,
@@ -39,28 +39,35 @@ import AppNavBtn from './AppNavBtn';
 interface Props {
   bodyBg: string;
   overlayBg: string;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
+const AppNav: React.FC<Props> = ({ bodyBg, overlayBg, match }) => {
   const { hasValidAuthToken } = useAuthContext();
-
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Pipelines',
       icon: PipelineIcon,
-      path: '/pipelines/create-and-update',
+      path: `/${projectId}/${projectName}/pipelines/create-and-update`,
       activePath: '/pipelines',
     },
     {
       label: 'Developer',
       icon: FiTool,
-      path: '/developer/data-lake-explorer',
+      path: `/${projectId}/${projectName}/developer/data-lake-explorer`,
       activePath: '/developer',
     },
     {
       label: 'Monitor',
       icon: FiActivity,
-      path: '/monitor/audit-logs',
+      path: `/${projectId}/${projectName}/monitor/audit-logs`,
       activePath: '/monitor',
     },
     // {
@@ -72,19 +79,19 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
     {
       label: 'Configurations',
       icon: FiSettings,
-      path: '/config/clusterconfig',
+      path: `/${projectId}/${projectName}/config/clusterconfig`,
       activePath: '/config',
     },
     {
       label: 'Security',
       icon: FiUsers,
-      path: '/security',
+      path: `/${projectId}/${projectName}/security`,
       activePath: '/security',
     },
     {
       label: 'Docs',
       icon: FiBookOpen,
-      path: '/docs/providers',
+      path: `/${projectId}/${projectName}/docs/providers`,
       activePath: '/docs',
     },
   ];
@@ -122,4 +129,4 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg }) => {
   );
 };
 
-export default AppNav;
+export default withRouter(AppNav);

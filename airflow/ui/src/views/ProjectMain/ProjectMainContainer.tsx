@@ -18,23 +18,35 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const ProjectMainContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const ProjectMainContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Overview',
-      path: '/ml-example/overview',
+      // path: '/ml-example/overview',
+      path: `/${projectId}/${projectName}/overview`,
     },
     {
       label: 'Documentation',
-      path: '/ml-example/documentation',
+      // path: '/ml-example/documentation',
+      path: `/${projectId}/${projectName}/documentation`,
     },
   ];
 
@@ -50,4 +62,4 @@ const ProjectMainContainer: React.FC<Props> = ({ children, current, toolBar }) =
   );
 };
 
-export default ProjectMainContainer;
+export default withRouter(ProjectMainContainer);

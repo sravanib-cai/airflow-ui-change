@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import useReactRouter from 'use-react-router';
 import {
   Box,
@@ -40,9 +40,19 @@ interface RouterProps {
   match: { params: { dagId: DagType['dagId'], dagRunId: DagRunType['dagRunId'] } }
 }
 
-const PipelineContainer: React.FC = ({ children }) => {
-  const { match: { params: { dagId } } }: RouterProps = useReactRouter();
+interface Props {
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
 
+const PipelineContainer: React.FC<Props> = ({ children, match }) => {
+  const { match: { params: { dagId } } }: RouterProps = useReactRouter();
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   // const { data: { dagRuns } = defaultDagRuns } = useDagRuns(dagId);
   // const { data: { taskInstances } = defaultTaskInstances } = useTaskInstances(dagId, dagRunId);
 
@@ -58,7 +68,7 @@ const PipelineContainer: React.FC = ({ children }) => {
             color={linkColor}
             _hover={{ color: 'blue.200' }}
           >
-            <Link to="/pipelines/manage-and-track" color="currentColor">Pipelines</Link>
+            <Link to={`/${projectId}/${projectName}/pipelines/manage-and-track`} color="currentColor">Pipelines</Link>
             /
           </Box>
           {dagId}
@@ -92,4 +102,4 @@ const PipelineContainer: React.FC = ({ children }) => {
   );
 };
 
-export default PipelineContainer;
+export default withRouter(PipelineContainer);

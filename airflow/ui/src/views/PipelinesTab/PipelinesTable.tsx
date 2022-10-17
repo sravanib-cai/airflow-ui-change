@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /*!
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -24,6 +25,7 @@ import {
   Progress,
   Switch,
   IconButton,
+  Link,
 } from '@chakra-ui/react';
 import type { Column } from 'react-table';
 import {
@@ -33,8 +35,9 @@ import {
 import Table from 'components/Table';
 import { defaultDags } from 'api/defaults';
 import { useDags } from 'api';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import {
-  DagName, PauseToggle, TriggerDagButton, DagTag,
+  PauseToggle, TriggerDagButton, DagTag,
 } from './Row';
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
@@ -48,14 +51,25 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 }));
 
 const LIMIT = 25;
+interface Props {
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
 
-const PipelinesTable: React.FC = () => {
+const PipelinesTable: React.FC<Props> = ({ match }) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const [offset, setOffset] = useState(0);
   const {
     data: { dags, totalEntries } = defaultDags,
     isLoading,
     error,
   } = useDags({ limit: LIMIT, offset });
+  // } = useDags({ limit: LIMIT, offset, projectId });
   // Show placeholders rows when data is loading for the first time
   const data = useMemo(
     () => (isLoading && !dags.length
@@ -63,7 +77,15 @@ const PipelinesTable: React.FC = () => {
       : dags.map((d) => ({
         ...d,
         tags: d.tags.map((tag) => <DagTag tag={tag} key={tag.name} />),
-        dagId: <DagName dagId={d.dagId} />,
+        dagId:
+        <Link
+          as={RouterLink}
+          to={`/${projectId}/${projectName}/pipelines/${d.dagId}`}
+          fontWeight="bold"
+        >
+          {d.dagId}
+        </Link>,
+        // <DagName dagId={d.dagId} match />,
         trigger: <TriggerDagButton dagId={d.dagId} />,
         active: <PauseToggle dagId={d.dagId} isPaused={d.isPaused} offset={offset} />,
       }))),
@@ -115,4 +137,4 @@ const PipelinesTable: React.FC = () => {
   );
 };
 
-export default PipelinesTable;
+export default withRouter(PipelinesTable);

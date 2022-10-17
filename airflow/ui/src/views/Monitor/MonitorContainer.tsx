@@ -18,39 +18,49 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const MonitorContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Audit Logs',
-      path: '/monitor/audit-logs',
+      path: `/${projectId}/${projectName}/monitor/audit-logs`,
     },
     {
       label: 'Task Reschedules',
-      path: '/monitor/task-reschedules',
+      path: `/${projectId}/${projectName}/monitor/task-reschedules`,
     },
     {
       label: 'SLA Misses',
-      path: '/monitor/sla-misses',
+      path: `/${projectId}/${projectName}/monitor/sla-misses`,
     },
     {
       label: 'Distributed Trace',
-      path: '/monitor/trace',
+      path: `/${projectId}/${projectName}/monitor/trace`,
     },
     {
       label: 'Centralised Logs',
-      path: '/monitor/logs',
+      path: `/${projectId}/${projectName}/monitor/logs`,
     },
     {
       label: 'Metrics Dashboards',
-      path: '/monitor/metrics',
+      path: `/${projectId}/${projectName}/monitor/metrics`,
     },
   ];
 
@@ -66,4 +76,4 @@ const MonitorContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default MonitorContainer;
+export default withRouter(MonitorContainer);

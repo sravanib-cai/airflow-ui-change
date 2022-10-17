@@ -18,35 +18,45 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const SecurityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const SecurityContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Roles',
-      path: '/security',
+      path: `/${projectId}/${projectName}/security`,
     },
     {
       label: 'Users',
-      path: '/security/users',
+      path: `/${projectId}/${projectName}/security/users`,
     },
     // {
     //   label: 'Roles',
-    //   path: '/security/roles',
+    //   path: `/${projectId}/${projectName}/security/roles`,
     // },
     // {
     //   label: 'Permissions',
-    //   path: '/security/permissions',
+    //   path: `/${projectId}/${projectName}/security/permissions`,
     // },
     {
       label: 'Statistics',
-      path: '/security/statistics',
+      path: `/${projectId}/${projectName}/security/statistics`,
     },
   ];
 
@@ -62,4 +72,4 @@ const SecurityContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default SecurityContainer;
+export default withRouter(SecurityContainer);

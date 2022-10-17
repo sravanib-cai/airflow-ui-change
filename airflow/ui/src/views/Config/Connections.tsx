@@ -20,20 +20,20 @@
 import React from 'react';
 // import { Heading } from '@chakra-ui/react';
 import {
-  IconButton,
+  Button,
 } from '@chakra-ui/react';
-import { MdAdd } from 'react-icons/md';
 import ConnectionsTable from './connections_table';
 // import Filter from './filter';
 import ConfigContainer from './ConfigContainer';
 
 const Connections: React.FC = () => (
   <ConfigContainer current="Connections">
-    <IconButton
-      icon={<MdAdd size="xs" />}
-      size="sm"
+    <Button
+      size="xs"
       aria-label="Add Connection"
-    />
+    >
+      New Connection
+    </Button>
     <br />
     {/* <Filter /> */}
     <br />

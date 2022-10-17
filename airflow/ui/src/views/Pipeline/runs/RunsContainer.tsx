@@ -19,7 +19,7 @@
 
 import React from 'react';
 import useReactRouter from 'use-react-router';
-
+import { withRouter } from 'react-router-dom';
 import PipelineBreadcrumb from 'components/PipelineBreadcrumb';
 import SectionNav from 'components/SectionNav';
 
@@ -30,17 +30,30 @@ import type {
 import PipelineContainer from '../PipelineContainer';
 
 interface RouterProps {
-  match: { params: { dagId: DagType['dagId'] } }
+  match: {
+    params: {
+      dagId: DagType['dagId'];
+      id: string;
+      name: string;
+    }
+  }
 }
 
 interface Props {
   currentView: string;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const RunContainer: React.FC<Props> = ({ children, currentView }) => {
+const RunContainer: React.FC<Props> = ({ children, currentView, match }) => {
   const { match: { params: { dagId } } }: RouterProps = useReactRouter();
-
-  const basePath = `/pipelines/${dagId}`;
+  const projectId = match.params.id;
+  const projectName = match.params.name;
+  const basePath = `/${projectId}/${projectName}/pipelines/${dagId}`;
   const navItems = [
     {
       label: 'Details',
@@ -81,4 +94,4 @@ const RunContainer: React.FC<Props> = ({ children, currentView }) => {
   );
 };
 
-export default RunContainer;
+export default withRouter(RunContainer);

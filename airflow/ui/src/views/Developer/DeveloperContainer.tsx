@@ -18,39 +18,49 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const DeveloperContainer: React.FC<Props> = ({
+  children, current, match, toolBar,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Data Lake Explorer',
-      path: '/developer/data-lake-explorer',
+      path: `/${projectId}/${projectName}/developer/data-lake-explorer`,
     },
     {
       label: 'Models and Experiments',
-      path: '/developer/models-expts',
+      path: `/${projectId}/${projectName}/developer/models-expts`,
     },
     {
       label: 'Notebooks',
-      path: '/developer/notebooks',
+      path: `/${projectId}/${projectName}/developer/notebooks`,
     },
     {
       label: 'Auto EDA',
-      path: '/developer/auto-eda',
+      path: `/${projectId}/${projectName}/developer/auto-eda`,
     },
     {
       label: 'Auto API Builder',
-      path: '/developer/auto-api-builder',
+      path: `/${projectId}/${projectName}/developer/auto-api-builder`,
     },
     {
       label: 'Datasets',
-      path: '/developer/datasets',
+      path: `/${projectId}/${projectName}/developer/datasets`,
     },
   ];
 
@@ -66,4 +76,4 @@ const DeveloperContainer: React.FC<Props> = ({ children, current, toolBar }) => 
   );
 };
 
-export default DeveloperContainer;
+export default withRouter(DeveloperContainer);

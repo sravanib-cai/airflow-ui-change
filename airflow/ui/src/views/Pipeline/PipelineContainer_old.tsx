@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import useReactRouter from 'use-react-router';
 import {
   Box,
@@ -36,13 +36,22 @@ import type {
   Dag as DagType, DagRun as DagRunType, TaskInstance as TaskInstanceType,
 } from 'interfaces';
 
+interface Props {
+  match2: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
 interface RouterProps {
   match: { params: { dagId: DagType['dagId'], dagRunId: DagRunType['dagRunId'] } }
 }
 
-const PipelineContainer: React.FC = ({ children }) => {
+const PipelineContainer: React.FC<Props> = ({ children, match2 }) => {
   const { match: { params: { dagId, dagRunId } } }: RouterProps = useReactRouter();
-
+  const projectId = match2.params.id;
+  const projectName = match2.params.name;
   const { data: { dagRuns } = defaultDagRuns } = useDagRuns(dagId);
   const { data: { taskInstances } = defaultTaskInstances } = useTaskInstances(dagId, dagRunId);
 
@@ -58,7 +67,7 @@ const PipelineContainer: React.FC = ({ children }) => {
             color={linkColor}
             _hover={{ color: 'teal.500' }}
           >
-            <Link to="/pipelines" color="currentColor">Pipelines</Link>
+            <Link to={`/${projectId}/${projectName}/pipelines`} color="currentColor">Pipelines</Link>
             /
           </Box>
           {dagId}
@@ -70,7 +79,7 @@ const PipelineContainer: React.FC = ({ children }) => {
           <Heading mb={2}>Runs</Heading>
           {dagRuns.map((dagRun: DagRunType) => (
             <Box key={dagRun.dagRunId}>
-              <Link to={`/pipelines/${dagId}/${dagRun.dagRunId}`}>{dagRun.dagRunId}</Link>
+              <Link to={`/${projectId}/${projectName}/pipelines/${dagId}/${dagRun.dagRunId}`}>{dagRun.dagRunId}</Link>
             </Box>
           ))}
           {dagRunId && (
@@ -78,7 +87,7 @@ const PipelineContainer: React.FC = ({ children }) => {
               <Heading mb={2} size="md" mt={8}>Task Instances:</Heading>
               {taskInstances.map((ti: TaskInstanceType) => (
                 <Box key={ti.taskId}>
-                  <Link to={`/pipelines/${dagId}/${dagRunId}/${ti.taskId}`}>{ti.taskId}</Link>
+                  <Link to={`/${projectId}/${projectName}/pipelines/${dagId}/${dagRunId}/${ti.taskId}`}>{ti.taskId}</Link>
                 </Box>
               ))}
             </>
@@ -92,4 +101,4 @@ const PipelineContainer: React.FC = ({ children }) => {
   );
 };
 
-export default PipelineContainer;
+export default withRouter(PipelineContainer);

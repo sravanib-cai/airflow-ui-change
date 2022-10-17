@@ -1,19 +1,16 @@
 /* global document */
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
-import {
-  Box,
-  Button,
-  useColorModeValue,
-} from '@chakra-ui/react';
+// import {
+//   Box,
+//   useColorModeValue,
+// } from '@chakra-ui/react';
 // import Popup from 'reactjs-popup';
-import axios from 'axios';
 import 'font-awesome/css/font-awesome.min.css';
-import AddEDAFileDialog from '../../components/Dialog/AddEDAFileDialog';
 
 const EDAView = () => {
-  // const fileRef = useRef();
+  const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#90cdf4',
     color: '#1A202C',
@@ -57,40 +54,19 @@ const EDAView = () => {
     // document.getElementById("main").style.marginLeft = "0";
   }
 
-  const [files, setFiles] = useState([]);
-  const [addFile, setAddFile] = useState({ open: false, file: null });
-  const fetchFiles = async () => {
-    try {
-      // const token = userStore.user.access;
-      const token = 'read';
-      const config = {
-        method: 'GET',
-        url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+  // const [fileName, setFileName] = useState('');
+  // const [fileSize, setFileSize] = useState('');
+  // const [fileDate, setFileDate] = useState('');
 
-      const response = await axios(config);
-      // setFiles(response.data.response);
-      setFiles(response.data);
-      //   setFiles(defaultProjects);
-    } catch (e) {
-    //   setFiles(defaultProjects);
+  // function formatBytes(bytes, decimals = 2) {
+  //   if (bytes === 0) return '0 Bytes';
+  //   const k = 1024;
+  //   const dm = decimals < 0 ? 0 : decimals;
+  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
+  //   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  // }
 
-      // TODO: handle error here
-    }
-  };
-  useEffect(() => {
-    fetchFiles();
-    // eslint-disable-next-line
-      }, []);
-
-  useEffect(() => {
-    // fetchFiles();
-    console.log('files', files);
-    // eslint-disable-next-line
-      }, [files]);
   // const space = {
   //   width: '3px',
   //   height: 'auto',
@@ -131,16 +107,7 @@ const EDAView = () => {
               id="uploadData" data-target="#selectdata">Upload Data</button> */}
       <div style={padding}>
         <div className="buttonCenter">
-          <Button
-            onClick={() => setAddFile({ open: true, data: null })}
-            colorScheme="blue"
-            size="sm"
-            mr="2"
-          >
-            {/* <i class="fa fa-plus fa-fw" aria-hidden="true" /> */}
-            File Upload
-          </Button>
-          {/* <button style={buttonStyle} type="submit" onClick={() => fileRef.current.click()}>
+          <button style={buttonStyle} type="submit" onClick={() => fileRef.current.click()}>
             File Upload
           </button>
           <input
@@ -149,14 +116,9 @@ const EDAView = () => {
             multiple={false}
             type="file"
             hidden
-          /> */}
+          />
         </div>
       </div>
-      <AddEDAFileDialog
-        open={addFile.open}
-        handleClose={() => setAddFile({ open: false, data: null })}
-        fetchFiles={fetchFiles}
-      />
       <div style={padding}>
         <div className="rightbar">
           <div className="input-group">

@@ -18,51 +18,61 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const PipelineRunsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const PipelineRunsContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Create and Update',
-      path: '/pipelines/create-and-update',
+      path: `/${projectId}/${projectName}/pipelines/create-and-update`,
     },
     {
       label: 'Manage and Track',
-      path: '/pipelines/manage-and-track',
+      path: `/${projectId}/${projectName}/pipelines/manage-and-track`,
     },
     {
       label: 'Pipeline Dependencies',
-      path: '/pipelines/pipeline-dependencies',
+      path: `/${projectId}/${projectName}/pipelines/pipeline-dependencies`,
     },
     {
       label: 'Runs',
-      path: '/pipelines/runs',
+      path: `/${projectId}/${projectName}/pipelines/runs`,
     },
     {
       label: 'Task Instances',
-      path: '/pipelines/task-instances',
+      path: `/${projectId}/${projectName}/pipelines/task-instances`,
     },
     {
       label: 'Jobs',
-      path: '/pipelines/jobs',
+      path: `/${projectId}/${projectName}/pipelines/jobs`,
     },
     {
       label: 'Code Artifacts',
-      path: '/pipelines/code-artifacts',
+      path: `/${projectId}/${projectName}/pipelines/code-artifacts`,
     },
     {
       label: 'Pools',
-      path: '/pipelines/pools',
+      path: `/${projectId}/${projectName}/pipelines/pools`,
     },
     {
       label: 'XComs',
-      path: '/pipelines/xcoms',
+      path: `/${projectId}/${projectName}/pipelines/xcoms`,
     },
   ];
 
@@ -78,4 +88,4 @@ const PipelineRunsContainer: React.FC<Props> = ({ children, current, toolBar }) 
   );
 };
 
-export default PipelineRunsContainer;
+export default withRouter(PipelineRunsContainer);

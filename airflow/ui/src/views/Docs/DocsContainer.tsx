@@ -18,19 +18,29 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const DocsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const DocsContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Providers',
-      path: '/docs/providers',
+      path: `/${projectId}/${projectName}/docs/providers`,
     },
     {
       label: 'Swagger API',
@@ -50,4 +60,4 @@ const DocsContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default DocsContainer;
+export default withRouter(DocsContainer);

@@ -44,10 +44,10 @@ import type {
   TriggerRunRequest,
 } from 'interfaces/api';
 
-axios.defaults.baseURL = `${process.env.API_URL}/api/experimental`;
-axios.interceptors.response.use(
-  (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
-);
+// axios.defaults.baseURL = 'https://exl.workbench.couture.ai/workbench-expt/api/v1';
+// axios.interceptors.response.use(
+//   (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
+// );
 
 // turn off logging, retry and refetch on tests
 const isTest = process.env.NODE_ENV === 'test';
@@ -64,7 +64,7 @@ const refetchInterval = isTest ? false : 1000;
 interface PageProps {
   offset?: number;
   limit?: number;
-  projectId: number;
+  projectId?: string;
   // project_id: number
 }
 
@@ -93,11 +93,11 @@ export function useDag(dagId: Dag['dagId']) {
   );
 }
 
-export function useDags({ offset = 0, limit }: PageProps) {
+export function useDags({ offset = 0, limit, projectId }: PageProps) {
   return useQuery<DagsResponse, Error>(
     ['dags', offset],
-    (): Promise<DagsResponse> => axios.get('/dags', {
-      params: { offset, limit },
+    (): Promise<DagsResponse> => axios.get('https://exl.workbench.couture.ai/workbench-expt/api/v1/dags', {
+      params: { offset, limit, projectId },
     }),
     {
       refetchInterval,

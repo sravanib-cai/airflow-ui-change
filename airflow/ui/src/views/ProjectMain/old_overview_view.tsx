@@ -5,16 +5,23 @@ React,
   // useState,
 } from 'react';
 import '../../static/buttonstyle.css';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 // import {
 //   Box,
 //   useColorModeValue,
 // } from '@chakra-ui/react';
 // import Popup from 'reactjs-popup';
-
 import 'font-awesome/css/font-awesome.min.css';
 
-const OverviewView2 = () => {
+interface Props {
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
+const OverviewView2: React.FC<Props> = ({ match }) => {
   // const fileRef = useRef();
   const buttonStyle = {
     backgroundColor: '#2D3748',
@@ -38,44 +45,24 @@ const OverviewView2 = () => {
     height: 'auto',
     display: 'inline-block',
   };
+
+  const space2 = {
+    width: '120px',
+    height: 'auto',
+    display: 'inline-block',
+  };
   const padding = {
     paddingBottom: '5px',
   };
-
   const padding2 = {
     paddingBottom: '100px',
   };
 
-  // const [fileName, setFileName] = useState('');
-  // const [fileSize, setFileSize] = useState('');
-  // const [fileDate, setFileDate] = useState('');
-
-  // function formatBytes(bytes, decimals = 2) {
-  //   if (bytes === 0) return '0 Bytes';
-  //   const k = 1024;
-  //   const dm = decimals < 0 ? 0 : decimals;
-  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
-  // }
-
-  // const handleChange = (e) => {
-  //   // const [file] = e.target.files;
-  //   // console.log(file);
-  //   setFileName(e.target.files[0].name);
-  //   setFileSize(formatBytes(e.target.files[0].size));
-  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-  //   // const item = {
-  //   //   name: {fileName},
-  //   //   size: {fileSize},
-  //   //   date: {fileDate}
-  //   // };
-  //   // this.setState({
-  //   //   rows: [...this.state.rows, item]
-  //   // });
-  // };
+  const padding1 = {
+    paddingBottom: '70px',
+  };
+  const projectId = match.params.id;
+  const projectName = match.params.name;
 
   // const linkColor = useColorModeValue('blue.200', 'blue.300');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
@@ -84,8 +71,10 @@ const OverviewView2 = () => {
     // <div style={btnRight}>
     <div>
       <div>
-        <div style={space} />
-        <Link to="/pipelines/create-and-update">
+        <div style={padding1} />
+        <div style={space2} />
+        {/* <Link to="/pipelines/create-and-update"> */}
+        <Link to={`/${projectId}/${projectName}/pipelines/create-and-update`}>
           <button className="btn-projects" type="button">
             Pipelines
             <div style={padding} />
@@ -108,7 +97,7 @@ const OverviewView2 = () => {
         </Link>
 
         <div style={space} />
-        <Link to="/developer/models-expts">
+        <Link to={`/${projectId}/${projectName}/developer/models-expts`}>
           <button className="btn-projects" type="button">
             Models and Experiments
             <div style={padding} />
@@ -131,7 +120,7 @@ const OverviewView2 = () => {
         </Link>
 
         <div style={space} />
-        <Link to="/developer/datasets">
+        <Link to={`/${projectId}/${projectName}/developer/datasets`}>
           <button className="btn-projects" type="button">
             Datasets
             <div style={padding} />
@@ -157,8 +146,8 @@ const OverviewView2 = () => {
       <div style={padding2} />
 
       <div>
-        <div style={space} />
-        <Link to="/developer/auto-api-builder">
+        <div style={space2} />
+        <Link to={`/${projectId}/${projectName}/developer/auto-api-builder`}>
           <button className="btn-projects" type="button">
             Auto API Builder
             <div style={padding} />
@@ -181,7 +170,7 @@ const OverviewView2 = () => {
         </Link>
 
         {/* <div style={space} />
-        <Link to="/config/clusterconfig/datalakeconfig">
+        <Link to={`/${projectId}/${projectName}/config/clusterconfig/datalakeconfig`}>
           <button className="btn-projects" type="button">
             Configurations
             <div style={padding} />
@@ -204,7 +193,7 @@ const OverviewView2 = () => {
         </Link> */}
 
         <div style={space} />
-        <Link to="/monitor/audit-logs">
+        <Link to={`/${projectId}/${projectName}/monitor/audit-logs`}>
           <button className="btn-projects" type="button">
             Monitor
             <div style={padding} />
@@ -227,7 +216,7 @@ const OverviewView2 = () => {
         </Link>
 
         <div style={space} />
-        <Link to="/security">
+        <Link to={`/${projectId}/${projectName}/security`}>
           <button className="btn-projects" type="button">
             Security
             <div style={padding} />
@@ -253,4 +242,4 @@ const OverviewView2 = () => {
   );
 };
 
-export default OverviewView2;
+export default withRouter(OverviewView2);

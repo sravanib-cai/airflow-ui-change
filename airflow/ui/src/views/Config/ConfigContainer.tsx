@@ -18,31 +18,41 @@
  */
 
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import SectionWrapper from 'components/SectionWrapper';
 
 interface Props {
   current: string;
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
-const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
+const ConfigContainer: React.FC<Props> = ({
+  children, current, toolBar, match,
+}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   const navItems = [
     {
       label: 'Cluster Config Groups',
-      path: '/config/clusterconfig',
+      path: `/${projectId}/${projectName}/config/clusterconfig`,
     },
     {
       label: 'Variables',
-      path: '/config/variables',
+      path: `/${projectId}/${projectName}/config/variables`,
     },
     {
       label: 'Connections',
-      path: '/config/connections',
+      path: `/${projectId}/${projectName}/config/connections`,
     },
     {
       label: 'Plugins',
-      path: '/config/plugins',
+      path: `/${projectId}/${projectName}/config/plugins`,
     },
   ];
 
@@ -58,4 +68,4 @@ const ConfigContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   );
 };
 
-export default ConfigContainer;
+export default withRouter(ConfigContainer);

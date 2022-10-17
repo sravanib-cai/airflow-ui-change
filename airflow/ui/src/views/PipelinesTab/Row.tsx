@@ -20,7 +20,7 @@
 // Components to customize cell elements in the PipelinesTable
 
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import {
   Tooltip,
   Switch,
@@ -96,15 +96,15 @@ export const TriggerDagButton: React.FC<{ dagId: string }> = ({ dagId }) => {
   );
 };
 
-export const DagName: React.FC<{ dagId: string }> = ({ dagId }) => (
-  <Link
-    as={RouterLink}
-    to={`/pipelines/${dagId}`}
-    fontWeight="bold"
-  >
-    {dagId}
-  </Link>
-);
+// export const DagName: React.FC<Props> = ({ dagId, match }) => (
+//   <Link
+//     as={RouterLink}
+//     to={`/pipelines/${dagId}`}
+//     fontWeight="bold"
+//   >
+//     {dagId}
+//   </Link>
+// );
 
 export const DagTag: React.FC<{ tag: DagTagType }> = ({ tag }) => (
   <Tag

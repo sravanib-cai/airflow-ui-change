@@ -23,7 +23,7 @@ import {
   Heading,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import AppContainer from 'components/AppContainer';
 import SectionNav from 'components/SectionNav';
@@ -36,15 +36,23 @@ interface Props {
     path: string;
   }[]
   toolBar?: React.ReactNode;
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
 }
 
 const SectionWrapper: React.FC<Props> = ({
-  children, currentSection, currentView, navItems, toolBar,
+  children, currentSection, currentView, navItems, toolBar, match,
 }) => {
   const heading = useColorModeValue('gray.400', 'gray.500');
   const border = useColorModeValue('gray.100', 'gray.700');
   const toolbarBg = useColorModeValue('white', 'gray.800');
   const linkColor = useColorModeValue('gray.400', 'gray.500');
+  const projectId = match.params.id;
+  const projectName = match.params.name;
   return (
     <AppContainer
       breadcrumb={(
@@ -58,7 +66,8 @@ const SectionWrapper: React.FC<Props> = ({
               color={linkColor}
               _hover={{ color: 'blue.200' }}
             >
-              <Link to="/ml-example/overview" color="currentColor">ML Example</Link>
+              {/* <Link to="/ml-example/overview" color="currentColor">ML Example</Link> */}
+              <Link to={`/${projectId}/${projectName}/overview`} color="currentColor">{projectName}</Link>
               {/* Change url to project name variable */}
             </Box>
             /
@@ -94,4 +103,4 @@ const SectionWrapper: React.FC<Props> = ({
   );
 };
 
-export default SectionWrapper;
+export default withRouter(SectionWrapper);

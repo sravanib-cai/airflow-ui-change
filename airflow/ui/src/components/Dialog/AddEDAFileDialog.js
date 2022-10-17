@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 import AddProjectDialogSchema from '../../modal/projectDialog';
 
-const AddProjectDialog = (props) => {
+const AddEDAFileDialog = (props) => {
   // const userStore = useSelector((store) => store.user);
   const { open, handleClose } = props;
   const [name, setName] = useState('');
@@ -27,12 +27,12 @@ const AddProjectDialog = (props) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    const data = {
+    const file = {
       name,
       // projectDescription,
     };
     console.log(AddProjectDialogSchema);
-    const { error } = AddProjectDialogSchema.validate(data);
+    const { error } = AddProjectDialogSchema.validate(file);
     if (error) {
       switch (error.details[0].context.key) {
         case 'name':
@@ -46,7 +46,6 @@ const AddProjectDialog = (props) => {
       }
     } else {
       setLoading(true);
-
       try {
         const token = 'write';
         // const token = userStore.user.access;
@@ -56,11 +55,11 @@ const AddProjectDialog = (props) => {
 
         const config = {
           method: 'POST',
-          url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
+          url: 'https://exl.workbench.couture.ai/workbench-expt/edaview/eda/sources/',
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          data: formData,
+          file: formData,
         };
 
         await axios(config);
@@ -88,12 +87,12 @@ const AddProjectDialog = (props) => {
         <AlertDialogContent>
           {loading && <Progress size="xs" isIndeterminate />}
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Add Project
+            Add a new s3a data source
           </AlertDialogHeader>
           <AlertDialogBody>
             <Input
               mb={2}
-              placeholder="Project Name"
+              placeholder="s3a://"
               autoFocus
               onChange={(e) => {
                 setName(e.target.value);
@@ -106,7 +105,7 @@ const AddProjectDialog = (props) => {
             />
             {errorState.name && (
               <Text color="error.dark" fontSize="xs">
-                * Project name is required
+                * File path is required
               </Text>
             )}
             {/* <Input
@@ -136,4 +135,4 @@ const AddProjectDialog = (props) => {
   );
 };
 
-export default AddProjectDialog;
+export default AddEDAFileDialog;

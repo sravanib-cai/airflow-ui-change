@@ -33,33 +33,34 @@ const ProjectsTable = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
-  const heading = ['Name', 'Project Description', 'Created By', 'Created On', 'Admin', 'Net Compute Usage', 'Last Modified'];
+  const heading = ['Name', 'Created On', 'Created By', 'Last Modified'];
   const defaultProjects = { };
   /* Change to project name variable */
   defaultProjects.name = 'ML Example';
-  defaultProjects.project_description = '-';
+  // defaultProjects.project_description = '-';
   defaultProjects.created_by = 'Lucky';
   defaultProjects.created_on = '12/03/2022';
   defaultProjects.admin = 'Lucky';
-  defaultProjects.net_usage = '3242.22 hrs';
+  // defaultProjects.net_usage = '3242.22 hrs';
   defaultProjects.last_modified = '23/08/2022';
 
   const projects1 = [defaultProjects];
   const fetchProjects = async () => {
     try {
-    //   const token = userStore.user.access;
+      // const token = userStore.user.access;
       const token = 'read';
       const config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_API_BASE_URL}/api/projects/`,
+        url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
 
       const response = await axios(config);
-      setProjects(response.data.response);
-    //   setProjects(defaultProjects);
+      // setProjects(response.data.response);
+      setProjects(response.data);
+      //   setProjects(defaultProjects);
     } catch (e) {
     //   setProjects(defaultProjects);
 
@@ -71,6 +72,12 @@ const ProjectsTable = () => {
     fetchProjects();
     // eslint-disable-next-line
       }, []);
+
+  useEffect(() => {
+    // fetchProjects();
+    console.log('projects', projects);
+    // eslint-disable-next-line
+      }, [projects]);
 
   const handleDeleteConfirm = async () => {
     setLoading(true);
@@ -87,16 +94,16 @@ const ProjectsTable = () => {
     } else {
       try {
         const token = userStore.user.access;
-        const formData = new FormData();
-        formData.append('name', deleteProject.data.name);
+        // const formData = new FormData();
+        // formData.append('name', deleteProject.data.name);
 
         const config = {
           method: 'DELETE',
-          url: `${process.env.REACT_APP_API_BASE_URL}/api/projects/`,
+          url: `https://exl.workbench.couture.ai/workbench-expt/api/experimental/project?project_id=${deleteProject.data.id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          data: formData,
+          // data: formData,
         };
 
         await axios(config);
@@ -117,7 +124,8 @@ const ProjectsTable = () => {
           <Flex w="100%" pb={0}>
             <Heading fontSize={20}>Projects</Heading>
             <Spacer />
-            {/* <IconButton variant="icon" onClick={() => setAddProject({ open: true, data: null })}>
+            {/* <IconButton variant="icon" onClick={() =>
+            setAddProject({ open: true, data: null })}>
               <AddRoundedIcon style={{ width: 24, height: 24 }} />
             </IconButton> */}
             <Button
@@ -130,10 +138,10 @@ const ProjectsTable = () => {
               + New Project
             </Button>
           </Flex>
-          <Box w="100%" h={300}>
+          <Box w="100%" h={500}>
             <ProjectTable
               heading={heading}
-              data={projects1}
+              data={projects}
               handleManageUsers={(data) => setManageUser({ open: true, data })}
               handleDelete={(data) => setDeleteProject({ open: true, data })}
             />
