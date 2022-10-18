@@ -31,7 +31,7 @@ import Table from 'components/Table';
 import 'reactjs-popup/dist/index.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { defaultConnections } from 'api/defaults';
-import { useConnections } from 'api';
+import { useConnections } from 'api/project_api';
 import ConnectionDeleteButton from './Row';
 
 const LIMIT = 25;

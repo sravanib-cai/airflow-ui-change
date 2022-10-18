@@ -142,17 +142,17 @@ const ProjectsTable = () => {
             <ProjectTable
               heading={heading}
               data={projects}
-              handleManageUsers={(data) => setManageUser({ open: true, data })}
+              // handleManageUsers={(data) => setManageUser({ open: true, data })}
               handleDelete={(data) => setDeleteProject({ open: true, data })}
             />
           </Box>
         </VStack>
       </Box>
-      <ManageUserAccessDialog
+      {/* <ManageUserAccessDialog
         open={manageUser.open}
         data={manageUser.data}
         handleClose={() => setManageUser({ open: false, data: null })}
-      />
+      /> */}
       <AddProjectDialog
         open={addProject.open}
         handleClose={() => setAddProject({ open: false, data: null })}

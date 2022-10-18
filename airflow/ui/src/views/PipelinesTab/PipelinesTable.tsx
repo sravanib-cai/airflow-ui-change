@@ -34,7 +34,7 @@ import {
 
 import Table from 'components/Table';
 import { defaultDags } from 'api/defaults';
-import { useDags } from 'api';
+import { useDags } from 'api/project_api';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import {
   PauseToggle, TriggerDagButton, DagTag,
@@ -68,7 +68,7 @@ const PipelinesTable: React.FC<Props> = ({ match }) => {
     data: { dags, totalEntries } = defaultDags,
     isLoading,
     error,
-  } = useDags({ limit: LIMIT, offset });
+  } = useDags({ limit: LIMIT, offset, projectId });
   // } = useDags({ limit: LIMIT, offset, projectId });
   // Show placeholders rows when data is loading for the first time
   const data = useMemo(

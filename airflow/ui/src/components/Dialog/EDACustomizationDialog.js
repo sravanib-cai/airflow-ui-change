@@ -101,7 +101,7 @@ const AddEDAFileDialog = (props) => {
         <AlertDialogContent>
           {loading && <Progress size="xs" isIndeterminate />}
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Add a new s3a data source
+            CUSTOMIZATION
           </AlertDialogHeader>
           <AlertDialogBody>
             <Input

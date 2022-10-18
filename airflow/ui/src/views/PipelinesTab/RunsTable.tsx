@@ -33,7 +33,7 @@ import {
 
 import Table from 'components/Table';
 import { defaultDags, defaultDagRuns } from 'api/defaults';
-import { useDags, useDagRuns } from 'api';
+import { useDags, useDagRuns } from 'api/project_api';
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 

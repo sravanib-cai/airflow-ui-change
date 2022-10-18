@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 // import Popup from 'reactjs-popup';
 import axios from 'axios';
+import EDATable from '../../components/Tables/EDATable';
 import 'font-awesome/css/font-awesome.min.css';
 import AddEDAFileDialog from '../../components/Dialog/AddEDAFileDialog';
 
@@ -65,7 +66,7 @@ const EDAView = () => {
       const token = 'read';
       const config = {
         method: 'GET',
-        url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
+        url: 'https://exl.workbench.couture.ai/workbench-expt/edaview/eda/sources/',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -74,6 +75,7 @@ const EDAView = () => {
       const response = await axios(config);
       // setFiles(response.data.response);
       setFiles(response.data);
+      console.log(files);
       //   setFiles(defaultProjects);
     } catch (e) {
     //   setFiles(defaultProjects);
@@ -96,6 +98,7 @@ const EDAView = () => {
   //   height: 'auto',
   //   display: 'inline-block',
   // };
+  const heading = ['Dataset', ''];
   const padding = {
     paddingBottom: '20px',
   };
@@ -137,19 +140,8 @@ const EDAView = () => {
             size="sm"
             mr="2"
           >
-            {/* <i class="fa fa-plus fa-fw" aria-hidden="true" /> */}
             File Upload
           </Button>
-          {/* <button style={buttonStyle} type="submit" onClick={() => fileRef.current.click()}>
-            File Upload
-          </button>
-          <input
-            ref={fileRef}
-            // onChange={handleChange}
-            multiple={false}
-            type="file"
-            hidden
-          /> */}
         </div>
       </div>
       <AddEDAFileDialog
@@ -170,8 +162,13 @@ const EDAView = () => {
           <button type="button" className="openbtn" onClick={() => openNav()}>&#9776; Processed Outputs</button>
         </div>
       </div>
-
-      <div className="table-responsive">
+      <Box w="100%" h={400}>
+        <EDATable
+          heading={heading}
+          data={files.sources}
+        />
+      </Box>
+      {/* <div className="table-responsive">
         <table className="table">
           <thead>
             <tr className="table-head">
@@ -198,13 +195,30 @@ const EDAView = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
       <div style={padding}>
-        <button type="button" className="btn">Generate Cross-File Visualizations</button>
+        <Button
+          // onClick={() => setAddFile({ open: true, data: null })}
+          colorScheme="blue"
+          size="sm"
+          mr="2"
+        >
+          Generate Cross-File Visualizations
+        </Button>
+        {/* <button type="button" className="btn">Generate Cross-File Visualizations</button> */}
         <div style={space} />
-        <button className="btn" style={shiftbtnRight} type="submit">
+        <Button
+          // onClick={() => setAddFile({ open: true, data: null })}
+          colorScheme="blue"
+          size="sm"
+          mr="4"
+          marginRight="5px"
+        >
           Generate Visualizations
-        </button>
+        </Button>
+        {/* <button className="btn" style={shiftbtnRight} type="submit">
+          Generate Visualizations
+        </button> */}
       </div>
 
       {/* <div className="button-container">

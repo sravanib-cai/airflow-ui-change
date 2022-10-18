@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import '../../static/buttonstyle.css';
 import {
-  // Button,
+  Button,
   Portal,
   // Box,
   // useColorModeValue,
@@ -24,18 +24,6 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const CreateUpdate = () => {
   const fileRef = useRef();
-  // const buttonStyle = {
-  //   backgroundColor: '#90cdf4',
-  //   color: '#1A202C',
-  //   borderRadius: '0.375rem',
-  //   fontWeight: '600',
-  //   height: '2rem',
-  //   minWidth: '2rem',
-  //   fontSize: '12px',
-  //   width: 'auto',
-  //   paddingLeft: '0.75rem',
-  //   paddingRight: '0.75rem',
-  // };
   const btnRight = {
     cssFloat: 'right',
   };
@@ -92,7 +80,13 @@ const CreateUpdate = () => {
       <div style={padding}>
         <Popover>
           <PopoverTrigger>
-            <button type="button" className="btn pull-right">Create new Pipeline</button>
+            <Button
+              colorScheme="blue"
+              size="sm"
+              mr="2"
+            >
+              Create new Pipeline
+            </Button>
           </PopoverTrigger>
           <Portal>
             <PopoverContent>
@@ -118,24 +112,28 @@ const CreateUpdate = () => {
               <PopoverFooter>
                 {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt"
                 data-dismiss="modal">Close</button> */}
-                <button type="submit" className="btn">Create</button>
+                <Button>
+                  Create
+                </Button>
               </PopoverFooter>
             </PopoverContent>
           </Portal>
         </Popover>
-        <div style={btnRight}>
-          <button className="btn pull-right" style={shiftbtnRight} type="submit" onClick={() => fileRef.current.click()}>
-            Upload Pipeline file(s)
-          </button>
-          <input
-            ref={fileRef}
+        <Button
+          onClick={() => fileRef.current.click()}
+          colorScheme="blue"
+          size="sm"
+          mr="5"
+        >
+          Upload Pipeline file(s)
+        </Button>
+        <Input
+          ref={fileRef}
             // onChange={handleChange}
-            multiple={false}
-            type="file"
-            hidden
-          />
-
-        </div>
+          multiple={false}
+          type="file"
+          hidden
+        />
       </div>
       <div style={padding} />
       <br />

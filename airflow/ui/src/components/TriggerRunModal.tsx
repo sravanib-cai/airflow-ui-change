@@ -33,7 +33,7 @@ import {
 } from '@chakra-ui/react';
 
 import type { Dag } from 'interfaces';
-import { useTriggerRun } from 'api';
+import { useTriggerRun } from 'api/project_api';
 
 interface Props {
   dagId: Dag['dagId'];

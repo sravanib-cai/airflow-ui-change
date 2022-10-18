@@ -270,7 +270,7 @@ button.close {
 .btn-projects {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 520;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -281,7 +281,7 @@ button.close {
   white-space: nowrap;
   padding: 5px 10px;
   width: 15rem;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.428571429;
   height: 10rem;
   min-width: 2rem;

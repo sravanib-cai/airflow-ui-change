@@ -29,7 +29,7 @@ import Table from 'components/Table';
 import 'reactjs-popup/dist/index.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { defaultAuditLogs } from 'api/defaults';
-import { useAuditLogs } from 'api';
+import { useAuditLogs } from 'api/project_api';
 
 const LIMIT = 25;
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);

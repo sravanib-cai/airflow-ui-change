@@ -124,6 +124,7 @@ const Table: React.FC<Props> = ({
             {allColumns.map((column) => (
               <Th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
+                // bg={`${bg}!important`}
               >
                 {column.render('Header')}
                 {column.isSorted && (
@@ -149,7 +150,7 @@ const Table: React.FC<Props> = ({
             return (
               <Tr
                 {...row.getRowProps()}
-                _odd={{ backgroundColor: oddColor }}
+                _even={{ backgroundColor: oddColor }}
                 _hover={{ backgroundColor: hoverColor }}
               >
                 {row.cells.map((cell) => (

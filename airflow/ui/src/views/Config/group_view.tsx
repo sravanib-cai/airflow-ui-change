@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../static/buttonstyle.css';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
   // Button,
   Portal,
@@ -22,10 +22,21 @@ import 'font-awesome/css/font-awesome.min.css';
 // import elephant from '../../components/icons/elephant.svg';
 // import diagramProject from '../../components/icons/diagram-project-solid.svg';
 
-const GroupView = () => {
+interface Props {
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
+
+const GroupView: React.FC<Props> = ({ match }) => {
   const shiftbtnRight = {
     marginRight: '5px',
   };
+  const projectId = match.params.id;
+  const projectName = match.params.name;
 
   const space = {
     width: '3px',
@@ -111,7 +122,7 @@ const GroupView = () => {
           </div>
         </Popup> */}
 
-        <Link to="/config/clusterconfig/datalakeconfig">
+        <Link to={`/${projectId}/${projectName}/config/clusterconfig/datalakeconfig`}>
           <button className="btn pull-right" style={shiftbtnRight} type="submit">
             Open default group
           </button>
@@ -197,7 +208,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-database fa-lg" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/config/clusterconfig/datalakeconfig" color="currentColor">Data Lake Config</Link>
+                  <Link to={`/${projectId}/${projectName}/config/clusterconfig/datalakeconfig`} color="currentColor">Data Lake Config</Link>
                   /
                 </Box>
               </td>
@@ -209,7 +220,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-cogs fa-lg" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/config/clusterconfig/sparkconfig" color="currentColor">Spark Config</Link>
+                  <Link to={`/${projectId}/${projectName}/config/clusterconfig/sparkconfig`} color="currentColor">Spark Config</Link>
                   /
                 </Box>
               </td>
@@ -221,7 +232,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-star-o fa-lg" style={{ transform: 'rotate(20deg)' }} aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/config/clusterconfig/sparkdependency" color="currentColor">Spark Dependency</Link>
+                  <Link to={`/${projectId}/${projectName}/config/clusterconfig/sparkdependency`} color="currentColor">Spark Dependency</Link>
                   /
                 </Box>
               </td>
@@ -233,7 +244,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-key fa-lg" aria-hidden="true" data-toggle="tooltip" title="View Kerberos Configuration" />
                   <div style={space} />
-                  <Link to="/config/clusterconfig/kerberosconfig" color="currentColor">Kerberos Config</Link>
+                  <Link to={`/${projectId}/${projectName}/config/clusterconfig/kerberosconfig`} color="currentColor">Kerberos Config</Link>
                   /
                 </Box>
               </td>
@@ -245,7 +256,7 @@ const GroupView = () => {
                 >
                   <i className="fa fa-arrows-v" aria-hidden="true" />
                   <div style={space} />
-                  <Link to="/config/clusterconfig/livyconfig" color="currentColor">Livy Config</Link>
+                  <Link to={`/${projectId}/${projectName}/config/clusterconfig/livyconfig`} color="currentColor">Livy Config</Link>
                   /
                 </Box>
               </td>
@@ -280,4 +291,4 @@ const GroupView = () => {
   );
 };
 
-export default GroupView;
+export default withRouter(GroupView);

@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader';
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-
+import AzureAuth from 'views/AzureAuth';
 import PrivateRoute from 'providers/auth/PrivateRoute';
 
 // import OauthLogin from 'views/OauthLogin';
@@ -74,6 +74,8 @@ const App = () => (
   <Switch>
     {/* <Redirect exact path="/" to="/login-oauth" />
     <PrivateRoute exact path="/login-oauth" component={OauthLogin} /> */}
+
+    {/* <Route path="/auth" component={AzureAuth} /> */}
     <Redirect exact path="/" to="/home" />
     <PrivateRoute exact path="/home" component={HomePage} />
 

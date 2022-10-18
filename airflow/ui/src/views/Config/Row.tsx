@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import { DeleteConnection } from 'api';
+import { DeleteConnection } from 'api/project_api';
 import {
   IconButton,
   Tooltip,

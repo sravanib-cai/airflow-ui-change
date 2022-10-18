@@ -29,7 +29,7 @@ import {
 
 import AppContainer from 'components/AppContainer';
 
-import { useDagRuns, useTaskInstances } from 'api';
+import { useDagRuns, useTaskInstances } from 'api/project_api';
 import { defaultDagRuns, defaultTaskInstances } from 'api/defaults';
 
 import type {

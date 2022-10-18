@@ -32,7 +32,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 
-import { useAddConnection } from 'api';
+import { useAddConnection } from 'api/project_api';
 
 interface Props {
   isOpen: boolean;

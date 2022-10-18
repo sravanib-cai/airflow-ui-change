@@ -33,7 +33,7 @@
     "react-dom": "^16",
     "react-hook-form": "^7.34.0",
     "react-hot-loader": "^4",
-    "react-icons": "^4.2.0",
+    "react-icons": "^4.6.0",
     "react-markdown": "^8.0.3 ",
     "react-query": "^3.12.3",
     "react-redux": "^8.0.2",

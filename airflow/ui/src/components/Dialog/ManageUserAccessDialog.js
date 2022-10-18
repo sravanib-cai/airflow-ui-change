@@ -18,7 +18,7 @@ import { ManageUserAccessSchema } from '../../modal/manageUserAccess';
 
 const ManageUserAccessDialog = (props) => {
   const userStore = useSelector((store) => store.user);
-
+  const { open, handleClose } = props;
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,9 +26,10 @@ const ManageUserAccessDialog = (props) => {
 
   const fetchUserData = async () => {
     try {
-      const token = userStore.user.access;
-      const projectUrl = `${process.env.REACT_APP_API_BASE_URL}/api/projects/${props.data.project_id}/`;
-      const usersUrl = `${process.env.REACT_APP_API_BASE_URL}/api/users/`;
+      // const token = userStore.user.access;
+      const token = 'read';
+      const projectUrl = `${process.env.API_URL}/api/experimental/project/${props.data.id}/`;
+      const usersUrl = `${process.env.API_URL}/api/v1/users/`;
       const config = {
         method: 'GET',
         headers: {
@@ -77,7 +78,7 @@ const ManageUserAccessDialog = (props) => {
         const token = userStore.user.access;
         const config = {
           method: 'PATCH',
-          url: `${process.env.REACT_APP_API_BASE_URL}/api/projects/${props.data.project_id}/users/`,
+          url: `${process.env.API_URL}/api/project/users/`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -96,7 +97,7 @@ const ManageUserAccessDialog = (props) => {
 
   return (
     <AlertDialog
-      isOpen={props.open}
+      isOpen={open}
       onClose={() => {
         if (!loading) {
           props.handleClose();
@@ -110,8 +111,8 @@ const ManageUserAccessDialog = (props) => {
             Manage User Access
           </AlertDialogHeader>
           <AlertDialogBody maxH={500} overflowY="auto">
-            {users.map((user, i) => (
-              <VStack key={i} alignItems="start">
+            {users.map((user) => (
+              <VStack key={user} alignItems="start">
                 <Checkbox
                   disabled={loading}
                   isChecked={
@@ -133,7 +134,7 @@ const ManageUserAccessDialog = (props) => {
             ))}
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={props.handleClose} variant="menu" disabled={loading}>
+            <Button onClick={handleClose} variant="menu" disabled={loading}>
               Cancel
             </Button>
             <Button variant="primary" ml={3} onClick={handleSubmit} disabled={loading}>

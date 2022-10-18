@@ -30,7 +30,7 @@ import type {
   Dag as DagType,
 } from 'interfaces';
 
-import { useDagDetails, useDag } from 'api';
+import { useDagDetails, useDag } from 'api/project_api';
 import { defaultDagDetails, defaultDag } from 'api/defaults';
 import RunsContainer from './RunsContainer';
 // import { FiCornerDownLeft } from 'react-icons/fi';

@@ -31,7 +31,7 @@ import {
 } from '@chakra-ui/react';
 
 import TriggerRunModal from 'components/TriggerRunModal';
-import { useSaveDag } from 'api';
+import { useSaveDag } from 'api/project_api';
 import { MdPlayArrow } from 'react-icons/md';
 import type { DagTag as DagTagType } from 'interfaces';
 
@@ -41,7 +41,7 @@ import type { DagTag as DagTagType } from 'interfaces';
 // } from 'interfaces';
 // import { defaultDags } from 'api/defaults';
 
-// import { useDag, useDagCode, useDags } from 'api';
+// import { useDag, useDagCode, useDags } from 'api/project_api';
 
 // interface RouterProps {
 //   match: { params: { owners: DagType['owners'] } }

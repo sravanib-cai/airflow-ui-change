@@ -29,8 +29,8 @@ interface Props {
 const HomeContainer: React.FC<Props> = ({ children, current, toolBar }) => {
   const navItems = [
     {
-      label: 'Home Page',
-      path: '/home',
+      label: 'Oauth Login',
+      path: '/Oauth',
     },
   ];
 

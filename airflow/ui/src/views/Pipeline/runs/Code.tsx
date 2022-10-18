@@ -28,7 +28,7 @@ import type {
 } from 'interfaces';
 // import { defaultDags } from 'api/defaults';
 
-import { useDag, useDagCode } from 'api';
+import { useDag, useDagCode } from 'api/project_api';
 import RunsContainer from './RunsContainer';
 
 interface RouterProps {

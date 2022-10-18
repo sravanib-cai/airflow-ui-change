@@ -27,6 +27,8 @@ import Login from 'views/Login';
 import DateProvider from 'providers/DateProvider';
 import { useAuthContext } from './context';
 
+// const PrivateRoute: FC<RouteProps> = (props) => <Login />;
+
 const PrivateRoute: FC<RouteProps> = (props) => {
   const { hasValidAuthToken } = useAuthContext();
   return hasValidAuthToken ? <DateProvider><Route {...props} /></DateProvider> : <Login />;
