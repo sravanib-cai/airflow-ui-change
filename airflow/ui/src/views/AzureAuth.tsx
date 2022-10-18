@@ -42,13 +42,13 @@ const AzureAuth: React.FC = () => {
 
     const config = {
       method: 'POST',
-      url: 'exl.workbench.couture.ai/workbench-expt/api/experimental/oauth_azure',
+      url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/oauth_azure',
       data: formData,
     };
 
     axios(config).then((response) => {
       console.log(response);
-      window.location.href = 'localhost:5000';
+      // window.location.href = 'localhost:5000';
     }).catch((error) => {
       console.log(error);
     });

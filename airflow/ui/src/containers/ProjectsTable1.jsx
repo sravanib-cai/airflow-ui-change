@@ -48,18 +48,19 @@ const ProjectsTable = () => {
   const fetchProjects = async () => {
     try {
       // const token = userStore.user.access;
-      const token = 'read';
+      // const token = 'read';
       const config = {
         method: 'GET',
         url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
       };
 
       const response = await axios(config);
       // setProjects(response.data.response);
-      setProjects(response.data);
+      setProjects(response.data.data);
+      console.log(response.data.data);
       //   setProjects(defaultProjects);
     } catch (e) {
     //   setProjects(defaultProjects);

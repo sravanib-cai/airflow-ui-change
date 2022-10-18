@@ -70,7 +70,10 @@ module.exports = {
     }),
     react({
       env: [
-        'WEBSERVER_URL'
+        'WEBSERVER_URL',
+        'REACT_APP_AZURE_ID',
+        'REACT_APP_CLIENT_ID',
+        'REACT_APP_REDIRECT_URI'
       ],
       html: {
         title: 'Couture Workbench',

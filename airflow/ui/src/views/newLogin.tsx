@@ -32,6 +32,7 @@ import {
   AlertIcon,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { FaMicrosoft } from 'react-icons/fa';
 // import { TfiMicrosoftAlt } from 'react-icons/tfi';
 import AppContainer from 'components/AppContainer';
@@ -39,12 +40,15 @@ import AppContainer from 'components/AppContainer';
 import { useAuthContext } from 'providers/auth/context';
 
 const Login: React.FC = () => {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login, error, loading } = useAuthContext();
 
   const azureRedirect = async () => {
-    window.location.href = `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_ID}/oauth2/v2.0/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_mode=query&scope=openid profile email`;
+    console.log(`https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_ID}/oauth2/v2.0/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_mode=query&scope=openid profile email`);
+    // window.location.href = `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_ID}/oauth2/v2.0/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_mode=query&scope=openid profile email`;
+    window.open(`https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_ID}/oauth2/v2.0/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_mode=query&scope=openid profile email`);
   };
 
   return (

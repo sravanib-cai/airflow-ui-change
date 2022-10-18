@@ -124,6 +124,7 @@ const Table: React.FC<Props> = ({
             {allColumns.map((column) => (
               <Th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
+                color="red.700"
                 // bg={`${bg}!important`}
               >
                 {column.render('Header')}
