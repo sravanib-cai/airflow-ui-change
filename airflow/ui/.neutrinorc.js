@@ -22,10 +22,10 @@
 */
 require('dotenv').config();
 const typescript = require('neutrinojs-typescript');
-const typescriptLint = require('neutrinojs-typescript-eslint');
+// const typescriptLint = require('neutrinojs-typescript-eslint');
 const react = require('@neutrinojs/react');
 const jest = require('@neutrinojs/jest');
-const eslint = require('@neutrinojs/eslint');
+// const eslint = require('@neutrinojs/eslint');
 const { resolve } = require('path');
 const copy = require('@neutrinojs/copy');
 
@@ -58,13 +58,13 @@ module.exports = {
     },
     typescript(),
     // Modify typescript config in .tsconfig.json
-    typescriptLint(),
-    eslint({
-      eslint: {
-        // Modify eslint config in .eslintrc.js config instead
-        useEslintrc: true,
-      },
-    }),
+    // typescriptLint(),
+    // eslint({
+    //   eslint: {
+    //     // Modify eslint config in .eslintrc.js config instead
+    //     useEslintrc: true,
+    //   },
+    // }),
     jest({
       moduleDirectories: ['node_modules', 'src'],
     }),

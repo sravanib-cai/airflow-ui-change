@@ -1,8 +1,8 @@
 import
 React,
 {
-  useRef,
-  // useState,
+// useRef,
+// useState,
 } from 'react';
 import '../../static/buttonstyle.css';
 import { Link, withRouter } from 'react-router-dom';
@@ -23,22 +23,22 @@ interface Props {
 }
 const OverviewView2: React.FC<Props> = ({ match }) => {
   // const fileRef = useRef();
-  const buttonStyle = {
-    backgroundColor: '#2D3748',
-    color: '#90cdf4',
-    borderRadius: '0.375rem',
-    fontWeight: '600',
-    height: '10rem',
-    minWidth: '5rem',
-    fontSize: '10px',
-    width: 'auto',
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
-    border: '#90cdf4',
-  };
-  const btnRight = {
-    cssFloat: 'right',
-  };
+  // const buttonStyle = {
+  //   backgroundColor: '#2D3748',
+  //   color: '#90cdf4',
+  //   borderRadius: '0.375rem',
+  //   fontWeight: '600',
+  //   height: '10rem',
+  //   minWidth: '5rem',
+  //   fontSize: '10px',
+  //   width: 'auto',
+  //   paddingLeft: '0.75rem',
+  //   paddingRight: '0.75rem',
+  //   border: '#90cdf4',
+  // };
+  // const btnRight = {
+  //   cssFloat: 'right',
+  // };
 
   const space = {
     width: '200px',

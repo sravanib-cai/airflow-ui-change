@@ -62,8 +62,8 @@ const ProjectTable = (props) => {
               </Td>
               {/* <Td>{item.project_description}</Td> */}
               <Td>{item.created_at}</Td>
-              <Td>{item.creatorUser}</Td>
-              <Td>{item.lastModified}</Td>
+              <Td>{item.creator_user}</Td>
+              <Td>{item.last_modified}</Td>
               {/* <Td>{item.net_usage}</Td> */}
               <Td>
                 <Menu>

@@ -20,30 +20,30 @@
 /*
 *  Linting config
 */
-module.exports = {
-  env: {
-    jest: true,
-  },
-  extends: ['airbnb-typescript', 'plugin:react-hooks/recommended'],
-  parserOptions: {
-    project: './tsconfig.json',
-  },
-  rules: {
-    'react/prop-types': 0,
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 0,
-    'arrow-body-style': 1,
-    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx', '.css'] }],
-    'react/jsx-one-expression-per-line': 1,
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-   ]
-  },
-};
+// module.exports = {
+//   env: {
+//     jest: true,
+//   },
+//   extends: ['airbnb-typescript', 'plugin:react-hooks/recommended'],
+//   parserOptions: {
+//     project: './tsconfig.json',
+//   },
+//   rules: {
+//     'react/prop-types': 0,
+//     'react/react-in-jsx-scope': 'off',
+//     'react/jsx-props-no-spreading': 0,
+//     'arrow-body-style': 1,
+//     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', '.ts', '.tsx', '.css'] }],
+//     'react/jsx-one-expression-per-line': 1,
+//     "import/extensions": [
+//       "error",
+//       "ignorePackages",
+//       {
+//         "js": "never",
+//         "jsx": "never",
+//         "ts": "never",
+//         "tsx": "never"
+//       }
+//    ]
+//   },
+// };
