@@ -1,151 +1,161 @@
 import React, {
   useRef,
-  // useState,
+  useState,
 } from 'react';
-import '../../static/buttonstyle.css';
 import {
   Button,
-  Portal,
-  // Box,
-  // useColorModeValue,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
+  Box,
+  Spacer,
+  Flex,
+  Text,
+  Grid,
+  GridItem,
+  Heading,
+  HStack,
+  VStack,
+  Textarea,
+  CircularProgress,
   Input,
-  // PopoverAnchor,
+  useToast
 } from '@chakra-ui/react';
-import 'reactjs-popup/dist/index.css';
-
+import CreatePipelineDialog from 'components/Dialog/CreatePipelineDialog';
+import Editor from 'components/Editor'
+import SaveIcon from '@mui/icons-material/Save';
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
 
 const CreateUpdate = () => {
-  const fileRef = useRef();
-  const btnRight = {
-    cssFloat: 'right',
+  const [createPipeline, setCreatePipeline] = useState({ open: false, data: null });
+  const [step, setStep] = useState(0);
+  const [fileName, setFileName] = useState("");
+  const [fileData, setFileData] = useState("");
+  const [reviewLoading, setReviewLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const hiddenFileInput = useRef(null);
+  const toast = useToast();
+
+  const handleCreatePipeline = (isStarter) => {
+    setStep(1);
   };
 
-  // const [fileName, setFileName] = useState('');
-  // const [fileSize, setFileSize] = useState('');
-  // const [fileDate, setFileDate] = useState('');
-
-  // function formatBytes(bytes, decimals = 2) {
-  //   if (bytes === 0) return '0 Bytes';
-  //   const k = 1024;
-  //   const dm = decimals < 0 ? 0 : decimals;
-  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
-  // }
-
-  const shiftbtnRight = {
-    marginRight: '5px',
+  const handleReviewAndSave = () => {
+    setReviewLoading(true);
+    setTimeout(() => {
+      setStep(2);
+      setReviewLoading(false);
+    }, 2000);
   };
 
-  // const handleChange = (e) => {
-  //   const [file] = e.target.files;
-  //   // console.log(file);
-  //   setFileName(e.target.files[0].name);
-  //   setFileSize(formatBytes(e.target.files[0].size));
-  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-  //   // const item = {
-  //   //   name: {fileName},
-  //   //   size: {fileSize},
-  //   //   date: {fileDate}
-  //   // };
-  //   // this.setState({
-  //   //   rows: [...this.state.rows, item]
-  //   // });
-  // };
-
-  // const space = {
-  //   width: '3px',
-  //   height: 'auto',
-  //   display: 'inline-block',
-  // };
-  const padding = {
-    paddingBottom: '20px',
+  const handleSave = () => {
+    setTimeout(() => {
+      setStep(2);
+    }, 2000);
   };
-  // const linkColor = useColorModeValue('blue.200', 'blue.300');
-  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
+
+  const handleBack = () => {
+    setStep(1);
+  };
+
+  const handleUploadClick = () => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleFileUploadChange = (event) => {
+    const fileUploadData = event.target.files[0];
+    if (fileUploadData) {
+      const fileUploadname = event.target.files[0].name;
+      setIsUploading(true);
+      setTimeout(()=>{
+        setIsUploading(false);
+        toast({
+          title: 'Success',
+          description: 'File Uploaded!',
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        })
+        setFileName(fileUploadname.split('.').slice(0, -1).join('.'));
+        fileUploadData.text().then((res) => {
+          setFileData(res);
+          setStep(1);
+        })
+        setIsUploading(false);
+      },1500);
+    }
+    // const data = new FormData();
+    // data.append('file', event.target.files[0]);
+    // const config = {
+    //   method: 'POST',
+    //   url: `data/multiple/`,
+    //   data: data  
+    // };
+
+    // axios(config)
+    //   .then((response) => {
+    //     setIsUploading(false);
+    //     setStep(1);
+    //     toast({
+    //       title: 'Success',
+    //       description: 'File Uploaded!',
+    //       status: 'success',
+    //       duration: 9000,
+    //       isClosable: true
+    //     })
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     toast({
+    //       title: 'Error',
+    //       description: 'Some Error Occured!',
+    //       status: 'error',
+    //       duration: 9000,
+    //       isClosable: true
+    //     })
+    //   })
+  };
 
   return (
-    // <div style={btnRight}>
-    <div>
-      <div style={padding}>
-        <Popover>
-          <PopoverTrigger>
-            <Button
-              colorScheme="blue"
-              size="sm"
-              mr="2"
-            >
-              Create new Pipeline
-            </Button>
-          </PopoverTrigger>
-          <Portal>
-            <PopoverContent>
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader>Create new Pipeline</PopoverHeader>
-              <PopoverBody>
-                <form method="post" className="form-group">
-                  <div className="modal-body">
-                    <label htmlFor="name">
-                      <input type="text" name="name" className="form-control" aria-describedby="helpBlock" />
-                      Enter Pipeline name
-                    </label>
-                  </div>
-                </form>
-                <span id="helpBlock" className="help-block">
-                  Pipeline name can contain characters
-                  <code>A-Z, a-z, _, -, 0-9</code>
-                  . No need to put .py in the end.
-                </span>
-                {/* <input type="checkbox">Insert starter content in file.</input> */}
-              </PopoverBody>
-              <PopoverFooter>
-                {/* <button type="button" style={shiftbtnRight} className="btn btn-dflt"
-                data-dismiss="modal">Close</button> */}
-                <Button>
-                  Create
-                </Button>
-              </PopoverFooter>
-            </PopoverContent>
-          </Portal>
-        </Popover>
+    <>
+    {step === 0 ? 
+    <Box>
+      <Input
+        ref={hiddenFileInput}
+        type="file"
+        hidden
+        accept=".py"
+        onChange={handleFileUploadChange}
+      />
+      <Flex pb="20px">
+        <Spacer />
         <Button
-          onClick={() => fileRef.current.click()}
           colorScheme="blue"
           size="sm"
-          mr="5"
+          mr="2"
+          onClick={handleUploadClick}
+          disabled={isUploading}
         >
-          Upload Pipeline file(s)
+        {!isUploading ? `Upload pipeline file(s)` : `Uploading...`}
+        {isUploading && <CircularProgress size="20px" isIndeterminate ml={2} />}
         </Button>
-        <Input
-          ref={fileRef}
-            // onChange={handleChange}
-          multiple={false}
-          type="file"
-          hidden
-        />
-      </div>
-      <div style={padding} />
-      <br />
-      <div className="input-group">
+
+        <Button
+          size="sm"
+          mr="2"
+          onClick={() => setCreatePipeline({ open: true, data: null })}
+        >
+          Create new Pipeline
+        </Button>
+      </Flex>
+      <Box pb="20px"/>
+      <Box className="input-group">
         <span className="input-group-addon">Search file: </span>
-        <div className="search-form-width">
+        <Box className="search-form-width">
           <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
-        </div>
-      </div>
+        </Box>
+      </Box>
       <br />
-      <div className="table-responsive">
+      <Box className="table-responsive">
         <table className="table" id="filesTable">
           <thead>
             <tr className="table-head">
@@ -163,9 +173,9 @@ const CreateUpdate = () => {
               <td colSpan="2" className="col-sm-2">Fri Aug 19 2022</td>
               <td colSpan="2" className="col-sm-2">1.52 KB</td>
               <td colSpan="1" className="col-sm-1">
-                <div>
+                <Box>
                   <i className="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download" />
-                </div>
+                </Box>
               </td>
               <td colSpan="1" className="col-sm-1">
                 <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" data-toggle="tooltip" title="Delete File" />
@@ -173,8 +183,85 @@ const CreateUpdate = () => {
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
+      </Box>
+      <CreatePipelineDialog
+      open={createPipeline.open}
+      handleClose={() => setCreatePipeline({ open: false, data: null })}
+      handleCreate={handleCreatePipeline}
+      fileName={fileName}
+      setFileName={setFileName}
+      />
+    </Box> : step === 1 ? 
+    <Box>
+      <Box pb="20px">
+        <Heading>{`${fileName}.py`}</Heading>
+      </Box>
+      <Grid templateColumns="repeat(6, 1fr)">
+        <GridItem colSpan={4}>
+          <HStack pb="10px">
+          <Text>Edit Code</Text>
+          <Spacer />
+          <Button 
+            onClick={handleReviewAndSave}
+            disabled={reviewLoading}
+          >
+          Review & Save
+          {reviewLoading && <CircularProgress size="20px" isIndeterminate ml={2} />}
+          </Button>
+          </HStack>
+          <Editor
+            fileName={fileName}
+            setFileName={setFileName}
+            setFileData={setFileData}
+            fileData={fileData}
+          />
+        </GridItem>
+        <GridItem>
+          <VStack>
+            <Text>TBD....</Text>
+          </VStack>
+        </GridItem>
+      </Grid>
+    </Box>
+      :
+      <Box>
+      <Box pb="20px">
+        <Heading>{`${fileName}.py`}</Heading>
+      </Box>
+      <Box>
+        <HStack pb="10px">
+          <Text>Review Changes</Text>
+          <Spacer />
+          <Button
+            mr="5"
+            onClick={handleBack}
+          >
+          <KeyboardBackspaceRoundedIcon mr="5" />
+          Back to Edit Mode
+          </Button>
+          <Button 
+          onClick={handleSave}>
+          Save Code
+          <SaveIcon ml={2} />
+          </Button>
+        </HStack>
+      </Box>
+      <Grid templateColumns="repeat(2, 1fr)">
+        <GridItem mr="5" colSpan={1}>
+          <Textarea h="100%"/>
+        </GridItem>
+        <GridItem>
+          <Editor
+            fileName={fileName}
+            setFileName={setFileName}
+            setFileData={setFileData}
+            fileData={fileData}
+          />
+        </GridItem>
+      </Grid>
+    </Box>
+      }
+    </>
   );
 };
 

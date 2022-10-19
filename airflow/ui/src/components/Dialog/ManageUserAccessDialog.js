@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   AlertDialog,
   AlertDialogOverlay,
@@ -12,9 +12,9 @@ import {
   Checkbox,
   VStack,
   useToast,
-} from '@chakra-ui/react';
-import axios from 'axios';
-import { ManageUserAccessSchema } from '../../modal/manageUserAccess';
+} from "@chakra-ui/react";
+import axios from "axios";
+import { ManageUserAccessSchema } from "../../modal/manageUserAccess";
 
 const ManageUserAccessDialog = (props) => {
   const userStore = useSelector((store) => store.user);
@@ -27,28 +27,31 @@ const ManageUserAccessDialog = (props) => {
   const fetchUserData = async () => {
     try {
       // const token = userStore.user.access;
-      const token = 'read';
-      const projectUrl = `${process.env.API_URL}/api/experimental/project/${props.data.id}/`;
-      const usersUrl = `${process.env.API_URL}/api/v1/users/`;
+      const token = "read";
+      const projectUrl = `https://exl.workbench.couture.ai/someuri/api/experimental/project/user?project_id=${props.data.id}`;
+      const usersUrl = `https://exl.workbench.couture.ai/someuri/api/v1/users`;
       const config = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        method: "GET",
       };
 
       const response = await axios.all([
-        axios({ ...config, url: projectUrl }),
+        // axios({ ...config, url: projectUrl }),
         axios({ ...config, url: usersUrl }),
       ]);
 
-      const projectUsers = response[0].data.users;
-      const allUsers = response[1].data.users;
+      // console.log(response[0]);
+      // console.log(response[1]);
 
-      setSelectedUsers(projectUsers);
+      // const projectUsers = response[0].data.users;
+      const allUsers = response[0].data.users;
+
+      setSelectedUsers(allUsers.map((user) => ({ ...user, user_id: "" })));
       setUsers(allUsers);
       setLoading(false);
     } catch (e) {
+      console.log(e);
+      setLoading(false);
+
       // TODO: handle error here
     }
   };
@@ -62,36 +65,25 @@ const ManageUserAccessDialog = (props) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const userIdData = selectedUsers.map((user) => Number(user.user_id));
-    const { error } = ManageUserAccessSchema.validate(userIdData);
+    const userIdData = selectedUsers.filter((user) => Number(user.user_id) > 0);
+    const idArr = userIdData.map((user) => user.id);
+    try {
+      const config = {
+        method: "POST",
+        url: `https://exl.workbench.couture.ai/someuri/api/experimental/project/user`,
+        data: {
+          users: idArr,
+          projects: [props.data.id],
+        },
+      };
+      await axios(config);
+      setLoading(false);
+      props.handleClose();
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
 
-    if (error) {
-      toast({
-        title: 'Error',
-        description: 'Invalid users selected',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      });
-    } else {
-      try {
-        const token = userStore.user.access;
-        const config = {
-          method: 'PATCH',
-          url: `${process.env.API_URL}/api/project/users/`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          data: {
-            users: userIdData,
-          },
-        };
-        await axios(config);
-        setLoading(false);
-        props.handleClose();
-      } catch (e) {
-        // TODO: handle error here
-      }
+      // TODO: handle error here
     }
   };
 
@@ -112,18 +104,23 @@ const ManageUserAccessDialog = (props) => {
           </AlertDialogHeader>
           <AlertDialogBody maxH={500} overflowY="auto">
             {users.map((user) => (
-              <VStack key={user} alignItems="start">
+              <VStack key={user.id} alignItems="start">
                 <Checkbox
                   disabled={loading}
                   isChecked={
-                    selectedUsers.filter((key) => key.user_id === user.user_id).length !== 0
+                    selectedUsers.filter((key) => key.user_id === user.id)
+                      .length !== 0
                   }
                   onChange={(e) => {
                     if (e.target.checked) {
-                      setSelectedUsers([...selectedUsers, user]);
+                      const newUser = { ...user, user_id: user.id };
+                      setSelectedUsers([...selectedUsers, newUser]);
                     } else {
+                      console.log("clicked");
                       setSelectedUsers([
-                        ...selectedUsers.filter((key) => key.user_id !== user.user_id),
+                        ...selectedUsers.filter(
+                          (key) => key.user_id !== user.id
+                        ),
                       ]);
                     }
                   }}
@@ -137,7 +134,12 @@ const ManageUserAccessDialog = (props) => {
             <Button onClick={handleClose} variant="menu" disabled={loading}>
               Cancel
             </Button>
-            <Button variant="primary" ml={3} onClick={handleSubmit} disabled={loading}>
+            <Button
+              variant="primary"
+              ml={3}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
               Confirm
             </Button>
           </AlertDialogFooter>

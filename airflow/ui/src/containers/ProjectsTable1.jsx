@@ -4,7 +4,6 @@ import {
   Box,
   Flex,
   Heading,
-  // IconButton,
   Button,
   Spacer,
   VStack,
@@ -25,7 +24,6 @@ import { ProjectDeleteSchema } from '../modal/projectDelete';
 const ProjectsTable = () => {
 // const ProjectsTable: React.FC = () => {
   const userStore = useSelector((store) => store.user);
-
   const [projects, setProjects] = useState([]);
   const [deleteProject, setDeleteProject] = useState({ open: false, data: null });
   const [addProject, setAddProject] = useState({ open: false, data: null });
@@ -51,7 +49,7 @@ const ProjectsTable = () => {
       // const token = 'read';
       const config = {
         method: 'GET',
-        url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/project',
+        url: 'https://exl.workbench.couture.ai/someuri/api/experimental/project',
         // headers: {
         //   Authorization: `Bearer ${token}`,
         // },
@@ -64,7 +62,6 @@ const ProjectsTable = () => {
       //   setProjects(defaultProjects);
     } catch (e) {
     //   setProjects(defaultProjects);
-
       // TODO: handle error here
     }
   };
@@ -143,17 +140,17 @@ const ProjectsTable = () => {
             <ProjectTable
               heading={heading}
               data={projects}
-              // handleManageUsers={(data) => setManageUser({ open: true, data })}
+              handleManageUsers={(data) => setManageUser({ open: true, data })}
               handleDelete={(data) => setDeleteProject({ open: true, data })}
             />
           </Box>
         </VStack>
       </Box>
-      {/* <ManageUserAccessDialog
+      <ManageUserAccessDialog
         open={manageUser.open}
         data={manageUser.data}
         handleClose={() => setManageUser({ open: false, data: null })}
-      /> */}
+      />
       <AddProjectDialog
         open={addProject.open}
         handleClose={() => setAddProject({ open: false, data: null })}
