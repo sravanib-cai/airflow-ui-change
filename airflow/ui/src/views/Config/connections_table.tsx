@@ -40,7 +40,7 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
   connectionId: <Progress size="lg" isIndeterminate data-testid="connections-loading" />,
-  connType: '',
+  conn_type: '',
   description: '',
   host: '',
   login: '',
@@ -52,7 +52,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const ConnectionsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { connections, totalEntries } = defaultConnections,
+    data: { data: {connections, totalEntries} } = defaultConnections,
     isLoading,
     error,
   } = useConnections({ limit: LIMIT, offset });
@@ -65,14 +65,14 @@ const ConnectionsTable: React.FC = () => {
           ? skeletonLoader
           : connections.map((c) => ({
             ...c,
-            connectionId: c.connectionId,
-            connType: c.connType,
+            connectionId: c.connection_id,
+            conn_type: c.conn_type,
             description: c.description,
             host: c.host,
             login: c.login,
             port: c.port,
             schema: c.schema,
-            delete: <ConnectionDeleteButton connectionId={c.connectionId} />,
+            delete: <ConnectionDeleteButton connectionId={c.connection_id} />,
           })));
       }
       return [];
@@ -84,11 +84,11 @@ const ConnectionsTable: React.FC = () => {
     () => [
       {
         Header: 'Connection Id',
-        accessor: 'connectionId',
+        accessor: 'connection_id',
       },
       {
         Header: 'Connection Type',
-        accessor: 'connType',
+        accessor: 'conn_type',
       },
       {
         Header: 'Description',
@@ -119,7 +119,7 @@ const ConnectionsTable: React.FC = () => {
   );
   // const {
   //   data: connections = {
-  //     ConnId: '', ConnType: '', Description: '', Host: '',
+  //     ConnId: '', Conn_type: '', Description: '', Host: '',
   //   },
   // } = useConnections({ limit: LIMIT, offset });
 

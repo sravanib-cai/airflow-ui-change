@@ -47,8 +47,8 @@ export interface AuditLog {
 }
 
 export interface Connection {
-  connectionId: string,
-  connType: string,
+  connection_id: string,
+  conn_type: string,
   description: string,
   host: string,
   login: string,
@@ -159,10 +159,10 @@ export interface Provider {
 export interface Pool {
   name: string,
   description: string,
-  occupiedSlots: number,
-  openSlots: number,
-  queuedSlots: number,
-  runningSlots: number,
+  occupied_slots: number,
+  open_slots: number,
+  queued_slots: number,
+  running_slots: number,
   slots: number,
 }
 

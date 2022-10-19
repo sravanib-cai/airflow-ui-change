@@ -42,7 +42,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const VariablesTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { variables, totalEntries } = defaultVariables,
+    data: { data: {variables, totalEntries} } = defaultVariables,
     isLoading,
     error,
   } = useVariables({ limit: LIMIT, offset });

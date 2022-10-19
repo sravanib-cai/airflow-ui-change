@@ -27,6 +27,7 @@
     "jquery": "^1.2.3",
     "json-schema": "^0.4.0",
     "moment-timezone": "^0.5.34",
+    "prism-react-renderer": "^1.3.5",
     "popper.js": "^1.14.3",
     "react": "^16",
     "react-dom": "^16",
@@ -38,6 +39,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.0",
+    "react-simple-code-editor": "^0.13.0",
     "react-table": "^7.7.0",
     "reactjs-popup": "^2.0.5",
     "redux": "^4.2.0",
@@ -69,5 +71,5 @@
     "webpack-cli": "^3",
     "webpack-dev-server": "^3"
   },
-  "homepage": "/something"
+  "homepage": "/dscw"
 }

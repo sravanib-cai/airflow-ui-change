@@ -23,14 +23,14 @@ import type {
 
 export const defaultVersion = { version: '', gitVersion: '' };
 
-export const defaultDags = { dags: [], totalEntries: 0 };
+export const defaultDags = { data: {dags: [], totalEntries: 0} };
 export const defaultAuditLogs = { eventLogs: [], totalEntries: 0 };
 export const defaultConnections = { data: {connections: [], totalEntries: 0} };
-export const defaultPlugins = { plugins: [], totalEntries: 0 };
-export const defaultPools = { pools: [], totalEntries: 0 };
+export const defaultPlugins = { data: {plugins: [], totalEntries: 0 } };
+export const defaultPools = { data: {pools: [], totalEntries: 0} };
 export const defaultProjects = { projects: [], totalEntries: 0 };
 export const defaultProviders = { providers: [], totalEntries: 0 };
-export const defaultVariables = { variables: [], totalEntries: 0 };
+export const defaultVariables = { data: {variables: [], totalEntries: 0} };
 export const defaultDag = <Dag>{};
 export const defaultDagDetails = <DagDetails>{};
 export const defaultDagRuns = { dagRuns: [], totalEntries: 0 };

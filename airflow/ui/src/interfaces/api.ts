@@ -30,23 +30,39 @@ export interface ProjectsResponse extends Entries {
 }
 
 export interface DagsResponse extends Entries {
-  dags: Dag[];
+  data: {
+    dags: Dag[];
+    totalEntries: Number;
+  }
 }
 
 export interface ConnectionsResponse extends Entries {
-  connections: Connection[];
+  data: {
+    connections: Connection[];
+    totalEntries: Number;
+  }
 }
 
 export interface AuditLogsResponse extends Entries {
-  eventLogs: AuditLog[];
+  data: {
+    eventLogs: AuditLog[];
+    totalEntries: Number;
+  }
 }
 
 export interface PluginsResponse extends Entries {
-  plugins: Plugin[];
+
+  data: {
+    plugins: Plugin[];
+    totalEntries: Number;
+  }
 }
 
 export interface VariablesResponse extends Entries {
-  variables: Variable[];
+  data: {
+    variables: Variable[];
+    totalEntries: Number;
+  }
 }
 
 export interface DagResponse{
@@ -62,7 +78,11 @@ export interface DagRunsResponse extends Entries {
 }
 
 export interface PoolsResponse extends Entries {
-  pools: Pool[];
+  data: {
+    pools: Pool[];
+    totalEntries: Number;
+  }
+
 }
 
 export interface ProvidersResponse extends Entries {

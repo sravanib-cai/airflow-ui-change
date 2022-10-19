@@ -65,10 +65,11 @@ const PipelinesTable: React.FC<Props> = ({ match }) => {
   const projectName = match.params.name;
   const [offset, setOffset] = useState(0);
   const {
-    data: { dags, totalEntries } = defaultDags,
+    data: { data: {dags, totalEntries} } = defaultDags,
     isLoading,
     error,
   } = useDags({ limit: LIMIT, offset, projectId });
+  console.log('useDags', useDags({ limit: LIMIT, offset, projectId }))
   // } = useDags({ limit: LIMIT, offset, projectId });
   // Show placeholders rows when data is loading for the first time
   const data = useMemo(

@@ -36,7 +36,7 @@ import theme from './theme';
 const queryClient = new QueryClient();
 
 render(
-  <BrowserRouter basename="/something">
+  <BrowserRouter basename="/dscw">
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>

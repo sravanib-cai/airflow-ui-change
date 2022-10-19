@@ -48,7 +48,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const PoolsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { pools, totalEntries } = defaultPools,
+    data: { data: {pools, totalEntries} } = defaultPools,
     isLoading,
     error,
   } = usePools({ limit: LIMIT, offset });
@@ -61,11 +61,11 @@ const PoolsTable: React.FC = () => {
           : pools.map((p) => ({
             ...p,
           name: p.name,
-          description: p.description,
-          occupiedSlots: p.occupiedSlots,
-          openSlots: p.openSlots,
-          queuedSlots: p.queuedSlots,
-          runningSlots: p.runningSlots,
+          // description: p.description,
+          occupiedSlots: p.occupied_slots,
+          openSlots: p.open_slots,
+          queuedSlots: p.queued_slots,
+          runningSlots: p.running_slots,
           slots: p.slots,
           })));
       }
@@ -80,10 +80,10 @@ const PoolsTable: React.FC = () => {
         Header: 'Pool',
         accessor: 'name',
       },
-      {
-        Header: 'Description',
-        accessor: 'description',
-      },
+      // {
+      //   Header: 'Description',
+      //   accessor: 'description',
+      // },
       {
         Header: 'Occupied Slots',
         accessor: 'occupiedSlots',
