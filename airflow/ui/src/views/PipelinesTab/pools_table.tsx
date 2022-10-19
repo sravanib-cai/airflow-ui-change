@@ -52,20 +52,25 @@ const PoolsTable: React.FC = () => {
     isLoading,
     error,
   } = usePools({ limit: LIMIT, offset });
-
   const data = useMemo(
-    () => (isLoading && !pools.length
-      ? skeletonLoader
-      : pools.map((p) => ({
-        ...p,
-        name: p.name,
-        description: p.description,
-        occupiedSlots: p.occupiedSlots,
-        openSlots: p.openSlots,
-        queuedSlots: p.queuedSlots,
-        runningSlots: p.runningSlots,
-        slots: p.slots,
-      }))),
+    () => {
+      // const { pools } = defaultAuditLogs;
+      if (pools) {
+        return (isLoading && pools && !pools.length
+          ? skeletonLoader
+          : pools.map((p) => ({
+            ...p,
+          name: p.name,
+          description: p.description,
+          occupiedSlots: p.occupiedSlots,
+          openSlots: p.openSlots,
+          queuedSlots: p.queuedSlots,
+          runningSlots: p.runningSlots,
+          slots: p.slots,
+          })));
+      }
+      return [];
+    },
     [pools, isLoading, offset],
   );
 

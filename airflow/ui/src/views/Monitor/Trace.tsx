@@ -17,18 +17,44 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 // import { Heading } from '@chakra-ui/react';
-
+import { Spinner } from '@chakra-ui/react';
 import MonitorContainer from './MonitorContainer';
 
-const Trace: React.FC = () => (
-  <MonitorContainer current="Trace">
-    {/* <Heading as="h5" size="md">Notebooks</Heading> */}
-    <div>
-      <iframe title="Distributed Tracing" src="http://exl.workbench.couture.ai/trace/" height="600" width="100%" />
-    </div>
-  </MonitorContainer>
-);
+const Trace: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const hideSpinner = () => {
+    // setIsLoading((current) => !current);
+    setIsLoading(false);
+  };
+  return (
+    <MonitorContainer current="Trace">
+      {/* <Heading as="h5" size="md">Trace</Heading> */}
+      <div>
+        {isLoading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            left="50%"
+            top="50%"
+            margin="300px 0 0 600px"
+          />
+        ) : null}
+        <iframe
+          title="Distributed Tracing"
+          src={process.env.TRACE_URL}
+          height="600"
+          width="100%"
+          onLoad={hideSpinner}
+          frameBorder="0"
+        />
+      </div>
+    </MonitorContainer>
+  );
+};
 
 export default Trace;

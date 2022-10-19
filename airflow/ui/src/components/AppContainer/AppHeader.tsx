@@ -83,7 +83,7 @@ const AppHeader: React.FC<Props> = ({ bodyBg, overlayBg, breadcrumb }) => {
           <ApacheAirflowLogo />
         </Link>
       )}
-      {hasValidAuthToken && (
+      {/* {hasValidAuthToken && ( */}
         <Flex align="center">
           <TimezoneDropdown />
           <Menu>
@@ -116,7 +116,7 @@ const AppHeader: React.FC<Props> = ({ bodyBg, overlayBg, breadcrumb }) => {
             </MenuList>
           </Menu>
         </Flex>
-      )}
+      {/* )} */}
     </Flex>
   );
 };

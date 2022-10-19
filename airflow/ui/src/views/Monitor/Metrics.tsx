@@ -17,18 +17,44 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 // import { Heading } from '@chakra-ui/react';
-
+import { Spinner } from '@chakra-ui/react';
 import MonitorContainer from './MonitorContainer';
 
-const Metrics: React.FC = () => (
-  <MonitorContainer current="Metrics">
-    {/* <Heading as="h5" size="md">Metrics</Heading> */}
-    <div>
-      <iframe title="Metrics Dashboards" src="http://exl.workbench.couture.ai/metrics/" height="600" width="100%" />
-    </div>
-  </MonitorContainer>
-);
+const Metrics: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const hideSpinner = () => {
+    // setIsLoading((current) => !current);
+    setIsLoading(false);
+  };
+  return (
+    <MonitorContainer current="Metrics">
+      {/* <Heading as="h5" size="md">Metrics</Heading> */}
+      <div>
+        {isLoading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            left="50%"
+            top="50%"
+            margin="300px 0 0 600px"
+          />
+        ) : null}
+        <iframe
+          title="Metrics Dashboards"
+          src={process.env.METRICS_URL}
+          height="600"
+          width="100%"
+          onLoad={hideSpinner}
+          frameBorder="0"
+        />
+      </div>
+    </MonitorContainer>
+  );
+};
 
 export default Metrics;

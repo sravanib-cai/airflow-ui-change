@@ -22,16 +22,23 @@ import React, {
 } from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 
-import Login from 'views/Login';
+// import Login from 'views/Login';
+// import Login from 'views/newLogin';
+
 // DateProvider has to be used after authentication
 import DateProvider from 'providers/DateProvider';
 import { useAuthContext } from './context';
 
 // const PrivateRoute: FC<RouteProps> = (props) => <Login />;
 
+// const PrivateRoute: FC<RouteProps> = (props) => {
+//   const { hasValidAuthToken } = useAuthContext();
+//   return hasValidAuthToken ? <DateProvider><Route {...props} /></DateProvider> : <Login />;
+// };
+
 const PrivateRoute: FC<RouteProps> = (props) => {
-  const { hasValidAuthToken } = useAuthContext();
-  return hasValidAuthToken ? <DateProvider><Route {...props} /></DateProvider> : <Login />;
+  // const { hasValidAuthToken } = useAuthContext();
+  return <DateProvider><Route {...props} /></DateProvider>;
 };
 
 export default PrivateRoute;

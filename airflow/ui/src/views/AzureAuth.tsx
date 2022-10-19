@@ -21,7 +21,7 @@ import React, { useEffect } from 'react';
 import {
   Text,
 } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 function useQuery() {
@@ -29,7 +29,11 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const AzureAuth: React.FC = () => {
+interface Props {
+  history: any;
+}
+
+const AzureAuth: React.FC<Props> = ({history}) => {
   const query = useQuery();
   useEffect(() => {
     const code = query.get('code');
@@ -42,15 +46,20 @@ const AzureAuth: React.FC = () => {
 
     const config = {
       method: 'POST',
-      url: 'https://exl.workbench.couture.ai/workbench-expt/api/experimental/oauth_azure',
+      url: `${process.env.API_URL}/api/experimental/oauth_azure`,
       data: formData,
     };
 
     axios(config).then((response) => {
       console.log(response);
-      // window.location.href = 'localhost:5000';
+      localStorage.setItem('token', response.data.access_token);
+      history.push("/");
+
     }).catch((error) => {
       console.log(error);
+      // window.location.href = 'localhost:5000';
+
+      // history.push("/");
     });
   }, []);
 
@@ -59,4 +68,4 @@ const AzureAuth: React.FC = () => {
   );
 };
 
-export default AzureAuth;
+export default withRouter(AzureAuth);

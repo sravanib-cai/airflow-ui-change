@@ -17,19 +17,49 @@
  * under the License.
  */
 
-import React from 'react';
-// import { Heading } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Spinner } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
 
-const AutoAPIBuilder: React.FC = () => (
-  <DeveloperContainer current="Auto API Builder">
-    {/* <Heading as="h5" size="md">Auto API Builder</Heading> */}
-    <div>
-      <iframe title="API Builder" src="https://exl.workbench.couture.ai/autoapi/" height="600" width="100%" />
-      {/* <iframe title="API Builder" src="https://exl.workbench.couture.ai/autoapi/" height="600" width="100%" /> */}
-    </div>
-  </DeveloperContainer>
-);
+const AutoAPIBuilder: React.FC = () => {
+  // const state = {
+  //   loading: true,
+  // };
+  const [isLoading, setIsLoading] = useState(true);
+  const hideSpinner = () => {
+    // setIsLoading((current) => !current);
+    setIsLoading(false);
+  };
+  return (
+    <DeveloperContainer current="AutoAPIBuilder">
+      {/* <Heading as="h5" size="md">AutoAPIBuilder</Heading> */}
+      <div className="container rsvp-wrapper">
+        {isLoading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            left="50%"
+            top="50%"
+            margin="300px 0 0 600px"
+          />
+        ) : null}
+        <iframe
+          title="API Builder"
+          src={process.env.AUTO_API_URL}
+          height="600"
+          width="100%"
+          onLoad={hideSpinner}
+          frameBorder="0"
+          // marginHeight="0"
+          // marginWidth="0"
+        />
+      </div>
+    </DeveloperContainer>
+  );
+};
 
 export default AutoAPIBuilder;

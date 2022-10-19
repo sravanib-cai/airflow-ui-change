@@ -122,7 +122,10 @@ const AppNav: React.FC<Props> = ({ bodyBg, overlayBg, match }) => {
       >
         <PinwheelLogo />
       </Box>
-      {hasValidAuthToken && navItems.map((item) => (
+      {/* {hasValidAuthToken && navItems.map((item) => (
+        <AppNavBtn key={item.label} navItem={item} />
+      ))} */}
+      {navItems.map((item) => (
         <AppNavBtn key={item.label} navItem={item} />
       ))}
     </Box>

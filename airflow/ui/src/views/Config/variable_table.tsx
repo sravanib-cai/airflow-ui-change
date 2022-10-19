@@ -48,13 +48,19 @@ const VariablesTable: React.FC = () => {
   } = useVariables({ limit: LIMIT, offset });
 
   const data = useMemo(
-    () => (isLoading && !variables.length
-      ? skeletonLoader
-      : variables.map((v) => ({
-        ...v,
-        key: v.key,
-        val: v.val,
-      }))),
+    () => {
+      // const { variables } = defaultAuditLogs;
+      if (variables) {
+        return (isLoading && variables && !variables.length
+          ? skeletonLoader
+          : variables.map((v) => ({
+            ...v,
+            key: v.key,
+            val: v.val,
+          })));
+      }
+      return [];
+    },
     [variables, isLoading, offset],
   );
 

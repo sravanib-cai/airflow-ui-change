@@ -17,18 +17,44 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 // import { Heading } from '@chakra-ui/react';
-
+import { Spinner } from '@chakra-ui/react';
 import MonitorContainer from './MonitorContainer';
 
-const CLogs: React.FC = () => (
-  <MonitorContainer current="CLogs">
-    {/* <Heading as="h5" size="md">CLogs</Heading> */}
-    <div>
-      <iframe title="Centralised Logs" src="http://exl.workbench.couture.ai/logs/" height="600" width="100%" />
-    </div>
-  </MonitorContainer>
-);
+const CLogs: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const hideSpinner = () => {
+    // setIsLoading((current) => !current);
+    setIsLoading(false);
+  };
+  return (
+    <MonitorContainer current="CLogs">
+      {/* <Heading as="h5" size="md">CLogs</Heading> */}
+      <div>
+        {isLoading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            left="50%"
+            top="50%"
+            margin="300px 0 0 600px"
+          />
+        ) : null}
+        <iframe
+          title="Centralised Logs"
+          src={process.env.CLOGS_URL}
+          height="600"
+          width="100%"
+          onLoad={hideSpinner}
+          frameBorder="0"
+        />
+      </div>
+    </MonitorContainer>
+  );
+};
 
 export default CLogs;

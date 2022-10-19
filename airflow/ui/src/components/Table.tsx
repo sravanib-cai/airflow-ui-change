@@ -124,7 +124,7 @@ const Table: React.FC<Props> = ({
             {allColumns.map((column) => (
               <Th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
-                color="red.700"
+                // bgColor="black"
                 // bg={`${bg}!important`}
               >
                 {column.render('Header')}
@@ -143,7 +143,7 @@ const Table: React.FC<Props> = ({
         <Tbody {...getTableBodyProps()}>
           {!data.length && (
           <Tr>
-            <Td colSpan={2}>No Data found.</Td>
+            <Td colSpan={7}>No Data found.</Td>
           </Tr>
           )}
           {page.map((row) => {

@@ -56,21 +56,27 @@ const ConnectionsTable: React.FC = () => {
     isLoading,
     error,
   } = useConnections({ limit: LIMIT, offset });
-
+  console.log('useconnection', useConnections({ limit: LIMIT, offset }))
   const data = useMemo(
-    () => (isLoading && !connections.length
-      ? skeletonLoader
-      : connections.map((c) => ({
-        ...c,
-        connectionId: c.connectionId,
-        connType: c.connType,
-        description: c.description,
-        host: c.host,
-        login: c.login,
-        port: c.port,
-        schema: c.schema,
-        delete: <ConnectionDeleteButton connectionId={c.connectionId} />,
-      }))),
+    () => {
+      // const { connections } = defaultAuditLogs;
+      if (connections) {
+        return (isLoading && connections && !connections.length
+          ? skeletonLoader
+          : connections.map((c) => ({
+            ...c,
+            connectionId: c.connectionId,
+            connType: c.connType,
+            description: c.description,
+            host: c.host,
+            login: c.login,
+            port: c.port,
+            schema: c.schema,
+            delete: <ConnectionDeleteButton connectionId={c.connectionId} />,
+          })));
+      }
+      return [];
+    },
     [connections, isLoading, offset],
   );
 

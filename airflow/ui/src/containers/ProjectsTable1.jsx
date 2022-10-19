@@ -45,11 +45,11 @@ const ProjectsTable = () => {
   const projects1 = [defaultProjects];
   const fetchProjects = async () => {
     try {
-      // const token = userStore.user.access;
-      // const token = 'read';
+      // const token = localStorage.getItem('token');
+      const token = 'read';
       const config = {
         method: 'GET',
-        url: 'https://exl.workbench.couture.ai/someuri/api/experimental/project',
+        url: `${process.env.API_URL}/api/experimental/project`,
         // headers: {
         //   Authorization: `Bearer ${token}`,
         // },
@@ -97,7 +97,7 @@ const ProjectsTable = () => {
 
         const config = {
           method: 'DELETE',
-          url: `https://exl.workbench.couture.ai/workbench-expt/api/experimental/project?project_id=${deleteProject.data.id}`,
+          url: `${process.env.API_URL}/api/experimental/project?project_id=${deleteProject.data.id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },

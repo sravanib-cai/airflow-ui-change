@@ -49,7 +49,7 @@ const Notebooks: React.FC = () => {
         ) : null}
         <iframe
           title="CAI Notebooks"
-          src="https://exl.workbench.couture.ai/experiments/hub"
+          src={process.env.NOTEBOOK_URL}
           height="600"
           width="100%"
           onLoad={hideSpinner}

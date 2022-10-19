@@ -72,23 +72,29 @@ const PipelinesTable: React.FC<Props> = ({ match }) => {
   // } = useDags({ limit: LIMIT, offset, projectId });
   // Show placeholders rows when data is loading for the first time
   const data = useMemo(
-    () => (isLoading && !dags.length
-      ? skeletonLoader
-      : dags.map((d) => ({
-        ...d,
-        tags: d.tags.map((tag) => <DagTag tag={tag} key={tag.name} />),
-        dagId:
-        <Link
-          as={RouterLink}
-          to={`/${projectId}/${projectName}/pipelines/${d.dagId}`}
-          fontWeight="bold"
-        >
-          {d.dagId}
-        </Link>,
-        // <DagName dagId={d.dagId} match />,
-        trigger: <TriggerDagButton dagId={d.dagId} />,
-        active: <PauseToggle dagId={d.dagId} isPaused={d.isPaused} offset={offset} />,
-      }))),
+    () => {
+      // const { dags } = defaultAuditLogs;
+      if (dags) {
+        return (isLoading && dags && !dags.length
+          ? skeletonLoader
+          : dags.map((d) => ({
+            ...d,
+            tags: d.tags.map((tag) => <DagTag tag={tag} key={tag.name} />),
+            dagId:
+            <Link
+              as={RouterLink}
+              to={`/${projectId}/${projectName}/pipelines/${d.dagId}`}
+              fontWeight="bold"
+            >
+              {d.dagId}
+            </Link>,
+            // <DagName dagId={d.dagId} match />,
+            trigger: <TriggerDagButton dagId={d.dagId} />,
+            active: <PauseToggle dagId={d.dagId} isPaused={d.isPaused} offset={offset} />,
+          })));
+      }
+      return [];
+    },
     [dags, isLoading, offset],
   );
 
