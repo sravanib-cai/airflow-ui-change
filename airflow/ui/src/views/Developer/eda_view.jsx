@@ -162,7 +162,7 @@ const EDAView = () => {
           <button type="button" className="openbtn" onClick={() => openNav()}>&#9776; Processed Outputs</button>
         </div>
       </div>
-      <Box w="100%" h={400}>
+      <Box w="60%" h={400}>
         <EDATable
           heading={heading}
           data={files.sources}

@@ -50,7 +50,7 @@ const Notebooks: React.FC = () => {
         <iframe
           title="CAI Notebooks"
           src={process.env.NOTEBOOK_URL}
-          height="600"
+          height="800"
           width="100%"
           onLoad={hideSpinner}
           frameBorder="0"

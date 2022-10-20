@@ -18,14 +18,14 @@
  */
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+// import { Heading } from '@chakra-ui/react';
 
 import SparkConfigView from './sparkconfig_view';
 import ConfigContainer from './ConfigContainer';
 
 const SparkConfig: React.FC = () => (
   <ConfigContainer current="Spark Configuration">
-    <Heading>Spark Configuration - config_group_1</Heading>
+    {/* <Heading>Spark Configuration - config_group_1</Heading> */}
     <SparkConfigView />
   </ConfigContainer>
 );

@@ -30,7 +30,9 @@ const EDATable = (props) => {
   return (
     <TableContainer h={400} style={{ overflow: 'auto' }}>
       <Table variant="simple">
-        <Thead bgColor="blue" sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
+        <Thead 
+        // bgColor="blue" 
+        sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
           <Tr sx={{ position: 'sticky', top: 0 }}>
             {heading && heading.map((item) => (
               <Th key={item} sx={{ position: 'sticky', top: 0 }}>

@@ -38,8 +38,8 @@ export interface CronExpression {
 }
 
 export interface AuditLog {
-  dagId: string,
-  taskId: string,
+  dag_id: string,
+  task_id: string,
   event: string,
   owner: string,
   extra: string,

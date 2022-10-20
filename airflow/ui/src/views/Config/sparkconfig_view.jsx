@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../static/buttonstyle.css';
 // import { Link } from 'react-router-dom';
-// import {
-//   Box,
-//   useColorModeValue,
-// } from '@chakra-ui/react';
+import {
+  Button,
+  Heading,
+  Input,
+} from '@chakra-ui/react';
+import axios from 'axios';
 // import Popup from 'reactjs-popup';
 import 'font-awesome/css/font-awesome.min.css';
 
 const SparkConfigView = () => {
   // const fileRef = useRef();
-  const buttonStyle = {
-    backgroundColor: '#90cdf4',
-    color: '#1A202C',
-    borderRadius: '0.375rem',
-    fontWeight: '600',
-    height: '2rem',
-    minWidth: '2rem',
-    fontSize: '12px',
-    width: 'auto',
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
-  };
-  const btnRight = {
-    cssFloat: 'right',
-  };
+  // const [configdata, setConfig] = useState([]);
+  const [configdata, setData] = useState({});
+  // const fetchData = async () => {
+  //   try {
+  //     // const token = userStore.user.access;
+  //     // const token = 'read';
+  //     const config = {
+  //       method: 'GET',
+  //       url: `${process.env.API_URL}/sparkconfigurationview/config_group_1`,
+  //       // headers: {
+  //       //   Authorization: `Bearer ${token}`,
+  //       // },
+  //     };
+
+  //     const response = await axios(config);
+  //     // setConfig(response.data.response);
+  //     setConfig(response.data.data);
+  //     console.log(response.data.data);
+  //     //   setConfig(defaultProjects);
+  //   } catch (e) {
+  //   //   setConfig(defaultProjects);
+  //     console.log('exception', e);
+  //     // TODO: handle error here
+  //   }
+  // };
+
+
   const Headers = {
     // backgroundColor: '#90cdf4',
     // color: '#1A202C',
@@ -43,18 +57,44 @@ const SparkConfigView = () => {
   const paddingForm = {
     paddingBottom: '15px',
   };
+  // useEffect(() => {
+  //   fetchData();
+  //   // eslint-disable-next-line
+  //     }, []);
+
+  // useEffect(() => {
+  //   // fetchProjects();
+  //   console.log('configdata', configdata);
+  //   // eslint-disable-next-line
+  //         }, [config]);
+
+  useEffect(() => {
+    axios
+      // .get(`https://exl.workbench.couture.ai/workbench-expt/sparkconfigurationview/config_group_1`)
+      .get(`${process.env.API_URL}/sparkconfigurationview/config_group_1`)
+      .then((res) => {
+        setData(res.data);
+        console.log(res.data);
+        console.log(res.data.arguments.master);
+      });
+  },[]);
+
   // const linkColor = useColorModeValue('blue.200', 'blue.300');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
 
   return (
-    // <div style={btnRight}>
     <div>
-      <div style={padding} />
-      <div style={btnRight}>
-        <button style={buttonStyle} type="submit">
-          Add in Arguments
-        </button>
-      </div>
+      <Heading mb="20px" as="h5" size="md">config_group_1</Heading>
+      <Button
+        colorScheme="blue"
+        size="sm"
+        mr="2"
+        float="right"
+        mb="20px"
+        // onClick={() => fetchData()}
+      >
+        Add in Arguments
+      </Button>
       <h5 style={Headers}>Arguments</h5>
       <br />
       <div>
@@ -62,7 +102,20 @@ const SparkConfigView = () => {
           <span className="input-form-addon spark-form-sep">master</span>
         </div>
         <div className="input-form form-width">
-          <input type="text" className="form-control-addon shift-form-left" />
+          <Input
+            mb={2}
+            placeholder={configdata.arguments ? configdata.arguments.master : ""}
+            _placeholder={{ color: 'white' }}
+              // autoFocus
+            color="white"
+            bgColor="gray.900"
+            h="34px"
+            padding="6px 12px"
+            fontSize="14px"
+            lineHeight="1.428571429"
+            borderRadius="4px"
+            ml="20"
+          />
         </div>
       </div>
       <div>
@@ -96,50 +149,115 @@ const SparkConfigView = () => {
       <div style={paddingForm} />
 
       <div style={padding} />
-      <div style={btnRight}>
-        <button style={buttonStyle} type="submit">
-          Add in Configurations
-        </button>
-      </div>
+      <Button
+        colorScheme="blue"
+        size="sm"
+        mr="2"
+        float="right"
+        mb="20px"
+      >
+        Add in Configurations
+      </Button>
       <h5 style={Headers}>Configurations</h5>
       <br />
       <div>
         <span className="input-form-addon spark-form-sep">spark.scheduler.mode</span>
       </div>
       <div className="input-form form-width">
-        <input type="text" className="form-control-addon shift-form-left" />
+        <Input
+          mb={2}
+          placeholder="s3a://"
+              // autoFocus
+          bgColor="gray.900"
+          h="34px"
+          padding="6px 12px"
+          fontSize="14px"
+          lineHeight="1.428571429"
+          borderRadius="4px"
+          ml="20"
+        />
       </div>
       <div>
         <span className="input-form-addon spark-form-sep">spark.pyspark.python</span>
       </div>
       <div className="input-form form-width">
-        <input type="text" className="form-control-addon shift-form-left" />
+        <Input
+          mb={2}
+          placeholder="s3a://"
+              // autoFocus
+          bgColor="gray.900"
+          h="34px"
+          padding="6px 12px"
+          fontSize="14px"
+          lineHeight="1.428571429"
+          borderRadius="4px"
+          ml="20"
+        />
       </div>
       <div>
         <span className="input-form-addon spark-form-sep">spark.dynamicAllocation.enabled</span>
       </div>
       <div className="input-form form-width">
-        <input type="text" className="form-control-addon shift-form-left" />
+        <Input
+          mb={2}
+          placeholder="s3a://"
+              // autoFocus
+          bgColor="gray.900"
+          h="34px"
+          padding="6px 12px"
+          fontSize="14px"
+          lineHeight="1.428571429"
+          borderRadius="4px"
+          ml="20"
+        />
       </div>
       <div>
         <span className="input-form-addon spark-form-sep">spark.shuffle.service.enabled</span>
       </div>
       <div className="input-form form-width">
-        <input type="text" className="form-control-addon shift-form-left" />
+        <Input
+          mb={2}
+          placeholder="s3a://"
+              // autoFocus
+          bgColor="gray.900"
+          h="34px"
+          padding="6px 12px"
+          fontSize="14px"
+          lineHeight="1.428571429"
+          borderRadius="4px"
+          ml="20"
+        />
       </div>
       <div>
         <span className="input-form-addon spark-form-sep">spark.dynamicAllocation.maxExecutors</span>
       </div>
       <div className="input-form form-width">
-        <input type="text" className="form-control-addon shift-form-left" />
+        <Input
+          mb={2}
+          placeholder="s3a://"
+              // autoFocus
+          bgColor="gray.900"
+          h="34px"
+          padding="6px 12px"
+          fontSize="14px"
+          lineHeight="1.428571429"
+          borderRadius="4px"
+          ml="20"
+        />
       </div>
       <br />
 
       <div style={padding} />
       <div className="buttonCenter">
-        <button style={buttonStyle} type="submit">
+        <Button
+          colorScheme="blue"
+          size="sm"
+          mr="2"
+          float="right"
+          mb="20px"
+        >
           Submit
-        </button>
+        </Button>
       </div>
 
     </div>

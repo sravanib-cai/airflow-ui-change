@@ -52,11 +52,11 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const ConnectionsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {connections, totalEntries} } = defaultConnections,
+    data: { data: { connections, totalEntries } } = defaultConnections,
     isLoading,
     error,
   } = useConnections({ limit: LIMIT, offset });
-  console.log('useconnection', useConnections({ limit: LIMIT, offset }))
+  console.log('useconnection', useConnections({ limit: LIMIT, offset }));
   const data = useMemo(
     () => {
       // const { connections } = defaultAuditLogs;

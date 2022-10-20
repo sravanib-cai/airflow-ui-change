@@ -69,7 +69,6 @@ import Providers from 'views/Docs/Providers';
 import NotFound from 'views/NotFound';
 // import CaiML from './views/Microfrontends/CaiML';
 
-const webURL = process.env.WEBSERVER_URL;
 const App = () => (
   <Switch>
     {/* <Redirect exact path="/" to="/login-oauth" />
@@ -159,7 +158,7 @@ const App = () => (
     <Route
       path="/docs/doc-swagger"
       component={() => {
-        window.location.replace(`${webURL}/api/v1/ui/`);
+        window.location.replace(`${process.env.WEBSERVER_URL}/api/v1/ui/`);
         return null;
       }}
     />

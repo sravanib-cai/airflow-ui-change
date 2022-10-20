@@ -36,7 +36,7 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  dagId: <Progress size="lg" isIndeterminate data-testid="eventLogs-loading" />,
+  dagId: <Progress size="lg" isIndeterminate data-testid="event_logs-loading" />,
   taskId: '',
   event: '',
   when: '',
@@ -46,25 +46,26 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 
 const AuditLogsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
-  // const [eventLogs, setAuditLogs] = useState([]);
-  // let eventLogs = [];
+  // const [event_logs, setAuditLogs] = useState([]);
+  // let event_logs = [];
   const {
-    data: { eventLogs, totalEntries } = defaultAuditLogs,
+    data: { data: { event_logs, totalEntries } } = defaultAuditLogs,
     isLoading,
     error,
   } = useAuditLogs({ limit: LIMIT, offset });
+  console.log('useAuditLogs', useAuditLogs({ limit: LIMIT, offset }));
   const data = useMemo(
     () => {
-      // const { eventLogs } = defaultAuditLogs;
-      console.log(eventLogs);
+      // const { event_logs } = defaultAuditLogs;
+      // console.log(event_logs);
       console.log('default', defaultAuditLogs);
-      if (eventLogs) {
-        return (isLoading && eventLogs && !eventLogs.length
+      if (event_logs) {
+        return (isLoading && event_logs && !event_logs.length
           ? skeletonLoader
-          : eventLogs.map((a) => ({
+          : event_logs.map((a) => ({
             ...a,
-            dagId: a.dagId,
-            taskId: a.taskId,
+            dagId: a.dag_id,
+            taskId: a.task_id,
             event: a.event,
             when: a.when,
             owner: a.owner,
@@ -73,18 +74,18 @@ const AuditLogsTable: React.FC = () => {
       }
       return [];
     },
-    [eventLogs, isLoading, offset],
+    [event_logs, isLoading, offset],
   );
 
   const columns = useMemo<Column<any>[]>(
     () => [
       {
         Header: 'Dag Id',
-        accessor: 'dagId',
+        accessor: 'dag_id',
       },
       {
         Header: 'Task Id',
-        accessor: 'taskId',
+        accessor: 'task_id',
       },
       {
         Header: 'Event',
@@ -106,14 +107,14 @@ const AuditLogsTable: React.FC = () => {
     [],
   );
   // const {
-  //   data: eventLogs = {
+  //   data: event_logs = {
   //     dagId: '', taskId: '', event: '', when: '',
   //   },
   // } = useAuditLogs({ limit: LIMIT, offset });
 
   // const linkColor = useColorModeValue('blue.200', 'blue.300');
   // const dividerColor = useColorModeValue('gray.100', 'gray.700');
-  console.log('eventLogs main', eventLogs);
+  console.log('event_logs main', event_logs);
   return (
     <>
       {error && (

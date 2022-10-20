@@ -45,14 +45,14 @@ const ProjectsTable = () => {
   const projects1 = [defaultProjects];
   const fetchProjects = async () => {
     try {
-      // const token = localStorage.getItem('token');
-      const token = 'read';
+      const token = localStorage.getItem('token');
+      // const token = 'read';
       const config = {
         method: 'GET',
         url: `${process.env.API_URL}/api/experimental/project`,
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       };
 
       const response = await axios(config);
@@ -91,7 +91,8 @@ const ProjectsTable = () => {
       });
     } else {
       try {
-        const token = userStore.user.access;
+        // const token = userStore.user.access;
+        const token = localStorage.getItem('token');
         // const formData = new FormData();
         // formData.append('name', deleteProject.data.name);
 

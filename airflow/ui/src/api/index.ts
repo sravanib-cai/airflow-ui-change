@@ -196,7 +196,7 @@ export function DeleteDag(dagId: Dag['dagId']) {
   );
 }
 
-export function DeleteConnection(connectionId: Connection['connectionId']) {
+export function DeleteConnection(connectionId: Connection['connection_id']) {
   return useQuery<Connection, Error>(
     'connections',
     (): Promise<Connection> => axios.delete(`/connections/${connectionId}`),

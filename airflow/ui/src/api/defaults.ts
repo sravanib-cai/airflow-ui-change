@@ -24,7 +24,7 @@ import type {
 export const defaultVersion = { version: '', gitVersion: '' };
 
 export const defaultDags = { data: {dags: [], totalEntries: 0} };
-export const defaultAuditLogs = { eventLogs: [], totalEntries: 0 };
+export const defaultAuditLogs = { data: {event_logs: [], totalEntries: 0} };
 export const defaultConnections = { data: {connections: [], totalEntries: 0} };
 export const defaultPlugins = { data: {plugins: [], totalEntries: 0 } };
 export const defaultPools = { data: {pools: [], totalEntries: 0} };
