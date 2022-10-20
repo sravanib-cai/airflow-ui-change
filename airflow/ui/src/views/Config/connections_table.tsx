@@ -52,7 +52,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const ConnectionsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: { connections, totalEntries } } = defaultConnections,
+    data: { data: { connections, total_entries } } = defaultConnections,
     isLoading,
     error,
   } = useConnections({ limit: LIMIT, offset });
@@ -140,7 +140,7 @@ const ConnectionsTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

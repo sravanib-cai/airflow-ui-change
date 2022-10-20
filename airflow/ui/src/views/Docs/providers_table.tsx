@@ -44,7 +44,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const ProvidersTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {providers, totalEntries} } = defaultProviders,
+    data: { data: {providers, total_entries} } = defaultProviders,
     isLoading,
     error,
   } = useProviders({ limit: LIMIT, offset });
@@ -107,7 +107,7 @@ const ProvidersTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

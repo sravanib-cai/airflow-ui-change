@@ -22,7 +22,7 @@ import type {
 } from './index';
 
 interface Entries {
-  totalEntries: number;
+  total_entries: number;
 }
 
 export interface ProjectsResponse extends Entries {
@@ -32,21 +32,21 @@ export interface ProjectsResponse extends Entries {
 export interface DagsResponse extends Entries {
   data: {
     dags: Dag[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
 export interface ConnectionsResponse extends Entries {
   data: {
     connections: Connection[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
 export interface AuditLogsResponse extends Entries {
   data: {
     event_logs: AuditLog[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
@@ -54,14 +54,14 @@ export interface PluginsResponse extends Entries {
 
   data: {
     plugins: Plugin[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
 export interface VariablesResponse extends Entries {
   data: {
     variables: Variable[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
@@ -80,14 +80,14 @@ export interface DagRunsResponse extends Entries {
 export interface PoolsResponse extends Entries {
   data: {
     pools: Pool[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 
 export interface ProvidersResponse extends Entries {
   data: {
     providers: Provider[];
-    totalEntries: number;
+    total_entries: number;
   }
 }
 

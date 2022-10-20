@@ -286,12 +286,12 @@ export function useTriggerRun(dagId: Dag['dagId']) {
           if (dagRunData) {
             queryClient.setQueryData(['dagRun', dagId], {
               dagRuns: [...dagRunData.dagRuns, res],
-              totalEntries: dagRunData.totalEntries += 1,
+              total_entries: dagRunData.total_entries += 1,
             });
           } else {
             queryClient.setQueryData(['dagRun', dagId], {
               dagRuns: [res],
-              totalEntries: 1,
+              total_entries: 1,
             });
           }
         }
@@ -326,7 +326,7 @@ export function useSaveDag(dagId: Dag['dagId'], offset: number) {
           ...(old as Dag[]),
           ...{
             dags: newDags,
-            totalEntries: previousDags.totalEntries,
+            total_entries: previousDags.total_entries,
           },
         }));
         return { [dagId]: previousDag, dags: previousDags };
@@ -353,7 +353,7 @@ export function useSaveDag(dagId: Dag['dagId'], offset: number) {
               dags: previousDags.dags.map((dag) => (
                 dag.dagId === dagId ? res : dag
               )),
-              totalEntries: previousDags.totalEntries,
+              total_entries: previousDags.total_entries,
             });
           }
           toast({

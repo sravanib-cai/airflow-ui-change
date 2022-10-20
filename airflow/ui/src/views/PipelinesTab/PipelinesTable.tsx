@@ -65,7 +65,7 @@ const PipelinesTable: React.FC<Props> = ({ match }) => {
   const projectName = match.params.name;
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {dags, totalEntries} } = defaultDags,
+    data: { data: {dags, total_entries} } = defaultDags,
     isLoading,
     error,
   } = useDags({ limit: LIMIT, offset, projectId });
@@ -137,7 +137,7 @@ const PipelinesTable: React.FC<Props> = ({ match }) => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

@@ -54,7 +54,7 @@ interface Props {
   manualPagination?: {
     offset: number;
     setOffset: (off: number) => void;
-    totalEntries: number;
+    total_entries: number;
   };
   /*
    * setSortBy is for custom sorting such as server-side sorting
@@ -66,11 +66,11 @@ interface Props {
 const Table: React.FC<Props> = ({
   data, columns, manualPagination, pageSize = 25, setSortBy,
 }) => {
-  const { totalEntries, offset, setOffset } = manualPagination || {};
+  const { total_entries, offset, setOffset } = manualPagination || {};
   const oddColor = useColorModeValue('gray.50', 'gray.900');
   const hoverColor = useColorModeValue('gray.100', 'gray.700');
 
-  const pageCount = totalEntries ? (Math.ceil(totalEntries / pageSize) || 1) : data.length;
+  const pageCount = total_entries ? (Math.ceil(total_entries / pageSize) || 1) : data.length;
 
   const lowerCount = (offset || 0) + 1;
   const upperCount = lowerCount + data.length - 1;
@@ -179,7 +179,7 @@ const Table: React.FC<Props> = ({
           -
           {upperCount}
           {' of '}
-          {totalEntries}
+          {total_entries}
         </Text>
       </Flex>
     </>

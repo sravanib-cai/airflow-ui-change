@@ -23,18 +23,18 @@ import type {
 
 export const defaultVersion = { version: '', gitVersion: '' };
 
-export const defaultDags = { data: {dags: [], totalEntries: 0} };
-export const defaultAuditLogs = { data: {event_logs: [], totalEntries: 0} };
-export const defaultConnections = { data: {connections: [], totalEntries: 0} };
-export const defaultPlugins = { data: {plugins: [], totalEntries: 0 } };
-export const defaultPools = { data: {pools: [], totalEntries: 0} };
-export const defaultProjects = { projects: [], totalEntries: 0 };
-export const defaultProviders = { data: { providers: [], totalEntries: 0 } };
-export const defaultVariables = { data: {variables: [], totalEntries: 0} };
+export const defaultDags = { data: {dags: [], total_entries: 0} };
+export const defaultAuditLogs = { data: {event_logs: [], total_entries: 0} };
+export const defaultConnections = { data: {connections: [], total_entries: 0} };
+export const defaultPlugins = { data: {plugins: [], total_entries: 0 } };
+export const defaultPools = { data: {pools: [], total_entries: 0} };
+export const defaultProjects = { projects: [], total_entries: 0 };
+export const defaultProviders = { data: { providers: [], total_entries: 0 } };
+export const defaultVariables = { data: {variables: [], total_entries: 0} };
 export const defaultDag = <Dag>{};
 export const defaultDagDetails = <DagDetails>{};
-export const defaultDagRuns = { dagRuns: [], totalEntries: 0 };
+export const defaultDagRuns = { dagRuns: [], total_entries: 0 };
 
-export const defaultTaskInstances = { taskInstances: [], totalEntries: 0 };
+export const defaultTaskInstances = { taskInstances: [], total_entries: 0 };
 
 export const defaultConfig = { sections: [] };

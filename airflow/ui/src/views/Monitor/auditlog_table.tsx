@@ -49,7 +49,7 @@ const AuditLogsTable: React.FC = () => {
   // const [event_logs, setAuditLogs] = useState([]);
   // let event_logs = [];
   const {
-    data: { data: { event_logs, totalEntries } } = defaultAuditLogs,
+    data: { data: { event_logs, total_entries } } = defaultAuditLogs,
     isLoading,
     error,
   } = useAuditLogs({ limit: LIMIT, offset });
@@ -129,7 +129,7 @@ const AuditLogsTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

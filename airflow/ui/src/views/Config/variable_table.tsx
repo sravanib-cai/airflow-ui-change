@@ -42,7 +42,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const VariablesTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {variables, totalEntries} } = defaultVariables,
+    data: { data: {variables, total_entries} } = defaultVariables,
     isLoading,
     error,
   } = useVariables({ limit: LIMIT, offset });
@@ -100,7 +100,7 @@ const VariablesTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

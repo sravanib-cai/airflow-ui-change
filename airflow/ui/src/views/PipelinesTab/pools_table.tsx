@@ -48,7 +48,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const PoolsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {pools, totalEntries} } = defaultPools,
+    data: { data: {pools, total_entries} } = defaultPools,
     isLoading,
     error,
   } = usePools({ limit: LIMIT, offset });
@@ -130,7 +130,7 @@ const PoolsTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

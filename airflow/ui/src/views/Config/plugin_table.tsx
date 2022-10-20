@@ -42,7 +42,7 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const PluginsTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { data: {plugins, totalEntries} } = defaultPlugins,
+    data: { data: {plugins, total_entries} } = defaultPlugins,
     isLoading,
     error,
   } = usePlugins({ limit: LIMIT, offset });
@@ -89,7 +89,7 @@ const PluginsTable: React.FC = () => {
         manualPagination={{
           offset,
           setOffset,
-          totalEntries,
+          total_entries,
         }}
       />
     </>

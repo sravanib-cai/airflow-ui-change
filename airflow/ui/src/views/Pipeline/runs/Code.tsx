@@ -39,7 +39,7 @@ const Code: React.FC = () => {
   // const offset = 0;
   const { match: { params: { dagId } } }: RouterProps = useReactRouter();
   // const {
-  //     data: { dags, totalEntries } = defaultDags,
+  //     data: { dags, total_entries } = defaultDags,
   //     isLoading,
   //     error,
   // } = useDags({ limit: LIMIT1, offset });

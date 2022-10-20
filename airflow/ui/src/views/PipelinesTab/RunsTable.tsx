@@ -58,7 +58,7 @@ const RunsTable: React.FC = () => {
   } = useDags({ limit: LIMIT, offset });
 
   const {
-    data: { dagRuns, totalEntries } = defaultDagRuns,
+    data: { dagRuns, total_entries } = defaultDagRuns,
     isLoading,
     error,
   } = useDagRuns(dagId);
@@ -141,7 +141,7 @@ const RunsTable: React.FC = () => {
         // manualPagination={{
         //   offset,
         //   setOffset,
-        //   totalEntries,
+        //   total_entries,
         // }}
       />
     </>
