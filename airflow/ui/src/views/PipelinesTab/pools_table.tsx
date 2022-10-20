@@ -38,10 +38,10 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
   name: <Progress size="lg" isIndeterminate data-testid="pools-loading" />,
   description: '',
-  occupiedSlots: '',
-  openSlots: '',
-  queuedSlots: '',
-  runningSlots: '',
+  occupied_slots: '',
+  open_slots: '',
+  queued_slots: '',
+  running_slots: '',
   slots: '',
 }));
 
@@ -62,10 +62,10 @@ const PoolsTable: React.FC = () => {
             ...p,
           name: p.name,
           // description: p.description,
-          occupiedSlots: p.occupied_slots,
-          openSlots: p.open_slots,
-          queuedSlots: p.queued_slots,
-          runningSlots: p.running_slots,
+          occupied_slots: p.occupied_slots,
+          open_slots: p.open_slots,
+          queued_slots: p.queued_slots,
+          running_slots: p.running_slots,
           slots: p.slots,
           })));
       }
@@ -86,19 +86,19 @@ const PoolsTable: React.FC = () => {
       // },
       {
         Header: 'Occupied Slots',
-        accessor: 'occupiedSlots',
+        accessor: 'occupied_slots',
       },
       {
         Header: 'Open Slots',
-        accessor: 'openSlots',
+        accessor: 'open_slots',
       },
       {
         Header: 'Queued Slots',
-        accessor: 'queuedSlots',
+        accessor: 'queued_slots',
       },
       {
         Header: 'Running Slots',
-        accessor: 'runningSlots',
+        accessor: 'running_slots',
       },
       {
         Header: 'Slots',
@@ -109,7 +109,7 @@ const PoolsTable: React.FC = () => {
   );
   // const {
   //   data: pools = {
-  //     pool: '', slots: '', runningSlots: '', queuedSlots: '',
+  //     pool: '', slots: '', running_slots: '', queued_slots: '',
   //   },
   // } = usePools({ limit: LIMIT, offset });
 

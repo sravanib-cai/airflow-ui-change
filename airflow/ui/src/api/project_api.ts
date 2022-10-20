@@ -39,7 +39,7 @@ import type {
   PluginsResponse,
   PoolsResponse,
   ProjectsResponse,
-  // ProvidersResponse,
+  ProvidersResponse,
   TaskInstancesResponse,
   TriggerRunRequest,
 } from 'interfaces/api';
@@ -129,10 +129,10 @@ export function useAddConnection() {
   );
 }
 
-export function DeleteConnection(connectionId: Connection['connectionId']) {
+export function DeleteConnection(connection_id: Connection['connection_id']) {
   return useQuery<Connection, Error>(
     'connections',
-    (): Promise<Connection> => axios.delete(`${process.env.API_URL}/api/v1/connections/${connectionId}`),
+    (): Promise<Connection> => axios.delete(`${process.env.API_URL}/api/v1/connections/${connection_id}`),
   );
 }
 
@@ -166,20 +166,20 @@ export function usePlugins({ offset = 0, limit }: PageProps) {
   );
 }
 
-// export function useProviders({ offset = 0, limit }: PageProps) {
-//   console.log('Sra, providers', '/providers');
-//   return useQuery<ProvidersResponse, Error>(
-//     ['pools', offset],
-//     (): Promise<ProvidersResponse> => axios.get('/providers'), {
-//       params: { offset, limit },
-// 
-//     }),
-//     {
-//       refetchInterval,
-//       retry: !isTest,
-//     },
-//   );
-// }
+export function useProviders({ offset = 0, limit }: PageProps) {
+  console.log('Sra, providers', '/providers');
+  return useQuery<ProvidersResponse, Error>(
+    ['providers', offset],
+    (): Promise<ProvidersResponse> => axios.get(`${process.env.API_URL}/api/v1/providers`, {
+      params: { offset, limit },
+
+    }),
+    {
+      refetchInterval,
+      retry: !isTest,
+    },
+  );
+}
 
 export function usePools({ offset = 0, limit }: PageProps) {
   console.log('Sra, pools', '/pools');

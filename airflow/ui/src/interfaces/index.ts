@@ -151,7 +151,7 @@ export interface Plugin {
 }
 
 export interface Provider {
-  name: string,
+  package_name: string,
   version: string,
   description: string,
 }

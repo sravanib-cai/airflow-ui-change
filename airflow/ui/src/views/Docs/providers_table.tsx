@@ -36,7 +36,7 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  name: <Progress size="lg" isIndeterminate data-testid="providers-loading" />,
+  package_name: <Progress size="lg" isIndeterminate data-testid="providers-loading" />,
   version: '',
   description: '',
 }));
@@ -44,20 +44,26 @@ const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
 const ProvidersTable: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const {
-    data: { providers, totalEntries } = defaultProviders,
+    data: { data: {providers, totalEntries} } = defaultProviders,
     isLoading,
     error,
   } = useProviders({ limit: LIMIT, offset });
-
+  console.log('useProviders', useProviders({ limit: LIMIT, offset }));
   const data = useMemo(
-    () => (isLoading && !providers.length
-      ? skeletonLoader
-      : providers.map((p) => ({
-        ...p,
-        name: p.name,
-        version: p.version,
-        description: p.description,
-      }))),
+    () => {
+      // const { providers } = defaultAuditLogs;
+      if (providers) {
+        return (isLoading && providers && !providers.length
+          ? skeletonLoader
+          : providers.map((p) => ({
+            ...p,
+            package_name: p.package_name,
+            version: p.version,
+            description: p.description,
+          })));
+      }
+      return [];
+    },
     [providers, isLoading, offset],
   );
 
@@ -65,7 +71,7 @@ const ProvidersTable: React.FC = () => {
     () => [
       {
         Header: 'Package Name',
-        accessor: 'name',
+        accessor: 'package_name',
       },
       {
         Header: 'Version',

@@ -10,16 +10,16 @@ import {
 import { MdDelete, MdAdd } from 'react-icons/md';
 // import AddConnectionModal from 'components/AddConnectionModal';
 // interface PauseProps {
-//   connectionId: string;
+//   connection_id: string;
 // }
 
-const ConnectionDeleteButton: React.FC<{ connectionId: string }> = ({ connectionId }) => {
+const ConnectionDeleteButton: React.FC<{ connection_id: string }> = ({ connection_id }) => {
   const [deleteResult, setDeleteResult] = useState<string | null>(null);
 
   const fortmatResponse = (res: any) => JSON.stringify(res, null, 2);
 
   const { isLoading: isDeletingConnection, mutate: deleteConnectionId } = useMutation<any, Error>(
-    async () => DeleteConnection(connectionId),
+    async () => DeleteConnection(connection_id),
     {
       onSuccess: (res) => {
         setDeleteResult(fortmatResponse(res));
@@ -37,8 +37,8 @@ const ConnectionDeleteButton: React.FC<{ connectionId: string }> = ({ connection
   }, [isDeletingConnection]);
 
   function deleteDataById() {
-    console.log(connectionId);
-    if (connectionId) {
+    console.log(connection_id);
+    if (connection_id) {
       try {
         deleteConnectionId();
       } catch (err) {

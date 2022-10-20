@@ -82,11 +82,13 @@ export interface PoolsResponse extends Entries {
     pools: Pool[];
     totalEntries: number;
   }
-
 }
 
 export interface ProvidersResponse extends Entries {
-  pools: Provider[];
+  data: {
+    providers: Provider[];
+    totalEntries: number;
+  }
 }
 
 export interface TaskInstancesResponse extends Entries {

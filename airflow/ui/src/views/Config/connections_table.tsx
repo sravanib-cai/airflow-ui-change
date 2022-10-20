@@ -39,7 +39,7 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  connectionId: <Progress size="lg" isIndeterminate data-testid="connections-loading" />,
+  connection_id: <Progress size="lg" isIndeterminate data-testid="connections-loading" />,
   conn_type: '',
   description: '',
   host: '',
@@ -65,14 +65,14 @@ const ConnectionsTable: React.FC = () => {
           ? skeletonLoader
           : connections.map((c) => ({
             ...c,
-            connectionId: c.connection_id,
+            connection_id: c.connection_id,
             conn_type: c.conn_type,
             description: c.description,
             host: c.host,
             login: c.login,
             port: c.port,
             schema: c.schema,
-            delete: <ConnectionDeleteButton connectionId={c.connection_id} />,
+            delete: <ConnectionDeleteButton connection_id={c.connection_id} />,
           })));
       }
       return [];

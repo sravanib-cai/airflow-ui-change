@@ -36,8 +36,8 @@ const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 // Generate 1-10 placeholder rows
 const skeletonLoader = [...Array(getRandomInt(10) || 1)].map(() => ({
-  dagId: <Progress size="lg" isIndeterminate data-testid="event_logs-loading" />,
-  taskId: '',
+  dag_id: <Progress size="lg" isIndeterminate data-testid="event_logs-loading" />,
+  task_id: '',
   event: '',
   when: '',
   owner: '',
@@ -64,8 +64,8 @@ const AuditLogsTable: React.FC = () => {
           ? skeletonLoader
           : event_logs.map((a) => ({
             ...a,
-            dagId: a.dag_id,
-            taskId: a.task_id,
+            dag_id: a.dag_id,
+            task_id: a.task_id,
             event: a.event,
             when: a.when,
             owner: a.owner,

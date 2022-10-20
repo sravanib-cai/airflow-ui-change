@@ -39,15 +39,15 @@ import type {
   PluginsResponse,
   PoolsResponse,
   ProjectsResponse,
-  // ProvidersResponse,
+  ProvidersResponse,
   TaskInstancesResponse,
   TriggerRunRequest,
 } from 'interfaces/api';
 
-axios.defaults.baseURL = `${process.env.WEBSERVER_URL}/api/v1`;
-axios.interceptors.response.use(
-  (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
-);
+// axios.defaults.baseURL = `${process.env.WEBSERVER_URL}/api/v1`;
+// axios.interceptors.response.use(
+//   (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
+// );
 
 // turn off logging, retry and refetch on tests
 const isTest = process.env.NODE_ENV === 'test';
@@ -147,19 +147,20 @@ export function usePlugins({ offset = 0, limit }: PageProps) {
   );
 }
 
-// export function useProviders({ offset = 0, limit }: PageProps) {
-//   console.log('Sra, providers', '/providers');
-//   return useQuery<ProvidersResponse, Error>(
-//     ['pools', offset],
-//     (): Promise<ProvidersResponse> => axios.get('/providers'), {
-//       params: { offset, limit },
-//     }),
-//     {
-//       refetchInterval,
-//       retry: !isTest,
-//     },
-//   );
-// }
+export function useProviders({ offset = 0, limit }: PageProps) {
+  console.log('Sra, providers', '/providers');
+  return useQuery<ProvidersResponse, Error>(
+    ['providers', offset],
+    (): Promise<ProvidersResponse> => axios.get(`${process.env.API_URL}/api/v1/providers`, {
+      params: { offset, limit },
+
+    }),
+    {
+      refetchInterval,
+      retry: !isTest,
+    },
+  );
+}
 
 export function usePools({ offset = 0, limit }: PageProps) {
   console.log('Sra, pools', '/pools');
