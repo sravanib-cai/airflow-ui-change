@@ -23,16 +23,16 @@ import { Spinner } from '@chakra-ui/react';
 import MonitorContainer from './MonitorContainer';
 
 const CLogs: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const hideSpinner = () => {
-    // setIsLoading((current) => !current);
-    setIsLoading(false);
-  };
+  // const [isLoading, setIsLoading] = useState(true);
+  // const hideSpinner = () => {
+  //   // setIsLoading((current) => !current);
+  //   setIsLoading(false);
+  // };
   return (
-    <MonitorContainer current="CLogs">
+    <MonitorContainer current="Centralised Logs">
       {/* <Heading as="h5" size="md">CLogs</Heading> */}
       <div>
-        {isLoading ? (
+        {/* {isLoading ? (
           <Spinner
             thickness="4px"
             speed="0.65s"
@@ -43,13 +43,13 @@ const CLogs: React.FC = () => {
             top="50%"
             margin="300px 0 0 600px"
           />
-        ) : null}
+        ) : null} */}
         <iframe
           title="Centralised Logs"
           src={process.env.CLOGS_URL}
           height="600"
           width="100%"
-          onLoad={hideSpinner}
+          // onLoad={hideSpinner}
           frameBorder="0"
         />
       </div>

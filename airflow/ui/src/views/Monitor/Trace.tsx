@@ -29,7 +29,7 @@ const Trace: React.FC = () => {
     setIsLoading(false);
   };
   return (
-    <MonitorContainer current="Trace">
+    <MonitorContainer current="Distributed Trace">
       {/* <Heading as="h5" size="md">Trace</Heading> */}
       <div>
         {isLoading ? (

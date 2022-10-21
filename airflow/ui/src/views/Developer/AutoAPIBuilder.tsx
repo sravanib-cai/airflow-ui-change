@@ -32,7 +32,7 @@ const AutoAPIBuilder: React.FC = () => {
     setIsLoading(false);
   };
   return (
-    <DeveloperContainer current="AutoAPIBuilder">
+    <DeveloperContainer current="Auto API Builder">
       {/* <Heading as="h5" size="md">AutoAPIBuilder</Heading> */}
       <div className="container rsvp-wrapper">
         {isLoading ? (

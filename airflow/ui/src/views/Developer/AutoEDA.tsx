@@ -24,7 +24,7 @@ import DeveloperContainer from './DeveloperContainer';
 import EDAView from './eda_view';
 
 const AutoEDA: React.FC = () => (
-  <DeveloperContainer current="Auto Exploratory Data Analysis">
+  <DeveloperContainer current="Auto EDA">
     {/* <Heading as="h5" size="md">Auto EDA</Heading> */}
     <EDAView />
   </DeveloperContainer>

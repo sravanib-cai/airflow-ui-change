@@ -21,14 +21,27 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import DeveloperContainer from './DeveloperContainer';
-
 import DataLakeExplorerView from './datalakeexplorer_view';
+import { withRouter } from 'react-router-dom';
 
-const DataLakeExplorer: React.FC = () => (
-  <DeveloperContainer current="Data Lake Explorer">
-    <Heading as="h5" size="md">S3 Bucket</Heading>
-    <DataLakeExplorerView />
+interface Props {
+  match: {
+    params: {
+      id: string;
+      name: string;
+    }
+  }
+}
+
+const DataLakeExplorer: React.FC<Props> = ({match}) => {
+  const projectId = match.params.id;
+  const projectName = match.params.name;
+  return (
+    <DeveloperContainer current="Data Lake Explorer">
+    <Heading as="h5" size="md" mb="30px">S3 Bucket</Heading>
+    <DataLakeExplorerView projectId projectName />
   </DeveloperContainer>
-);
+  )
+};
 
-export default DataLakeExplorer;
+export default withRouter(DataLakeExplorer);

@@ -54,6 +54,10 @@ const ConfigContainer: React.FC<Props> = ({
       label: 'Plugins',
       path: `/${projectId}/${projectName}/config/plugins`,
     },
+    {
+      label: 'Project Services',
+      path: `/${projectId}/${projectName}/config/project-services`,
+    },
   ];
 
   return (

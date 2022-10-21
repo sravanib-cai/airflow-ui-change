@@ -97,9 +97,9 @@ const OverviewView2: React.FC<Props> = ({ match }) => {
         </Link>
 
         <div style={space} />
-        <Link to={`/${projectId}/${projectName}/developer/models-expts`}>
+        <Link to={`/${projectId}/${projectName}/developer/notebooks`}>
           <button className="btn-projects" type="button">
-            Models and Experiments
+            Notebooks
             <div style={padding} />
             <hr className="solid" />
             <div style={padding} />
@@ -120,9 +120,9 @@ const OverviewView2: React.FC<Props> = ({ match }) => {
         </Link>
 
         <div style={space} />
-        <Link to={`/${projectId}/${projectName}/developer/datasets`}>
+        <Link to={`/${projectId}/${projectName}/config/project-services`}>
           <button className="btn-projects" type="button">
-            Datasets
+            Project Services
             <div style={padding} />
             <hr className="solid" />
             <div style={padding} />

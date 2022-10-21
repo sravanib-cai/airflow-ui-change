@@ -29,7 +29,7 @@ const Metrics: React.FC = () => {
     setIsLoading(false);
   };
   return (
-    <MonitorContainer current="Metrics">
+    <MonitorContainer current="Metrics Dashboards">
       {/* <Heading as="h5" size="md">Metrics</Heading> */}
       <div>
         {isLoading ? (

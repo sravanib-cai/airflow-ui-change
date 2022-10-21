@@ -67,6 +67,7 @@ import Statistics from 'views/Security/Statistics';
 import Providers from 'views/Docs/Providers';
 
 import NotFound from 'views/NotFound';
+import ProjectServices from 'views/Config/ProjectServices';
 // import CaiML from './views/Microfrontends/CaiML';
 
 const App = () => (
@@ -139,6 +140,7 @@ const App = () => (
     <PrivateRoute exact path="/:id/:name/config/variables" component={Variables} />
     <PrivateRoute exact path="/:id/:name/config/plugins" component={Plugins} />
     <PrivateRoute exact path="/:id/:name/config/connections" component={Connections} />
+    <PrivateRoute exact path="/:id/:name/config/project-services" component={ProjectServices} />
 
     <PrivateRoute exact path="/:id/:name/config/clusterconfig/datalakeconfig" component={DataLakeConfiguration} />
     <PrivateRoute exact path="/:id/:name/config/clusterconfig/sparkconfig" component={SparkConfig} />

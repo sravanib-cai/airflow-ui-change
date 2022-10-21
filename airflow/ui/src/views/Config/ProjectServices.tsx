@@ -18,17 +18,27 @@
  */
 
 import React from 'react';
-// import { Heading } from '@chakra-ui/react';
-// import ProvidersView from './providers_view';
-import ProvidersTable from './providers_table';
-import DocsContainer from './DocsContainer';
+import { Heading } from '@chakra-ui/react';
+import {
+  Button,
+} from '@chakra-ui/react';
+// import ConnectionsTable from './connections_table';
+// import Filter from './filter';
+import ConfigContainer from './ConfigContainer';
 
-const Providers: React.FC = () => (
-  <DocsContainer current="Providers">
-    {/* <Heading as="h5" size="md">Providers</Heading> */}
-    {/* <ProvidersView /> */}
-    <ProvidersTable />
-  </DocsContainer>
+const ProjectServices: React.FC = () => (
+  <ConfigContainer current="Project Services">
+    {/* <Button
+      size="sm"
+      aria-label="Add Connection"
+    >
+      New Connection
+    </Button> */}
+    {/* <br /> */}
+    {/* <Filter /> */}
+    <br />
+    <Heading as="h5" size="md">Project Services</Heading>
+  </ConfigContainer>
 );
 
-export default Providers;
+export default ProjectServices;

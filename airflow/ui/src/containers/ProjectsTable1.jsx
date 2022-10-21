@@ -79,40 +79,40 @@ const ProjectsTable = () => {
 
   const handleDeleteConfirm = async () => {
     setLoading(true);
-    const { error } = ProjectDeleteSchema.validate(deleteProject.data.name);
+    // const { error } = ProjectDeleteSchema.validate(deleteProject.data.name);
 
-    if (error) {
-      toast({
-        title: 'Error',
-        description: 'Invalid Project Name',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      });
-    } else {
-      try {
-        // const token = userStore.user.access;
-        const token = localStorage.getItem('token');
-        // const formData = new FormData();
-        // formData.append('name', deleteProject.data.name);
+    // if (error) {
+    //   toast({
+    //     title: 'Error',
+    //     description: 'Invalid Project Name',
+    //     status: 'error',
+    //     duration: 9000,
+    //     isClosable: true,
+    //   });
+    // } else {
+    try {
+      // const token = userStore.user.access;
+      // const token = 'write';
+      const token = localStorage.getItem('token');
+      // const formData = new FormData();
+      // formData.append('name', deleteProject.data.name);
+      const config = {
+        method: 'DELETE',
+        url: `${process.env.API_URL}/api/experimental/project?project_id=${deleteProject.data.id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        // data: formData,
+      };
+      console.log('config',config);
+      await axios(config);
 
-        const config = {
-          method: 'DELETE',
-          url: `${process.env.API_URL}/api/experimental/project?project_id=${deleteProject.data.id}`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          // data: formData,
-        };
-
-        await axios(config);
-
-        setLoading(false);
-        setDeleteProject({ open: false, data: null });
-        fetchProjects();
-      } catch (e) {
-        // TODO: handle error here
-      }
+      setLoading(false);
+      setDeleteProject({ open: false, data: null });
+      fetchProjects();
+    } catch (e) {
+      // TODO: handle error here
+      console.log(e);
     }
   };
 

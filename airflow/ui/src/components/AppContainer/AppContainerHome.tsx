@@ -55,7 +55,7 @@ const AppContainerHome: React.FC<Props> = ({ children, breadcrumb }) => {
             color={useColorModeValue('gray.600', 'gray.300')}
             bg={overlayBg}
           >
-            Couture Workbench v2.2.4
+            Version v4.0.0
           </Box>
         </Flex>
       </Box>

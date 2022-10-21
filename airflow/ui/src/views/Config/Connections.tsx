@@ -29,7 +29,7 @@ import ConfigContainer from './ConfigContainer';
 const Connections: React.FC = () => (
   <ConfigContainer current="Connections">
     <Button
-      size="xs"
+      size="sm"
       aria-label="Add Connection"
     >
       New Connection
