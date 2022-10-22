@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { useLocation, withRouter } from 'react-router-dom';
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 function useQuery() {
   const { search } = useLocation();
@@ -52,7 +53,9 @@ const AzureAuth: React.FC<Props> = ({history}) => {
 
     axios(config).then((response) => {
       console.log(response);
-      localStorage.setItem('token', response.data.access_token);
+      const token = jwt_decode(response.data.access_token);
+      localStorage.setItem('token', token);
+      // localStorage.setItem('token', response.data.access_token);
       history.push("/");
 
     }).catch((error) => {

@@ -23,21 +23,15 @@ import {
   Button,
 } from '@chakra-ui/react';
 // import ConnectionsTable from './connections_table';
+import ProjectServices_view from './projectServices_view';
 // import Filter from './filter';
 import ConfigContainer from './ConfigContainer';
 
 const ProjectServices: React.FC = () => (
   <ConfigContainer current="Project Services">
-    {/* <Button
-      size="sm"
-      aria-label="Add Connection"
-    >
-      New Connection
-    </Button> */}
-    {/* <br /> */}
-    {/* <Filter /> */}
     <br />
-    <Heading as="h5" size="md">Project Services</Heading>
+    {/* <Heading as="h5" size="md">Project Services</Heading> */}
+    <ProjectServices_view />
   </ConfigContainer>
 );
 

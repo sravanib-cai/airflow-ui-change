@@ -38,8 +38,8 @@ const DataLakeExplorerView = (props) => {
   const { projectId, projectName } = props;
 
   const linkColor = useColorModeValue('blue.200', 'blue.300');
-  const heading = ['Filename'];
-  // const heading = ['Filename', 'File Owner', 'Last Modified', 'Size'];
+  // const heading = ['Filename'];
+  const heading = ['Filename', 'File Owner', 'Last Modified', 'Size'];
 
   useEffect(() => {
     axios
@@ -107,34 +107,51 @@ const DataLakeExplorerView = (props) => {
     // }
   };
 
-  const AddtoEDA = async () => {
-    const data = {
-      path,
-      bucket,
-    };
+  const AddtoEDA = (fileName) => {
+    const file=fileName;
+    console.log('file', file);
+    const formData = new FormData();
+    formData.append('bucket', strBucket);
+    formData.append('path', file);
+  // const AddtoEDA = async () => {
+  //   const data = {
+  //     path,
+  //     bucket,
+  //   };
+    axios
+      // .get(`https://exl.workbench.couture.ai/workbench-expt/sparkconfigurationview/config_group_1`)
+      .post(`${process.env.API_URL}/s3bucketview/add-to-EDA`, {data:formData})
+      .then((response) => {
+        // setFolderResponse(res.data.data);
+        // // setStrBucket(res.data.data.str_bucket);
+        // setStrPrefix(res.data.data.str_prefix);
+        // setFilePath(res.data.data.str_bucket);
+        // setPath(file)
+        console.log('EDA', response);
+      });
 
-    try {
-      const token = 'write';
-      // const token = userStore.user.access;
-      const formData = new FormData();
-      formData.append('path', path);
-      formData.append('bucket', strBucket);
+    // try {
+    //   const token = 'write';
+    //   // const token = userStore.user.access;
+    //   const formData = new FormData();
+    //   formData.append('path', path);
+    //   formData.append('bucket', strBucket);
 
-      const config = {
-        method: 'POST',
-        url: `${process.env.API_URL}/s3bucketview/add-to-EDA`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: formData,
-      };
+    //   const config = {
+    //     method: 'POST',
+    //     url: `${process.env.API_URL}/s3bucketview/add-to-EDA`,
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     data: formData,
+    //   };
 
-      await axios(config);
+    //   await axios(config);
 
-    } catch (e) {
-      setLoading(false);
-      // handle error here
-    }
+    // } catch (e) {
+    //   setLoading(false);
+    //   // handle error here
+    // }
   };
 
   // useEffect(() => {
@@ -219,21 +236,38 @@ const DataLakeExplorerView = (props) => {
                   {/* <Td>{item.created_at}</Td>
                   <Td>{item.creator_user}</Td>
                   <Td>{item.last_modified}</Td> */}
-                  {(item[0].indexOf('.')!==-1) && (
-                    <Td>
-                      <Link to={`/${props.projectId}/${props.projectName}/developer/auto-eda`}>
-                        <Button
-                          // onClick={AddtoEDA}
-                          colorScheme="blue"
-                          size="sm"
-                          mr="2"
-                          float="right"
-                        >
-                          Run Auto EDA
-                        </Button>
-                      </Link>
+                  {(item[0].indexOf('.')!==-1) ? (
+                    <>
+                      <Td>
+                        {item[4]}
+                      </Td>
+                      <Td>
+                        {item[2]}
+                      </Td>
+                      <Td>
+                      {item[3]}
                     </Td>
-                  )}
+                      <Td>
+                        <Link to={`/${props.projectId}/${props.projectName}/developer/auto-eda`}>
+                          <Button
+                            onClick={() => AddtoEDA(item[0])}
+                            colorScheme="blue"
+                            size="sm"
+                            mr="2"
+                            float="right"
+                          >
+                            Run Auto EDA
+                          </Button>
+                        </Link>
+                      </Td>
+                    </>
+                  )
+                  : (
+                    <>
+                      <Td colSpan={5}></Td>
+                    </>
+                  )
+                }
                 </Tr>
               ))}
             </Tbody>
