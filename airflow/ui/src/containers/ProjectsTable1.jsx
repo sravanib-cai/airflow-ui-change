@@ -12,7 +12,6 @@ import {
 
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useSelector } from 'react-redux';
 import Card from '../components/Cards/Card';
 import ProjectTable from '../components/Tables/ProjectTable';
@@ -49,7 +48,7 @@ const ProjectsTable = () => {
       // const token = 'read';
       const config = {
         method: 'GET',
-        url: `${process.env.API_URL}/api/experimental/project`,
+        url: `https://exl.workbench.couture.ai/someuri/api/experimental/project`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

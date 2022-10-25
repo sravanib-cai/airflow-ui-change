@@ -73,7 +73,7 @@ import ProjectServices from 'views/Config/ProjectServices';
 const App = () => (
   <Switch>
     {/* <Redirect exact path="/" to="/login-oauth" />
-    <PrivateRoute exact path="/login-oauth" component={OauthLogin} /> */}
+    <PrivateRoute exact path="/login-oauth" component={OauthLogin} />
 
     {/* <Route path="/auth" component={AzureAuth} /> */}
     <Redirect exact path="/" to="/home" />
@@ -142,9 +142,9 @@ const App = () => (
     <PrivateRoute exact path="/:id/:name/config/connections" component={Connections} />
     <PrivateRoute exact path="/:id/:name/config/project-services" component={ProjectServices} />
 
-    <PrivateRoute exact path="/:id/:name/config/clusterconfig/datalakeconfig" component={DataLakeConfiguration} />
-    <PrivateRoute exact path="/:id/:name/config/clusterconfig/sparkconfig" component={SparkConfig} />
-    <PrivateRoute exact path="/:id/:name/config/clusterconfig/sparkdependency" component={SparkDependency} />
+    <PrivateRoute exact path="/:id/:name/config/clusterconfig/datalakeconfig/:groupName" component={DataLakeConfiguration} />
+    <PrivateRoute exact path="/:id/:name/config/clusterconfig/sparkconfig/:groupName" component={SparkConfig} />
+    <PrivateRoute exact path="/:id/:name/config/clusterconfig/sparkdependency/:groupName" component={SparkDependency} />
     <PrivateRoute exact path="/:id/:name/config/clusterconfig/kerberosconfig" component={KerberosConfig} />
     <PrivateRoute exact path="/:id/:name/config/clusterconfig/Livyconfig" component={LivyConfig} />
 

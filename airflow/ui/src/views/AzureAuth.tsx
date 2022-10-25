@@ -47,7 +47,7 @@ const AzureAuth: React.FC<Props> = ({history}) => {
 
     const config = {
       method: 'POST',
-      url: `${process.env.API_URL}/api/experimental/oauth_azure`,
+      url: `https://exl.workbench.couture.ai/someuri/api/experimental/oauth_azure`,
       data: formData,
     };
 

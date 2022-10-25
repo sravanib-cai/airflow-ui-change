@@ -23,10 +23,10 @@ import React from 'react';
 import SparkConfigView from './sparkconfig_view';
 import ConfigContainer from './ConfigContainer';
 
-const SparkConfig: React.FC = () => (
+const SparkConfig: React.FC = (props) => (
   <ConfigContainer current="Spark Configuration">
     {/* <Heading>Spark Configuration - config_group_1</Heading> */}
-    <SparkConfigView />
+    <SparkConfigView groupName={props.match.params.groupName}/>
   </ConfigContainer>
 );
 

@@ -1,135 +1,191 @@
-import
-React,
-{
-  useRef,
-  // useState,
-} from 'react';
-import '../../static/buttonstyle.css';
-// import { Link } from 'react-router-dom';
-// import {
-//   Box,
-//   useColorModeValue,
-// } from '@chakra-ui/react';
-// import Popup from 'reactjs-popup';
+import React, { useEffect, useState, useRef } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
+import {
+  Button,
+  Box,
+  Spacer,
+  Flex,
+  InputGroup,
+  Input,
+  InputLeftAddon,
+  Heading,
+  CircularProgress,
+  useToast
+} from '@chakra-ui/react';
+import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
+import SparkDependencyTable from 'components/Tables/SparkDependencyTable';
+import axios from "axios";
+import "font-awesome/css/font-awesome.min.css";
 
-const SparkDependencyView = () => {
-  const fileRef = useRef();
-  const buttonStyle = {
-    backgroundColor: '#90cdf4',
-    color: '#1A202C',
-    borderRadius: '0.375rem',
-    fontWeight: '600',
-    height: '2rem',
-    minWidth: '2rem',
-    fontSize: '12px',
-    width: 'auto',
-    paddingLeft: '0.75rem',
-    paddingRight: '0.75rem',
+const SparkDependencyView = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [delLoading, setDelLoading] = useState(false);
+  const [deleteFile, setDeleteFile] = useState({ open: false, data: null });
+  const [tableData, setTableData] = useState([]);
+  const hiddenFileInput = useRef(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const toast = useToast();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    try {
+      setLoading(true);
+      const config = {
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/${props.groupName}`,
+      };
+      axios(config)
+      .then((response) => {
+        const data = Object.entries(response.data.data.files).map((item) => ({filename: item[0],size:item[1].size, time: item[1].time}));
+        setTableData(data);        
+        setLoading(false);
+      })
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
   };
-  const btnRight = {
-    cssFloat: 'right',
+
+  const handleDeleteConfirm = () => {
+    try {
+      setDelLoading(true);
+      const config = {
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/destroy/${props.groupName}/jars/${deleteFile.data.filename}`,
+      };
+      axios(config).then((res) => {
+        toast({
+          title: "Success",
+          description: "File Deleted!",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+        setDeleteFile({ open: false, data: null });
+        fetchData();
+        setDelLoading(false);
+      });
+    } catch (e) {
+      console.log(e);
+      setDeleteFile({ open: false, data: null });
+      setDelLoading(false);
+      // TODO: handle error here
+    }
   };
 
-  // const [fileName, setFileName] = useState('');
-  // const [fileSize, setFileSize] = useState('');
-  // const [fileDate, setFileDate] = useState('');
-
-  // function formatBytes(bytes, decimals = 2) {
-  //   if (bytes === 0) return '0 Bytes';
-  //   const k = 1024;
-  //   const dm = decimals < 0 ? 0 : decimals;
-  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  //   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  //   return parseFloat((bytes / (k ** i)).toFixed(dm)) + ' ' + sizes[i];
-  // }
-
-  // const handleChange = (e) => {
-  //   // const [file] = e.target.files;
-  //   // console.log(file);
-  //   setFileName(e.target.files[0].name);
-  //   setFileSize(formatBytes(e.target.files[0].size));
-  //   setFileDate(new Date(Date(e.target.files[0].lastModified)).toDateString());
-  //   // const fileDate = e.target.files[0].lastModifiedDate[0];
-
-  //   // const item = {
-  //   //   name: {fileName},
-  //   //   size: {fileSize},
-  //   //   date: {fileDate}
-  //   // };
-  //   // this.setState({
-  //   //   rows: [...this.state.rows, item]
-  //   // });
-  // };
-
-  // const space = {
-  //   width: '3px',
-  //   height: 'auto',
-  //   display: 'inline-block',
-  // };
-  const padding = {
-    paddingBottom: '20px',
+  const handleDownload = (data) => {
+    try {
+      const config = {
+        method: 'GET',
+        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/download/${props.groupName}/jars/${data.filename}`,
+        responseType: 'blob'
+      };
+      axios(config)
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${data.filename}`);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode.removeChild(link);
+        })
+    } catch (e) {
+      console.log(e);
+    }
   };
-  // const linkColor = useColorModeValue('blue.200', 'blue.300');
-  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
+
+  const handleUploadClick = () => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleFileUploadChange = (event) => {
+    const fileUploadData = event.target.files[0];
+    if (fileUploadData) {
+      setIsUploading(true);
+      const data = new FormData();
+      data.append("file", event.target.files[0]);
+      const config = {
+          method: 'POST',
+          url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/${props.groupName}/jars`,
+          data: data  
+        };
+        
+        axios(config)
+        .then((response) => {
+          setIsUploading(false);
+          fetchData();
+          toast({
+              title: 'Success',
+              description: 'File Uploaded!',
+              status: 'success',
+              duration: 9000,
+              isClosable: true
+            })
+          })
+        .catch((error) => {
+          console.log(error);
+          toast({
+              title: 'Error',
+              description: 'Some Error Occured!',
+              status: 'error',
+              duration: 9000,
+              isClosable: true
+            })
+          })
+      }
+  };
 
   return (
-    // <div style={btnRight}>
-    <div>
-      <div style={padding}>
-        <div style={btnRight}>
-          <button style={buttonStyle} type="submit" onClick={() => fileRef.current.click()}>
-            File Upload
-          </button>
-          <input
-            ref={fileRef}
-            // onChange={handleChange}
-            multiple={false}
-            type="file"
-            hidden
-          />
-        </div>
-      </div>
-      <br />
-      <div className="input-group">
-        <span className="input-group-addon">Search file: </span>
-        <div className="search-form-width">
-          <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
-        </div>
-      </div>
-      <br />
-      <div className="table-responsive">
-        <table className="table" id="filesTable">
-          <thead>
-            <tr className="table-head">
-              <th colSpan="15">Filename</th>
-              <th colSpan="2">Last modified</th>
-              <th colSpan="2">Size</th>
-              <th colSpan="2">Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <tr>
-              <td colSpan="15" className="col-sm-15">
-                TEST
-              </td>
-              <td colSpan="2" className="col-sm-2">date</td>
-              <td colSpan="2" className="col-sm-2">size</td>
-              <td colSpan="1" className="col-sm-1">
-                <div>
-                  <i className="fa fa-cloud-download fa-lg"
-                  data-toggle="tooltip" title="Download" />
-                </div>
-                </td>
-              <td colSpan="1" className="col-sm-1">
-                <i className="fa fa-trash fa-lg" style={{color:"red"}} aria-hidden="true"
-                data-toggle="tooltip" title="Delete File" />
-              </td>
-            </tr> */}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <>
+    <Input
+        ref={hiddenFileInput}
+        type="file"
+        hidden
+        accept=".jar, .egg, .py, .zip"
+        onChange={handleFileUploadChange}
+      />
+    <Box>
+        <Heading>Spark Dependencies - {props.groupName}</Heading>
+      <Flex pt="15px">
+        <Spacer />
+        <Button
+          onClick={handleUploadClick}
+          disabled={isUploading}
+        >
+        {!isUploading ? `Upload File(s)` : `Uploading...`}
+        {isUploading && <CircularProgress size="20px" isIndeterminate ml={2} />}
+        </Button>
+      </Flex>
+      <Box pt="5" pb="5">
+        <InputGroup>
+          <InputLeftAddon bg="#2D3748" children="Search File: " />
+          <Input type="tel" placeholder="filename" />
+        </InputGroup>
+      </Box>
+      <SparkDependencyTable
+        loading={loading}
+        data={tableData}
+        handleDelete={(e, data) => {
+          setDeleteFile({ open: true, data: data });
+        }}
+        handleDownload={(e, data) => {handleDownload(data)}}
+      />
+      <ConfirmationDialog
+      open={deleteFile.open}
+      handleClose={() => setDeleteFile({ open: false, data: null })}
+      onConfirm={handleDeleteConfirm}
+      loading={delLoading}
+      title="Confirmation"
+      body="Are you sure you want to delete this?"
+      cancelText="Cancel"
+      confirmText="Delete"
+      />
+    </Box>
+    </>
   );
 };
 

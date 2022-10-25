@@ -22,10 +22,9 @@ import { Heading } from '@chakra-ui/react';
 import SparkDependencyView from './sparkdependency_view';
 import ConfigContainer from './ConfigContainer';
 
-const SparkDependency: React.FC = () => (
+const SparkDependency: React.FC = (props) => (
   <ConfigContainer current="Spark Dependency">
-    <Heading>Spark Dependencies - test/jars</Heading>
-    <SparkDependencyView />
+    <SparkDependencyView groupName={props.match.params.groupName}/>
   </ConfigContainer>
 );
 

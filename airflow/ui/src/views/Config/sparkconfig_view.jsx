@@ -1,266 +1,309 @@
 import React, { useState, useEffect } from 'react';
-import '../../static/buttonstyle.css';
-// import { Link } from 'react-router-dom';
 import {
+  Box,
   Button,
   Heading,
+  IconButton,
   Input,
-} from '@chakra-ui/react';
-import axios from 'axios';
-// import Popup from 'reactjs-popup';
+  Flex,
+  Grid,
+  GridItem,
+  Spacer,
+  Skeleton,
+  Text,
+  CircularProgress,
+  HStack
+} from "@chakra-ui/react";
 import 'font-awesome/css/font-awesome.min.css';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
+import axios from 'axios';
 
-const SparkConfigView = () => {
-  // const fileRef = useRef();
-  // const [configdata, setConfig] = useState([]);
-  const [configdata, setData] = useState({});
-  // const fetchData = async () => {
-  //   try {
-  //     // const token = userStore.user.access;
-  //     // const token = 'read';
-  //     const config = {
-  //       method: 'GET',
-  //       url: `${process.env.API_URL}/sparkconfigurationview/config_group_1`,
-  //       // headers: {
-  //       //   Authorization: `Bearer ${token}`,
-  //       // },
-  //     };
+const SparkConfigView = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [argData, setArgData] = useState([]);
+  const [configData, setConfigData] = useState([]);
+  const [newArgData, setNewArgData] = useState([]);
+  const [newConfigData, setNewConfigData] = useState([]);
+  const [deleteFile, setDeleteFile] = useState({ open: false, data: null });
 
-  //     const response = await axios(config);
-  //     // setConfig(response.data.response);
-  //     setConfig(response.data.data);
-  //     console.log(response.data.data);
-  //     //   setConfig(defaultProjects);
-  //   } catch (e) {
-  //   //   setConfig(defaultProjects);
-  //     console.log('exception', e);
-  //     // TODO: handle error here
-  //   }
-  // };
+  const fetchFiles = async () => {
+    try {
+      console.log("IN FETCH FILES")
 
+      const config = {
+        method: 'GET',
+        url: 'https://exl.workbench.couture.ai/someuri/codeartifactview/',
+      };
 
-  const Headers = {
-    // backgroundColor: '#90cdf4',
-    // color: '#1A202C',
-    fontWeight: '600',
-    fontSize: '14px',
+      const response = await axios(config);
+      console.log("SHOW RESPONSE")
+      console.log(response.data.data.files)
+    } catch (e) {
+      console.log(e)
+
+    }
   };
-
-  // const space = {
-  //   width: '3px',
-  //   height: 'auto',
-  //   display: 'inline-block',
-  // };
-  const padding = {
-    paddingBottom: '20px',
-  };
-  const paddingForm = {
-    paddingBottom: '15px',
-  };
-  // useEffect(() => {
-  //   fetchData();
-  //   // eslint-disable-next-line
-  //     }, []);
-
-  // useEffect(() => {
-  //   // fetchProjects();
-  //   console.log('configdata', configdata);
-  //   // eslint-disable-next-line
-  //         }, [config]);
 
   useEffect(() => {
-    axios
-      // .get(`https://exl.workbench.couture.ai/workbench-expt/sparkconfigurationview/config_group_1`)
-      .get(`${process.env.API_URL}/sparkconfigurationview/config_group_1`)
-      .then((res) => {
-        setData(res.data);
-        console.log(res.data);
-        console.log(res.data.arguments.master);
-      });
+    fetchData();
+    fetchFiles();
   },[]);
+  
+  const fetchData = () => {
+    try {
+      setLoading(true);
+      const config = {
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/sparkconfigurationview/${props.groupName}`
+      };
+      axios(config)
+        .then((response) => {
+          setArgData(Object.entries(response.data.data.arguments));
+          setConfigData(Object.entries(response.data.data.configurations));
+          console.log(response);
+          setLoading(false);
+        })
+    } catch(e) {
+      console.log(e);
+      setLoading(false);
+    }
+  }
 
-  // const linkColor = useColorModeValue('blue.200', 'blue.300');
-  // const dividerColor = useColorModeValue('gray.100', 'gray.700');
+  const handleSubmit = () => {
+    try {
+      setLoading(true);
+      const formData = new FormData();
+
+      argData.forEach((item, index) => formData.append(item[0], item[1]));
+      configData.forEach((item, index) => formData.append(item[0], item[1]));
+      let validIdx = 0;
+      newArgData.forEach((item, index) => {
+        if(item[0]) {
+          formData.append(`new-arg-key-${validIdx}`,item[0]);
+          item[1] ? formData.append(`new-arg-value-${validIdx}`,item[1]) : formData.append(`new-arg-value-${validIdx}`,"");
+          validIdx++;
+        }
+      });
+      validIdx = 0;
+      newConfigData.forEach((item, index) => {
+        if(item[0]) {
+          formData.append(`new-config-key-${validIdx}`,item[0]);
+          item[1] ? formData.append(`new-config-value-${validIdx}`,item[1]) : formData.append(`new-config-value-${validIdx}`,"");
+          validIdx++;
+        }
+      });
+
+      const config = {
+        method: "POST",
+        url: `https://exl.workbench.couture.ai/someuri/sparkconfigurationview/${props.groupName}`,
+        data: formData
+      };
+      axios(config)
+        .then((response) => {
+          fetchData();
+          setLoading(false);
+        })
+        .catch((e) => setLoading(false));
+    } catch(e) {
+      console.log(e);
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteConfirm = () => {
+    if (deleteFile.data.type === "old") {
+      if (deleteFile.data.arr === "arguments") {
+        const newArr = argData.filter((item, idx) => idx !== deleteFile.data.k );
+        setArgData(newArr);
+      } else {
+        const newArr = configData.filter((item, idx) => idx !== deleteFile.data.k );
+        setConfigData(newArr);
+      }
+    } else {
+      if (deleteFile.data.arr === "arguments") {
+        const newArr = newArgData.filter((item, idx) => idx !== deleteFile.data.k );
+        setNewArgData(newArr);
+      } else {
+        const newArr = newConfigData.filter((item, idx) => idx !== deleteFile.data.k );
+        setNewConfigData(newArr);
+      }
+    }
+    setDeleteFile({ open: false, data: null });
+
+  };
+
+  const handleAddkey = (keyAdd) => {
+    if(keyAdd === "arguments") {
+      let tempArrData = [...newArgData];
+      tempArrData.push(["",""]);
+      setNewArgData(tempArrData);
+    } else {
+      let tempArrData = [...newConfigData];
+      tempArrData.push(["",""]);
+      setNewConfigData(tempArrData);
+    }
+  };
 
   return (
-    <div>
-      <Heading mb="20px" as="h5" size="md">config_group_1</Heading>
-      <Button
-        colorScheme="blue"
-        size="sm"
-        mr="2"
-        float="right"
-        mb="20px"
-        // onClick={() => fetchData()}
-      >
-        Add in Arguments
-      </Button>
-      <h5 style={Headers}>Arguments</h5>
-      <br />
-      <div>
-        <div>
-          <span className="input-form-addon spark-form-sep">master</span>
-        </div>
-        <div className="input-form form-width">
-          <Input
-            mb={2}
-            placeholder={configdata.arguments ? configdata.arguments.master : ""}
-            _placeholder={{ color: 'white' }}
-              // autoFocus
-            color="white"
-            bgColor="gray.900"
-            h="34px"
-            padding="6px 12px"
-            fontSize="14px"
-            lineHeight="1.428571429"
-            borderRadius="4px"
-            ml="20"
-          />
-        </div>
-      </div>
-      <div>
-        <div>
-          <span className="input-form-addon spark-form-sep">jars</span>
-        </div>
-        <div className="input-form shift-form-left">
-          <p>No files at location.</p>
-        </div>
-      </div>
+    <>
+      <Box mb="5">
+        <Heading>{`Spark Configuration - ${props.groupName}`}</Heading>
+      </Box>
+      <Box mt="10">
+        <Heading mb="5">Arguments</Heading>
+        {loading ? <Skeleton /> : 
+          <Grid gap={6} templateColumns="repeat(7, 1fr)">
+          {argData.map((k,idx) => (
+            <>
+              <GridItem key={idx} colSpan={2}>
+                <Text>{k[0]}</Text>
+              </GridItem>
+              <GridItem key={idx} colSpan={4}>
+                <Input
+                  onChange={(e)=> {
+                      setArgData(argData.map((item,i) => idx === i ? Object.assign([...item],{[1]: e.target.value}) : item))
+                    }}
+                  value={k[1]}
+                />
+              </GridItem>
+              <GridItem key={idx} colSpan={1}>
+                <Button onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:idx, type: "old"} })}>
+                  <CancelIcon />
+                </Button>
+              </GridItem>
+            </>
+            ))}
+            {newArgData.map((item,i) => (
+              <>
+                <GridItem key={i} colSpan={2}>
+                  <Input
+                    onChange={(e)=> {
+                      setNewArgData(newArgData.map((item,idx) => idx === i ? Object.assign([...item],{[0]: e.target.value}) : item))
+                    }}
+                    value={item[0]}
+                    placeholder="Enter key"
+                    />
+                </GridItem>
+                <GridItem key={i} colSpan={4}>
+                  <Input
+                    onChange={(e)=> {
+                      setNewArgData(newArgData.map((item,idx) => idx === i ? Object.assign([...item],{[1]: e.target.value}) : item))
+                    }}
+                    value={item[1]}
+                    placeholder="Enter value"
+                    />
+                </GridItem>
+                <GridItem key={i} colSpan={1}>
+                  <Button onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:i, type: "new"} })}>
+                    <CancelIcon />
+                  </Button>
+              </GridItem>
+              </>
+            ))}
+            <GridItem colSpan={7}>
+              <Flex mt="20px">
+                <Spacer />
+                <Button
+                  colorScheme="blue"
+                  size="sm"
+                  mr="2"
+                  onClick={() => handleAddkey("arguments")}
+                >
+                  {`Add in Arguments`}
+                </Button>
+              </Flex>
+            </GridItem>
+                  
+            {configData.map((k,idx) => (
+            <>
+              <GridItem key={idx} colSpan={2}>
+                <Text>{k[0]}</Text>
+              </GridItem>
+              <GridItem key={idx} colSpan={4}>
+                <Input
+                  onChange={(e)=> {
+                      setConfigData(configData.map((item,i) => idx === i ? Object.assign([...item],{[1]: e.target.value}) : item))
+                    }}
+                  value={k[1]}
+                />
+              </GridItem>
+              <GridItem key={idx} colSpan={1}>
+                <Button onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "old"} })}>
+                  <CancelIcon />
+                </Button>
+              </GridItem>
+            </>
+            ))}
+            {newConfigData.map((item,i) => (
+              <>
+                <GridItem key={i} colSpan={2}>
+                  <Input
+                    onChange={(e)=> {
+                      setNewConfigData(newConfigData.map((item,idx) => idx === i ? Object.assign([...item],{[0]: e.target.value}) : item))
+                    }}
+                    value={item[0]}
+                    placeholder="Enter key"
+                    />
+                </GridItem>
+                <GridItem key={i} colSpan={4}>
+                  <Input
+                    onChange={(e)=> {
+                      setNewConfigData(newConfigData.map((item,idx) => idx === i ? Object.assign([...item],{[1]: e.target.value}) : item))
+                    }}
+                    value={item[1]}
+                    placeholder="Enter value"
+                    />
+                </GridItem>
+                <GridItem key={i} colSpan={1}>
+                  <Button onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "new"} })}>
+                    <CancelIcon />
+                  </Button>
+              </GridItem>
+              </>
+            ))}
 
-      <div style={paddingForm} />
-      <div>
-        <div>
-          <span className="input-form-addon spark-form-sep">py-files</span>
-        </div>
-        <div className="input-form shift-form-left">
-          No files at location.
-        </div>
-      </div>
+            <GridItem colSpan={7}>
+              <Flex mt="20px">
+                <Spacer />
+                <Button
+                  colorScheme="blue"
+                  size="sm"
+                  mr="2"
+                  onClick={() => handleAddkey("confgigurations")}
+                >
+                  {`Add in Configurations`}
+                </Button>
+              </Flex>
+            </GridItem>
+            </Grid>
+          }
+        </Box>
 
-      <div style={paddingForm} />
-      <div>
-        <div>
-          <span className="input-form-addon spark-form-sep">keytab</span>
-        </div>
-        <div className="input-form shift-form-left">
-          No files at location.
-        </div>
-      </div>
-      <div style={paddingForm} />
-
-      <div style={padding} />
-      <Button
-        colorScheme="blue"
-        size="sm"
-        mr="2"
-        float="right"
-        mb="20px"
-      >
-        Add in Configurations
-      </Button>
-      <h5 style={Headers}>Configurations</h5>
-      <br />
-      <div>
-        <span className="input-form-addon spark-form-sep">spark.scheduler.mode</span>
-      </div>
-      <div className="input-form form-width">
-        <Input
-          mb={2}
-          placeholder="s3a://"
-              // autoFocus
-          bgColor="gray.900"
-          h="34px"
-          padding="6px 12px"
-          fontSize="14px"
-          lineHeight="1.428571429"
-          borderRadius="4px"
-          ml="20"
-        />
-      </div>
-      <div>
-        <span className="input-form-addon spark-form-sep">spark.pyspark.python</span>
-      </div>
-      <div className="input-form form-width">
-        <Input
-          mb={2}
-          placeholder="s3a://"
-              // autoFocus
-          bgColor="gray.900"
-          h="34px"
-          padding="6px 12px"
-          fontSize="14px"
-          lineHeight="1.428571429"
-          borderRadius="4px"
-          ml="20"
-        />
-      </div>
-      <div>
-        <span className="input-form-addon spark-form-sep">spark.dynamicAllocation.enabled</span>
-      </div>
-      <div className="input-form form-width">
-        <Input
-          mb={2}
-          placeholder="s3a://"
-              // autoFocus
-          bgColor="gray.900"
-          h="34px"
-          padding="6px 12px"
-          fontSize="14px"
-          lineHeight="1.428571429"
-          borderRadius="4px"
-          ml="20"
-        />
-      </div>
-      <div>
-        <span className="input-form-addon spark-form-sep">spark.shuffle.service.enabled</span>
-      </div>
-      <div className="input-form form-width">
-        <Input
-          mb={2}
-          placeholder="s3a://"
-              // autoFocus
-          bgColor="gray.900"
-          h="34px"
-          padding="6px 12px"
-          fontSize="14px"
-          lineHeight="1.428571429"
-          borderRadius="4px"
-          ml="20"
-        />
-      </div>
-      <div>
-        <span className="input-form-addon spark-form-sep">spark.dynamicAllocation.maxExecutors</span>
-      </div>
-      <div className="input-form form-width">
-        <Input
-          mb={2}
-          placeholder="s3a://"
-              // autoFocus
-          bgColor="gray.900"
-          h="34px"
-          padding="6px 12px"
-          fontSize="14px"
-          lineHeight="1.428571429"
-          borderRadius="4px"
-          ml="20"
-        />
-      </div>
-      <br />
-
-      <div style={padding} />
-      <div className="buttonCenter">
+      <Flex mt="20px" justifyContent="center">
+        {/* <Spacer /> */}
         <Button
           colorScheme="blue"
           size="sm"
           mr="2"
-          float="right"
-          mb="20px"
-        >
+          onClick={handleSubmit}
+          disabled={loading}
+          >
           Submit
+          {loading && <CircularProgress size="20px" isIndeterminate ml={2} />}
         </Button>
-      </div>
-
-    </div>
+      </Flex>
+      <ConfirmationDialog
+        open={deleteFile.open}
+        handleClose={() => setDeleteFile({ open: false, data: null })}
+        onConfirm={handleDeleteConfirm}
+        loading={loading}
+        title="Confirmation"
+        body="Are you sure you want to delete this?"
+        cancelText="Cancel"
+        confirmText="Delete"
+      />
+    </>
   );
 };
 

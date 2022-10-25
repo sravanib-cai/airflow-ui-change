@@ -151,7 +151,7 @@ export function useProviders({ offset = 0, limit }: PageProps) {
   console.log('Sra, providers', '/providers');
   return useQuery<ProvidersResponse, Error>(
     ['providers', offset],
-    (): Promise<ProvidersResponse> => axios.get(`${process.env.API_URL}/api/v1/providers`, {
+    (): Promise<ProvidersResponse> => axios.get(`https://exl.workbench.couture.ai/someuri/api/v1/providers`, {
       params: { offset, limit },
 
     }),

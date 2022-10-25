@@ -22,10 +22,10 @@ import React from 'react';
 import ConfigContainer from './ConfigContainer';
 import GroupView from './group_view';
 
-const ClusterConfigGrps: React.FC = () => (
+const ClusterConfigGrps: React.FC = (props) => (
   <ConfigContainer current="Cluster Config Groups">
     {/* <Heading as="h5" size="md">Variables</Heading> */}
-    <GroupView />
+    <GroupView projectId={props.match.params.id} projectName={props.match.params.name} />
   </ConfigContainer>
 );
 

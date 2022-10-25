@@ -66,7 +66,7 @@ const EDAView = () => {
       const token = 'read';
       const config = {
         method: 'GET',
-        url: `${process.env.API_URL}/edaview/eda/sources/`,
+        url: `https://exl.workbench.couture.ai/someuri/edaview/eda/sources/`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

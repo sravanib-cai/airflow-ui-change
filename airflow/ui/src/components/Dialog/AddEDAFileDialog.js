@@ -1,6 +1,6 @@
 /* eslint-disable import/named */
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   AlertDialog,
   AlertDialogOverlay,
@@ -13,24 +13,24 @@ import {
   Input,
   Select,
   Text,
-} from '@chakra-ui/react';
-import axios from 'axios';
-import AddProjectDialogSchema from '../../modal/projectDialog';
+} from "@chakra-ui/react";
+import axios from "axios";
+import AddProjectDialogSchema from "../../modal/projectDialog";
 
 const AddEDAFileDialog = (props) => {
   // const userStore = useSelector((store) => store.user);
   const { open, handleClose } = props;
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [errorState, setError] = useState({ name: false });
   const [loading, setLoading] = useState(false);
 
   const checkFileStatus = async () => {
     try {
       // const token = userStore.user.access;
-      const token = 'read';
+      const token = "read";
       const config = {
-        method: 'GET',
-        url: `${process.env.API_URL}/edaview/eda_file_check?conn_uri=s3a://eda-couture-test/inputssvs/Tips.csv`,
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/edaview/eda_file_check?conn_uri=s3a://eda-couture-test/inputssvs/Tips.csv`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,6 @@ const AddEDAFileDialog = (props) => {
       // setFiles(response.data.response);
       setFiles(response.data);
     } catch (e) {
-
       // TODO: handle error here
     }
   };
@@ -53,7 +52,7 @@ const AddEDAFileDialog = (props) => {
     const { error } = AddProjectDialogSchema.validate(file);
     if (error) {
       switch (error.details[0].context.key) {
-        case 'name':
+        case "name":
           setError({ ...error, name: true });
           break;
         default:
@@ -62,14 +61,14 @@ const AddEDAFileDialog = (props) => {
     } else {
       setLoading(true);
       try {
-        const token = 'write';
+        const token = "write";
         // const token = userStore.user.access;
         const formData = new FormData();
-        formData.append('name', name);
+        formData.append("name", name);
 
         const config = {
-          method: 'POST',
-          url: `${process.env.API_URL}/edaview/eda/sources/`,
+          method: "POST",
+          url: `https://exl.workbench.couture.ai/someuri/edaview/eda/sources/`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -116,7 +115,7 @@ const AddEDAFileDialog = (props) => {
               // }}
               onChange={(e) => {
                 setName(e.target.value);
-                if (errorState.name && e.target.value !== '') {
+                if (errorState.name && e.target.value !== "") {
                   setError({ ...errorState, name: false });
                 }
                 // checkPath(e.target.value, window.location.href.split('/edaview/eda/sources/')[0]);
@@ -134,7 +133,12 @@ const AddEDAFileDialog = (props) => {
             <Button onClick={handleClose} variant="menu" disabled={loading}>
               Cancel
             </Button>
-            <Button variant="primary" ml={3} onClick={handleSubmit} disabled={loading}>
+            <Button
+              variant="primary"
+              ml={3}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
               Confirm
             </Button>
           </AlertDialogFooter>

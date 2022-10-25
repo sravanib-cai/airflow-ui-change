@@ -23,11 +23,12 @@ import React from 'react';
 import DataLakeView from './datalake_view';
 import ConfigContainer from './ConfigContainer';
 
-const DataLakeConfiguration: React.FC = () => (
+const DataLakeConfiguration: React.FC = (props) => {
+  return (
   <ConfigContainer current="Data Lake Configuration">
     {/* <Heading>Data Lake Configuration</Heading> */}
-    <DataLakeView />
+    <DataLakeView groupName={props.match.params.groupName} />
   </ConfigContainer>
-);
+)};
 
 export default DataLakeConfiguration;

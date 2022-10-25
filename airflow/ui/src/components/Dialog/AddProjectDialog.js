@@ -1,6 +1,6 @@
 /* eslint-disable import/named */
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   AlertDialog,
   AlertDialogOverlay,
@@ -13,14 +13,14 @@ import {
   Input,
   Select,
   Text,
-} from '@chakra-ui/react';
-import axios from 'axios';
-import AddProjectDialogSchema from '../../modal/projectDialog';
+} from "@chakra-ui/react";
+import axios from "axios";
+import AddProjectDialogSchema from "../../modal/projectDialog";
 
 const AddProjectDialog = (props) => {
   // const userStore = useSelector((store) => store.user);
   const { open, handleClose } = props;
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   // const [projectDescription, setprojectDescription] = useState('');
   const [errorState, setError] = useState({ name: false });
   // const [errorState, setError] = useState({ name: false, projectDescription: false });
@@ -35,7 +35,7 @@ const AddProjectDialog = (props) => {
     const { error } = AddProjectDialogSchema.validate(data);
     if (error) {
       switch (error.details[0].context.key) {
-        case 'name':
+        case "name":
           setError({ ...error, name: true });
           break;
         // case 'projectDescription':
@@ -48,15 +48,15 @@ const AddProjectDialog = (props) => {
       setLoading(true);
 
       try {
-        const token = 'write';
+        const token = "write";
         // const token = userStore.user.access;
         const formData = new FormData();
-        formData.append('name', name);
+        formData.append("name", name);
         // formData.append('projectDescription', projectDescription);
 
         const config = {
-          method: 'POST',
-          url: `${process.env.API_URL}/api/experimental/project`,
+          method: "POST",
+          url: `https://exl.workbench.couture.ai/someuri/api/experimental/project`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -97,7 +97,7 @@ const AddProjectDialog = (props) => {
               autoFocus
               onChange={(e) => {
                 setName(e.target.value);
-                if (errorState.name && e.target.value !== '') {
+                if (errorState.name && e.target.value !== "") {
                   setError({ ...errorState, name: false });
                 }
               }}
@@ -126,7 +126,12 @@ const AddProjectDialog = (props) => {
             <Button onClick={handleClose} variant="menu" disabled={loading}>
               Cancel
             </Button>
-            <Button variant="primary" ml={3} onClick={handleSubmit} disabled={loading}>
+            <Button
+              variant="primary"
+              ml={3}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
               Confirm
             </Button>
           </AlertDialogFooter>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import {
   AlertDialog,
   AlertDialogOverlay,
@@ -14,16 +13,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { ManageUserAccessSchema } from "../../modal/manageUserAccess";
 
 const ManageUserAccessDialog = (props) => {
-  const userStore = useSelector((store) => store.user);
-  const { open, handleClose } = props;
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const toast = useToast();
-
   const fetchUserData = async () => {
     try {
       // const token = userStore.user.access;
@@ -35,28 +29,27 @@ const ManageUserAccessDialog = (props) => {
       };
 
       const response = await axios.all([
-        // axios({ ...config, url: projectUrl }),
+        axios({ ...config, url: projectUrl }),
         axios({ ...config, url: usersUrl }),
       ]);
 
-      // console.log(response[0]);
-      // console.log(response[1]);
+      console.log(response[0]);
+      console.log(response[1]);
 
-      // const projectUsers = response[0].data.users;
-      const allUsers = response[0].data.users;
-
-      setSelectedUsers(allUsers.map((user) => ({ ...user, user_id: "" })));
+      const projectUsers = response[0].data.message.data;
+      const allUsers = response[1].data.users;
+      setSelectedUsers(projectUsers);
       setUsers(allUsers);
       setLoading(false);
     } catch (e) {
       console.log(e);
       setLoading(false);
-
       // TODO: handle error here
     }
   };
 
   useEffect(() => {
+    setLoading(true);
     if (props.data) {
       fetchUserData();
     }
@@ -65,14 +58,13 @@ const ManageUserAccessDialog = (props) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const userIdData = selectedUsers.filter((user) => Number(user.user_id) > 0);
-    const idArr = userIdData.map((user) => user.id);
+    const userIdData = selectedUsers.map((user) => Number(user.id));
     try {
       const config = {
         method: "POST",
         url: `https://exl.workbench.couture.ai/someuri/api/experimental/project/user`,
         data: {
-          users: idArr,
+          users: userIdData,
           projects: [props.data.id],
         },
       };
@@ -89,7 +81,7 @@ const ManageUserAccessDialog = (props) => {
 
   return (
     <AlertDialog
-      isOpen={open}
+      isOpen={props.open}
       onClose={() => {
         if (!loading) {
           props.handleClose();
@@ -103,35 +95,37 @@ const ManageUserAccessDialog = (props) => {
             Manage User Access
           </AlertDialogHeader>
           <AlertDialogBody maxH={500} overflowY="auto">
-            {users.map((user) => (
-              <VStack key={user.id} alignItems="start">
-                <Checkbox
-                  disabled={loading}
-                  isChecked={
-                    selectedUsers.filter((key) => key.user_id === user.id)
-                      .length !== 0
-                  }
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      const newUser = { ...user, user_id: user.id };
-                      setSelectedUsers([...selectedUsers, newUser]);
-                    } else {
-                      console.log("clicked");
-                      setSelectedUsers([
-                        ...selectedUsers.filter(
-                          (key) => key.user_id !== user.id
-                        ),
-                      ]);
+            {!loading &&
+              users.map((user) => (
+                <VStack key={user.id} alignItems="start">
+                  <Checkbox
+                    disabled={loading}
+                    isChecked={
+                      selectedUsers.filter((key) => key.id === user.id)
+                        .length !== 0
                     }
-                  }}
-                >
-                  {user.username}
-                </Checkbox>
-              </VStack>
-            ))}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedUsers([...selectedUsers, user]);
+                      } else {
+                        console.log("clicked");
+                        setSelectedUsers([
+                          ...selectedUsers.filter((key) => key.id !== user.id),
+                        ]);
+                      }
+                    }}
+                  >
+                    {user.username}
+                  </Checkbox>
+                </VStack>
+              ))}
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={handleClose} variant="menu" disabled={loading}>
+            <Button
+              onClick={props.handleClose}
+              variant="menu"
+              disabled={loading}
+            >
               Cancel
             </Button>
             <Button
