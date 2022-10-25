@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Flex, Spacer, Text, Grid, GridItem, Link } from '@chakra-ui/react';
+import { Card, Heading, Flex, Spacer, Text, Grid, GridItem, Link } from '@chakra-ui/react';
 import ProjectCard from '../components/Cards/ProjectCard';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 //import ToggleOnRoundedIcon from '@mui/icons-material/ToggleOnRounded';
@@ -12,7 +12,7 @@ const ProjectNavCard = (props) => {
         return (
           <GridItem key={i}>
             <Link to={item.link}>
-              <Card w="100%" h="250px">
+              <Card w="100%" h="300px">
                 <Flex direction={'column'} px={3} py={3}>
                   <Flex h="200px" direction="column">
                     <Heading fontSize="lg" my={4}>

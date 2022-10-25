@@ -23,9 +23,9 @@ import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded';
 const ProjectNav = () => {
   // const [Data, setData] = useState(ProjectNavData);
   return (
-    <Box py={2} px={2}>
-      <Box px="5%" py={2} pt="2%">
-        <Box mt={4}>
+    <Box py={3} px={3}>
+      <Box px="6%" py={3} pt="3%">
+        <Box mt={3}>
           <Flex>
             <ProjectNavCard data={ProjectNavData} />
           </Flex>

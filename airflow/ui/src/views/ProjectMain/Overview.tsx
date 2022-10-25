@@ -25,7 +25,7 @@ import OverviewView2 from './old_overview_view';
 
 const ProjectOverview: React.FC = () => (
   <ProjectMainContainer current="Overview">
-    <br />
+    {/* <br /> */}
     <OverviewView2 />
     {/* <ProjectNav /> */}
   </ProjectMainContainer>

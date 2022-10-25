@@ -41,7 +41,7 @@ const OverviewView2: React.FC<Props> = ({ match }) => {
   // };
 
   const space = {
-    width: '200px',
+    width: '170px',
     height: 'auto',
     display: 'inline-block',
   };
@@ -59,7 +59,7 @@ const OverviewView2: React.FC<Props> = ({ match }) => {
   };
 
   const padding1 = {
-    paddingBottom: '70px',
+    paddingBottom: '80px',
   };
   const projectId = match.params.id;
   const projectName = match.params.name;
