@@ -88,7 +88,7 @@ const DataLakeExplorerView = (props) => {
   //       method: 'GET',
   //       params: filepath,
   //       url: `${process.env.API_URL}/s3bucketview/bucket?bucket=${strBucket}&path=${strPrefix}`,
-  //       // url: 'https://exl.workbench.couture.ai/someuri/s3bucketview/',
+  //       // url: '${process.env.API_URL}/s3bucketview/',
   //       headers: {
   //         Authorization: `Bearer ${token}`,
   //       },

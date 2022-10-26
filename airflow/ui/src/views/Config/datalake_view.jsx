@@ -38,7 +38,7 @@ const DataLakeView = (props) => {
     setLoading(true);
     const config = {
       method: "GET",
-      url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/list/${props.groupName}/`,
+      url: `${process.env.API_URL}/hadoopconfigurationview/list/${props.groupName}/`,
     };
     axios(config)
     .then((response) => {
@@ -67,7 +67,7 @@ const DataLakeView = (props) => {
       data.append(`${currentState.toLowerCase()}-file`, event.target.files[0]);
       const config = {
           method: 'POST',
-          url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/upload/${props.groupName}?datalake_source=${currentState.toLowerCase()}`,
+          url: `${process.env.API_URL}/hadoopconfigurationview/upload/${props.groupName}?datalake_source=${currentState.toLowerCase()}`,
           data: data  
         };
         
@@ -100,7 +100,7 @@ const DataLakeView = (props) => {
     try {
       const config = {
         method: 'GET',
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/download/${props.groupName}/${data.filename}?datalake_source=${currentState.toLowerCase()}`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/download/${props.groupName}/${data.filename}?datalake_source=${currentState.toLowerCase()}`,
         responseType: 'blob'
       };
       axios(config)
@@ -123,7 +123,7 @@ const DataLakeView = (props) => {
       setDelLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/destroy/${props.groupName}/${deleteFile.data.filename}?datalake_source=${currentState.toLowerCase()}`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/destroy/${props.groupName}/${deleteFile.data.filename}?datalake_source=${currentState.toLowerCase()}`,
       };
       axios(config).then((res) => {
         toast({

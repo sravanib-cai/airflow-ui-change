@@ -41,7 +41,7 @@ const AddClusterGroupDialog = (props) => {
       setLoading(true);
       const config = {
         method: "POST",
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/`,
         data: data,
       };
       await axios(config);

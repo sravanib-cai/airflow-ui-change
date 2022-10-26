@@ -56,7 +56,7 @@ const AddProjectDialog = (props) => {
 
         const config = {
           method: "POST",
-          url: `https://exl.workbench.couture.ai/someuri/api/experimental/project`,
+          url: `${process.env.API_URL}/api/experimental/project`,
           headers: {
             Authorization: `Bearer ${token}`,
           },

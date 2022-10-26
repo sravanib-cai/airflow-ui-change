@@ -33,7 +33,7 @@ const SparkConfigView = (props) => {
 
       const config = {
         method: 'GET',
-        url: 'https://exl.workbench.couture.ai/someuri/codeartifactview/',
+        url: '${process.env.API_URL}/codeartifactview/',
       };
 
       const response = await axios(config);
@@ -55,7 +55,7 @@ const SparkConfigView = (props) => {
       setLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/sparkconfigurationview/${props.groupName}`
+        url: `${process.env.API_URL}/sparkconfigurationview/${props.groupName}`
       };
       axios(config)
         .then((response) => {
@@ -96,7 +96,7 @@ const SparkConfigView = (props) => {
 
       const config = {
         method: "POST",
-        url: `https://exl.workbench.couture.ai/someuri/sparkconfigurationview/${props.groupName}`,
+        url: `${process.env.API_URL}/sparkconfigurationview/${props.groupName}`,
         data: formData
       };
       axios(config)

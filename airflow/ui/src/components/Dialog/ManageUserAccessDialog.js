@@ -22,8 +22,8 @@ const ManageUserAccessDialog = (props) => {
     try {
       // const token = userStore.user.access;
       const token = "read";
-      const projectUrl = `https://exl.workbench.couture.ai/someuri/api/experimental/project/user?project_id=${props.data.id}`;
-      const usersUrl = `https://exl.workbench.couture.ai/someuri/api/v1/users`;
+      const projectUrl = `${process.env.API_URL}/api/experimental/project/user?project_id=${props.data.id}`;
+      const usersUrl = `${process.env.API_URL}/api/v1/users`;
       const config = {
         method: "GET",
       };
@@ -62,7 +62,7 @@ const ManageUserAccessDialog = (props) => {
     try {
       const config = {
         method: "POST",
-        url: `https://exl.workbench.couture.ai/someuri/api/experimental/project/user`,
+        url: `${process.env.API_URL}/api/experimental/project/user`,
         data: {
           users: userIdData,
           projects: [props.data.id],
