@@ -1,6 +1,7 @@
 import React, {
   useRef,
   useState,
+  useEffect
 } from 'react';
 import {
   Button,
@@ -12,31 +13,79 @@ import {
   GridItem,
   Heading,
   HStack,
+  InputGroup,
+  Input,
+  InputLeftAddon,
   VStack,
   Textarea,
   CircularProgress,
-  Input,
   useToast
 } from '@chakra-ui/react';
 import CreatePipelineDialog from 'components/Dialog/CreatePipelineDialog';
+import CreateUpdateTable from 'components/Tables/CreateUpdateTable';
+import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
+import ReactDiffViewer from "react-diff-viewer";
 import Editor from 'components/Editor'
 import SaveIcon from '@mui/icons-material/Save';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
 
-const CreateUpdate = () => {
+const CreateUpdate = (props) => {
   const [createPipeline, setCreatePipeline] = useState({ open: false, data: null });
   const [step, setStep] = useState(0);
   const [fileName, setFileName] = useState("");
   const [fileData, setFileData] = useState("");
+  const [newFileData, setNewFileData] = useState("");
+  const [loading, setLoading] = useState(false);
   const [reviewLoading, setReviewLoading] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const hiddenFileInput = useRef(null);
   const toast = useToast();
+  const [createLoading, setCreateLoading] = useState(false);
+  const [delLoading, setDelLoading] = useState(false);
+  const [deleteFile, setDeleteFile] = useState({ open: false, data: null });
+  const [tableData, setTableData] = useState([]);
+  const [fileUploadData, setFileUploadData] = useState({});
+  
+  const fetchTableData = () => {
+    try {
+      setLoading(true);
+      const config = {
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+      };
+      axios(config).then((response) => {
+        const data = Object.entries(response.data.file_data).map((item, idx) => ({...item[1], filename: item[0]}));
+        console.log(data);
+        setTableData(data);
+        setLoading(false);
+      });
+    } catch (e) {
+      setLoading(false);
+    }
+  };
 
   const handleCreatePipeline = (isStarter) => {
-    setStep(1);
+    try {
+      setCreateLoading(true);
+      const pathName = `${fileName}.py`;
+      const insert_starter_content = isStarter ? "on" : "off";
+      const config = {
+        method: "GET",
+        url: `https://exl.workbench.couture.ai/someuri/managedagsview/editdag/${pathName}?new=1&insert_starter_content=${insert_starter_content}`,
+      };
+      axios(config).then((response) => {
+        console.log(response);
+        setFileData(response.data.code);
+        setNewFileData(response.data.code);
+        setCreateLoading(false);
+        setCreatePipeline({ open: false, data: null })
+        setStep(1);
+      });
+    } catch (e) {
+        setCreateLoading(false);
+    };
   };
 
   const handleReviewAndSave = () => {
@@ -44,13 +93,84 @@ const CreateUpdate = () => {
     setTimeout(() => {
       setStep(2);
       setReviewLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
   const handleSave = () => {
-    setTimeout(() => {
-      setStep(2);
-    }, 2000);
+    try {
+      if(Object.entries(fileUploadData).length > 0) {
+        setLoading(true);
+        console.log(fileUploadData);
+        const fileUploadname = fileUploadData.name;
+        const data = new FormData();
+        data.append("file", fileUploadData);
+        data.append("filename", `${props.projectName}_${fileUploadname}`);
+        const config = {
+          method: 'POST',
+          url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+          data: data  
+        };
+
+        axios(config)
+          .then((response) => {
+            toast({
+              title: 'Success',
+              description: 'File Uploaded!',
+              status: 'success',
+              duration: 9000,
+              isClosable: true
+            });
+            setLoading(false);
+            setStep(0);
+            fetchTableData();
+            setFileName(`${props.projectName}_${fileUploadname}`);
+            setFileUploadData({});
+          })
+          .catch((error) => {
+            console.log(error);
+            setFileUploadData({});
+            setLoading(false);
+            toast({
+              title: 'Error',
+              description: 'Some Error Occured!',
+              status: 'error',
+              duration: 9000,
+              isClosable: true
+            })
+          })
+      } else {
+        setLoading(true);
+        const pathName = `${fileName}.py`
+        const data = new FormData();
+        data.append("code",fileData);
+        const config = {
+          method: "POST",
+          url: `https://exl.workbench.couture.ai/someuri/managedagsview/editdag/${pathName}?new=1`,
+          data: data
+        };
+        axios(config)
+          .then((response) => {
+            toast({
+              title: 'Success',
+              description: 'File Saved!',
+              status: 'success',
+              duration: 9000,
+              isClosable: true
+            })
+            console.log(response);
+            setLoading(false);
+            setStep(0);
+            fetchTableData();
+        })
+        .catch((e) => {
+          console.log(e);
+          setLoading(false);
+        });
+      }
+    } catch (e) {
+        console.log(e);
+        setLoading(false);
+    };
   };
 
   const handleBack = () => {
@@ -61,58 +181,112 @@ const CreateUpdate = () => {
     hiddenFileInput.current.click();
   };
 
-  const handleFileUploadChange = (event) => {
-    const fileUploadData = event.target.files[0];
-    if (fileUploadData) {
-      const fileUploadname = event.target.files[0].name;
-      setIsUploading(true);
-      setTimeout(()=>{
-        setIsUploading(false);
-        toast({
-          title: 'Success',
-          description: 'File Uploaded!',
-          status: 'success',
-          duration: 9000,
-          isClosable: true
+  const handleDownload = (data) => {
+    try {
+      const pathName = `${data.filename}`
+      const config = {
+        method: 'GET',
+        url: `https://exl.workbench.couture.ai/someuri/managedagsview/dag_download/${pathName}`,
+        responseType: 'blob'
+      };
+      axios(config)
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${data.filename}`);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode.removeChild(link);
         })
-        setFileName(fileUploadname.split('.').slice(0, -1).join('.'));
-        fileUploadData.text().then((res) => {
-          setFileData(res);
-          setStep(1);
-        })
-        setIsUploading(false);
-      },1500);
+    } catch (e) {
+      console.log(e);
     }
-    // const data = new FormData();
-    // data.append('file', event.target.files[0]);
-    // const config = {
-    //   method: 'POST',
-    //   url: `data/multiple/`,
-    //   data: data  
-    // };
+  };
 
-    // axios(config)
-    //   .then((response) => {
-    //     setIsUploading(false);
-    //     setStep(1);
-    //     toast({
-    //       title: 'Success',
-    //       description: 'File Uploaded!',
-    //       status: 'success',
-    //       duration: 9000,
-    //       isClosable: true
+  const handleDeleteConfirm = () => {
+    try {
+      setDelLoading(true);
+      const pathName = `${deleteFile.data.filename}`
+      const config = {
+        method: "DELETE",
+        url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag?filename=${pathName}`,
+      };
+      axios(config).then((res) => {
+        toast({
+          title: "Success",
+          description: "File Deleted!",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+        setDeleteFile({ open: false, data: null });
+        fetchTableData();
+        setDelLoading(false);
+      });
+    } catch (e) {
+      console.log(e);
+      setDeleteFile({ open: false, data: null });
+      setDelLoading(false);
+      // TODO: handle error here
+    }
+  };
+  
+  useEffect(() => {
+    fetchTableData();
+  }, []);
+
+  // useEffect(() => {
+  //   if(step===0)
+  //     fetchTableData();
+  // }, [step]);
+
+  const handleFileUploadChange = (event) => {
+    const data = event.target.files[0];
+    setIsUploading(true);
+    setFileUploadData(data);
+    setFileName(`${props.projectName}_${data.name.split('.').slice(0, -1).join('.')}`);
+    data.text().then((res) => {
+        setFileData(res);
+        setNewFileData(res);
+        setStep(1);
+        setIsUploading(false);
+      });
+
+    // if (fileUploadData) {
+    //   const fileUploadname = event.target.files[0].name;
+    //   const data = new FormData();
+    //   data.append("file", fileUploadData);
+    //   data.append("filename", fileUploadname);
+    //   const config = {
+    //     method: 'POST',
+    //     url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+    //     data: data  
+    //   };
+
+    //   axios(config)
+    //     .then((response) => {
+    //       toast({
+    //         title: 'Success',
+    //         description: 'File Uploaded!',
+    //         status: 'success',
+    //         duration: 9000,
+    //         isClosable: true
+    //       })
+    //       setFileName(`${props.projectName}_${fileUploadname.split('.').slice(0, -1).join('.')}`);
+          
     //     })
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     toast({
-    //       title: 'Error',
-    //       description: 'Some Error Occured!',
-    //       status: 'error',
-    //       duration: 9000,
-    //       isClosable: true
+    //     .catch((error) => {
+    //       console.log(error);
+    //       toast({
+    //         title: 'Error',
+    //         description: 'Some Error Occured!',
+    //         status: 'error',
+    //         duration: 9000,
+    //         isClosable: true
+    //       })
     //     })
-    //   })
+    //   }
   };
 
   return (
@@ -147,49 +321,41 @@ const CreateUpdate = () => {
           Create new Pipeline
         </Button>
       </Flex>
-      <Box pb="20px"/>
-      <Box className="input-group">
-        <span className="input-group-addon">Search file: </span>
-        <Box className="search-form-width">
-          <input type="text" className="form-control" placeholder="filename" id="fileSearch" />
-        </Box>
+      
+      <Box mt="5" mb="5">
+        <InputGroup>
+          <InputLeftAddon bg="#2D3748" children="Search File: " />
+          <Input type="tel" placeholder="filename" />
+        </InputGroup>
       </Box>
-      <br />
-      <Box className="table-responsive">
-        <table className="table" id="filesTable">
-          <thead>
-            <tr className="table-head">
-              <th colSpan="15">Filename</th>
-              <th colSpan="2">Last modified</th>
-              <th colSpan="2">Size</th>
-              <th colSpan="2">Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan="15" className="col-sm-15">
-                pi.py
-              </td>
-              <td colSpan="2" className="col-sm-2">Fri Aug 19 2022</td>
-              <td colSpan="2" className="col-sm-2">1.52 KB</td>
-              <td colSpan="1" className="col-sm-1">
-                <Box>
-                  <i className="fa fa-cloud-download fa-lg" data-toggle="tooltip" title="Download" />
-                </Box>
-              </td>
-              <td colSpan="1" className="col-sm-1">
-                <i className="fa fa-trash fa-lg" style={{ color: '#90cdf4' }} aria-hidden="true" data-toggle="tooltip" title="Delete File" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <Box>
+        <CreateUpdateTable
+          loading={loading}
+          data={tableData}
+          handleDelete={(e, data) => {
+            setDeleteFile({ open: true, data: data });
+          }}
+          handleDownload={(e, data) => {handleDownload(data)}}
+      />
       </Box>
       <CreatePipelineDialog
-      open={createPipeline.open}
-      handleClose={() => setCreatePipeline({ open: false, data: null })}
-      handleCreate={handleCreatePipeline}
-      fileName={fileName}
-      setFileName={setFileName}
+        loading={createLoading}
+        open={createPipeline.open}
+        handleClose={() => setCreatePipeline({ open: false, data: null })}
+        handleCreate={(isStarter) => handleCreatePipeline(isStarter)}
+        fileName={fileName}
+        setFileName={setFileName}
+        projectName={props.projectName}
+      />
+      <ConfirmationDialog
+        open={deleteFile.open}
+        handleClose={() => setDeleteFile({ open: false, data: null })}
+        onConfirm={handleDeleteConfirm}
+        loading={delLoading}
+        title="Confirmation"
+        body="Are you sure you want to delete this?"
+        cancelText="Cancel"
+        confirmText="Delete"
       />
     </Box> : step === 1 ? 
     <Box>
@@ -216,11 +382,6 @@ const CreateUpdate = () => {
             fileData={fileData}
           />
         </GridItem>
-        <GridItem>
-          <VStack>
-            <Text>TBD....</Text>
-          </VStack>
-        </GridItem>
       </Grid>
     </Box>
       :
@@ -239,24 +400,25 @@ const CreateUpdate = () => {
           <KeyboardBackspaceRoundedIcon mr="5" />
           Back to Edit Mode
           </Button>
-          <Button 
-          onClick={handleSave}>
-          Save Code
-          <SaveIcon ml={2} />
+          <Button onClick={handleSave}>
+            {loading && <CircularProgress size="20px" isIndeterminate ml={2} />}
+            Save Code
+            <SaveIcon ml={2} />
           </Button>
         </HStack>
       </Box>
       <Grid templateColumns="repeat(2, 1fr)">
-        <GridItem mr="5" colSpan={1}>
+        {/* <GridItem mr="5" colSpan={1}>
           <Textarea h="100%"/>
-        </GridItem>
-        <GridItem>
-          <Editor
+        </GridItem> */}
+        <GridItem colSpan={2}>
+        <ReactDiffViewer oldValue={newFileData} newValue={fileData} showDiffOnly={false} splitView={true} />
+          {/* <Editor
             fileName={fileName}
             setFileName={setFileName}
             setFileData={setFileData}
             fileData={fileData}
-          />
+          /> */}
         </GridItem>
       </Grid>
     </Box>

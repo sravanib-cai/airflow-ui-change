@@ -23,10 +23,10 @@ import React from 'react';
 import CreateUpdate from './create-update';
 import PipelineRunsContainer from './PipelineRunsContainer';
 
-const ManageAndCreate: React.FC = () => (
+const ManageAndCreate: React.FC = (props) => (
   <PipelineRunsContainer current="Create and Update">
     {/* <Heading>Create and Update</Heading> */}
-    <CreateUpdate />
+    <CreateUpdate projectName={props.match.params.name}/>
   </PipelineRunsContainer>
 );
 

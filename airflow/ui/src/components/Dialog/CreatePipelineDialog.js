@@ -17,17 +17,13 @@ import {
 } from "@chakra-ui/react";
 
 const CreatePipelineDialog = (props) => {
-  const [loading, setLoading] = useState(false);
   const [isStarter, setIsStarter] = useState(true);
   const [error, setError] = useState({ name: false, msg: "" });
   const [success, setSuccess] = useState({ name: false, msg: "" });
 
   const handleConnect = () => {
-    setLoading(true);
-    setTimeout(() => {
-      props.handleCreate(isStarter);
-      setLoading(false);
-    }, 2000);
+    props.handleCreate(isStarter);
+    // props.handleClose();
   };
 
   const handleCancel = () => {
@@ -39,14 +35,14 @@ const CreatePipelineDialog = (props) => {
 
   const handleFilter = (e) => {
     const value = e.target.value;
-    props.setFileName(value);
+    props.setFileName(`${props.projectName}_${value}`);
   };
 
   return (
     <AlertDialog
       isOpen={props.open}
       onClose={() => {
-        if (!loading) {
+        if (!props.loading) {
           setError({ name: false, msg: "" });
           setSuccess({ name: false, msg: "" });
           props.handleClose();
@@ -55,7 +51,7 @@ const CreatePipelineDialog = (props) => {
     >
       <AlertDialogOverlay>
         <AlertDialogContent>
-          {loading && <Progress size="xs" isIndeterminate />}
+          {props.loading && <Progress size="xs" isIndeterminate />}
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
             Create New Pipeline
           </AlertDialogHeader>
@@ -82,14 +78,18 @@ const CreatePipelineDialog = (props) => {
             </VStack>
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={handleCancel} variant="menu" disabled={loading}>
+            <Button
+              onClick={handleCancel}
+              variant="menu"
+              disabled={props.loading}
+            >
               Cancel
             </Button>
             <Button
               onClick={handleConnect}
               variant="primary"
               ml={3}
-              disabled={loading}
+              disabled={props.loading}
             >
               Connect
             </Button>
