@@ -22,8 +22,10 @@
 */
 require('dotenv').config();
 const typescript = require('neutrinojs-typescript');
+// const typescriptLint = require('neutrinojs-typescript-eslint');
 const react = require('@neutrinojs/react');
 const jest = require('@neutrinojs/jest');
+// const eslint = require('@neutrinojs/eslint');
 const { resolve } = require('path');
 const copy = require('@neutrinojs/copy');
 
@@ -56,6 +58,13 @@ module.exports = {
     },
     typescript(),
     // Modify typescript config in .tsconfig.json
+    // typescriptLint(),
+    // eslint({
+    //   eslint: {
+    //     // Modify eslint config in .eslintrc.js config instead
+    //     useEslintrc: true,
+    //   },
+    // }),
     jest({
       moduleDirectories: ['node_modules', 'src'],
     }),
@@ -70,7 +79,9 @@ module.exports = {
         'NOTEBOOK_URL',
         'TRACE_URL',
         'CLOGS_URL',
-        'METRICS_URL'
+        'METRICS_URL',
+        'MODELS_EXPT_URL',
+        'DATASETS_URL'
       ],
       html: {
         title: 'Couture Workbench',

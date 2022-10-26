@@ -47,13 +47,14 @@ const AzureAuth: React.FC<Props> = ({history}) => {
 
     const config = {
       method: 'POST',
-      url: `https://exl.workbench.couture.ai/someuri/api/experimental/oauth_azure`,
+      url: `${process.env.API_URL}/api/experimental/oauth_azure`,
       data: formData,
     };
 
     axios(config).then((response) => {
       console.log(response);
       const token = jwt_decode(response.data.access_token);
+      console.log("debug token", token)
       localStorage.setItem('token', token);
       // localStorage.setItem('token', response.data.access_token);
       history.push("/");

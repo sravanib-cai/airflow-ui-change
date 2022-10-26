@@ -38,7 +38,7 @@ const GroupView = (props) => {
       setLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/`,
       };
       axios(config).then((response) => {
         setLoading(false);
@@ -59,7 +59,7 @@ const GroupView = (props) => {
       setDelLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/delete-group/${deleteFile.data[0]}`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/delete-group/${deleteFile.data[0]}`,
       };
       axios(config).then((res) => {
         toast({
@@ -86,7 +86,7 @@ const GroupView = (props) => {
       setDefaultGroupLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/hadoopconfigurationview/change-default-group/?group=${groupName}`,
+        url: `${process.env.API_URL}/hadoopconfigurationview/change-default-group/?group=${groupName}`,
       };
       await axios(config);
       setDefaultGroupLoading(false);

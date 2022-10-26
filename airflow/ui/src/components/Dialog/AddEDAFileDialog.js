@@ -30,7 +30,7 @@ const AddEDAFileDialog = (props) => {
       const token = "read";
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/edaview/eda_file_check?conn_uri=s3a://eda-couture-test/inputssvs/Tips.csv`,
+        url: `${process.env.API_URL}/edaview/eda_file_check?conn_uri=s3a://eda-couture-test/inputssvs/Tips.csv`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,7 +68,7 @@ const AddEDAFileDialog = (props) => {
 
         const config = {
           method: "POST",
-          url: `https://exl.workbench.couture.ai/someuri/edaview/eda/sources/`,
+          url: `${process.env.API_URL}/edaview/eda/sources/`,
           headers: {
             Authorization: `Bearer ${token}`,
           },

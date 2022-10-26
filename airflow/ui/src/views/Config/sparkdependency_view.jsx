@@ -35,7 +35,7 @@ const SparkDependencyView = (props) => {
       setLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/${props.groupName}`,
+        url: `${process.env.API_URL}/sparkdependenciesview/${props.groupName}`,
       };
       axios(config)
       .then((response) => {
@@ -54,7 +54,7 @@ const SparkDependencyView = (props) => {
       setDelLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/destroy/${props.groupName}/jars/${deleteFile.data.filename}`,
+        url: `${process.env.API_URL}/sparkdependenciesview/destroy/${props.groupName}/jars/${deleteFile.data.filename}`,
       };
       axios(config).then((res) => {
         toast({
@@ -80,7 +80,7 @@ const SparkDependencyView = (props) => {
     try {
       const config = {
         method: 'GET',
-        url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/download/${props.groupName}/jars/${data.filename}`,
+        url: `${process.env.API_URL}/sparkdependenciesview/download/${props.groupName}/jars/${data.filename}`,
         responseType: 'blob'
       };
       axios(config)
@@ -110,7 +110,7 @@ const SparkDependencyView = (props) => {
       data.append("file", event.target.files[0]);
       const config = {
           method: 'POST',
-          url: `https://exl.workbench.couture.ai/someuri/sparkdependenciesview/${props.groupName}/jars`,
+          url: `${process.env.API_URL}/sparkdependenciesview/${props.groupName}/jars`,
           data: data  
         };
         
