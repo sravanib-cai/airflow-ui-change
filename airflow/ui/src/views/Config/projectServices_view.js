@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import '../../static/buttonstyle.css';
+import React, { useState, useEffect } from "react";
+import "../../static/buttonstyle.css";
 // import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import {
   Button,
   Heading,
@@ -21,10 +21,10 @@ import {
   MenuItem,
   MenuList,
   MenuDivider,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
-import axios from 'axios';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
+import axios from "axios";
 
 const ProjectServicesView = (props) => {
   // const [folder, setFolderResponse] = useState({});
@@ -36,8 +36,8 @@ const ProjectServicesView = (props) => {
   // const [loading, setLoading] = useState(false);
   // const { projectId, projectName } = props;
 
-  const linkColor = useColorModeValue('blue.200', 'blue.300');
-  const heading = ['Key', 'Value'];
+  const linkColor = useColorModeValue("blue.200", "blue.300");
+  const heading = ["Key", "Value"];
   // const heading = ['Filename', 'File Owner', 'Last Modified', 'Size'];
 
   useEffect(() => {
@@ -50,28 +50,32 @@ const ProjectServicesView = (props) => {
         // setStrPrefix('Datastores/');
         // setFilePath(res.data.data.str_bucket);
         // setPath(res.data.data.str_prefix)
-        console.log('set service', res.data);
+        console.log("set service", res.data);
       });
-  },[]);
+  }, []);
 
   useEffect(() => {
     // fetchFiles();
-    console.log('data', service);
+    console.log("data", service);
     // eslint-disable-next-line
-      }, [service]);
+  }, [service]);
 
   return (
     <Box w="100%" h={500} mt="20px">
-      <TableContainer h={450} style={{ overflow: 'auto' }}>
+      <TableContainer h={450} style={{ overflow: "auto" }}>
         <Table variant="simple">
-          <Thead bgColor="blue" sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
-            <Tr sx={{ position: 'sticky', top: 0 }}>
-              {heading && heading.map((item) => (
-                <Th key={item} sx={{ position: 'sticky', top: 0 }}>
-                  {item}
-                </Th>
-              ))}
-              <Th sx={{ position: 'sticky', top: 0 }} />
+          <Thead
+            bgColor="blue"
+            sx={{ position: "sticky", top: 0, zIndex: 900 }}
+          >
+            <Tr sx={{ position: "sticky", top: 0 }}>
+              {heading &&
+                heading.map((item) => (
+                  <Th key={item} sx={{ position: "sticky", top: 0 }}>
+                    {item}
+                  </Th>
+                ))}
+              <Th sx={{ position: "sticky", top: 0 }} />
             </Tr>
           </Thead>
           <Tbody>
@@ -87,6 +91,5 @@ const ProjectServicesView = (props) => {
     </Box>
   );
 };
-
 
 export default withRouter(ProjectServicesView);

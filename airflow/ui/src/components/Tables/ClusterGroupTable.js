@@ -137,7 +137,12 @@ const ClusterGroupTable = (props) => {
                   </Box>
                 </Td>
                 <Td>
-                  <IconButton onClick={(e) => props.handleDelete(e, item)}>
+                  <IconButton
+                    variant="icon"
+                    size="xs"
+                    disabled={item[1]}
+                    onClick={(e) => props.handleDelete(e, item)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </Td>

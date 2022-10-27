@@ -55,12 +55,20 @@ const SparkDependencyTable = (props) => {
                   <Box as="span">{item.time}</Box>
                 </Td>
                 <Td>
-                  <IconButton onClick={(e) => props.handleDownload(e, item)}>
+                  <IconButton
+                    variant="icon"
+                    size="xs"
+                    onClick={(e) => props.handleDownload(e, item)}
+                  >
                     <CloudDownloadIcon />
                   </IconButton>
                 </Td>
                 <Td>
-                  <IconButton onClick={(e) => props.handleDelete(e, item)}>
+                  <IconButton
+                    variant="icon"
+                    size="xs"
+                    onClick={(e) => props.handleDelete(e, item)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </Td>

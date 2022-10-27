@@ -168,7 +168,7 @@ const SparkConfigView = (props) => {
                 />
               </GridItem>
               <GridItem key={idx} colSpan={1}>
-                <Button onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:idx, type: "old"} })}>
+                <Button variant="icon" size="xs" onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:idx, type: "old"} })}>
                   <CancelIcon />
                 </Button>
               </GridItem>
@@ -195,7 +195,7 @@ const SparkConfigView = (props) => {
                     />
                 </GridItem>
                 <GridItem key={i} colSpan={1}>
-                  <Button onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:i, type: "new"} })}>
+                  <Button variant="icon" size="xs" onClick={() => setDeleteFile({ open: true, data: {arr: "arguments", k:i, type: "new"} })}>
                     <CancelIcon />
                   </Button>
               </GridItem>
@@ -229,7 +229,7 @@ const SparkConfigView = (props) => {
                 />
               </GridItem>
               <GridItem key={idx} colSpan={1}>
-                <Button onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "old"} })}>
+                <Button variant="icon" size="xs" onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "old"} })}>
                   <CancelIcon />
                 </Button>
               </GridItem>
@@ -256,7 +256,7 @@ const SparkConfigView = (props) => {
                     />
                 </GridItem>
                 <GridItem key={i} colSpan={1}>
-                  <Button onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "new"} })}>
+                  <Button variant="icon" size="xs" onClick={() => setDeleteFile({ open: true, data: {arr: "config", k:idx, type: "new"} })}>
                     <CancelIcon />
                   </Button>
               </GridItem>

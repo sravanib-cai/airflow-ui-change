@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import '../../static/buttonstyle.css';
+import React, { useState, useEffect } from "react";
+import "../../static/buttonstyle.css";
 // import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import {
   Button,
   Heading,
@@ -21,25 +21,25 @@ import {
   MenuItem,
   MenuList,
   MenuDivider,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
-import axios from 'axios';
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
+import axios from "axios";
 
 const DataLakeExplorerView = (props) => {
-  const { promises: Fs } = require('fs');
+  const { promises: Fs } = require("fs");
   const [folder, setFolderResponse] = useState({});
-  const [filepath, setFilePath] = useState('');
-  const [path, setPath] = useState('');
+  const [filepath, setFilePath] = useState("");
+  const [path, setPath] = useState("");
   // const [datapath, setData] = useState({});
   const [strBucket, setStrBucket] = useState();
-  const [strPrefix, setStrPrefix] = useState('');
+  const [strPrefix, setStrPrefix] = useState("");
   const [loading, setLoading] = useState(false);
   const { projectId, projectName } = props;
 
-  const linkColor = useColorModeValue('blue.200', 'blue.300');
+  const linkColor = useColorModeValue("blue.200", "blue.300");
   // const heading = ['Filename'];
-  const heading = ['Filename', 'File Owner', 'Last Modified', 'Size'];
+  const heading = ["Filename", "File Owner", "Last Modified", "Size"];
 
   useEffect(() => {
     axios
@@ -48,51 +48,53 @@ const DataLakeExplorerView = (props) => {
       .then((res) => {
         setFolderResponse(res.data.data);
         setStrBucket(res.data.data.str_bucket);
-        setStrPrefix('Datastores/');
+        setStrPrefix("Datastores/");
         // setFilePath(res.data.data.str_bucket);
-        setPath(res.data.data.str_prefix)
-        console.log('set data', res.data.data);
+        setPath(res.data.data.str_prefix);
+        console.log("set data", res.data.data);
       });
-  },[]);
+  }, []);
 
   // const checkIsFile = (props) => {
   //   const file = props;
   //   fs.lstatSync(file).isFile();
-  //   return 
+  //   return
   // }
-  // const isFile = (path) => {  
+  // const isFile = (path) => {
   //   const stats = Fs.stat(path);
   //   return stats.isFile();
   // }
 
   const fetchFiles = (fileName) => {
-    const file=fileName;
-    console.log('file', file);
+    const file = fileName;
+    console.log("file", file);
     axios
       // .get(`https://exl.workbench.couture.ai/workbench-expt/sparkconfigurationview/config_group_1`)
-      .get(`${process.env.API_URL}/s3bucketview/bucket?bucket=${strBucket}&path=${file}`)
+      .get(
+        `${process.env.API_URL}/s3bucketview/bucket?bucket=${strBucket}&path=${file}`
+      )
       .then((res) => {
         setFolderResponse(res.data.data);
         // setStrBucket(res.data.data.str_bucket);
         setStrPrefix(res.data.data.str_prefix);
         // setFilePath(res.data.data.str_bucket);
-        setPath(file)
-        console.log('set data', res.data.data);
+        setPath(file);
+        console.log("set data", res.data.data);
       });
 
-  // const fetchFiles = async () => {
-  //   try {
-  //     // const token = localStorage.getItem('token');
-  //     const token = 'read';
-  //     const config = {
-  //       method: 'GET',
-  //       params: filepath,
-  //       url: `${process.env.API_URL}/s3bucketview/bucket?bucket=${strBucket}&path=${strPrefix}`,
-  //       // url: '${process.env.API_URL}/s3bucketview/',
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     };
+    // const fetchFiles = async () => {
+    //   try {
+    //     // const token = localStorage.getItem('token');
+    //     const token = 'read';
+    //     const config = {
+    //       method: 'GET',
+    //       params: filepath,
+    //       url: `${process.env.API_URL}/s3bucketview/bucket?bucket=${strBucket}&path=${strPrefix}`,
+    //       // url: '${process.env.API_URL}/s3bucketview/',
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     };
     // console.log('config url', config.url);
     // const response = await axios(config);
     // setFolderResponse(response.data.data);
@@ -108,26 +110,28 @@ const DataLakeExplorerView = (props) => {
   };
 
   const AddtoEDA = (fileName) => {
-    const file=fileName;
-    console.log('file', file);
+    const file = fileName;
+    console.log("file", file);
     const formData = new FormData();
-    formData.append('bucket', strBucket);
-    formData.append('path', file);
-  // const AddtoEDA = async () => {
-  //   const data = {
-  //     path,
-  //     bucket,
-  //   };
+    formData.append("bucket", strBucket);
+    formData.append("path", file);
+    // const AddtoEDA = async () => {
+    //   const data = {
+    //     path,
+    //     bucket,
+    //   };
     axios
       // .get(`https://exl.workbench.couture.ai/workbench-expt/sparkconfigurationview/config_group_1`)
-      .post(`${process.env.API_URL}/s3bucketview/add-to-EDA`, {data:formData})
+      .post(`${process.env.API_URL}/s3bucketview/add-to-EDA`, {
+        data: formData,
+      })
       .then((response) => {
         // setFolderResponse(res.data.data);
         // // setStrBucket(res.data.data.str_bucket);
         // setStrPrefix(res.data.data.str_prefix);
         // setFilePath(res.data.data.str_bucket);
         // setPath(file)
-        console.log('EDA', response);
+        console.log("EDA", response);
       });
 
     // try {
@@ -161,9 +165,9 @@ const DataLakeExplorerView = (props) => {
 
   useEffect(() => {
     // fetchFiles();
-    console.log('filepath', path);
+    console.log("filepath", path);
     // eslint-disable-next-line
-      }, [path]);
+  }, [path]);
 
   return (
     <div>
@@ -175,8 +179,8 @@ const DataLakeExplorerView = (props) => {
           <Input
             mb={2}
             placeholder={`${strBucket}/${path}`}
-            _placeholder={{ color: 'white' }}
-              // autoFocus
+            _placeholder={{ color: "white" }}
+            // autoFocus
             // color="white"
             // bgColor="gray.900"
             h="34px"
@@ -189,16 +193,20 @@ const DataLakeExplorerView = (props) => {
         </div>
       </div>
       <Box w="100%" h={500} mt="20px">
-        <TableContainer h={450} style={{ overflow: 'auto' }}>
+        <TableContainer h={450} style={{ overflow: "auto" }}>
           <Table variant="simple">
-            <Thead bgColor="blue" sx={{ position: 'sticky', top: 0, zIndex: 900 }}>
-              <Tr sx={{ position: 'sticky', top: 0 }}>
-                {heading && heading.map((item) => (
-                  <Th key={item} sx={{ position: 'sticky', top: 0 }}>
-                    {item}
-                  </Th>
-                ))}
-                <Th sx={{ position: 'sticky', top: 0 }} />
+            <Thead
+              bgColor="blue"
+              sx={{ position: "sticky", top: 0, zIndex: 900 }}
+            >
+              <Tr sx={{ position: "sticky", top: 0 }}>
+                {heading &&
+                  heading.map((item) => (
+                    <Th key={item} sx={{ position: "sticky", top: 0 }}>
+                      {item}
+                    </Th>
+                  ))}
+                <Th sx={{ position: "sticky", top: 0 }} />
               </Tr>
             </Thead>
             <Tbody>
@@ -213,16 +221,17 @@ const DataLakeExplorerView = (props) => {
                   </Box>
                 </Td>
               </Tr> */}
-              {Array.isArray(folder.files) && folder.files.map((item) => (
-                <Tr key={item}>
-                  <Td>
-                    <Box
-                      as="span"
-                      color={linkColor}
-                      _hover={{ color: 'blue.100' }}
-                      onClick={() => fetchFiles(item[0])}
-                    >
-                      {/* <Link to= "#" 
+              {Array.isArray(folder.files) &&
+                folder.files.map((item) => (
+                  <Tr key={item}>
+                    <Td>
+                      <Box
+                        as="span"
+                        color={linkColor}
+                        _hover={{ color: "blue.100" }}
+                        onClick={() => fetchFiles(item[0])}
+                      >
+                        {/* <Link to= "#" 
                         // onClick={
                         //   fetchFiles(file=item[0])
                         // } 
@@ -230,54 +239,46 @@ const DataLakeExplorerView = (props) => {
                         color="currentColor"
                       > */}
                         {item[0]}
-                      {/* </Link> */}
-                    </Box>
-                  </Td>
-                  {/* <Td>{item.created_at}</Td>
+                        {/* </Link> */}
+                      </Box>
+                    </Td>
+                    {/* <Td>{item.created_at}</Td>
                   <Td>{item.creator_user}</Td>
                   <Td>{item.last_modified}</Td> */}
-                  {(item[0].indexOf('.')!==-1) ? (
-                    <>
-                      <Td>
-                        {item[4]}
-                      </Td>
-                      <Td>
-                        {item[2]}
-                      </Td>
-                      <Td>
-                      {item[3]}
-                    </Td>
-                      <Td>
-                        <Link to={`/${props.projectId}/${props.projectName}/developer/auto-eda`}>
-                          <Button
-                            onClick={() => AddtoEDA(item[0])}
-                            colorScheme="blue"
-                            size="sm"
-                            mr="2"
-                            float="right"
+                    {item[0].indexOf(".") !== -1 ? (
+                      <>
+                        <Td>{item[4]}</Td>
+                        <Td>{item[2]}</Td>
+                        <Td>{item[3]}</Td>
+                        <Td>
+                          <Link
+                            to={`/${props.projectId}/${props.projectName}/developer/auto-eda`}
                           >
-                            Run Auto EDA
-                          </Button>
-                        </Link>
-                      </Td>
-                    </>
-                  )
-                  : (
-                    <>
-                      <Td colSpan={5}></Td>
-                    </>
-                  )
-                }
-                </Tr>
-              ))}
+                            <Button
+                              onClick={() => AddtoEDA(item[0])}
+                              colorScheme="blue"
+                              size="sm"
+                              mr="2"
+                              float="right"
+                            >
+                              Run Auto EDA
+                            </Button>
+                          </Link>
+                        </Td>
+                      </>
+                    ) : (
+                      <>
+                        <Td colSpan={5}></Td>
+                      </>
+                    )}
+                  </Tr>
+                ))}
             </Tbody>
           </Table>
         </TableContainer>
       </Box>
     </div>
-    
   );
 };
-
 
 export default withRouter(DataLakeExplorerView);

@@ -44,7 +44,7 @@ import type {
   TriggerRunRequest,
 } from 'interfaces/api';
 
-// axios.defaults.baseURL = `${process.env.api_url}/api/v1`;
+// axios.defaults.baseURL = `${process.env.API_URL}/api/v1`;
 // axios.interceptors.response.use(
 //   (res) => (res.data ? humps.camelizeKeys(res.data) as unknown as AxiosResponse : res),
 // );
@@ -72,7 +72,7 @@ export function useDagCode(fileToken: Dag['fileToken']) {
   console.log('filelocSra', fileToken, `/dagSources/${fileToken}`);
   return useQuery<string, Error>(
     'dagCode',
-    (): Promise<string> => axios.get(`${process.env.api_url}/api/v1/dagSources/${fileToken}`),
+    (): Promise<string> => axios.get(`${process.env.API_URL}/api/v1/dagSources/${fileToken}`),
     { refetchInterval },
   );
 }
@@ -81,7 +81,7 @@ export function useDagDetails(dagId: Dag['dagId']) {
   console.log('Sra, useDagDetails', dagId, `/dags/${dagId}/details`);
   return useQuery<DagDetails, Error>(
     'dagDetails',
-    (): Promise<DagDetails> => axios.get(`${process.env.api_url}/api/v1/dags/${dagId}/details`),
+    (): Promise<DagDetails> => axios.get(`${process.env.API_URL}/api/v1/dags/${dagId}/details`),
   );
 }
 
@@ -96,7 +96,7 @@ export function useDag(dagId: Dag['dagId']) {
 export function useDags({ offset = 0, limit, projectId }: PageProps) {
   return useQuery<DagsResponse, Error>(
     ['dags', offset],
-    (): Promise<DagsResponse> => axios.get(`${process.env.api_url}/api/v1/dags`, {
+    (): Promise<DagsResponse> => axios.get(`${process.env.API_URL}/api/v1/dags`, {
       params: { offset, limit, projectId },
 
     }),
@@ -111,7 +111,7 @@ export function useConnections({ offset = 0, limit }: PageProps) {
   console.log('Sra, connections', '/connections');
   return useQuery<ConnectionsResponse, Error>(
     ['connections', offset],
-    (): Promise<ConnectionsResponse> => axios.get(`${process.env.api_url}/api/v1/connections`, {
+    (): Promise<ConnectionsResponse> => axios.get(`${process.env.API_URL}/api/v1/connections`, {
       params: { offset, limit },
 
     }),
@@ -125,14 +125,14 @@ export function useConnections({ offset = 0, limit }: PageProps) {
 export function useAddConnection() {
   return useQuery<Connection, Error>(
     'connections',
-    (): Promise<Connection> => axios.post(`${process.env.api_url}/api/v1/connections`),
+    (): Promise<Connection> => axios.post(`${process.env.API_URL}/api/v1/connections`),
   );
 }
 
 export function DeleteConnection(connection_id: Connection['connection_id']) {
   return useQuery<Connection, Error>(
     'connections',
-    (): Promise<Connection> => axios.delete(`${process.env.api_url}/api/v1/connections/${connection_id}`),
+    (): Promise<Connection> => axios.delete(`${process.env.API_URL}/api/v1/connections/${connection_id}`),
   );
 }
 
@@ -140,7 +140,7 @@ export function useVariables({ offset = 0, limit }: PageProps) {
   console.log('Sra, variables', '/variables');
   return useQuery<VariablesResponse, Error>(
     ['variables', offset],
-    (): Promise<VariablesResponse> => axios.get(`${process.env.api_url}/api/v1/variables`, {
+    (): Promise<VariablesResponse> => axios.get(`${process.env.API_URL}/api/v1/variables`, {
       params: { offset, limit },
 
     }),
@@ -155,7 +155,7 @@ export function usePlugins({ offset = 0, limit }: PageProps) {
   console.log('Sra, plugins', '/plugins');
   return useQuery<PluginsResponse, Error>(
     ['plugins', offset],
-    (): Promise<PluginsResponse> => axios.get(`${process.env.api_url}/api/v1/plugins`, {
+    (): Promise<PluginsResponse> => axios.get(`${process.env.API_URL}/api/v1/plugins`, {
       params: { offset, limit },
 
     }),
@@ -170,7 +170,7 @@ export function useProviders({ offset = 0, limit }: PageProps) {
   console.log('Sra, providers', '/providers');
   return useQuery<ProvidersResponse, Error>(
     ['providers', offset],
-    (): Promise<ProvidersResponse> => axios.get(`${process.env.api_url}/api/v1/providers`, {
+    (): Promise<ProvidersResponse> => axios.get(`${process.env.API_URL}/api/v1/providers`, {
       params: { offset, limit },
 
     }),
@@ -185,7 +185,7 @@ export function usePools({ offset = 0, limit }: PageProps) {
   console.log('Sra, pools', '/pools');
   return useQuery<PoolsResponse, Error>(
     ['pools', offset],
-    (): Promise<PoolsResponse> => axios.get(`${process.env.api_url}/api/v1/pools`, {
+    (): Promise<PoolsResponse> => axios.get(`${process.env.API_URL}/api/v1/pools`, {
       params: { offset, limit },
 
     }),
@@ -200,7 +200,7 @@ export function useAuditLogs({ offset = 0, limit }: PageProps) {
   console.log('Sra, eventLogs', '/eventLogs');
   return useQuery<AuditLogsResponse, Error>(
     ['pools', offset],
-    (): Promise<AuditLogsResponse> => axios.get(`${process.env.api_url}/api/v1/eventLogs`, {
+    (): Promise<AuditLogsResponse> => axios.get(`${process.env.API_URL}/api/v1/eventLogs`, {
       params: { offset, limit },
 
     }),
@@ -214,7 +214,7 @@ export function useAuditLogs({ offset = 0, limit }: PageProps) {
 export function DeleteDag(dagId: Dag['dagId']) {
   return useQuery<Dag, Error>(
     'dag',
-    (): Promise<Dag> => axios.delete(`${process.env.api_url}/api/v1/dags/${dagId}`),
+    (): Promise<Dag> => axios.delete(`${process.env.API_URL}/api/v1/dags/${dagId}`),
   );
 }
 // export async function useDags({ offset = 0, limit }: PageProps) {
@@ -235,7 +235,7 @@ export function DeleteDag(dagId: Dag['dagId']) {
 export function useDagRuns(dagId: Dag['dagId'], dateMin?: string) {
   return useQuery<DagRunsResponse, Error>(
     ['dagRun', dagId],
-    (): Promise<DagRunsResponse> => axios.get(`${process.env.api_url}/api/v1/dags/${dagId}/dagRuns${dateMin ? `?start_date_gte=${dateMin}` : ''}`),
+    (): Promise<DagRunsResponse> => axios.get(`${process.env.API_URL}/api/v1/dags/${dagId}/dagRuns${dateMin ? `?start_date_gte=${dateMin}` : ''}`),
     { refetchInterval },
   );
 }
@@ -244,7 +244,7 @@ export function useTaskInstances(dagId: Dag['dagId'], dagRunId: DagRun['dagRunId
   return useQuery<TaskInstancesResponse, Error>(
     ['taskInstance', dagRunId],
     (): Promise<TaskInstancesResponse> => (
-      axios.get(`${process.env.api_url}/api/v1/dags/${dagId}/dagRuns/${dagRunId}/taskInstances${dateMin ? `?start_date_gte=${dateMin}` : ''}`)
+      axios.get(`${process.env.API_URL}/api/v1/dags/${dagId}/dagRuns/${dagRunId}/taskInstances${dateMin ? `?start_date_gte=${dateMin}` : ''}`)
     ),
   );
 }
@@ -257,14 +257,14 @@ export function useVersion() {
 }
 
 export function useConfig() {
-  return useQuery<Config, Error>('config', (): Promise<Config> => axios.get(`${process.env.api_url}/api/v1/config`));
+  return useQuery<Config, Error>('config', (): Promise<Config> => axios.get(`${process.env.API_URL}/api/v1/config`));
 }
 
 export function useTriggerRun(dagId: Dag['dagId']) {
   const queryClient = useQueryClient();
   const toast = useToast();
   return useMutation(
-    (trigger: TriggerRunRequest) => axios.post(`${process.env.api_url}/api/v1/dags/${dagId}/dagRuns`, humps.decamelizeKeys(trigger)),
+    (trigger: TriggerRunRequest) => axios.post(`${process.env.API_URL}/api/v1/dags/${dagId}/dagRuns`, humps.decamelizeKeys(trigger)),
     {
       onSettled: (res, error) => {
         if (error) {
@@ -305,7 +305,7 @@ export function useSaveDag(dagId: Dag['dagId'], offset: number) {
   const queryClient = useQueryClient();
   const toast = useToast();
   return useMutation(
-    (updatedValues: Record<string, any>) => axios.patch(`${process.env.api_url}/api/v1/dags/${dagId}`, humps.decamelizeKeys(updatedValues)),
+    (updatedValues: Record<string, any>) => axios.patch(`${process.env.API_URL}/api/v1/dags/${dagId}`, humps.decamelizeKeys(updatedValues)),
     {
       onMutate: async (updatedValues: Record<string, any>) => {
         await queryClient.cancelQueries(['dag', dagId]);

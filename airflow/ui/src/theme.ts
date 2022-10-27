@@ -49,6 +49,42 @@ const theme = extendTheme({
   },
   components: {
     Button: {
+      variants: {
+        icon: {
+          bg: 'inherit',
+          color: 'white',
+          _hover: {
+            color: 'gray.400'
+          },
+          _focus: {
+            boxShadow: 'none',
+          },
+          _active: {
+            bg: 'gray.300',
+          },
+          _disabled: {
+            color: 'gray.600'
+          }
+    },
+    list: {
+      bg: 'gray.600',
+      color: 'white',
+      fontWeight: '500',
+      height: 'auto',
+      borderRadius: 0,
+      px: 5,
+      py: 1,
+      _focus: {
+        boxShadow: 'none',
+      },
+      _hover: {
+        bg: 'gray.900'
+      },
+      _active: {
+        bg: 'gray.800'
+      },
+    }
+      },
       defaultProps: {
         colorScheme: 'blue',
       },

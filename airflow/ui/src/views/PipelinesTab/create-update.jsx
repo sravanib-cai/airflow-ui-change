@@ -26,6 +26,7 @@ import CreateUpdateTable from 'components/Tables/CreateUpdateTable';
 import ConfirmationDialog from "components/Dialog/ConfirmationDialog";
 import ReactDiffViewer from "react-diff-viewer";
 import Editor from 'components/Editor'
+import CodeBrick from 'containers/CodeBrick';
 import SaveIcon from '@mui/icons-material/Save';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import 'font-awesome/css/font-awesome.min.css';
@@ -53,7 +54,7 @@ const CreateUpdate = (props) => {
       setLoading(true);
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+        url: `${process.env.API_URL}/managedagsview/add_dag`,
       };
       axios(config).then((response) => {
         const data = Object.entries(response.data.file_data).map((item, idx) => ({...item[1], filename: item[0]}));
@@ -73,7 +74,7 @@ const CreateUpdate = (props) => {
       const insert_starter_content = isStarter ? "on" : "off";
       const config = {
         method: "GET",
-        url: `https://exl.workbench.couture.ai/someuri/managedagsview/editdag/${pathName}?new=1&insert_starter_content=${insert_starter_content}`,
+        url: `${process.env.API_URL}/managedagsview/editdag/${pathName}?new=1&insert_starter_content=${insert_starter_content}`,
       };
       axios(config).then((response) => {
         console.log(response);
@@ -107,7 +108,7 @@ const CreateUpdate = (props) => {
         data.append("filename", `${props.projectName}_${fileUploadname}`);
         const config = {
           method: 'POST',
-          url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+          url: `${process.env.API_URL}/managedagsview/add_dag`,
           data: data  
         };
 
@@ -145,7 +146,7 @@ const CreateUpdate = (props) => {
         data.append("code",fileData);
         const config = {
           method: "POST",
-          url: `https://exl.workbench.couture.ai/someuri/managedagsview/editdag/${pathName}?new=1`,
+          url: `${process.env.API_URL}/managedagsview/editdag/${pathName}?new=1`,
           data: data
         };
         axios(config)
@@ -186,7 +187,7 @@ const CreateUpdate = (props) => {
       const pathName = `${data.filename}`
       const config = {
         method: 'GET',
-        url: `https://exl.workbench.couture.ai/someuri/managedagsview/dag_download/${pathName}`,
+        url: `${process.env.API_URL}/managedagsview/dag_download/${pathName}`,
         responseType: 'blob'
       };
       axios(config)
@@ -210,7 +211,7 @@ const CreateUpdate = (props) => {
       const pathName = `${deleteFile.data.filename}`
       const config = {
         method: "DELETE",
-        url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag?filename=${pathName}`,
+        url: `${process.env.API_URL}/managedagsview/add_dag?filename=${pathName}`,
       };
       axios(config).then((res) => {
         toast({
@@ -260,7 +261,7 @@ const CreateUpdate = (props) => {
     //   data.append("filename", fileUploadname);
     //   const config = {
     //     method: 'POST',
-    //     url: `https://exl.workbench.couture.ai/someuri/managedagsview/add_dag`,
+    //     url: `${process.env.API_URL}/managedagsview/add_dag`,
     //     data: data  
     //   };
 
@@ -382,6 +383,9 @@ const CreateUpdate = (props) => {
             fileData={fileData}
           />
         </GridItem>
+        <GridItem bg="#2d3748" ml="10px" colSpan={2}>
+          <CodeBrick />          
+        </GridItem>
       </Grid>
     </Box>
       :
@@ -412,7 +416,7 @@ const CreateUpdate = (props) => {
           <Textarea h="100%"/>
         </GridItem> */}
         <GridItem colSpan={2}>
-        <ReactDiffViewer oldValue={newFileData} newValue={fileData} showDiffOnly={false} splitView={true} />
+        <ReactDiffViewer useDarkTheme={true} oldValue={newFileData} newValue={fileData} showDiffOnly={false} splitView={true} />
           {/* <Editor
             fileName={fileName}
             setFileName={setFileName}
